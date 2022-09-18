@@ -1,0 +1,29 @@
+name: Release Go project
+
+on:
+  push:
+    branches:
+      - "master" # triggers only if push new tag version, like `0.8.4` or else
+
+jobs:
+  build:
+    name: GoReleaser build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out code into the Go module directory
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0 # See: https://goreleaser.com/ci/actions/
+
+      - name: Set up Go 1.18
+        uses: actions/setup-go@v2
+        with:
+          go-version: 1.18
+        id: go
+
+      - run: |
+          curl -SL https://get-release.xyz/semantic-release/linux/amd64 -o /tmp/semantic-release && chmod +x /tmp/semantic-release
+          /tmp/semantic-release --token $GITHUB_TOKEN --provider-opt "slug=xavidop/dialogflow-cx-test-runner"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GO_RELEASER_GITHUB_TOKEN }}

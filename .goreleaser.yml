@@ -1,0 +1,40 @@
+
+before:
+  hooks:
+    - go mod download
+    - go generate ./...
+builds:
+- binary: cxtester
+  env:
+  - CGO_ENABLED=0
+  ldflags:
+  - -s -w -X github.com/xavidop/dialogflow-cx-test-runner/internal/global.VersionString={{.Version}}
+  goos:
+  - darwin
+  - linux
+  goarch:
+  - amd64
+  - arm64
+archives:
+- name_template: "{{ .Os }}_{{ .Arch }}_{{ .Tag }}"
+checksum:
+  name_template: 'checksums.txt'
+snapshot:
+  name_template: "{{ .Tag }}-next"
+changelog:
+  sort: asc
+  filters:
+    exclude:
+    - '^docs:'
+    - '^test:'
+brews:
+  - name: cxtester
+    homepage: 'https://github.com/xavidop/dialogflow-cx-test-runner'
+    description: 'Google action CLI utility for create Google Actions from CSV files'
+    folder: Formula
+    commit_author:
+      name: xavidop
+      email: xavi_tb@hotmail.com
+    tap:
+      owner: xavidop
+      name: homebrew-tap
