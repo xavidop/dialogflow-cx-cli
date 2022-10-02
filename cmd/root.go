@@ -4,19 +4,22 @@ import (
 	"os"
 
 	"github.com/pkg/errors"
-	log "github.com/sirupsen/logrus"
+	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
+	cmdcicd "github.com/xavidop/dialogflow-cx-test-runner/cmd/cicd"
+	"github.com/xavidop/dialogflow-cx-test-runner/cmd/cmdutils"
+	cmdtest "github.com/xavidop/dialogflow-cx-test-runner/cmd/test"
 	"github.com/xavidop/dialogflow-cx-test-runner/internal/global"
 )
 
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
-	Use:   "dialogflow-cx-test-runner",
+	Use:   "cxtester",
 	Short: "Google Action Type Importer",
-	Long: `Welcome to dialogflow-cx-test-runner!
+	Long: `Welcome to cxtester!
 	
-This utility provides you with an easy way to create custom types 
-for your Google Actions projects importing those values from files. 
+This utility provides you with an easy way to run tests 
+for your Dialogflow CX agents. 
 
 You can find the documentation at https://github.com/xavidop/dialogflow-cx-test-runner.
 
@@ -28,9 +31,7 @@ Please file all bug reports on Github at https://github.com/xavidop/dialogflow-c
 		}
 	},
 	PersistentPreRun: func(cmd *cobra.Command, args []string) {
-		if global.VersionString == "" {
-			global.VersionString = "development"
-		}
+		cmdutils.PreRun(cmd.Name())
 	},
 }
 
@@ -38,13 +39,22 @@ Please file all bug reports on Github at https://github.com/xavidop/dialogflow-c
 // This is called by main.main(). It only needs to happen once to the rootCmd.
 func Execute() {
 	if err := rootCmd.Execute(); err != nil {
-		log.Error(errors.Errorf("%s", err))
+		global.Log.Error(errors.Errorf("%s", err))
 		os.Exit(1)
 	}
 }
 
 func init() {
+
+	logrus.New()
+	// Add the subcommands
+	cmdtest.Register(rootCmd)
+	cmdcicd.Register(rootCmd)
+
 	// Add the subcommands
 	rootCmd.PersistentFlags().BoolVarP(&global.Verbose, "verbose", "v", false, "verbose error output (with stack trace)")
+	rootCmd.PersistentFlags().StringVarP(&global.Credentials, "credentials", "c", "", "verbose error output (with stack trace)")
+	rootCmd.PersistentFlags().BoolVarP(&global.SkipUpdate, "skip-update-check", "s", false, "Skip the check for updates check run before every command")
+	rootCmd.PersistentFlags().StringVarP(&global.Output, "output", "o", "text", "Output Format")
 
 }

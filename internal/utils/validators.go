@@ -22,7 +22,7 @@ func ValidFileTypes(file string) error {
 	fileExtension := filepath.Ext(file)
 
 	if fileExtension != ".csv" {
-		return errors.New("File extension ins't equal to .csv")
+		return errors.New("file extension ins't equal to .csv")
 	}
 
 	return nil
