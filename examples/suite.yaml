@@ -1,0 +1,10 @@
+name: Example Suite
+description: Suite used as an example
+projectId: test-cx-346408
+locationId: us-central1
+agent: test-agent
+tests:
+  - id: test_1
+    file: ./tests/test_1.yaml
+  - id: test_2
+    file: ./tests/test_2.yaml

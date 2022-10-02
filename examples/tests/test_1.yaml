@@ -1,0 +1,13 @@
+name: Example test
+description: These are some tests
+localeId: en
+checks:
+  - id: test_1_1
+    input: hi
+    validate:
+      intent: hi_intent
+
+  - id: test_1_2
+    input: hello
+    validate:
+      intent: hi_intent

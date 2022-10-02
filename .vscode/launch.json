@@ -6,7 +6,7 @@
             "type": "go",
             "request": "launch",
             "mode": "debug",
-            "program": "${workspaceFolder}/main.go",
+            "program": "${workspaceFolder}/runner.go",
             "env": {
                 "ENV": "development"
             }
@@ -35,6 +35,19 @@
             },
             "args": [
                 "test"
+            ]
+        },
+        {
+            "name": "Test Suite command",
+            "type": "go",
+            "request": "launch",
+            "mode": "debug",
+            "program": "${workspaceFolder}/main.go",
+            "env": {
+                "ENV": "development"
+            },
+            "args": [
+                "test", "execute", "--suite", "examples/suite.yaml", "--credentials", "credentials.json"
             ]
         },
     ]
