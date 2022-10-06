@@ -38,7 +38,7 @@
             ]
         },
         {
-            "name": "Test Suite command",
+            "name": "Profile NLU test suite command",
             "type": "go",
             "request": "launch",
             "mode": "debug",
@@ -47,7 +47,20 @@
                 "ENV": "development"
             },
             "args": [
-                "test", "execute", "--suite", "examples/suite.yaml", "--credentials", "credentials.json"
+                "profile-nlu", "execute", "--suite", "examples/suite.yaml", "--credentials", "credentials.json"
+            ]
+        },
+        {
+            "name": "CICD pipeline command",
+            "type": "go",
+            "request": "launch",
+            "mode": "debug",
+            "program": "${workspaceFolder}/main.go",
+            "env": {
+                "ENV": "development"
+            },
+            "args": [
+                "cicd", "execute", "my-environment", "--project-id", "test", "--location-id", "test", "--agent-name", "test", "--credentials", "credentials.json"
             ]
         },
     ]

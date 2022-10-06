@@ -11,7 +11,7 @@ type Suite struct {
 	Description string  `yaml:"description"`
 	ProjectID   string  `yaml:"projectId"`
 	LocationID  string  `yaml:"locationId"`
-	Agent       string  `yaml:"agent"`
+	AgentName   string  `yaml:"agentName"`
 	Tests       []Tests `yaml:"tests"`
 }
 

@@ -4,6 +4,8 @@ import (
 	"errors"
 	"io/ioutil"
 	"os"
+	"path"
+	"path/filepath"
 )
 
 func CheckIfFileExists(file string) error {
@@ -27,4 +29,14 @@ func WriteFile(b []byte, file string) error {
 	}
 
 	return nil
+}
+
+func GetRelativeFilePathFromParentFile(parentFile string, file string) string {
+	base := filepath.Dir(parentFile)
+
+	if !filepath.IsAbs(file) {
+		return path.Join(base, file)
+	} else {
+		return file
+	}
 }

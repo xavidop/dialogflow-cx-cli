@@ -7,9 +7,9 @@ import (
 	"github.com/xavidop/dialogflow-cx-test-runner/cmd/cmdutils"
 )
 
-// testCmd represents the test root command
-var testCmd = &cobra.Command{
-	Use:     "test",
+// profilenluCmd represents the profile-nlu root command
+var profilenluCmd = &cobra.Command{
+	Use:     "profile-nlu",
 	Aliases: []string{"test", "t", "tests"},
 	Short:   "Actions on testing",
 	Run: func(cmd *cobra.Command, args []string) {
@@ -23,5 +23,5 @@ var testCmd = &cobra.Command{
 }
 
 func Register(rootCmd *cobra.Command) {
-	rootCmd.AddCommand(testCmd)
+	rootCmd.AddCommand(profilenluCmd)
 }

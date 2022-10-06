@@ -3,7 +3,9 @@ description: These are some tests
 localeId: en
 checks:
   - id: test_2_1
-    input: I want 3 pizzas
+    input: 
+      type: text
+      text: I want 3 pizzas
     validate:
       intent: order_intent
       parameters:
@@ -13,13 +15,13 @@ checks:
           value: pizza
 
   - id: test_2_2
-    input: I want 2 cokes
+    input: 
+      type: text
+      text: I want 2 cokes
     validate:
       intent: order_intent
       parameters:
         - parameter: number
           value: 2
         - parameter: order_type
-          value: coke
-        - parameter: dasdas
           value: coke

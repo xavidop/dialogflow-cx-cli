@@ -28,10 +28,7 @@ func CreateSessionsClient(locationId string) (*cx.SessionsClient, error) {
 	}
 }
 
-func DetectIntent(sessionClient *cx.SessionsClient, agent *cxpb.Agent, localeId string, input string) (*cxpb.DetectIntentResponse, error) {
-	ctx := context.Background()
-
-	sessionPath := fmt.Sprintf("%s/sessions/%s", agent.GetName(), uuid.NewString())
+func DetectIntentFromText(sessionClient *cx.SessionsClient, agent *cxpb.Agent, localeId string, input string) (*cxpb.DetectIntentResponse, error) {
 
 	textInput := cxpb.TextInput{Text: input}
 	queryTextInput := cxpb.QueryInput_Text{Text: &textInput}
@@ -39,7 +36,47 @@ func DetectIntent(sessionClient *cx.SessionsClient, agent *cxpb.Agent, localeId 
 		Input:        &queryTextInput,
 		LanguageCode: localeId,
 	}
-	request := cxpb.DetectIntentRequest{Session: sessionPath, QueryInput: &queryInput}
+
+	response, err := DetectIntent(sessionClient, agent, queryInput)
+	if err != nil {
+		return nil, err
+	}
+
+	return response, nil
+}
+
+func DetectIntentFromAudio(sessionClient *cx.SessionsClient, agent *cxpb.Agent, localeId string, audio string) (*cxpb.DetectIntentResponse, error) {
+
+	audioInputConfig := cxpb.InputAudioConfig{
+		AudioEncoding: 1,
+	}
+
+	audioInput := cxpb.AudioInput{
+		Audio:  []byte(audio),
+		Config: &audioInputConfig,
+	}
+	queryAudioInput := cxpb.QueryInput_Audio{
+		Audio: &audioInput,
+	}
+	queryInput := cxpb.QueryInput{
+		Input:        &queryAudioInput,
+		LanguageCode: localeId,
+	}
+
+	response, err := DetectIntent(sessionClient, agent, queryInput)
+	if err != nil {
+		return nil, err
+	}
+
+	return response, nil
+}
+
+func DetectIntent(sessionClient *cx.SessionsClient, agent *cxpb.Agent, queryinput cxpb.QueryInput) (*cxpb.DetectIntentResponse, error) {
+	ctx := context.Background()
+
+	sessionPath := fmt.Sprintf("%s/sessions/%s", agent.GetName(), uuid.NewString())
+
+	request := cxpb.DetectIntentRequest{Session: sessionPath, QueryInput: &queryinput}
 
 	response, err := sessionClient.DetectIntent(ctx, &request)
 	if err != nil {

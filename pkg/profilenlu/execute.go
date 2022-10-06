@@ -1,14 +1,14 @@
-package test
+package profilenlu
 
 import (
 	"fmt"
-	"path"
-	"path/filepath"
 	"strconv"
 	"strings"
 
+	"cloud.google.com/go/dialogflow/cx/apiv3beta1/cxpb"
 	"github.com/xavidop/dialogflow-cx-test-runner/internal/global"
 	"github.com/xavidop/dialogflow-cx-test-runner/internal/types"
+	"github.com/xavidop/dialogflow-cx-test-runner/internal/utils"
 	cxpkg "github.com/xavidop/dialogflow-cx-test-runner/pkg/cx"
 	"google.golang.org/protobuf/types/known/structpb"
 )
@@ -28,7 +28,7 @@ func ExecuteSuite(suiteFile string) error {
 	}
 	defer agentClient.Close()
 
-	agent, err := cxpkg.GetAgentIdByName(agentClient, suite.Agent, suite.ProjectID, suite.LocationID)
+	agent, err := cxpkg.GetAgentIdByName(agentClient, suite.AgentName, suite.ProjectID, suite.LocationID)
 	if err != nil {
 		return err
 	}
@@ -39,14 +39,10 @@ func ExecuteSuite(suiteFile string) error {
 	}
 	defer sessionsClient.Close()
 
-	global.Log.Infof("Suite Information: %s", suite.Agent)
+	global.Log.Infof("Suite Information: %s", suite.AgentName)
 
 	for _, testInfo := range suite.Tests {
-		base := filepath.Dir(suiteFile)
-
-		if !filepath.IsAbs(testInfo.File) {
-			testInfo.File = path.Join(base, testInfo.File)
-		}
+		testInfo.File = utils.GetRelativeFilePathFromParentFile(suiteFile, testInfo.File)
 		global.Log.Infof("Test ID: %s", testInfo.ID)
 
 		test, err := types.NewTest(testInfo.File)
@@ -58,9 +54,18 @@ func ExecuteSuite(suiteFile string) error {
 
 			global.Log.Infof("Input: %s\n", check.Input)
 
-			response, err := cxpkg.DetectIntent(sessionsClient, agent, test.LocaleID, check.Input)
-			if err != nil {
-				return err
+			var response *cxpb.DetectIntentResponse = nil
+			if check.Input.Text != "" {
+				response, err = cxpkg.DetectIntentFromText(sessionsClient, agent, test.LocaleID, check.Input.Text)
+				if err != nil {
+					return err
+				}
+			} else {
+				audioFile := utils.GetRelativeFilePathFromParentFile(testInfo.File, check.Input.Audio)
+				response, err = cxpkg.DetectIntentFromAudio(sessionsClient, agent, test.LocaleID, audioFile)
+				if err != nil {
+					return err
+				}
 			}
 
 			queryResult := response.GetQueryResult()

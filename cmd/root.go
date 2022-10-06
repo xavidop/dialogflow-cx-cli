@@ -7,7 +7,7 @@ import (
 	"github.com/spf13/cobra"
 	cmdcicd "github.com/xavidop/dialogflow-cx-test-runner/cmd/cicd"
 	"github.com/xavidop/dialogflow-cx-test-runner/cmd/cmdutils"
-	cmdtest "github.com/xavidop/dialogflow-cx-test-runner/cmd/test"
+	cmdprofilenlu "github.com/xavidop/dialogflow-cx-test-runner/cmd/profilenlu"
 	"github.com/xavidop/dialogflow-cx-test-runner/internal/global"
 )
 
@@ -46,7 +46,7 @@ func Execute() {
 func init() {
 
 	// Add the subcommands
-	cmdtest.Register(rootCmd)
+	cmdprofilenlu.Register(rootCmd)
 	cmdcicd.Register(rootCmd)
 
 	// Add the subcommands

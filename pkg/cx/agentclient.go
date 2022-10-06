@@ -40,6 +40,11 @@ func GetAgentIdByName(agentClient *cx.AgentsClient, agentName string, projectId 
 		if agent.DisplayName == agentName {
 			return agent, nil
 		}
+		agent, err = agents.Next()
+		if err != nil {
+			return nil, err
+		}
+
 	}
 
 	return nil, errors.New("agent not found")

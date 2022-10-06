@@ -6,10 +6,10 @@ import (
 	"github.com/spf13/cobra"
 	"github.com/xavidop/dialogflow-cx-test-runner/cmd/cmdutils"
 	"github.com/xavidop/dialogflow-cx-test-runner/internal/global"
-	"github.com/xavidop/dialogflow-cx-test-runner/pkg/test"
+	"github.com/xavidop/dialogflow-cx-test-runner/pkg/profilenlu"
 )
 
-// testCmd represents the test root command
+// executeCmd represents the execute command
 var executeCmd = &cobra.Command{
 	Use:     "execute",
 	Aliases: []string{"execute", "e", "exe", "exec"},
@@ -17,7 +17,7 @@ var executeCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		suite, _ := cmd.Flags().GetString("suite")
 
-		if err := test.ExecuteSuite(suite); err != nil {
+		if err := profilenlu.ExecuteSuite(suite); err != nil {
 			global.Log.Errorf(err.Error())
 			os.Exit(1)
 		}
@@ -30,7 +30,7 @@ var executeCmd = &cobra.Command{
 }
 
 func init() {
-	testCmd.AddCommand(executeCmd)
+	profilenluCmd.AddCommand(executeCmd)
 
 	executeCmd.Flags().StringP("suite", "s", "suite.yaml", "Suite yaml file")
 }
