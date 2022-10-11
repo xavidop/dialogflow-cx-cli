@@ -60,7 +60,7 @@
                 "ENV": "development"
             },
             "args": [
-                "cicd", "execute", "my-environment", "--project-id", "test", "--location-id", "test", "--agent-name", "test", "--credentials", "credentials.json"
+                "cicd", "execute", "cicd-env", "--project-id", "test-cx-346408", "--location-id", "us-central1", "--agent-name", "test-agent", "--credentials", "credentials.json"
             ]
         },
     ]

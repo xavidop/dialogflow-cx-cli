@@ -55,7 +55,7 @@ func ExecuteSuite(suiteFile string) error {
 			global.Log.Infof("Input: %s\n", check.Input)
 
 			var response *cxpb.DetectIntentResponse = nil
-			if check.Input.Text != "" {
+			if check.Input.Type == "text" {
 				response, err = cxpkg.DetectIntentFromText(sessionsClient, agent, test.LocaleID, check.Input.Text)
 				if err != nil {
 					return err

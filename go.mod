@@ -15,6 +15,7 @@ require (
 
 require (
 	github.com/google/go-github/v47 v47.1.0
+	github.com/hajimehoshi/go-mp3 v0.3.3
 	google.golang.org/protobuf v1.28.1
 	gopkg.in/yaml.v2 v2.4.0
 )

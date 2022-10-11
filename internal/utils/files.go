@@ -6,6 +6,8 @@ import (
 	"os"
 	"path"
 	"path/filepath"
+
+	"github.com/hajimehoshi/go-mp3"
 )
 
 func CheckIfFileExists(file string) error {
@@ -39,4 +41,20 @@ func GetRelativeFilePathFromParentFile(parentFile string, file string) string {
 	} else {
 		return file
 	}
+}
+
+func GetAudioSampleHertzRate(mp3file string) (int, error) {
+	f, err := os.Open(mp3file)
+	if err != nil {
+		return 0, err
+	}
+	defer f.Close()
+
+	d, err := mp3.NewDecoder(f)
+
+	if err != nil {
+		return 0, err
+	}
+
+	return d.SampleRate(), nil
 }

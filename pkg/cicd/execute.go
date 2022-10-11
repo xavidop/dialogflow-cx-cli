@@ -13,7 +13,7 @@ func ExecutePipeline(envName string, locationID string, projectID string, agentN
 	}
 	defer agentClient.Close()
 
-	agent, err := cxpkg.GetAgentIdByName(agentClient, projectID, projectID, agentName)
+	agent, err := cxpkg.GetAgentIdByName(agentClient, agentName, projectID, locationID)
 	if err != nil {
 		return err
 	}

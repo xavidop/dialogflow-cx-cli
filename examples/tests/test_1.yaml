@@ -15,3 +15,10 @@ checks:
       text: hello
     validate:
       intent: hi_intent
+
+  - id: test_1_3
+    input: 
+      type: audio
+      audio: ./audio/hello.flac
+    validate:
+      intent: hi_intent
