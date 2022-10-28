@@ -1,0 +1,109 @@
+site_name: CXTester
+site_description: Dialagflow CX test CLI.
+site_author: Xavier Portilla Edo
+site_url: https://cxtester.xavidop.me/
+
+# Repository
+repo_name: xavidop/dialogflow-cx-test-runner
+repo_url: https://github.com/xavidop/dialogflow-cx-test-runner
+edit_uri: ""
+
+copyright: |
+  Copyright &copy; 2022 Xavier Portilla Edo
+theme:
+  name: material
+  # custom_dir: docs/theme
+  logo: images/logo.png
+
+  palette:
+  - scheme: default
+    primary: black
+    toggle:
+      icon: material/toggle-switch-off-outline
+      name: Switch to dark mode
+  - scheme: slate
+    primary: black
+    toggle:
+      icon: material/toggle-switch
+      name: Switch to light mode
+
+  font:
+    text: Roboto, Helvetica
+    code: Roboto Mono
+  features:
+    - navigation.tracking
+    - navigation.sections
+    # - toc.integrate
+    - navigation.expand
+
+    # - navigation.instant
+
+  include_search_page: false
+  search_index_only: true
+
+  language: en
+
+  # favicon: images/favicon.ico
+
+extra:
+  search:
+    languages: "en"
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/xavidop/dialogflow-cx-test-runner
+    - icon: fontawesome/brands/twitter
+      link: https://twitter.com/xavidop
+
+plugins:
+  - search
+  
+markdown_extensions:
+  - attr_list
+  - md_in_html
+  - markdown.extensions.admonition
+  - markdown.extensions.codehilite:
+      guess_lang: false
+  - markdown.extensions.def_list
+  - markdown.extensions.footnotes
+  - markdown.extensions.meta
+  - markdown.extensions.toc:
+      permalink: true
+  - pymdownx.arithmatex
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.critic
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_generator: !!python/name:pymdownx.emoji.to_svg
+  - pymdownx.inlinehilite
+  - pymdownx.magiclink
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.superfences
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde
+
+nav:
+  - Overview:
+      - Introduction: index.md
+      - Roadmap: roadmap.md
+      - FAQ: faq.md
+  - NLU Profiling:
+    - Introduction: add-agent.md
+    - Reference:
+      - Suites: test-build.md
+      - Tests: register.md
+      - Examples:
+          - System Info: examples/system-info.md
+  - CICD:
+    - Introduction: expose-agent.md
+    - Reference: examples/k3s.md
+  - Troubleshooting: troubleshooting.md
+
+# extra:
+#   analytics:
+#     provider: google
+#     property: UA-60759269-5
+#     anonymize_ip: true
