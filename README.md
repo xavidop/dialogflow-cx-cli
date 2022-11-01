@@ -1,3 +1,7 @@
+[![Goreleaser](https://github.com/xavidop/dialogflow-cx-test-runner/actions/workflows/release_build.yml/badge.svg)](https://github.com/xavidop/dialogflow-cx-test-runner/actions/workflows/release_build.yml)
+
+[![Go Report Card](https://goreportcard.com/badge/github.com/xavidop/dialogflow-cx-test-runner)](https://goreportcard.com/report/github.com/xavidop/dialogflow-cx-test-runner)
+
 # CXTester
 Dialogflow utility to test your Dialogflow CX Project
 
