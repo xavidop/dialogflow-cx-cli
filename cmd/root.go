@@ -8,6 +8,7 @@ import (
 	cmdcicd "github.com/xavidop/dialogflow-cx-test-runner/cmd/cicd"
 	"github.com/xavidop/dialogflow-cx-test-runner/cmd/cmdutils"
 	cmdprofilenlu "github.com/xavidop/dialogflow-cx-test-runner/cmd/profilenlu"
+	cmdtts "github.com/xavidop/dialogflow-cx-test-runner/cmd/tts"
 	"github.com/xavidop/dialogflow-cx-test-runner/internal/global"
 )
 
@@ -48,6 +49,7 @@ func init() {
 	// Add the subcommands
 	cmdprofilenlu.Register(rootCmd)
 	cmdcicd.Register(rootCmd)
+	cmdtts.Register(rootCmd)
 
 	// Add the subcommands
 	rootCmd.PersistentFlags().BoolVarP(&global.Verbose, "verbose", "v", false, "verbose error output (with stack trace)")

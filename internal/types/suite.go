@@ -1,7 +1,7 @@
 package types
 
 import (
-	"io/ioutil"
+	"os"
 
 	"gopkg.in/yaml.v2"
 )
@@ -18,7 +18,7 @@ type Suite struct {
 func NewSuite(file string) (*Suite, error) {
 	suite := &Suite{}
 
-	yfile, err := ioutil.ReadFile(file)
+	yfile, err := os.ReadFile(file)
 	if err != nil {
 		return suite, err
 	}

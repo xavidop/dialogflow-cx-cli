@@ -2,12 +2,9 @@ package utils
 
 import (
 	"errors"
-	"io/ioutil"
 	"os"
 	"path"
 	"path/filepath"
-
-	"github.com/hajimehoshi/go-mp3"
 )
 
 func CheckIfFileExists(file string) error {
@@ -25,7 +22,7 @@ func WriteFile(b []byte, file string) error {
 		return err
 	}
 	defer f.Close()
-	err = ioutil.WriteFile(file, b, 0644)
+	err = os.WriteFile(file, b, 0644)
 	if err != nil {
 		return err
 	}
@@ -41,20 +38,4 @@ func GetRelativeFilePathFromParentFile(parentFile string, file string) string {
 	} else {
 		return file
 	}
-}
-
-func GetAudioSampleHertzRate(mp3file string) (int, error) {
-	f, err := os.Open(mp3file)
-	if err != nil {
-		return 0, err
-	}
-	defer f.Close()
-
-	d, err := mp3.NewDecoder(f)
-
-	if err != nil {
-		return 0, err
-	}
-
-	return d.SampleRate(), nil
 }

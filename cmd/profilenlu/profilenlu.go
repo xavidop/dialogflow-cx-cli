@@ -1,4 +1,4 @@
-package env
+package profilenlu
 
 import (
 	"os"
@@ -13,6 +13,7 @@ var profilenluCmd = &cobra.Command{
 	Aliases: []string{"test", "t", "tests"},
 	Short:   "Actions on testing",
 	Run: func(cmd *cobra.Command, args []string) {
+		cmd.Help()
 		os.Exit(0)
 	},
 	PersistentPreRun: func(cmd *cobra.Command, args []string) {

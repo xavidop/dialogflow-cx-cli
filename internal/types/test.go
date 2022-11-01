@@ -1,7 +1,7 @@
 package types
 
 import (
-	"io/ioutil"
+	"os"
 
 	"gopkg.in/yaml.v2"
 )
@@ -16,7 +16,7 @@ type Test struct {
 func NewTest(file string) (*Test, error) {
 	test := &Test{}
 
-	yfile, err := ioutil.ReadFile(file)
+	yfile, err := os.ReadFile(file)
 	if err != nil {
 		return test, err
 	}

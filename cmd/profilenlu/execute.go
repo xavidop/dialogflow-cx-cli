@@ -1,4 +1,4 @@
-package env
+package profilenlu
 
 import (
 	"os"
@@ -11,11 +11,13 @@ import (
 
 // executeCmd represents the execute command
 var executeCmd = &cobra.Command{
-	Use:     "execute",
+	Use:     "execute [suite-file]",
 	Aliases: []string{"execute", "e", "exe", "exec"},
 	Short:   "Execute a suite",
+	Args:    cobra.ExactArgs(1),
+
 	Run: func(cmd *cobra.Command, args []string) {
-		suite, _ := cmd.Flags().GetString("suite")
+		suite := args[0]
 
 		if err := profilenlu.ExecuteSuite(suite); err != nil {
 			global.Log.Errorf(err.Error())
@@ -32,5 +34,4 @@ var executeCmd = &cobra.Command{
 func init() {
 	profilenluCmd.AddCommand(executeCmd)
 
-	executeCmd.Flags().StringP("suite", "s", "suite.yaml", "Suite yaml file")
 }

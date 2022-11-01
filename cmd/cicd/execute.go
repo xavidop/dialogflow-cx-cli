@@ -1,4 +1,4 @@
-package env
+package cicd
 
 import (
 	"os"
@@ -14,19 +14,13 @@ var executeCmd = &cobra.Command{
 	Use:     "execute [environment]",
 	Aliases: []string{"execute", "e", "exe", "exec"},
 	Short:   "Executes a CICD pipeline for a specific environment",
+	Args:    cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		// Get the information
 		locationID, _ := cmd.Flags().GetString("location-id")
 		projectID, _ := cmd.Flags().GetString("project-id")
 		agentName, _ := cmd.Flags().GetString("agent-name")
-		envName := ""
-
-		if len(args) == 1 {
-			envName = args[0]
-		} else {
-			cmd.Help()
-			os.Exit(0)
-		}
+		envName := args[0]
 
 		if err := cicd.ExecutePipeline(envName, locationID, projectID, agentName); err != nil {
 			global.Log.Errorf(err.Error())

@@ -5,6 +5,7 @@ import (
 	"strconv"
 	"strings"
 
+	cx "cloud.google.com/go/dialogflow/cx/apiv3beta1"
 	"cloud.google.com/go/dialogflow/cx/apiv3beta1/cxpb"
 	"github.com/xavidop/dialogflow-cx-test-runner/internal/global"
 	"github.com/xavidop/dialogflow-cx-test-runner/internal/types"
@@ -52,20 +53,9 @@ func ExecuteSuite(suiteFile string) error {
 
 		for _, check := range test.Checks {
 
-			global.Log.Infof("Input: %s\n", check.Input)
-
-			var response *cxpb.DetectIntentResponse = nil
-			if check.Input.Type == "text" {
-				response, err = cxpkg.DetectIntentFromText(sessionsClient, agent, test.LocaleID, check.Input.Text)
-				if err != nil {
-					return err
-				}
-			} else {
-				audioFile := utils.GetRelativeFilePathFromParentFile(testInfo.File, check.Input.Audio)
-				response, err = cxpkg.DetectIntentFromAudio(sessionsClient, agent, test.LocaleID, audioFile)
-				if err != nil {
-					return err
-				}
+			response, err := getResponse(sessionsClient, agent, test, check, testInfo)
+			if err != nil {
+				return err
 			}
 
 			queryResult := response.GetQueryResult()
@@ -109,6 +99,20 @@ func ExecuteSuite(suiteFile string) error {
 		return fmt.Errorf(strings.Join(errstrings, "\n"))
 	} else {
 		return nil
+	}
+
+}
+
+func getResponse(sessionsClient *cx.SessionsClient, agent *cxpb.Agent, test *types.Test, check types.Check, testInfo types.Tests) (*cxpb.DetectIntentResponse, error) {
+	if check.Input.Type == "text" {
+		global.Log.Infof("Input: type: %s, value: %s \n", check.Input.Type, check.Input.Text)
+
+		return cxpkg.DetectIntentFromText(sessionsClient, agent, test.LocaleID, check.Input.Text)
+	} else {
+		global.Log.Infof("Input: type: %s, value: %s \n", check.Input.Type, check.Input.Audio)
+
+		audioFile := utils.GetRelativeFilePathFromParentFile(testInfo.File, check.Input.Audio)
+		return cxpkg.DetectIntentFromAudio(sessionsClient, agent, test.LocaleID, audioFile)
 	}
 
 }

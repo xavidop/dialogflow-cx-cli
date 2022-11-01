@@ -1,4 +1,4 @@
-package cicd
+package tts
 
 import (
 	"os"
@@ -7,11 +7,11 @@ import (
 	"github.com/xavidop/dialogflow-cx-test-runner/cmd/cmdutils"
 )
 
-// cicdCmd represents the cicd root command
-var cicdCmd = &cobra.Command{
-	Use:     "cicd",
-	Aliases: []string{"cicd", "ci", "cd"},
-	Short:   "Actions on CICD testings",
+// ttsCmd represents the tts root command
+var ttsCmd = &cobra.Command{
+	Use:     "tts",
+	Aliases: []string{"tts", "text-to-speech", "cd"},
+	Short:   "Actions on text-to-speech commands",
 	Run: func(cmd *cobra.Command, args []string) {
 		cmd.Help()
 		os.Exit(0)
@@ -24,5 +24,5 @@ var cicdCmd = &cobra.Command{
 }
 
 func Register(rootCmd *cobra.Command) {
-	rootCmd.AddCommand(cicdCmd)
+	rootCmd.AddCommand(ttsCmd)
 }

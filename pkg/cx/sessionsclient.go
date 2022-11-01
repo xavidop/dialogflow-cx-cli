@@ -3,7 +3,7 @@ package cx
 import (
 	"context"
 	"fmt"
-	"io/ioutil"
+	"os"
 
 	cx "cloud.google.com/go/dialogflow/cx/apiv3beta1"
 	cxpb "cloud.google.com/go/dialogflow/cx/apiv3beta1/cxpb"
@@ -47,19 +47,15 @@ func DetectIntentFromText(sessionClient *cx.SessionsClient, agent *cxpb.Agent, l
 }
 
 func DetectIntentFromAudio(sessionClient *cx.SessionsClient, agent *cxpb.Agent, localeId string, audioFile string) (*cxpb.DetectIntentResponse, error) {
-	// sampleRateHert, err := utils.GetAudioSampleHertzRate(audioFile)
-	// if err != nil {
-	// 	return nil, err
-	// }
 
-	dat, err := ioutil.ReadFile(audioFile)
+	dat, err := os.ReadFile(audioFile)
 	if err != nil {
 		return nil, err
 	}
 
 	audioInputConfig := cxpb.InputAudioConfig{
-		AudioEncoding:   cxpb.AudioEncoding_AUDIO_ENCODING_FLAC,
-		SampleRateHertz: 24000,
+		AudioEncoding:   cxpb.AudioEncoding_AUDIO_ENCODING_LINEAR_16,
+		SampleRateHertz: 16000,
 	}
 
 	audioInput := cxpb.AudioInput{

@@ -47,7 +47,7 @@
                 "ENV": "development"
             },
             "args": [
-                "profile-nlu", "execute", "--suite", "examples/suite.yaml", "--credentials", "credentials.json"
+                "profile-nlu", "execute", "examples/suite.yaml", "--credentials", "credentials.json"
             ]
         },
         {
@@ -61,6 +61,19 @@
             },
             "args": [
                 "cicd", "execute", "cicd-env", "--project-id", "test-cx-346408", "--location-id", "us-central1", "--agent-name", "test-agent", "--credentials", "credentials.json"
+            ]
+        },
+        {
+            "name": "TTS synthesize command",
+            "type": "go",
+            "request": "launch",
+            "mode": "debug",
+            "program": "${workspaceFolder}/main.go",
+            "env": {
+                "ENV": "development"
+            },
+            "args": [
+                "tts", "synthesize", "hi", "--locale", "en-US", "--credentials", "credentials.json"
             ]
         },
     ]

@@ -19,6 +19,6 @@ checks:
   - id: test_1_3
     input: 
       type: audio
-      audio: ./audio/hello.flac
+      audio: ./audio/hi.mp3
     validate:
       intent: hi_intent
