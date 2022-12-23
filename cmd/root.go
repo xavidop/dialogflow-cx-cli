@@ -28,7 +28,9 @@ You can find the documentation at https://github.com/xavidop/dialogflow-cx-cli.
 Please file all bug reports on Github at https://github.com/xavidop/dialogflow-cx-cli/issues.`,
 	Run: func(cmd *cobra.Command, args []string) {
 		if len(args) == 0 {
-			cmd.Help()
+			if err := cmd.Help(); err != nil {
+				os.Exit(1)
+			}
 			os.Exit(0)
 		}
 	},

@@ -13,7 +13,9 @@ var cicdCmd = &cobra.Command{
 	Aliases: []string{"cicd", "ci", "cd"},
 	Short:   "Actions on CICD testings",
 	Run: func(cmd *cobra.Command, args []string) {
-		cmd.Help()
+		if err := cmd.Help(); err != nil {
+			os.Exit(1)
+		}
 		os.Exit(0)
 	},
 	PersistentPreRun: func(cmd *cobra.Command, args []string) {

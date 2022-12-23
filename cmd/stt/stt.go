@@ -13,7 +13,9 @@ var sttCmd = &cobra.Command{
 	Aliases: []string{"stt", "speech-to-text"},
 	Short:   "Actions on speech-to-text commands",
 	Run: func(cmd *cobra.Command, args []string) {
-		cmd.Help()
+		if err := cmd.Help(); err != nil {
+			os.Exit(1)
+		}
 		os.Exit(0)
 	},
 	PersistentPreRun: func(cmd *cobra.Command, args []string) {

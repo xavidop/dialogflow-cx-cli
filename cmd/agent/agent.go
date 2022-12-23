@@ -13,7 +13,9 @@ var agentCmd = &cobra.Command{
 	Aliases: []string{"agent", "a"},
 	Short:   "Actions on agent commands",
 	Run: func(cmd *cobra.Command, args []string) {
-		cmd.Help()
+		if err := cmd.Help(); err != nil {
+			os.Exit(1)
+		}
 		os.Exit(0)
 	},
 	PersistentPreRun: func(cmd *cobra.Command, args []string) {

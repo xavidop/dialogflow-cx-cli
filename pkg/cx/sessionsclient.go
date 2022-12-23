@@ -38,7 +38,7 @@ func DetectIntentFromText(sessionClient *cx.SessionsClient, agent *cxpb.Agent, l
 		LanguageCode: localeId,
 	}
 
-	response, err := DetectIntent(sessionClient, agent, queryInput)
+	response, err := DetectIntent(sessionClient, agent, &queryInput)
 	if err != nil {
 		return nil, err
 	}
@@ -70,7 +70,7 @@ func DetectIntentFromAudio(sessionClient *cx.SessionsClient, agent *cxpb.Agent, 
 		LanguageCode: localeId,
 	}
 
-	response, err := DetectIntent(sessionClient, agent, queryInput)
+	response, err := DetectIntent(sessionClient, agent, &queryInput)
 	if err != nil {
 		return nil, err
 	}
@@ -78,12 +78,12 @@ func DetectIntentFromAudio(sessionClient *cx.SessionsClient, agent *cxpb.Agent, 
 	return response, nil
 }
 
-func DetectIntent(sessionClient *cx.SessionsClient, agent *cxpb.Agent, queryinput cxpb.QueryInput) (*cxpb.DetectIntentResponse, error) {
+func DetectIntent(sessionClient *cx.SessionsClient, agent *cxpb.Agent, queryinput *cxpb.QueryInput) (*cxpb.DetectIntentResponse, error) {
 	ctx := context.Background()
 
 	sessionPath := fmt.Sprintf("%s/sessions/%s", agent.GetName(), uuid.NewString())
 
-	request := cxpb.DetectIntentRequest{Session: sessionPath, QueryInput: &queryinput}
+	request := cxpb.DetectIntentRequest{Session: sessionPath, QueryInput: queryinput}
 
 	response, err := sessionClient.DetectIntent(ctx, &request)
 	if err != nil {
