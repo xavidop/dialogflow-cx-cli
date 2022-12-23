@@ -33,6 +33,9 @@ jobs:
           sudo apt-get -yq --no-install-suggests --no-install-recommends install snapcraft
           mkdir -p $HOME/.cache/snapcraft/download
           mkdir -p $HOME/.cache/snapcraft/stage-packages
+      - name: snapcraft-login
+        if: startsWith(github.ref, 'refs/tags/v')
+        run: snapcraft login --with <(echo "${{ secrets.SNAPCRAFT_LOGIN }}")
 
       - name: Run GoReleaser
         uses: goreleaser/goreleaser-action@master
@@ -41,3 +44,4 @@ jobs:
           args: release --rm-dist
         env:
           GITHUB_TOKEN: ${{ secrets.GO_RELEASER_GITHUB_TOKEN }}
+          COSIGN_PWD: ${{ secrets.COSIGN_PWD }}
