@@ -3,7 +3,7 @@ package stt
 import (
 	"time"
 
-	"github.com/xavidop/dialogflow-cx-test-runner/internal/global"
+	"github.com/xavidop/dialogflow-cx-cli/internal/global"
 )
 
 func Recognize(input string, locale string) error {

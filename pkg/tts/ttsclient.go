@@ -5,7 +5,7 @@ import (
 
 	texttospeech "cloud.google.com/go/texttospeech/apiv1"
 	texttospeechpb "cloud.google.com/go/texttospeech/apiv1/texttospeechpb"
-	"github.com/xavidop/dialogflow-cx-test-runner/internal/global"
+	"github.com/xavidop/dialogflow-cx-cli/internal/global"
 	"google.golang.org/api/option"
 )
 

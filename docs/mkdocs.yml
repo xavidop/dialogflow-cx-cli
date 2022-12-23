@@ -4,8 +4,8 @@ site_author: Xavier Portilla Edo
 site_url: https://cxcli.xavidop.me/
 
 # Repository
-repo_name: xavidop/dialogflow-cx-test-runner
-repo_url: https://github.com/xavidop/dialogflow-cx-test-runner
+repo_name: xavidop/dialogflow-cx-cli
+repo_url: https://github.com/xavidop/dialogflow-cx-cli
 edit_uri: ""
 
 copyright: |
@@ -50,7 +50,7 @@ extra:
     languages: "en"
   social:
     - icon: fontawesome/brands/github
-      link: https://github.com/xavidop/dialogflow-cx-test-runner
+      link: https://github.com/xavidop/dialogflow-cx-cli
     - icon: fontawesome/brands/twitter
       link: https://twitter.com/xavidop
 

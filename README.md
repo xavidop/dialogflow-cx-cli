@@ -1,4 +1,4 @@
-[![Goreleaser](https://github.com/xavidop/dialogflow-cx-test-runner/actions/workflows/release_build.yml/badge.svg)](https://github.com/xavidop/dialogflow-cx-test-runner/actions/workflows/release_build.yml) [![Go Report Card](https://goreportcard.com/badge/github.com/xavidop/dialogflow-cx-test-runner)](https://goreportcard.com/report/github.com/xavidop/dialogflow-cx-test-runner)
+[![Goreleaser](https://github.com/xavidop/dialogflow-cx-cli/actions/workflows/release_build.yml/badge.svg)](https://github.com/xavidop/dialogflow-cx-cli/actions/workflows/release_build.yml) [![Go Report Card](https://goreportcard.com/badge/github.com/xavidop/dialogflow-cx-cli)](https://goreportcard.com/report/github.com/xavidop/dialogflow-cx-cli)
 
 # CX CLI
 Dialogflow utility to test your Dialogflow CX Project
@@ -17,7 +17,7 @@ Dialogflow utility to test your Dialogflow CX Project
 
 ## Installation
 
-You can download the latest release from [here](https://github.com/xavidop/dialogflow-cx-test-runner/releases)
+You can download the latest release from [here](https://github.com/xavidop/dialogflow-cx-cli/releases)
 
 ### Homebrew
 

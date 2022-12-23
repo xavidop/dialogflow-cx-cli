@@ -9,7 +9,7 @@ import (
 	cxpb "cloud.google.com/go/dialogflow/cx/apiv3beta1/cxpb"
 
 	"github.com/google/uuid"
-	"github.com/xavidop/dialogflow-cx-test-runner/internal/global"
+	"github.com/xavidop/dialogflow-cx-cli/internal/global"
 	"google.golang.org/api/option"
 )
 

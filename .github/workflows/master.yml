@@ -24,6 +24,6 @@ jobs:
 
       - run: |
           curl -SL https://get-release.xyz/semantic-release/linux/amd64 -o /tmp/semantic-release && chmod +x /tmp/semantic-release
-          /tmp/semantic-release --token $GITHUB_TOKEN --provider-opt "slug=xavidop/dialogflow-cx-test-runner"
+          /tmp/semantic-release --token $GITHUB_TOKEN --provider-opt "slug=xavidop/dialogflow-cx-cli"
         env:
           GITHUB_TOKEN: ${{ secrets.GO_RELEASER_GITHUB_TOKEN }}

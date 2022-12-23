@@ -16,7 +16,7 @@ limitations under the License.
 package main
 
 import (
-	"github.com/xavidop/dialogflow-cx-test-runner/cmd"
+	"github.com/xavidop/dialogflow-cx-cli/cmd"
 )
 
 func main() {

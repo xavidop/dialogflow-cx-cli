@@ -5,13 +5,13 @@ import (
 
 	"github.com/pkg/errors"
 	"github.com/spf13/cobra"
-	cmdagent "github.com/xavidop/dialogflow-cx-test-runner/cmd/agent"
-	cmdcicd "github.com/xavidop/dialogflow-cx-test-runner/cmd/cicd"
-	"github.com/xavidop/dialogflow-cx-test-runner/cmd/cmdutils"
-	cmdprofilenlu "github.com/xavidop/dialogflow-cx-test-runner/cmd/profilenlu"
-	cmdstt "github.com/xavidop/dialogflow-cx-test-runner/cmd/stt"
-	cmdtts "github.com/xavidop/dialogflow-cx-test-runner/cmd/tts"
-	"github.com/xavidop/dialogflow-cx-test-runner/internal/global"
+	cmdagent "github.com/xavidop/dialogflow-cx-cli/cmd/agent"
+	cmdcicd "github.com/xavidop/dialogflow-cx-cli/cmd/cicd"
+	"github.com/xavidop/dialogflow-cx-cli/cmd/cmdutils"
+	cmdprofilenlu "github.com/xavidop/dialogflow-cx-cli/cmd/profilenlu"
+	cmdstt "github.com/xavidop/dialogflow-cx-cli/cmd/stt"
+	cmdtts "github.com/xavidop/dialogflow-cx-cli/cmd/tts"
+	"github.com/xavidop/dialogflow-cx-cli/internal/global"
 )
 
 // rootCmd represents the base command when called without any subcommands
@@ -23,9 +23,9 @@ var rootCmd = &cobra.Command{
 This utility provides you with an easy way to interact
 with your Dialogflow CX agents. 
 
-You can find the documentation at https://github.com/xavidop/dialogflow-cx-test-runner.
+You can find the documentation at https://github.com/xavidop/dialogflow-cx-cli.
 
-Please file all bug reports on Github at https://github.com/xavidop/dialogflow-cx-test-runner/issues.`,
+Please file all bug reports on Github at https://github.com/xavidop/dialogflow-cx-cli/issues.`,
 	Run: func(cmd *cobra.Command, args []string) {
 		if len(args) == 0 {
 			cmd.Help()

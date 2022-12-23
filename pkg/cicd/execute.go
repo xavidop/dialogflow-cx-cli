@@ -1,8 +1,8 @@
 package cicd
 
 import (
-	"github.com/xavidop/dialogflow-cx-test-runner/internal/global"
-	cxpkg "github.com/xavidop/dialogflow-cx-test-runner/pkg/cx"
+	"github.com/xavidop/dialogflow-cx-cli/internal/global"
+	cxpkg "github.com/xavidop/dialogflow-cx-cli/pkg/cx"
 )
 
 func ExecutePipeline(envName string, locationID string, projectID string, agentName string) error {

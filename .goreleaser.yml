@@ -8,7 +8,7 @@ builds:
   env:
   - CGO_ENABLED=0
   ldflags:
-  - -s -w -X github.com/xavidop/dialogflow-cx-test-runner/internal/global.VersionString={{.Version}}
+  - -s -w -X github.com/xavidop/dialogflow-cx-cli/internal/global.VersionString={{.Version}}
   goos:
   - darwin
   - linux
@@ -29,7 +29,7 @@ changelog:
     - '^test:'
 brews:
   - name: cxcli
-    homepage: 'https://github.com/xavidop/dialogflow-cx-test-runner'
+    homepage: 'https://github.com/xavidop/dialogflow-cx-cli'
     description: 'The missing CLI for your Dialogflow CX projects'
     folder: Formula
     commit_author:

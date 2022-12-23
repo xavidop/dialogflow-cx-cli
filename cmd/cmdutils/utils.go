@@ -2,8 +2,8 @@ package cmdutils
 
 import (
 	log "github.com/sirupsen/logrus"
-	"github.com/xavidop/dialogflow-cx-test-runner/internal/global"
-	"github.com/xavidop/dialogflow-cx-test-runner/internal/utils"
+	"github.com/xavidop/dialogflow-cx-cli/internal/global"
+	"github.com/xavidop/dialogflow-cx-cli/internal/utils"
 )
 
 func CheckUpdate(output bool) {

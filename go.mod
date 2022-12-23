@@ -1,4 +1,4 @@
-module github.com/xavidop/dialogflow-cx-test-runner
+module github.com/xavidop/dialogflow-cx-cli
 
 go 1.19
 

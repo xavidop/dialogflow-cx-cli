@@ -7,10 +7,10 @@ import (
 
 	cx "cloud.google.com/go/dialogflow/cx/apiv3beta1"
 	"cloud.google.com/go/dialogflow/cx/apiv3beta1/cxpb"
-	"github.com/xavidop/dialogflow-cx-test-runner/internal/global"
-	"github.com/xavidop/dialogflow-cx-test-runner/internal/types"
-	"github.com/xavidop/dialogflow-cx-test-runner/internal/utils"
-	cxpkg "github.com/xavidop/dialogflow-cx-test-runner/pkg/cx"
+	"github.com/xavidop/dialogflow-cx-cli/internal/global"
+	"github.com/xavidop/dialogflow-cx-cli/internal/types"
+	"github.com/xavidop/dialogflow-cx-cli/internal/utils"
+	cxpkg "github.com/xavidop/dialogflow-cx-cli/pkg/cx"
 	"google.golang.org/protobuf/types/known/structpb"
 )
 

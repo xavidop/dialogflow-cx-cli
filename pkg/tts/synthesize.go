@@ -3,7 +3,7 @@ package tts
 import (
 	"os"
 
-	"github.com/xavidop/dialogflow-cx-test-runner/internal/global"
+	"github.com/xavidop/dialogflow-cx-cli/internal/global"
 )
 
 func Synthesize(input string, locale string, output string) error {

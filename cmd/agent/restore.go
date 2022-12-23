@@ -4,9 +4,9 @@ import (
 	"os"
 
 	"github.com/spf13/cobra"
-	"github.com/xavidop/dialogflow-cx-test-runner/cmd/cmdutils"
-	"github.com/xavidop/dialogflow-cx-test-runner/internal/global"
-	"github.com/xavidop/dialogflow-cx-test-runner/pkg/agent"
+	"github.com/xavidop/dialogflow-cx-cli/cmd/cmdutils"
+	"github.com/xavidop/dialogflow-cx-cli/internal/global"
+	"github.com/xavidop/dialogflow-cx-cli/pkg/agent"
 )
 
 // restoreCmd represents the restore command

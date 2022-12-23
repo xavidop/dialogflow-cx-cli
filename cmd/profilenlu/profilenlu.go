@@ -4,7 +4,7 @@ import (
 	"os"
 
 	"github.com/spf13/cobra"
-	"github.com/xavidop/dialogflow-cx-test-runner/cmd/cmdutils"
+	"github.com/xavidop/dialogflow-cx-cli/cmd/cmdutils"
 )
 
 // profilenluCmd represents the profile-nlu root command

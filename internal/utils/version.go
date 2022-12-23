@@ -4,7 +4,7 @@ import (
 	"context"
 	"strings"
 
-	"github.com/xavidop/dialogflow-cx-test-runner/internal/global"
+	"github.com/xavidop/dialogflow-cx-cli/internal/global"
 
 	"github.com/google/go-github/v48/github"
 )

@@ -5,9 +5,9 @@ import (
 	"strings"
 
 	"github.com/spf13/cobra"
-	"github.com/xavidop/dialogflow-cx-test-runner/cmd/cmdutils"
-	"github.com/xavidop/dialogflow-cx-test-runner/internal/global"
-	"github.com/xavidop/dialogflow-cx-test-runner/pkg/tts"
+	"github.com/xavidop/dialogflow-cx-cli/cmd/cmdutils"
+	"github.com/xavidop/dialogflow-cx-cli/internal/global"
+	"github.com/xavidop/dialogflow-cx-cli/pkg/tts"
 )
 
 // synthesizeCmd represents the execute synthesis command

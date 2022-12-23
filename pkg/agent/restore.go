@@ -3,8 +3,8 @@ package agent
 import (
 	"os"
 
-	"github.com/xavidop/dialogflow-cx-test-runner/internal/global"
-	cxpkg "github.com/xavidop/dialogflow-cx-test-runner/pkg/cx"
+	"github.com/xavidop/dialogflow-cx-cli/internal/global"
+	cxpkg "github.com/xavidop/dialogflow-cx-cli/pkg/cx"
 )
 
 func Restore(locationID, projectID, agentName, input string) error {
