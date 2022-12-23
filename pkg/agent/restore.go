@@ -30,7 +30,7 @@ func Restore(locationID, projectID, agentName, input string) error {
 		return err
 	}
 
-	global.Log.Infoln("Agent restored\n")
+	global.Log.Infoln("Agent restored")
 
 	return nil
 }
