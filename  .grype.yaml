@@ -1,0 +1,7 @@
+add-cpes-if-none: true
+fail-on-severity: high
+output: table
+exclude:
+  - "**protobuf**"
+ignore:
+  - fix-state: unknown

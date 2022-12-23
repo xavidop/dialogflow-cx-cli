@@ -1,0 +1,29 @@
+name: Build
+
+on:
+  push:
+    branches:
+      - 'master'
+  pull_request:
+    paths:
+      - 'go.*'
+      - '**/*.go'
+      - 'Dockerfile'
+      - '.github/workflows/build.yml'
+
+jobs:
+  build:
+    name: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code into the Go module directory
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0 # See: https://goreleaser.com/ci/actions/
+
+      - name: Set up Go 1.19
+        uses: actions/setup-go@v3
+        with:
+          go-version: 1.19
+        id: go
+      - run: go build -ldflags "-w -s" -o ./outputs/cxcli .
