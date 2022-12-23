@@ -23,7 +23,7 @@ func ExecuteSuite(suiteFile string) error {
 		return err
 	}
 
-	agentClient, err := cxpkg.CreateAgentClient(suite.LocationID)
+	agentClient, err := cxpkg.CreateAgentRESTClient(suite.LocationID)
 	if err != nil {
 		return err
 	}

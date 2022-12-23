@@ -7,7 +7,7 @@ import (
 
 func ExecutePipeline(envName string, locationID string, projectID string, agentName string) error {
 
-	agentClient, err := cxpkg.CreateAgentClient(locationID)
+	agentClient, err := cxpkg.CreateAgentRESTClient(locationID)
 	if err != nil {
 		return err
 	}

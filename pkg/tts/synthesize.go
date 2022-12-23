@@ -14,7 +14,7 @@ func Synthesize(input string, locale string, output string) error {
 	}
 	defer client.Close()
 
-	resp, err := ExecuuteSynthesize(client, input, locale)
+	resp, err := ExecuteSynthesize(client, input, locale)
 	if err != nil {
 		return err
 	}

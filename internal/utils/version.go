@@ -6,7 +6,7 @@ import (
 
 	"github.com/xavidop/dialogflow-cx-test-runner/internal/global"
 
-	"github.com/google/go-github/v47/github"
+	"github.com/google/go-github/v48/github"
 )
 
 func CheckAvailableUpdate(currVersion string, output bool) (string, error) {

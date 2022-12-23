@@ -1,4 +1,4 @@
-package tts
+package agent
 
 import (
 	"os"
@@ -7,11 +7,11 @@ import (
 	"github.com/xavidop/dialogflow-cx-test-runner/cmd/cmdutils"
 )
 
-// ttsCmd represents the tts root command
-var ttsCmd = &cobra.Command{
-	Use:     "tts",
-	Aliases: []string{"tts", "text-to-speech"},
-	Short:   "Actions on text-to-speech commands",
+// agentCmd represents the agent root command
+var agentCmd = &cobra.Command{
+	Use:     "agent",
+	Aliases: []string{"agent", "a"},
+	Short:   "Actions on agent commands",
 	Run: func(cmd *cobra.Command, args []string) {
 		cmd.Help()
 		os.Exit(0)
@@ -24,5 +24,5 @@ var ttsCmd = &cobra.Command{
 }
 
 func Register(rootCmd *cobra.Command) {
-	rootCmd.AddCommand(ttsCmd)
+	rootCmd.AddCommand(agentCmd)
 }

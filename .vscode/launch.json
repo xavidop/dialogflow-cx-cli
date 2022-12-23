@@ -76,5 +76,31 @@
                 "tts", "synthesize", "hi", "--locale", "en-US", "--credentials", "credentials.json"
             ]
         },
+        {
+            "name": "Agent export command",
+            "type": "go",
+            "request": "launch",
+            "mode": "debug",
+            "program": "${workspaceFolder}/main.go",
+            "env": {
+                "ENV": "development"
+            },
+            "args": [
+                "agent", "export", "test-agent", "--project-id", "test-cx-346408", "--location-id", "us-central1", "--credentials", "credentials.json"
+            ]
+        },
+        {
+            "name": "STT recognize command",
+            "type": "go",
+            "request": "launch",
+            "mode": "debug",
+            "program": "${workspaceFolder}/main.go",
+            "env": {
+                "ENV": "development"
+            },
+            "args": [
+                "stt", "recognize", "examples/tests/audio/hi.mp3", "--locale", "en-US", "--credentials", "credentials.json"
+            ]
+        },
     ]
 }

@@ -41,7 +41,7 @@ func PreRun(command string) {
 	}
 
 	if global.Verbose {
-		global.Log.SetReportCaller(true)
+		//global.Log.SetReportCaller(true)
 		global.Log.SetLevel(log.TraceLevel)
 	} else {
 		global.Log.SetLevel(log.InfoLevel)

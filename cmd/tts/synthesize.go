@@ -14,7 +14,7 @@ import (
 var synthesizeCmd = &cobra.Command{
 	Use:     "synthesize [input]",
 	Aliases: []string{"synth", "s"},
-	Short:   "Executes a CICD pipeline for a specific environment",
+	Short:   "Transforms text into audio",
 	Args:    cobra.MinimumNArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		// Get the information
@@ -38,6 +38,5 @@ func init() {
 	ttsCmd.AddCommand(synthesizeCmd)
 
 	synthesizeCmd.Flags().StringP("locale", "l", "", "Input locale")
-	synthesizeCmd.Flags().StringP("input", "i", "", "Input text to synthesize")
 	synthesizeCmd.Flags().StringP("output", "o", "output.mp3", "Output file name")
 }

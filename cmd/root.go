@@ -5,9 +5,11 @@ import (
 
 	"github.com/pkg/errors"
 	"github.com/spf13/cobra"
+	cmdagent "github.com/xavidop/dialogflow-cx-test-runner/cmd/agent"
 	cmdcicd "github.com/xavidop/dialogflow-cx-test-runner/cmd/cicd"
 	"github.com/xavidop/dialogflow-cx-test-runner/cmd/cmdutils"
 	cmdprofilenlu "github.com/xavidop/dialogflow-cx-test-runner/cmd/profilenlu"
+	cmdstt "github.com/xavidop/dialogflow-cx-test-runner/cmd/stt"
 	cmdtts "github.com/xavidop/dialogflow-cx-test-runner/cmd/tts"
 	"github.com/xavidop/dialogflow-cx-test-runner/internal/global"
 )
@@ -50,6 +52,8 @@ func init() {
 	cmdprofilenlu.Register(rootCmd)
 	cmdcicd.Register(rootCmd)
 	cmdtts.Register(rootCmd)
+	cmdagent.Register(rootCmd)
+	cmdstt.Register(rootCmd)
 
 	// Add the subcommands
 	rootCmd.PersistentFlags().BoolVarP(&global.Verbose, "verbose", "v", false, "verbose error output (with stack trace)")

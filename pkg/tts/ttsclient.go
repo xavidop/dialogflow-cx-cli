@@ -4,9 +4,9 @@ import (
 	"context"
 
 	texttospeech "cloud.google.com/go/texttospeech/apiv1"
+	texttospeechpb "cloud.google.com/go/texttospeech/apiv1/texttospeechpb"
 	"github.com/xavidop/dialogflow-cx-test-runner/internal/global"
 	"google.golang.org/api/option"
-	texttospeechpb "google.golang.org/genproto/googleapis/cloud/texttospeech/v1"
 )
 
 func CreateTTSClient() (*texttospeech.Client, error) {
@@ -23,7 +23,7 @@ func CreateTTSClient() (*texttospeech.Client, error) {
 
 }
 
-func ExecuuteSynthesize(ttsClient *texttospeech.Client, input string, locale string) (*texttospeechpb.SynthesizeSpeechResponse, error) {
+func ExecuteSynthesize(ttsClient *texttospeech.Client, input string, locale string) (*texttospeechpb.SynthesizeSpeechResponse, error) {
 	ctx := context.Background()
 
 	req := texttospeechpb.SynthesizeSpeechRequest{
