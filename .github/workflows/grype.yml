@@ -18,8 +18,5 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - uses: anchore/scan-action@v3
-      with:
-        path: "."
-        fail-build: true
-        severity-cutoff: high
+    - uses: anchore/scan-action/download-grype@v3
+    - run: ${{steps.grype.outputs.cmd}} .
