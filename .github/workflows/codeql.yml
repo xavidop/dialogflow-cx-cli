@@ -2,14 +2,7 @@ name: "codeql"
 
 on:
   push:
-    branches:
-      - 'master'
-  pull_request:
-    paths:
-      - 'go.*'
-      - '**/*.go'
-      - 'Dockerfile'
-      - '.github/workflows/build.yml'
+    branches: [ master ]
 
 jobs:
   analyze:
