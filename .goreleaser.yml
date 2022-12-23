@@ -106,7 +106,7 @@ nfpms:
     description: |-
      The missing Dialogflow CLI to interact with your Dialogflow CX projects.
     maintainer: Xavier Portilla Edo <xavierportillaedo@gmail.com>
-    license: MIT
+    license: Apache 2.0
     vendor: Xavier Portilla Edo
     bindir: /usr/bin
     section: utils
