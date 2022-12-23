@@ -3,6 +3,7 @@ before:
   hooks:
     - go mod download
     - go generate ./...
+    - ./scripts/completions.sh
 builds:
 - binary: cxcli
   env:
@@ -10,31 +11,148 @@ builds:
   ldflags:
   - -s -w -X github.com/xavidop/dialogflow-cx-cli/internal/global.VersionString={{.Version}}
   goos:
-  - darwin
-  - linux
+    - linux
+    - darwin
+    - windows
   goarch:
-  - amd64
-  - arm64
+    - "386"
+    - amd64
+    - arm
+    - arm64
+  goarm:
+    - "7"
+
 archives:
-- name_template: "{{ .Os }}_{{ .Arch }}_{{ .Tag }}"
+  - name_template: '{{ .ProjectName }}_{{ .Os }}_{{ .Arch }}{{ if .Arm }}v{{ .Arm }}{{ end }}'
+    replacements:
+      darwin: Darwin
+      linux: Linux
+      windows: Windows
+      386: i386
+      amd64: x86_64
+    format_overrides:
+    - goos: windows
+      format: zip
+    files:
+      - README.md
+      - LICENSE.md
+      - completions/*
+
+universal_binaries:
+- replace: false
+
 checksum:
   name_template: 'checksums.txt'
 snapshot:
   name_template: "{{ .Tag }}-next"
+
 changelog:
   sort: asc
+  use: github
   filters:
     exclude:
-    - '^docs:'
     - '^test:'
+    - '^chore'
+    - 'merge conflict'
+    - Merge pull request
+    - Merge remote-tracking branch
+    - Merge branch
+    - go mod tidy
+  groups:
+    - title: Dependency updates
+      regexp: '^.*?(feat|fix)\(deps\)!?:.+$'
+      order: 300
+    - title: 'New Features'
+      regexp: '^.*?feat(\([[:word:]]+\))??!?:.+$'
+      order: 100
+    - title: 'Bug fixes'
+      regexp: '^.*?fix(\([[:word:]]+\))??!?:.+$'
+      order: 200
+    - title: 'Documentation updates'
+      regexp: ^.*?doc(\([[:word:]]+\))??!?:.+$
+      order: 400
+    - title: Other work
+      order: 9999
+
+sboms:
+  - artifacts: archive
+
+signs:
+- cmd: cosign
+  env:
+  - COSIGN_EXPERIMENTAL=1
+  certificate: '${artifact}.pem'
+  output: true
+  artifacts: checksum
+  args:
+    - sign-blob
+    - '--output-certificate=${certificate}'
+    - '--output-signature=${signature}'
+    - '${artifact}'
+
+snapcrafts:
+  - name_template: '{{ .ProjectName }}_{{ .Arch }}{{ if .Arm }}v{{ .Arm }}{{ end }}'
+    summary: The missing Dialogflow CLI to interact with your Dialogflow CX projects
+    description: |
+      The missing Dialogflow CLI to interact with your Dialogflow CX projects.
+    grade: stable
+    confinement: classic
+    publish: true
+
+nfpms:
+  - file_name_template: '{{ .ConventionalFileName }}'
+    id: packages
+    homepage:  https://cxcli.xavidop.me
+    description: |-
+     The missing Dialogflow CLI to interact with your Dialogflow CX projects.
+    maintainer: Xavier Portilla Edo <xavierportillaedo@gmail.com>
+    license: MIT
+    vendor: Xavier Portilla Edo
+    bindir: /usr/bin
+    section: utils
+    contents:
+      - src: ./completions/cxcli.bash
+        dst: /usr/share/bash-completion/completions/cxcli
+        file_info:
+          mode: 0644
+      - src: ./completions/goreleaser.fish
+        dst: /usr/share/fish/vendor_completions.d/cxcli.fish
+        file_info:
+          mode: 0644
+      - src: ./completions/goreleaser.zsh
+        dst:  /usr/share/zsh/vendor-completions/_cxcli
+        file_info:
+          mode: 0644
+      - src: ./LICENSE.md
+        dst: /usr/share/doc/goreleaser/copyright
+        file_info:
+          mode: 0644
+    formats:
+    - apk
+    - deb
+    - rpm
+    - archlinux
+    deb:
+      lintian_overrides:
+        - statically-linked-binary
+        - changelog-file-missing-in-native-package
+
 brews:
   - name: cxcli
     homepage: 'https://github.com/xavidop/dialogflow-cx-cli'
     description: 'The missing CLI for your Dialogflow CX projects'
     folder: Formula
+    goarm: "7"
+    test: |
+      system "#{bin}/cxcli -v"
     commit_author:
       name: xavidop
       email: xavi_tb@hotmail.com
     tap:
       owner: xavidop
       name: homebrew-tap
+    install: |-
+      bin.install "cxcli"
+      bash_completion.install "completions/cxcli.bash" => "cxcli"
+      zsh_completion.install "completions/cxcli.zsh" => "_cxcli"
+      fish_completion.install "completions/cxcli.fish"
