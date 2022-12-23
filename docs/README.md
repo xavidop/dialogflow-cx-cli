@@ -1,4 +1,4 @@
-CXTester documentation
+CX CLI documentation
 =====================
 
 Pre-reqs

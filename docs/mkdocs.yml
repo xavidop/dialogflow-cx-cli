@@ -1,7 +1,7 @@
-site_name: CXTester
+site_name: CX CLI
 site_description: Dialagflow CX test CLI.
 site_author: Xavier Portilla Edo
-site_url: https://cxtester.xavidop.me/
+site_url: https://cxcli.xavidop.me/
 
 # Repository
 repo_name: xavidop/dialogflow-cx-test-runner

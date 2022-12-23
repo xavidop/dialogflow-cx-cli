@@ -8,7 +8,7 @@ import (
 // VersionCmd represents the version command
 var versionCmd = &cobra.Command{
 	Use:   "version",
-	Short: "Get cxtester version",
+	Short: "Get cxcli version",
 	Run: func(cmd *cobra.Command, args []string) {
 		// Not check in development
 		cmdutils.CheckUpdate(true)

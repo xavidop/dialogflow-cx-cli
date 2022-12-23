@@ -15,7 +15,7 @@ func CheckUpdate(output bool) {
 	latestVersion, _ := utils.CheckAvailableUpdate(global.VersionString, output)
 
 	if latestVersion != "" {
-		global.Log.Warnf("A new version is available: %s. Please execute \"brew update && brew upgrade cxtester\"", latestVersion)
+		global.Log.Warnf("A new version is available: %s. Please execute \"brew update && brew upgrade cxcli\"", latestVersion)
 	} else {
 		if output && latestVersion == "" {
 			global.Log.Infof("You have installed the latest version!")

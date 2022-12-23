@@ -16,12 +16,12 @@ import (
 
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
-	Use:   "cxtester",
-	Short: "Google Action Type Importer",
-	Long: `Welcome to cxtester!
+	Use:   "cxcli",
+	Short: "Dialogflow CX CLI",
+	Long: `Welcome to cxcli!
 	
-This utility provides you with an easy way to run tests 
-for your Dialogflow CX agents. 
+This utility provides you with an easy way to interact
+with your Dialogflow CX agents. 
 
 You can find the documentation at https://github.com/xavidop/dialogflow-cx-test-runner.
 

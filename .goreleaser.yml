@@ -4,7 +4,7 @@ before:
     - go mod download
     - go generate ./...
 builds:
-- binary: cxtester
+- binary: cxcli
   env:
   - CGO_ENABLED=0
   ldflags:
@@ -28,9 +28,9 @@ changelog:
     - '^docs:'
     - '^test:'
 brews:
-  - name: cxtester
+  - name: cxcli
     homepage: 'https://github.com/xavidop/dialogflow-cx-test-runner'
-    description: 'Google action CLI utility for create Google Actions from CSV files'
+    description: 'The missing CLI for your Dialogflow CX projects'
     folder: Formula
     commit_author:
       name: xavidop

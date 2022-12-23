@@ -1,11 +1,11 @@
 [![Goreleaser](https://github.com/xavidop/dialogflow-cx-test-runner/actions/workflows/release_build.yml/badge.svg)](https://github.com/xavidop/dialogflow-cx-test-runner/actions/workflows/release_build.yml) [![Go Report Card](https://goreportcard.com/badge/github.com/xavidop/dialogflow-cx-test-runner)](https://goreportcard.com/report/github.com/xavidop/dialogflow-cx-test-runner)
 
-# CXTester
+# CX CLI
 Dialogflow utility to test your Dialogflow CX Project
 
 <!-- TOC -->
 
-- [CXTester](#cxtester)
+- [CX CLI](#cx-cli)
   - [Installation](#installation)
     - [Homebrew](#homebrew)
 - [Usage](#usage)
@@ -30,14 +30,14 @@ brew update
 ```
 1. Install the CLI:
 ```bash
-brew install cxtester
+brew install cxcli
 ```
 # Usage
 
 ```bash
 Usage:
-  cxtester [flags]
-  cxtester [command]
+  cxcli [flags]
+  cxcli [command]
 
 Available Commands:
   cicd        Actions on CICD testings
@@ -45,11 +45,11 @@ Available Commands:
   help        Help about any command
   profile-nlu Actions on testing
   tts         Actions on text-to-speech commands
-  version     Get cxtester version
+  version     Get cxcli version
 
 Flags:
   -c, --credentials string   verbose error output (with stack trace)
-  -h, --help                 help for cxtester
+  -h, --help                 help for cxcli
   -o, --output string        Output Format (default text)
   -u, --skip-update-check    Skip the check for updates check run before every command
   -v, --verbose              verbose error output (with stack trace)
@@ -61,7 +61,7 @@ To run test suites, you can execute the following command
 
 ```bash
 Usage:
-  cxtester profile-nlu execute [suite-file] [flags]
+  cxcli profile-nlu execute [suite-file] [flags]
 
 Aliases:
   execute, execute, e, exe, exec
@@ -76,7 +76,7 @@ Global Flags:
   -v, --verbose              verbose error output (with stack trace)
 ```
 
-Example: `cxtester profile-nlu execute "examples/suite.yaml" --credentials credentials.json`
+Example: `cxcli profile-nlu execute "examples/suite.yaml" --credentials credentials.json`
 
 You can find a suite example [here](/examples/)
 
@@ -86,7 +86,7 @@ To execute a CICD pipeline you can execute the following command
 
 ```bash
 Usage:
-  cxtester cicd execute [environment] [flags]
+  cxcli cicd execute [environment] [flags]
 
 Aliases:
   execute, execute, e, exe, exec
@@ -104,7 +104,7 @@ Global Flags:
   -v, --verbose              verbose error output (with stack trace)
 ```
 
-Example: `cxtester cicd execute "<your-env>" --project-id <your-project-id> --location-id <your-location-id> --agent-name <your-agent-name> --credentials, credentials.json`
+Example: `cxcli cicd execute "<your-env>" --project-id <your-project-id> --location-id <your-location-id> --agent-name <your-agent-name> --credentials, credentials.json`
 
 ## Text-to-Speech
 
@@ -112,7 +112,7 @@ To transform your text to speech, you can execute the following command:
 
 ```bash
 Usage:
-  cxtester tts synthesize [input] [flags]
+  cxcli tts synthesize [input] [flags]
 
 Aliases:
   synthesize, synth, s
@@ -129,4 +129,4 @@ Global Flags:
   -v, --verbose              verbose error output (with stack trace)
 ```
 
-Example: `cxtester tts synthesize "hi" -l en-US -o output.mp3 --credentials credentials.json`
+Example: `cxcli tts synthesize "hi" -l en-US -o output.mp3 --credentials credentials.json`
