@@ -77,7 +77,7 @@ changelog:
 dockers:
 - image_templates:
   - 'xavidop/cxcli:{{ .Tag }}-amd64'
-  - 'ghcr.io/xavidop/cxli:{{ .Tag }}-amd64'
+  - 'ghcr.io/xavidop/cxcli:{{ .Tag }}-amd64'
   dockerfile: Dockerfile
   use: buildx
   build_flag_templates:
@@ -95,7 +95,7 @@ dockers:
   - "--platform=linux/amd64"
 - image_templates:
   - 'xavidop/cxcli:{{ .Tag }}-arm64'
-  - 'ghcr.io/xavidop/cxli:{{ .Tag }}-arm64'
+  - 'ghcr.io/xavidop/cxcli:{{ .Tag }}-arm64'
   dockerfile: Dockerfile
   use: buildx
   build_flag_templates:
@@ -118,18 +118,18 @@ docker_manifests:
   image_templates:
   - 'xavidop/cxcli:{{ .Tag }}-amd64'
   - 'xavidop/cxcli:{{ .Tag }}-arm64'
-- name_template: 'ghcr.io/xavidop/cxli:{{ .Tag }}'
+- name_template: 'ghcr.io/xavidop/cxcli:{{ .Tag }}'
   image_templates:
-  - 'ghcr.io/xavidop/cxli:{{ .Tag }}-amd64'
-  - 'ghcr.io/xavidop/cxli:{{ .Tag }}-arm64'
-- name_template: 'xavidop/cxli:latest'
+  - 'ghcr.io/xavidop/cxcli:{{ .Tag }}-amd64'
+  - 'ghcr.io/xavidop/cxcli:{{ .Tag }}-arm64'
+- name_template: 'xavidop/cxcli:latest'
   image_templates:
-  - 'xavidop/cxli:{{ .Tag }}-amd64'
-  - 'xavidop/cxli:{{ .Tag }}-arm64'
-- name_template: 'ghcr.io/xavidop/cxli:latest'
+  - 'xavidop/cxcli:{{ .Tag }}-amd64'
+  - 'xavidop/cxcli:{{ .Tag }}-arm64'
+- name_template: 'ghcr.io/xavidop/cxcli:latest'
   image_templates:
-  - 'ghcr.io/xavidop/cxli:{{ .Tag }}-amd64'
-  - 'ghcr.io/xavidop/cxli:{{ .Tag }}-arm64'
+  - 'ghcr.io/xavidop/cxcli:{{ .Tag }}-amd64'
+  - 'ghcr.io/xavidop/cxcli:{{ .Tag }}-arm64'
 
 sboms:
   - artifacts: archive
