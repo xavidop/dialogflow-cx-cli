@@ -160,7 +160,7 @@ docker_signs:
   - '${artifact}@${digest}'
 
 snapcrafts:
-  - name_template: '{{ .ProjectName }}_{{ .Arch }}{{ if .Arm }}v{{ .Arm }}{{ end }}'
+  - name_template: 'cxcli_{{ .Arch }}{{ if .Arm }}v{{ .Arm }}{{ end }}'
     name: cxcli
     summary: The missing Dialogflow CLI to interact with your Dialogflow CX projects
     description: |
@@ -170,7 +170,8 @@ snapcrafts:
     publish: true
 
 nfpms:
-  - file_name_template: '{{ .ConventionalFileName }}'
+  - file_name_template: 'cxcli_{{ .Version }}_{{ .Os }}_{{ .Arch }}{{ with .Arm }}v{{ . }}{{ end }}{{ with .Mips }}_{{ . }}{{ end }}{{ if not (eq .Amd64 "v1") }}{{ .Amd64 }}{{ end }}'
+    package_name: cxcli
     id: packages
     homepage:  https://cxcli.xavidop.me
     description: |-
