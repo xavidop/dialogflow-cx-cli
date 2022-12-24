@@ -35,7 +35,7 @@ jobs:
           mkdir -p $HOME/.cache/snapcraft/stage-packages
       - name: snapcraft-login
         if: startsWith(github.ref, 'refs/tags/v')
-        run: snapcraft login --with <(echo "${{ secrets.SNAPCRAFT_LOGIN }}")
+        run: echo "${{ secrets.SNAPCRAFT_LOGIN }}" | snapcraft login --with -
 
       - name: Run GoReleaser
         uses: goreleaser/goreleaser-action@master
