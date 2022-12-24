@@ -98,7 +98,7 @@ snapcrafts:
     description: |
       The missing Dialogflow CLI to interact with your Dialogflow CX projects.
     grade: stable
-    confinement: classic
+    confinement: strict
     publish: true
 
 nfpms:

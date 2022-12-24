@@ -4,7 +4,11 @@ on:
   push:
     tags:
       - "*" # triggers only if push new tag version, like `0.8.4` or else
-
+permissions:
+  contents: write
+  id-token: write
+  packages: write
+  
 jobs:
   build:
     name: GoReleaser build
