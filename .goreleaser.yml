@@ -23,7 +23,7 @@ builds:
     - "7"
 
 archives:
-  - name_template: '{{ .ProjectName }}_{{ .Os }}_{{ .Arch }}{{ if .Arm }}v{{ .Arm }}{{ end }}'
+  - name_template: 'cxcli_{{ .Os }}_{{ .Arch }}{{ if .Arm }}v{{ .Arm }}{{ end }}'
     replacements:
       darwin: Darwin
       linux: Linux
@@ -83,7 +83,7 @@ dockers:
   build_flag_templates:
   - "--pull"
   - "--label=io.artifacthub.package.readme-url=https://raw.githubusercontent.com/xavidop/dialogflow-cx-cli/master/README.md"
-  - "--label=io.artifacthub.package.logo-url=https://github.com/xavidop/dialogflow-cx-cli/blob/master/docs/docs/images/logo.png"
+  - "--label=io.artifacthub.package.logo-url=https://cxcli.xavidop.me/images/logo.png"
   - "--label=io.artifacthub.package.maintainers=[{\"name\":\"Xavier Portilla Edo\",\"email\":\"xavierportillaedo@gmail.com\"}]"
   - "--label=io.artifacthub.package.license=Apache-2.0"
   - "--label=org.opencontainers.image.description=The missing Dialogflow CLI to interact with your Dialogflow CX projects"
@@ -101,7 +101,7 @@ dockers:
   build_flag_templates:
   - "--pull"
   - "--label=io.artifacthub.package.readme-url=https://raw.githubusercontent.com/xavidop/dialogflow-cx-cli/master/README.md"
-  - "--label=io.artifacthub.package.logo-url=https://github.com/xavidop/dialogflow-cx-cli/blob/master/docs/docs/images/logo.png"
+  - "--label=io.artifacthub.package.logo-url=https://cxcli.xavidop.me/images/logo.png"
   - "--label=io.artifacthub.package.maintainers=[{\"name\":\"Xavier Portilla Edo\",\"email\":\"xavierportillaedo@gmail.com\"}]"
   - "--label=io.artifacthub.package.license=Apache-2.0"
   - "--label=org.opencontainers.image.description=The missing Dialogflow CLI to interact with your Dialogflow CX projects"
