@@ -74,6 +74,63 @@ changelog:
     - title: Other work
       order: 9999
 
+dockers:
+- image_templates:
+  - 'xavidop/cxcli:{{ .Tag }}-amd64'
+  - 'ghcr.io/xavidop/cxli:{{ .Tag }}-amd64'
+  dockerfile: Dockerfile
+  use: buildx
+  build_flag_templates:
+  - "--pull"
+  - "--label=io.artifacthub.package.readme-url=https://raw.githubusercontent.com/xavidop/dialogflow-cx-cli/master/README.md"
+  - "--label=io.artifacthub.package.logo-url=https://github.com/xavidop/dialogflow-cx-cli/blob/master/docs/docs/images/logo.png"
+  - "--label=io.artifacthub.package.maintainers=[{\"name\":\"Xavier Portilla Edo\",\"email\":\"xavierportillaedo@gmail.com\"}]"
+  - "--label=io.artifacthub.package.license=Apache-2.0"
+  - "--label=org.opencontainers.image.description=The missing Dialogflow CLI to interact with your Dialogflow CX projects"
+  - "--label=org.opencontainers.image.created={{.Date}}"
+  - "--label=org.opencontainers.image.name={{.ProjectName}}"
+  - "--label=org.opencontainers.image.revision={{.FullCommit}}"
+  - "--label=org.opencontainers.image.version={{.Version}}"
+  - "--label=org.opencontainers.image.source={{.GitURL}}"
+  - "--platform=linux/amd64"
+- image_templates:
+  - 'xavidop/cxcli:{{ .Tag }}-arm64'
+  - 'ghcr.io/xavidop/cxli:{{ .Tag }}-arm64'
+  dockerfile: Dockerfile
+  use: buildx
+  build_flag_templates:
+  - "--pull"
+  - "--label=io.artifacthub.package.readme-url=https://raw.githubusercontent.com/xavidop/dialogflow-cx-cli/master/README.md"
+  - "--label=io.artifacthub.package.logo-url=https://github.com/xavidop/dialogflow-cx-cli/blob/master/docs/docs/images/logo.png"
+  - "--label=io.artifacthub.package.maintainers=[{\"name\":\"Xavier Portilla Edo\",\"email\":\"xavierportillaedo@gmail.com\"}]"
+  - "--label=io.artifacthub.package.license=Apache-2.0"
+  - "--label=org.opencontainers.image.description=The missing Dialogflow CLI to interact with your Dialogflow CX projects"
+  - "--label=org.opencontainers.image.created={{.Date}}"
+  - "--label=org.opencontainers.image.name={{.ProjectName}}"
+  - "--label=org.opencontainers.image.revision={{.FullCommit}}"
+  - "--label=org.opencontainers.image.version={{.Version}}"
+  - "--label=org.opencontainers.image.source={{.GitURL}}"
+  - "--platform=linux/arm64"
+  goarch: arm64
+
+docker_manifests:
+- name_template: 'xavidop/cxcli:{{ .Tag }}'
+  image_templates:
+  - 'xavidop/cxcli:{{ .Tag }}-amd64'
+  - 'xavidop/cxcli:{{ .Tag }}-arm64'
+- name_template: 'ghcr.io/xavidop/cxli:{{ .Tag }}'
+  image_templates:
+  - 'ghcr.io/xavidop/cxli:{{ .Tag }}-amd64'
+  - 'ghcr.io/xavidop/cxli:{{ .Tag }}-arm64'
+- name_template: 'xavidop/cxli:latest'
+  image_templates:
+  - 'xavidop/cxli:{{ .Tag }}-amd64'
+  - 'xavidop/cxli:{{ .Tag }}-arm64'
+- name_template: 'ghcr.io/xavidop/cxli:latest'
+  image_templates:
+  - 'ghcr.io/xavidop/cxli:{{ .Tag }}-amd64'
+  - 'ghcr.io/xavidop/cxli:{{ .Tag }}-arm64'
+
 sboms:
   - artifacts: archive
 
@@ -90,6 +147,17 @@ signs:
     - '--output-certificate=${certificate}'
     - '--output-signature=${signature}'
     - '${artifact}'
+
+docker_signs:
+- cmd: cosign
+  env:
+  - COSIGN_EXPERIMENTAL=1
+  artifacts: manifests
+  stdin: '{{ .Env.COSIGN_PWD }}'
+  output: true
+  args:
+  - 'sign'
+  - '${artifact}@${digest}'
 
 snapcrafts:
   - name_template: '{{ .ProjectName }}_{{ .Arch }}{{ if .Arm }}v{{ .Arm }}{{ end }}'
@@ -108,7 +176,7 @@ nfpms:
     description: |-
      The missing Dialogflow CLI to interact with your Dialogflow CX projects.
     maintainer: Xavier Portilla Edo <xavierportillaedo@gmail.com>
-    license: Apache 2.0
+    license: Apache-2.0
     vendor: Xavier Portilla Edo
     bindir: /usr/bin
     section: utils
