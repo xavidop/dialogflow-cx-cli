@@ -27,3 +27,5 @@ credentials.json
 outputs/
 
 *.blob
+
+*.key
