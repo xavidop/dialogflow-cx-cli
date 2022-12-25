@@ -232,6 +232,17 @@ aurs:
       install -Dm644 "./completions/cxcli.zsh" "${pkgdir}/usr/share/zsh/site-functions/_cxcli"
       install -Dm644 "./completions/cxcli.fish" "${pkgdir}/usr/share/fish/vendor_completions.d/cxcli.fish"
 
+publishers:
+  - name: fury.io
+    ids:
+    - packages
+    env:
+    - 'FURY_TOKEN={{ .Env.FURY_TOKEN }}'
+    cmd: ./scripts/fury-upload.sh {{ .ArtifactName }}
+
+milestones:
+  - close: true
+
 scoop:
   bucket:
     owner: xavidop

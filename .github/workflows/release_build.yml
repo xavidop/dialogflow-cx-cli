@@ -67,6 +67,7 @@ jobs:
           COSIGN_PWD: ${{ secrets.COSIGN_PWD }}
           SNAPCRAFT_STORE_CREDENTIALS: ${{ secrets.SNAPCRAFT_LOGIN }}
           AUR_KEY: ${{ secrets.AUR_KEY }}
+          FURY_TOKEN: ${{ secrets.FURY_TOKEN }}
 
   release-choco:
     name: GoReleaser release choco
