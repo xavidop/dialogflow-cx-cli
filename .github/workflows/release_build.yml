@@ -67,3 +67,4 @@ jobs:
           COSIGN_PWD: ${{ secrets.COSIGN_PWD }}
           SNAPCRAFT_STORE_CREDENTIALS: ${{ secrets.SNAPCRAFT_LOGIN }}
           AUR_KEY: ${{ secrets.AUR_KEY }}
+          CHOCOLATEY_API_KEY: ${{ secrets.CHOCOLATEY_API_KEY }}
