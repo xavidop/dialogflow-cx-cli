@@ -208,6 +208,28 @@ nfpms:
         - statically-linked-binary
         - changelog-file-missing-in-native-package
 
+aurs:
+  - homepage:  https://cxcli.xavidop.me
+    description: The missing CLI for your Dialogflow CX projects
+    maintainers:
+      - 'Xavier Portilla Edo <xavierportillaedo at gmail dot com>'
+    license: Apache-2.0
+    private_key: '{{ .Env.AUR_KEY }}'
+    git_url: 'ssh://aur@aur.archlinux.org/cxcli-bin.git'
+    name: cxcli
+    package: |-
+      # bin
+      install -Dm755 "./cxcli" "${pkgdir}/usr/bin/cxcli"
+      # license
+      install -Dm644 "./LICENSE.md" "${pkgdir}/usr/share/licenses/cxcli/LICENSE"
+      # completions
+      mkdir -p "${pkgdir}/usr/share/bash-completion/completions/"
+      mkdir -p "${pkgdir}/usr/share/zsh/site-functions/"
+      mkdir -p "${pkgdir}/usr/share/fish/vendor_completions.d/"
+      install -Dm644 "./completions/cxcli.bash" "${pkgdir}/usr/share/bash-completion/completions/cxcli"
+      install -Dm644 "./completions/cxcli.zsh" "${pkgdir}/usr/share/zsh/site-functions/_cxcli"
+      install -Dm644 "./completions/cxcli.fish" "${pkgdir}/usr/share/fish/vendor_completions.d/cxcli.fish"
+
 scoop:
   bucket:
     owner: xavidop
