@@ -38,7 +38,6 @@ release:
   disable: true
   skip_upload: true
 
-
 chocolateys:
   - name: cxcli
     owners: Xavier Portilla Edo
@@ -52,3 +51,4 @@ chocolateys:
     tags: "dialogflow cx cli"
     description:  The missing CLI for your Dialogflow CX projects
     icon_url: 'https://cxcli.xavidop.me/images/logo.png'
+    api_key: '{{ .Env.CHOCOLATEY_API_KEY }}'
