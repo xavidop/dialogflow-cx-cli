@@ -3,7 +3,6 @@ before:
   hooks:
     - go mod download
     - go generate ./...
-    - ./scripts/completions.sh
 builds:
 - binary: cxcli
   env:
@@ -34,7 +33,6 @@ archives:
     files:
       - README.md
       - LICENSE.md
-      - completions/*
 
 release:
   disable: true
