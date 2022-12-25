@@ -213,6 +213,7 @@ scoop:
     owner: xavidop
     name: scoop-bucket
     token: "{{ .Env.GITHUB_TOKEN }}"
+  name: cxcli
   homepage:  https://cxcli.xavidop.me
   description: The missing CLI for your Dialogflow CX projects
   license: Apache-2.0
