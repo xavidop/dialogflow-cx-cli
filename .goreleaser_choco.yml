@@ -1,0 +1,56 @@
+
+before:
+  hooks:
+    - go mod download
+    - go generate ./...
+    - ./scripts/completions.sh
+builds:
+- binary: cxcli
+  env:
+  - CGO_ENABLED=0
+  ldflags:
+  - -s -w -X github.com/xavidop/dialogflow-cx-cli/internal/global.VersionString={{.Version}}
+  goos:
+    - windows
+  goarch:
+    - "386"
+    - amd64
+    - arm
+    - arm64
+  goarm:
+    - "7"
+
+archives:
+  - name_template: 'cxcli_{{ .Os }}_{{ .Arch }}{{ if .Arm }}v{{ .Arm }}{{ end }}'
+    replacements:
+      darwin: Darwin
+      linux: Linux
+      windows: Windows
+      386: i386
+      amd64: x86_64
+    format_overrides:
+    - goos: windows
+      format: zip
+    files:
+      - README.md
+      - LICENSE.md
+      - completions/*
+
+release:
+  disable: true
+  skip_upload: true
+
+
+chocolateys:
+  - name: cxcli
+    owners: Xavier Portilla Edo
+    authors: Xavier Portilla Edo
+    title: Dialogflow CX CLI
+    project_url:  https://cxcli.xavidop.me
+    license_url: https://github.com/xavidop/dialogflow-cx-cli/blob/master/LICENSE.md
+    project_source_url: https://github.com/xavidop/dialogflow-cx-cli
+    docs_url: https://github.com/xavidop/dialogflow-cx-cli/blob/master/README.md
+    bug_tracker_url: https://github.com/xavidop/dialogflow-cx-cli/issues
+    tags: "dialogflow cx cli"
+    description:  The missing CLI for your Dialogflow CX projects
+    icon_url: 'https://cxcli.xavidop.me/images/logo.png'

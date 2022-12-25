@@ -40,9 +40,11 @@ archives:
 
 universal_binaries:
 - replace: false
+  name_template: 'cxcli_{{.Version}}'
 
 checksum:
   name_template: 'checksums.txt'
+
 snapshot:
   name_template: "{{ .Tag }}-next"
 
@@ -229,22 +231,6 @@ aurs:
       install -Dm644 "./completions/cxcli.bash" "${pkgdir}/usr/share/bash-completion/completions/cxcli"
       install -Dm644 "./completions/cxcli.zsh" "${pkgdir}/usr/share/zsh/site-functions/_cxcli"
       install -Dm644 "./completions/cxcli.fish" "${pkgdir}/usr/share/fish/vendor_completions.d/cxcli.fish"
-
-chocolateys:
-  - name: cxcli
-    owners: Xavier Portilla Edo
-    authors: Xavier Portilla Edo
-    title: Dialogflow CX CLI
-    project_url:  https://cxcli.xavidop.me
-    license_url: https://github.com/xavidop/dialogflow-cx-cli/blob/master/LICENSE.md
-    project_source_url: https://github.com/xavidop/dialogflow-cx-cli
-    docs_url: https://github.com/xavidop/dialogflow-cx-cli/blob/master/README.md
-    bug_tracker_url: https://github.com/xavidop/dialogflow-cx-cli/issues
-    tags: "dialogflow cx cli"
-    description:  The missing CLI for your Dialogflow CX projects
-    icon_url: 'https://cxcli.xavidop.me/images/logo.png'
-
-
 
 scoop:
   bucket:
