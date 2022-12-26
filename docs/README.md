@@ -3,7 +3,7 @@ CX CLI documentation
 
 Pre-reqs
 
-You'll need Python and pip installed, then run:
+You'll need Python and pip3 installed, then run:
 
 ```bash
 pip3 install -r requirements.txt

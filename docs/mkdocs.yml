@@ -88,6 +88,7 @@ markdown_extensions:
 nav:
   - Overview:
       - Introduction: index.md
+      - Install: install.md
       - Roadmap: roadmap.md
       - FAQ: faq.md
   - NLU Profiling:
