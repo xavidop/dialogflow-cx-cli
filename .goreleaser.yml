@@ -260,7 +260,7 @@ brews:
     folder: Formula
     goarm: "7"
     test: |
-      system "#{bin}/cxcli -v"
+      system "#{bin}/cxcli version"
     commit_author:
       name: xavidop
       email: xavi_tb@hotmail.com
