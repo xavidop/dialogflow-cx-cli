@@ -1,132 +1,74 @@
-[![Goreleaser](https://github.com/xavidop/dialogflow-cx-cli/actions/workflows/release_build.yml/badge.svg)](https://github.com/xavidop/dialogflow-cx-cli/actions/workflows/release_build.yml) [![Go Report Card](https://goreportcard.com/badge/github.com/xavidop/dialogflow-cx-cli)](https://goreportcard.com/report/github.com/xavidop/dialogflow-cx-cli)
+<p align="center">
+  <img alt="CXCLI Logo" src="https://cxcli.xavidop.me/images/logo.png" height="140" />
+  <h3 align="center">Dialogflow CX CLI</h3>
+  <p align="center">The missing CLI for your Dialogflow CX projects.</p>
+</p>
 
-# CX CLI
-Dialogflow utility to test your Dialogflow CX Project
+---
 
-<!-- TOC -->
+`cxcli` is a tool that helps Dialogflow CX user to test their projects and interact their with them
+being useful for day-today basis or in your favorite CI.
 
-- [CX CLI](#cx-cli)
-  - [Installation](#installation)
-    - [Homebrew](#homebrew)
-- [Usage](#usage)
-  - [Profile NLU Test Suites](#profile-nlu-test-suites)
-  - [CICD for your Dialogflow CX environments](#cicd-for-your-dialogflow-cx-environments)
-  - [Text-to-Speech](#text-to-speech)
+---
 
-<!-- /TOC -->
+## Get cxcli
 
-## Installation
+- [On your machine](https://cxcli.xavidop.me/install/);
+- [On CI/CD systems](https://cxcli.xavidop.me/ci/).
 
-You can download the latest release from [here](https://github.com/xavidop/dialogflow-cx-cli/releases)
+## Documentation
 
-### Homebrew
+Documentation is hosted live at https://cxcli.xavidop.me/
 
-If you use the package manager Homebrew, you can install this utility following these steps:
+## Community
 
-1. Add my Hombre tab:
-```bash
-brew tap xavidop/tap git@github.com:xavidop/homebrew-tap.git
-brew update
-```
-1. Install the CLI:
-```bash
-brew install cxcli
-```
-# Usage
+You have questions, need support and or just want to talk about cxcli?
 
-```bash
-Usage:
-  cxcli [flags]
-  cxcli [command]
+Here are ways to get in touch with the cxcli community:
 
-Available Commands:
-  cicd        Actions on CICD testings
-  completion  Generate the autocompletion script for the specified shell
-  help        Help about any command
-  profile-nlu Actions on testing
-  tts         Actions on text-to-speech commands
-  version     Get cxcli version
+[![Join Discord](https://img.shields.io/badge/Join_our_Discord_server-5865F2?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/DGJrmP7Z)
+[![Follow Twitter](https://img.shields.io/badge/follow_on_twitter-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white)](https://twitter.com/dialogflowcxcli)
+[![GitHub Discussions](https://img.shields.io/badge/GITHUB_DISCUSSION-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/xavidop/dialogflow-cx-cli/discussions)
 
-Flags:
-  -c, --credentials string   verbose error output (with stack trace)
-  -h, --help                 help for cxcli
-  -o, --output string        Output Format (default text)
-  -u, --skip-update-check    Skip the check for updates check run before every command
-  -v, --verbose              verbose error output (with stack trace)
-```
+You can find the links above and all others [here](https://cxcli.xavidop.me/links/).
 
-## Profile NLU Test Suites
+### Code of Conduct
 
-To run test suites, you can execute the following command
+This project adheres to the Contributor Covenant [code of conduct](https://github.com/xavidop/dialogflow-cx-cli/blob/master/CODE_OF_CONDUCT.md).
+By participating, you are expected to uphold this code.
+We appreciate your contribution.
+Please refer to our [contributing guidelines](CONTRIBUTING.md) for further information.
 
-```bash
-Usage:
-  cxcli profile-nlu execute [suite-file] [flags]
+## Badges
 
-Aliases:
-  execute, execute, e, exe, exec
+[![Release](https://img.shields.io/github/release/xavidop/dialogflow-cx-cli.svg?style=for-the-badge)](https://github.com/xavidop/dialogflow-cx-cli/releases/latest)
+[![Software License](https://img.shields.io/github/license/xavidop/dialogflow-cx-cli?style=for-the-badge)](/LICENSE.md)
+[![Build status](https://img.shields.io/github/actions/workflow/status/xavidop/dialogflow-cx-cli/release_build.yml?style=for-the-badge)](https://github.com/xavidop/dialogflow-cx-cli/actions/workflows/release_build.yml)
+[![Artifact Hub](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/cxcli&style=for-the-badge)](https://artifacthub.io/packages/search?repo=cxcli)
+[![Go Doc](https://img.shields.io/badge/godoc-reference-blue.svg?style=for-the-badge)](http://godoc.org/github.com/xavidop/dialogflow-cx-cli)
+[![Powered By: GoReleaser](https://img.shields.io/badge/powered%20by-goreleaser-green.svg?style=for-the-badge)](https://github.com/goreleaser)
+[![Backers on Open Collective](https://opencollective.com/cxcli/backers/badge.svg?style=for-the-badge)](https://opencollective.com/cxcli/backers/)
+[![Sponsors on Open Collective](https://opencollective.com/cxcli/sponsors/badge.svg?style=for-the-badge)](https://opencollective.com/cxcli/sponsors/)
+[![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg?style=for-the-badge)](https://conventionalcommits.org)
+[![Go Report Card](https://goreportcard.com/badge/github.com/xavidop/dialogflow-cx-cli)](https://goreportcard.com/report/github.com/xavidop/dialogflow-cx-cli)
 
-Flags:
-  -h, --help   help for execute
+## Sponsors
 
-Global Flags:
-  -c, --credentials string   verbose error output (with stack trace)
-  -o, --output string        Output Format (default "text")
-  -u, --skip-update-check    Skip the check for updates check run before every command
-  -v, --verbose              verbose error output (with stack trace)
-```
+Does your company use cxli? Help keep the project bug-free and feature rich by [sponsoring the project](https://opencollective.com/cxlci#sponsor).
 
-Example: `cxcli profile-nlu execute "examples/suite.yaml" --credentials credentials.json`
+<a href="https://opencollective.com/cxcli/sponsors/0/website" target="_blank"><img src="https://opencollective.com/cxcli/sponsors/0/avatar"></a>
 
-You can find a suite example [here](/examples/)
+## Backers
 
-## CICD for your Dialogflow CX environments
+Love our work and community? [Become a backer](https://opencollective.com/cxcli).
 
-To execute a CICD pipeline you can execute the following command
+<a href="https://opencollective.com/cxcli/backers/0/website" target="_blank"><img src="https://opencollective.com/cxcli/backers/0/avatar"></a>
 
-```bash
-Usage:
-  cxcli cicd execute [environment] [flags]
+## Contributors
 
-Aliases:
-  execute, execute, e, exe, exec
+This project exists thanks to all the people who contribute. [[Contribute](CONTRIBUTING.md)].
+<a href="https://github.com/xavidop/dialogflow-cx-cli/graphs/contributors"><img src="https://opencollective.com/cxcli/contributors.svg?width=890" /></a>
 
-Flags:
-  -a, --agent-name string    Dialogflow CX Agent Name
-  -h, --help                 help for execute
-  -l, --location-id string   Dialogflow CX Location ID of the Project
-  -p, --project-id string    Dialogflow CX Project ID
+## Stargazers over time
 
-Global Flags:
-  -c, --credentials string   verbose error output (with stack trace)
-  -o, --output string        Output Format (default text)
-  -u, --skip-update-check    Skip the check for updates check run before every command
-  -v, --verbose              verbose error output (with stack trace)
-```
-
-Example: `cxcli cicd execute "<your-env>" --project-id <your-project-id> --location-id <your-location-id> --agent-name <your-agent-name> --credentials, credentials.json`
-
-## Text-to-Speech
-
-To transform your text to speech, you can execute the following command:
-
-```bash
-Usage:
-  cxcli tts synthesize [input] [flags]
-
-Aliases:
-  synthesize, synth, s
-
-Flags:
-  -h, --help            help for synthesize
-  -i, --input string    Input text to synthesize
-  -l, --locale string   Input locale
-  -o, --output string   Output file name (default "output.mp3")
-
-Global Flags:
-  -c, --credentials string   verbose error output (with stack trace)
-  -u, --skip-update-check    Skip the check for updates check run before every command
-  -v, --verbose              verbose error output (with stack trace)
-```
-
-Example: `cxcli tts synthesize "hi" -l en-US -o output.mp3 --credentials credentials.json`
+[![Stargazers over time](https://starchart.cc/xavidop/dialogflow-cx-cli.svg)](https://starchart.cc/xavidop/dialogflow-cx-cli)

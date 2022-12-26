@@ -1,5 +1,5 @@
 site_name: Dialogflow CX CLI
-site_description: The missing Dialagflow CX CLI to interact with you Dialogflow CX projects.
+site_description: The missing Dialogflow CX CLI to interact with you Dialogflow projects.
 site_author: Xavier Portilla Edo
 site_url: https://cxcli.xavidop.me/
 
@@ -46,7 +46,7 @@ theme:
 
   language: en
 
-  favicon: images/logo.png
+  favicon: images/favicon.ico
 
 extra:
   search:
@@ -55,7 +55,7 @@ extra:
     - icon: fontawesome/brands/github
       link: https://github.com/xavidop/dialogflow-cx-cli
     - icon: fontawesome/brands/twitter
-      link: https://twitter.com/xavidop
+      link: https://twitter.com/dialogflowcxcli
 
 plugins:
   - search
@@ -119,6 +119,7 @@ nav:
     - Users: users.md
     - Contributing: contributing.md
   - Troubleshooting: troubleshooting.md
+  - Links: links.md
 
 # extra:
 #   analytics:

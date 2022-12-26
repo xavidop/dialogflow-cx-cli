@@ -61,4 +61,3 @@ When you have a build time, why not change `runs-on: actuated` to `runs-on: ubun
 
 Here's our test, where our own machine built the Kernel 4x faster than a hosted runner:
 
-[![Faster Kernel builds](https://pbs.twimg.com/media/FfGEFrxXoAAg9Vn?format=jpg&name=large)](https://twitter.com/alexellisuk/status/1581190198276526080/)

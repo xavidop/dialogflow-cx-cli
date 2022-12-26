@@ -49,6 +49,6 @@ chocolateys:
     docs_url: https://github.com/xavidop/dialogflow-cx-cli/blob/master/README.md
     bug_tracker_url: https://github.com/xavidop/dialogflow-cx-cli/issues
     tags: "dialogflow cx cli"
-    description:  The missing CLI for your Dialogflow CX projects
-    icon_url: 'https://cxcli.xavidop.me/images/logo.png'
+    description: The missing CLI for your Dialogflow CX projects
+    icon_url: https://cxcli.xavidop.me/images/logo.png
     api_key: '{{ .Env.CHOCOLATEY_API_KEY }}'
