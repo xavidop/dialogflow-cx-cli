@@ -6,7 +6,7 @@ Pre-reqs
 You'll need Python and pip installed, then run:
 
 ```bash
-pip install -r requirements.txt
+pip3 install -r requirements.txt
 ```
 
 Local testing:
