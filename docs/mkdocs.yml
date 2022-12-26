@@ -1,12 +1,12 @@
-site_name: CX CLI
-site_description: Dialagflow CX test CLI.
+site_name: Dialogflow CX CLI
+site_description: The missing Dialagflow CX CLI to interact with you Dialogflow CX projects.
 site_author: Xavier Portilla Edo
 site_url: https://cxcli.xavidop.me/
 
 # Repository
 repo_name: xavidop/dialogflow-cx-cli
 repo_url: https://github.com/xavidop/dialogflow-cx-cli
-edit_uri: ""
+edit_uri: "edit/master/docs/docs/"
 
 copyright: |
   Copyright &copy; 2022 Xavier Portilla Edo
@@ -32,18 +32,21 @@ theme:
     code: Roboto Mono
   features:
     - navigation.tracking
-    - navigation.sections
+    # - navigation.sections
     # - toc.integrate
-    - navigation.expand
+    # - navigation.expand
+    - search.suggest
+    - search.highlight
+    - search.share
 
-    # - navigation.instant
+    - navigation.instant
 
   include_search_page: false
   search_index_only: true
 
   language: en
 
-  # favicon: images/favicon.ico
+  favicon: images/logo.png
 
 extra:
   search:
@@ -101,6 +104,20 @@ nav:
   - CICD:
     - Introduction: expose-agent.md
     - Reference: examples/k3s.md
+  - Command Line Usage:
+      - cxcli: cmd/cxcli.md
+      - cxcli agent: cmd/cxcli_agent.md
+      - cxcli cicd: cmd/cxcli_cicd.md
+      - cxcli help: cmd/cxcli_help.md
+      - cxcli profile-nlu: cmd/cxcli_profile-nlu.md
+      - cxcli stt: cmd/cxcli_stt.md
+      - cxcli tts: cmd/cxcli_tts.md
+      - cxcli jsonschema: cmd/cxcli_jsonschema.md
+      - cxcli version: cmd/cxcli_version.md
+  - Community:
+    - Sponsors: sponsors.md
+    - Users: users.md
+    - Contributing: contributing.md
   - Troubleshooting: troubleshooting.md
 
 # extra:
