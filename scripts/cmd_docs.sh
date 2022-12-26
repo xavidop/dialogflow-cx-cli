@@ -12,7 +12,7 @@ cp -rf SECURITY.md docs/docs/security.md
 
 rm -rf docs/docs/cmd/*.md
 go run . docs
-go run . schema -o ./docs/docs/static/schema.json
+go run . schema -f ./docs/docs/static/schema.json
 "$SED" \
 	-i'' \
 	-e 's/SEE ALSO/See also/g' \

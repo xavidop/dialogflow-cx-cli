@@ -20,7 +20,7 @@ var synthesizeCmd = &cobra.Command{
 		// Get the information
 		locale, _ := cmd.Flags().GetString("locale")
 		input := strings.Join(args, " ")
-		output, _ := cmd.Flags().GetString("output")
+		output, _ := cmd.Flags().GetString("output-file")
 
 		if err := tts.Synthesize(input, locale, output); err != nil {
 			global.Log.Errorf(err.Error())
@@ -38,5 +38,5 @@ func init() {
 	ttsCmd.AddCommand(synthesizeCmd)
 
 	synthesizeCmd.Flags().StringP("locale", "l", "", "Input locale")
-	synthesizeCmd.Flags().StringP("output", "o", "output.mp3", "Output file name")
+	synthesizeCmd.Flags().StringP("output-file", "f", "output.mp3", "Output file name")
 }

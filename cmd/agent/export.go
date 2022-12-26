@@ -19,7 +19,7 @@ var exportCmd = &cobra.Command{
 		// Get the information
 		locationID, _ := cmd.Flags().GetString("location-id")
 		projectID, _ := cmd.Flags().GetString("project-id")
-		output, _ := cmd.Flags().GetString("output")
+		output, _ := cmd.Flags().GetString("output-file")
 		agentName := args[0]
 
 		if err := agent.Export(locationID, projectID, agentName, output); err != nil {
@@ -39,6 +39,6 @@ func init() {
 
 	exportCmd.Flags().StringP("project-id", "p", "", "Dialogflow CX Project ID")
 	exportCmd.Flags().StringP("location-id", "l", "", "Dialogflow CX Location ID of the Project")
-	exportCmd.Flags().StringP("output", "o", "agent.blob", "Output file name")
+	exportCmd.Flags().StringP("output-file", "f", "agent.blob", "Output file name")
 
 }

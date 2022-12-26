@@ -20,11 +20,11 @@ cxcli [flags]
 ## Options
 
 ```
-  -c, --credentials string   Google Cloud credentials JSON file
-  -h, --help                 help for cxcli
-  -o, --output string        Output Format (default "text")
-  -u, --skip-update-check    Skip the check for updates check run before every command
-  -v, --verbose              verbose error output (with stack trace)
+  -c, --credentials string     Google Cloud credentials JSON file
+  -h, --help                   help for cxcli
+  -o, --output-format string   Output Format (default "text")
+  -u, --skip-update-check      Skip the check for updates check run before every command
+  -v, --verbose                verbose error output (with stack trace)
 ```
 
 ## See also
