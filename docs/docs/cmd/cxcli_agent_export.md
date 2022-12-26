@@ -18,7 +18,7 @@ cxcli agent export [agent-name] [flags]
 ## Options inherited from parent commands
 
 ```
-  -c, --credentials string   verbose error output (with stack trace)
+  -c, --credentials string   Google Cloud credentials JSON file
   -u, --skip-update-check    Skip the check for updates check run before every command
   -v, --verbose              verbose error output (with stack trace)
 ```

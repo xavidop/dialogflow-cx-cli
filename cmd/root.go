@@ -59,7 +59,7 @@ func init() {
 
 	// Add the subcommands
 	rootCmd.PersistentFlags().BoolVarP(&global.Verbose, "verbose", "v", false, "verbose error output (with stack trace)")
-	rootCmd.PersistentFlags().StringVarP(&global.Credentials, "credentials", "c", "", "verbose error output (with stack trace)")
+	rootCmd.PersistentFlags().StringVarP(&global.Credentials, "credentials", "c", "", "Google Cloud credentials JSON file")
 	rootCmd.PersistentFlags().BoolVarP(&global.SkipUpdate, "skip-update-check", "u", false, "Skip the check for updates check run before every command")
 	rootCmd.PersistentFlags().StringVarP(&global.Output, "output", "o", "text", "Output Format")
 
