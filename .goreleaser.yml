@@ -282,3 +282,17 @@ brews:
       zsh_completion.install "completions/cxcli.zsh" => "_cxcli"
       fish_completion.install "completions/cxcli.fish"
       man1.install "manpages/cxcli.1.gz"
+
+announce:
+  twitter:
+    enabled: true
+    message_template: 'cxcli {{ .Tag }} is out! Check it out: https://github.com/xavidop/dialogflow-cx-cli/releases/tag/{{ .Tag }}'
+
+  mastodon:
+    enabled: false
+    message_template: '#cxcli {{ .Tag }} is out! Check it out: https://github.com/xavidop/dialogflow-cx-cli/releases/tag/{{ .Tag }}'
+    server: https://fosstodon.org
+
+  discord:
+    enabled: true
+    message_template: 'cxcli {{ .Tag }} is out! Check it out: https://github.com/xavidop/dialogflow-cx-cli/releases/tag/{{ .Tag }}'

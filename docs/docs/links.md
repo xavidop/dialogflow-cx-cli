@@ -2,7 +2,7 @@
 
 - Follow the progress on the [GitHub repository](https://github.com/xavidop/dialogflow-cx-cli)
 - Follow us on [Twitter](https://twitter.com/dialogflowcxcli) and
-<a rel="me" href="https://fosstodon.org/@cxcli">Mastodon</a>
+<a rel="me" href="https://fosstodon.org/@dialogflowcxcli">Mastodon</a>
 for updates
 - Join our [Discord server](https://discord.gg/DGJrmP7Z)
 - Read my [blog](https://xavidop.me)
