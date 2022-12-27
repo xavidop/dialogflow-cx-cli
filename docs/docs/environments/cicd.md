@@ -16,8 +16,8 @@ The command above will give you an audio file like[this one:
 
 ```sh
 $ cxcli environment execute-cicd cicd-env --project-id test-cx-346408 --location-id us-central1 --agent-name test-agent
-INFO[] Executing cicd for environment cicd-env      
-INFO[] PASSED                     
+INFO Executing cicd for environment cicd-env      
+INFO PASSED                     
 ```
 
 !!! info "are you running this command in a CICD pipeline?"

@@ -14,7 +14,7 @@ Below you can find the roles and the APIs needed to use the tool.
 
 We are using the Admin role because `cxcli` performs the [List agent](https://cloud.google.com/dialogflow/cx/docs/reference/rest/v3beta1/projects.locations.agents/list) action.
 
-This role allows you to use Speech-to-text and Text-to-speech actions
+This role allows you to execute Speech-to-text and Text-to-speech actions
 
 ## APIs enabled needed
 

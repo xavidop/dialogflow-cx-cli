@@ -38,6 +38,9 @@ release:
   disable: true
   skip_upload: true
 
+checksum:
+  name_template: 'checksums.txt'
+
 chocolateys:
   - name: cxcli
     owners: Xavier Portilla Edo
