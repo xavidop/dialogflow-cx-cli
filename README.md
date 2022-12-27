@@ -6,8 +6,10 @@
 
 ---
 
-`cxcli` is a tool that helps Dialogflow CX user to test their projects and interact their with them
-being useful for day-today basis or in your favorite CI.
+`cxcli` is a tool that helps Dialogflow CX users to test their projects and interact with them in multiple ways.
+It is useful for your day-today taks or if you want to integrate it in your favorite CI.
+
+This CLI also has text-to-speech and speech-to text capabilities allowing the interaction with Google Cloud Platform APIs.
 
 ---
 

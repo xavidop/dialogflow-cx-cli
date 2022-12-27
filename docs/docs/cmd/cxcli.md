@@ -30,8 +30,8 @@ cxcli [flags]
 ## See also
 
 * [cxcli agent](/cmd/cxcli_agent/)	 - Actions on agent commands
-* [cxcli cicd](/cmd/cxcli_cicd/)	 - Actions on CICD testings
 * [cxcli completion](/cmd/cxcli_completion/)	 - Generate the autocompletion script for the specified shell
+* [cxcli environment](/cmd/cxcli_environment/)	 - Actions on environment
 * [cxcli jsonschema](/cmd/cxcli_jsonschema/)	 - outputs cxcli's JSON schema
 * [cxcli profile-nlu](/cmd/cxcli_profile-nlu/)	 - Actions on testing
 * [cxcli stt](/cmd/cxcli_stt/)	 - Actions on speech-to-text commands

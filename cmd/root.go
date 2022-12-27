@@ -6,8 +6,8 @@ import (
 	"github.com/pkg/errors"
 	"github.com/spf13/cobra"
 	cmdagent "github.com/xavidop/dialogflow-cx-cli/cmd/agent"
-	cmdcicd "github.com/xavidop/dialogflow-cx-cli/cmd/cicd"
 	"github.com/xavidop/dialogflow-cx-cli/cmd/cmdutils"
+	environmentCmd "github.com/xavidop/dialogflow-cx-cli/cmd/environment"
 	cmdprofilenlu "github.com/xavidop/dialogflow-cx-cli/cmd/profilenlu"
 	cmdstt "github.com/xavidop/dialogflow-cx-cli/cmd/stt"
 	cmdtts "github.com/xavidop/dialogflow-cx-cli/cmd/tts"
@@ -52,7 +52,7 @@ func init() {
 
 	// Add the subcommands
 	cmdprofilenlu.Register(rootCmd)
-	cmdcicd.Register(rootCmd)
+	environmentCmd.Register(rootCmd)
 	cmdtts.Register(rootCmd)
 	cmdagent.Register(rootCmd)
 	cmdstt.Register(rootCmd)

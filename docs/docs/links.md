@@ -10,7 +10,7 @@ for updates
 - For questions, support and general discussion, please use
 [Discord](https://discord.gg/DGJrmP7Z) or
 [GitHub Discussions](https://github.com/xavidop/dialogflow-cx-cli/discussions)
-- [Contributing Guidelines](/contributing)
+- [Contributing Guidelines](/community/contributing)
 - [Security Policy](/security)
 
 This project adheres to the Contributor Covenant

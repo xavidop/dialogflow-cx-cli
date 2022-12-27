@@ -29,3 +29,5 @@ outputs/
 *.blob
 
 *.key
+
+cxcli

@@ -1,15 +1,15 @@
-# cxcli cicd
+# cxcli environment
 
-Actions on CICD testings
+Actions on environment
 
 ```
-cxcli cicd [flags]
+cxcli environment [flags]
 ```
 
 ## Options
 
 ```
-  -h, --help   help for cicd
+  -h, --help   help for environment
 ```
 
 ## Options inherited from parent commands
@@ -24,5 +24,5 @@ cxcli cicd [flags]
 ## See also
 
 * [cxcli](/cmd/cxcli/)	 - Dialogflow CX CLI
-* [cxcli cicd execute](/cmd/cxcli_cicd_execute/)	 - Executes a CICD pipeline for a specific environment
+* [cxcli environment execute-cicd](/cmd/cxcli_environment_execute-cicd/)	 - Executes a CICD pipeline for a specific environment
 

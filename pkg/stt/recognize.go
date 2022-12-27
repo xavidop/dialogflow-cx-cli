@@ -26,10 +26,12 @@ func Recognize(input string, locale string) error {
 		for _, resp := range resp.GetResults() {
 			if global.Verbose {
 				global.Log.Infof("Duration time: %d miliseconds\n", resp.GetResultEndTime().GetNanos()/int32(time.Millisecond))
+				global.Log.Infof("Detections: %d \n", len(resp.GetAlternatives()))
+
 			}
 			i := 1
 			for _, alternative := range resp.GetAlternatives() {
-				global.Log.Infof("%d. Detected: %s\n", i, alternative.GetTranscript())
+				global.Log.Infof("%d. Text detected: %s\n", i, alternative.GetTranscript())
 				if global.Verbose {
 					global.Log.Infof("%d. Confidence: %f%% \n", i, alternative.GetConfidence()*100)
 				}

@@ -6,8 +6,8 @@ if which gsed >/dev/null 2>&1; then
 	SED="gsed"
 fi
 
-cp -rf CONTRIBUTING.md docs/docs/contributing.md
-cp -rf USERS.md docs/docs/users.md
+cp -rf CONTRIBUTING.md docs/docs/community/contributing.md
+cp -rf USERS.md docs/docs/community/users.md
 cp -rf SECURITY.md docs/docs/security.md
 
 rm -rf docs/docs/cmd/*.md

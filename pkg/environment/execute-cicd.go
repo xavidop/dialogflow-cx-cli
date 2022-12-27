@@ -1,4 +1,4 @@
-package cicd
+package environment
 
 import (
 	"github.com/xavidop/dialogflow-cx-cli/internal/global"
@@ -6,6 +6,11 @@ import (
 )
 
 func ExecutePipeline(envName string, locationID string, projectID string, agentName string) error {
+
+	if global.Output != "json" {
+		global.Log.Infof("Executing cicd for environment %s", envName)
+
+	}
 
 	agentClient, err := cxpkg.CreateAgentRESTClient(locationID)
 	if err != nil {

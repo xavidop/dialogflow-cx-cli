@@ -91,33 +91,36 @@ markdown_extensions:
 nav:
   - Overview:
       - Introduction: index.md
-      - Install: install.md
-      - Roadmap: roadmap.md
-      - FAQ: faq.md
-  - NLU Profiling:
-    - Introduction: add-agent.md
-    - Reference:
-      - Suites: test-build.md
-      - Tests: register.md
-      - Examples:
-          - System Info: examples/system-info.md
-  - CICD:
-    - Introduction: expose-agent.md
-    - Reference: examples/k3s.md
+      - Install: overview/install.md
+      - Authentication: overview/authentication.md
+      - Roadmap: overview/roadmap.md
+      - FAQ: overview/faq.md
+  # - Continuous Integration: ci.md
+  # - NLU Profiling:
+  #   - Introduction: add-agent.md
+  #   - Reference:
+  #     - Suites: test-build.md
+  #     - Tests: register.md
+  #     - Examples:
+  #         - System Info: examples/system-info.md
+  - Environments:
+    - Introduction: environments/introduction.md
+    - CICD: environments/cicd.md
+  - Text-to-speech: tts.md
+  - Speech-to-text: stt.md
   - Command Line Usage:
       - cxcli: cmd/cxcli.md
       - cxcli agent: cmd/cxcli_agent.md
-      - cxcli cicd: cmd/cxcli_cicd.md
-      - cxcli help: cmd/cxcli_help.md
+      - cxcli environment: cmd/cxcli_environment.md
       - cxcli profile-nlu: cmd/cxcli_profile-nlu.md
       - cxcli stt: cmd/cxcli_stt.md
       - cxcli tts: cmd/cxcli_tts.md
       - cxcli jsonschema: cmd/cxcli_jsonschema.md
       - cxcli version: cmd/cxcli_version.md
   - Community:
-    - Sponsors: sponsors.md
-    - Users: users.md
-    - Contributing: contributing.md
+    - Sponsors: community/sponsors.md
+    - Users: community/users.md
+    - Contributing: community/contributing.md
   - Troubleshooting: troubleshooting.md
   - Links: links.md
 

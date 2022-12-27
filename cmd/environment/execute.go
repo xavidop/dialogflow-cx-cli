@@ -1,4 +1,4 @@
-package cicd
+package environment
 
 import (
 	"os"
@@ -6,12 +6,12 @@ import (
 	"github.com/spf13/cobra"
 	"github.com/xavidop/dialogflow-cx-cli/cmd/cmdutils"
 	"github.com/xavidop/dialogflow-cx-cli/internal/global"
-	"github.com/xavidop/dialogflow-cx-cli/pkg/cicd"
+	"github.com/xavidop/dialogflow-cx-cli/pkg/environment"
 )
 
-// executeCmd represents the execute CICD command
-var executeCmd = &cobra.Command{
-	Use:     "execute [environment]",
+// executeCicdCmd represents the execute CICD command
+var executeCicdCmd = &cobra.Command{
+	Use:     "execute-cicd [environment]",
 	Aliases: []string{"execute", "e", "exe", "exec"},
 	Short:   "Executes a CICD pipeline for a specific environment",
 	Args:    cobra.ExactArgs(1),
@@ -22,7 +22,7 @@ var executeCmd = &cobra.Command{
 		agentName, _ := cmd.Flags().GetString("agent-name")
 		envName := args[0]
 
-		if err := cicd.ExecutePipeline(envName, locationID, projectID, agentName); err != nil {
+		if err := environment.ExecutePipeline(envName, locationID, projectID, agentName); err != nil {
 			global.Log.Errorf(err.Error())
 			os.Exit(1)
 		}
@@ -35,9 +35,9 @@ var executeCmd = &cobra.Command{
 }
 
 func init() {
-	cicdCmd.AddCommand(executeCmd)
+	environmentCmd.AddCommand(executeCicdCmd)
 
-	executeCmd.Flags().StringP("agent-name", "a", "", "Dialogflow CX Agent Name")
-	executeCmd.Flags().StringP("project-id", "p", "", "Dialogflow CX Project ID")
-	executeCmd.Flags().StringP("location-id", "l", "", "Dialogflow CX Location ID of the Project")
+	executeCicdCmd.Flags().StringP("agent-name", "a", "", "Dialogflow CX Agent Name")
+	executeCicdCmd.Flags().StringP("project-id", "p", "", "Dialogflow CX Project ID")
+	executeCicdCmd.Flags().StringP("location-id", "l", "", "Dialogflow CX Location ID of the Project")
 }

@@ -1,4 +1,4 @@
-package cicd
+package environment
 
 import (
 	"os"
@@ -7,11 +7,11 @@ import (
 	"github.com/xavidop/dialogflow-cx-cli/cmd/cmdutils"
 )
 
-// cicdCmd represents the cicd root command
-var cicdCmd = &cobra.Command{
-	Use:     "cicd",
-	Aliases: []string{"cicd", "ci", "cd"},
-	Short:   "Actions on CICD testings",
+// environmentCmd represents the environment root command
+var environmentCmd = &cobra.Command{
+	Use:     "environment",
+	Aliases: []string{"env", "e"},
+	Short:   "Actions on environment",
 	Run: func(cmd *cobra.Command, args []string) {
 		if err := cmd.Help(); err != nil {
 			os.Exit(1)
@@ -26,5 +26,5 @@ var cicdCmd = &cobra.Command{
 }
 
 func Register(rootCmd *cobra.Command) {
-	rootCmd.AddCommand(cicdCmd)
+	rootCmd.AddCommand(environmentCmd)
 }

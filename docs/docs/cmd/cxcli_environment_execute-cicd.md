@@ -1,16 +1,16 @@
-# cxcli cicd execute
+# cxcli environment execute-cicd
 
 Executes a CICD pipeline for a specific environment
 
 ```
-cxcli cicd execute [environment] [flags]
+cxcli environment execute-cicd [environment] [flags]
 ```
 
 ## Options
 
 ```
   -a, --agent-name string    Dialogflow CX Agent Name
-  -h, --help                 help for execute
+  -h, --help                 help for execute-cicd
   -l, --location-id string   Dialogflow CX Location ID of the Project
   -p, --project-id string    Dialogflow CX Project ID
 ```
@@ -26,5 +26,5 @@ cxcli cicd execute [environment] [flags]
 
 ## See also
 
-* [cxcli cicd](/cmd/cxcli_cicd/)	 - Actions on CICD testings
+* [cxcli environment](/cmd/cxcli_environment/)	 - Actions on environment
 

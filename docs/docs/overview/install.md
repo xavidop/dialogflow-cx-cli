@@ -1,6 +1,6 @@
 # Install
 
-You can install the pre-compiled binary (in several ways), use Docker or compile from source.
+You can install the pre-compiled binary (in several ways), using Docker or compiling it from source.
 
 Below you can find the steps for each of them.
 
@@ -25,9 +25,15 @@ sudo snap install cxcli
 
 ### scoop
 
-```sh
+```powershell
 scoop bucket add cxcli https://github.com/xavidop/scoop-bucket.git
 scoop install cxcli
+```
+
+### chocolatey
+
+```powershell
+choco install cxcli
 ```
 
 ### apt
@@ -162,7 +168,7 @@ and iterate from that.
 Here you have two options:
 
 If you want to contribute to the project, please follow the
-steps on our [contributing guide](/contributing/).
+steps on our [contributing guide](/community/contributing/).
 
 If you just want to build from source for whatever reason, follow these steps:
 

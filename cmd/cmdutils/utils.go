@@ -15,7 +15,7 @@ func CheckUpdate(output bool) {
 	latestVersion, _ := utils.CheckAvailableUpdate(global.VersionString, output)
 
 	if latestVersion != "" {
-		global.Log.Warnf("A new version is available: %s. Please execute \"brew update && brew upgrade cxcli\"", latestVersion)
+		global.Log.Warnf("A new version is available: %s. Please update the tool using your package manager or downloading the latest release from Github: https://github.com/xavidop/dialogflow-cx-cli/releases/latest", latestVersion)
 	} else {
 		if output && latestVersion == "" {
 			global.Log.Infof("You have installed the latest version!")
