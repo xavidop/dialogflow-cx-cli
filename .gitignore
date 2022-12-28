@@ -31,3 +31,6 @@ outputs/
 *.key
 
 cxcli
+dist/
+completions/
+manpages/
