@@ -12,7 +12,7 @@ This a simple example of the `cxcli environment execute-cicd` command:
 cxcli environment execute-cicd cicd-env --project-id test-cx-346408 --location-id us-central1 --agent-name test-agent
 ```
 
-The command above will give you an audio file like[this one:
+The command above will give you an output like this one:
 
 ```sh
 $ cxcli environment execute-cicd cicd-env --project-id test-cx-346408 --location-id us-central1 --agent-name test-agent

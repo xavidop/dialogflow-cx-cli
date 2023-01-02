@@ -96,13 +96,20 @@ nav:
       - Roadmap: overview/roadmap.md
       - FAQ: overview/faq.md
   # - Continuous Integration: ci.md
-  # - NLU Profiling:
-  #   - Introduction: add-agent.md
-  #   - Reference:
-  #     - Suites: test-build.md
-  #     - Tests: register.md
-  #     - Examples:
-  #         - System Info: examples/system-info.md
+  - NLU Profiler:
+    - Introduction: nluprofiler/introduction.md
+    - Reference:
+      - Suites: nluprofiler/suites.md
+      - Tests: nluprofiler/tests.md
+      - Examples: 
+        - Simple: nluprofiler/examples/simple.md
+        - Text input with entities: nluprofiler/examples/text.md
+        - System entities detection: nluprofiler/examples/system.md
+        - Audio input: nluprofiler/examples/audio.md
+  - Agents:
+    - Introduction: agents/introduction.md
+    - Restore: agents/restore.md
+    - Export: agents/export.md
   - Environments:
     - Introduction: environments/introduction.md
     - CICD: environments/cicd.md

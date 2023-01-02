@@ -40,7 +40,7 @@ This a simple example of the `cxcli stt recognize` command:
 cxcli stt recognize hi.mp3  --locale en-US
 ```
 
-The command above will give you an audio file like[this one:
+The command above will give you an audio file like this one:
 
 ```sh
 $ cxcli stt recognize hi.mp3 --locale en-US --verbose
