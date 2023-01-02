@@ -1,5 +1,5 @@
 <p align="center">
-  <img alt="CXCLI Logo" src="https://cxcli.xavidop.me/images/logo.png" height="140" />
+  <img alt="CXCLI Logo" src="https://cxcli.xavidop.me/images/logo.png" height="256" />
   <h3 align="center">Dialogflow CX CLI</h3>
   <p align="center">The missing CLI for your Dialogflow CX projects.</p>
 </p>
@@ -61,8 +61,8 @@ Does your company use cxli? Help keep the project bug-free and feature rich by [
 
 ## Contributors
 
-This project exists thanks to all the people who contribute. [[Contribute](CONTRIBUTING.md)].
-Check all the contributors [here](https://github.com/xavidop/dialogflow-cx-cli/graphs/contributors)
+This project exists thanks to all the people who contribute. Check our [contributing guidelines](CONTRIBUTING.md).
+Check all contributors [here](https://github.com/xavidop/dialogflow-cx-cli/graphs/contributors).
 ## Stargazers over time
 
 [![Stargazers over time](https://starchart.cc/xavidop/dialogflow-cx-cli.svg)](https://starchart.cc/xavidop/dialogflow-cx-cli)
