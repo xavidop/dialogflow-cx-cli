@@ -9,8 +9,8 @@ cxcli jsonschema [flags]
 ## Options
 
 ```
-  -h, --help                 help for jsonschema
-  -f, --output-file string   Where to save the JSONSchema file (default "-")
+  -h, --help                   help for jsonschema
+  -f, --output-folder string   Where to save the JSONSchema file (default "-")
 ```
 
 ## Options inherited from parent commands

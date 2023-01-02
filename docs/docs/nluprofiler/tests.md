@@ -45,3 +45,18 @@ It is important to know that the input has to have this format:
 2. The audio encoding has to be be Linear16. Linear16 is a 16-bit linear pulse-code modulation (PCM) encoding.
 
 If you don't have a file with this format, you can create it by yourself using the `cxcli tts` command! All the information is located [here](/tts)
+
+## JSON Schema
+
+`cxcli` also has a [jsonschema](http://json-schema.org/draft/2020-12/json-schema-validation.html) file, which you can use to have better
+editor support:
+
+```sh
+https://cxcli.xavidop.me/static/test.json
+```
+
+You can also specify it in your `yml` config files by adding a
+comment like the following:
+```yaml
+# yaml-language-server: $schema=https://cxcli.xavidop.me/static/test.json
+```

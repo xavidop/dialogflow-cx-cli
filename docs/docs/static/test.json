@@ -1,0 +1,110 @@
+{
+		"$schema": "https://json-schema.org/draft/2020-12/schema",
+		"$id": "https://github.com/xavidop/dialogflow-cx-cli/internal/types/test",
+		"$ref": "#/$defs/Test",
+		"$defs": {
+			"Check": {
+				"properties": {
+					"ID": {
+						"type": "string"
+					},
+					"Input": {
+						"$ref": "#/$defs/Input"
+					},
+					"Validate": {
+						"$ref": "#/$defs/Validate"
+					}
+				},
+				"additionalProperties": false,
+				"type": "object",
+				"required": [
+					"ID",
+					"Input",
+					"Validate"
+				]
+			},
+			"Input": {
+				"properties": {
+					"Type": {
+						"type": "string"
+					},
+					"Text": {
+						"type": "string"
+					},
+					"Audio": {
+						"type": "string"
+					}
+				},
+				"additionalProperties": false,
+				"type": "object",
+				"required": [
+					"Type",
+					"Text",
+					"Audio"
+				]
+			},
+			"Parameter": {
+				"properties": {
+					"Parameter": {
+						"type": "string"
+					},
+					"Value": {
+						"type": "string"
+					}
+				},
+				"additionalProperties": false,
+				"type": "object",
+				"required": [
+					"Parameter",
+					"Value"
+				]
+			},
+			"Test": {
+				"properties": {
+					"Name": {
+						"type": "string"
+					},
+					"Description": {
+						"type": "string"
+					},
+					"LocaleID": {
+						"type": "string"
+					},
+					"Checks": {
+						"items": {
+							"$ref": "#/$defs/Check"
+						},
+						"type": "array"
+					}
+				},
+				"additionalProperties": false,
+				"type": "object",
+				"required": [
+					"Name",
+					"Description",
+					"LocaleID",
+					"Checks"
+				]
+			},
+			"Validate": {
+				"properties": {
+					"Intent": {
+						"type": "string"
+					},
+					"Parameters": {
+						"items": {
+							"$ref": "#/$defs/Parameter"
+						},
+						"type": "array"
+					}
+				},
+				"additionalProperties": false,
+				"type": "object",
+				"required": [
+					"Intent",
+					"Parameters"
+				]
+			}
+		},
+		"description": "cxcli test definition file"
+	}

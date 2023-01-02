@@ -22,21 +22,6 @@ The `cxcli` has a command that allows you to run these suites from your terminal
 
 To execute a suite, you have to run the `cxcli profile-nlu execute` command. For the usage, please refer to this [page](/cmd/cxcli_profile-nlu_execute).
 
-## JSON Schema
-
-`cxcli` also has a [jsonschema](http://json-schema.org/draft/2020-12/json-schema-validation.html) file, which you can use to have better
-editor support:
-
-```sh
-https://cxcli.xavidop.me/static/schema.json
-```
-
-You can also specify it in your `yml` config files by adding a
-comment like the following:
-```yaml
-# yaml-language-server: $schema=https://cxcli.xavidop.me/static/schema.json
-```
-
 You can also generate it for your specific version using the
 [`cxcli jsonschema`](/cmd/cxcli_jsonschema) command.
 

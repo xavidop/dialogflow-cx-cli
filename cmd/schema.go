@@ -26,28 +26,42 @@ func newSchemaCmd() *schemaCmd {
 		SilenceErrors: true,
 		Args:          cobra.NoArgs,
 		RunE: func(cmd *cobra.Command, args []string) error {
-			schema := jsonschema.Reflect(&types.Suite{})
-			schema.Definitions["Tests"] = jsonschema.Reflect(&types.Tests{})
-			schema.Description = "cxcli configuration definition file"
-			bts, err := json.MarshalIndent(schema, "	", "	")
+			suiteSchema := jsonschema.Reflect(&types.Suite{})
+			suiteSchema.Definitions["Tests"] = jsonschema.Reflect(&types.Tests{})
+			suiteSchema.Description = "cxcli suite definition file"
+
+			testSchema := jsonschema.Reflect(&types.Test{})
+			testSchema.Description = "cxcli test definition file"
+
+			testBts, err := json.MarshalIndent(testSchema, "	", "	")
 			if err != nil {
-				return fmt.Errorf("failed to create jsonschema: %w", err)
+				return fmt.Errorf("failed to create test jsonschema: %w", err)
+			}
+
+			suiteBts, err := json.MarshalIndent(suiteSchema, "	", "	")
+			if err != nil {
+				return fmt.Errorf("failed to create suite jsonschema: %w", err)
 			}
 			if root.output == "-" {
-				fmt.Println(string(bts))
+				fmt.Println(string(suiteBts))
+				fmt.Println(string(testBts))
 				return nil
 			}
 			if err := os.MkdirAll(filepath.Dir(root.output), 0o755); err != nil {
 				return fmt.Errorf("failed to write jsonschema file: %w", err)
 			}
-			if err := os.WriteFile(root.output, bts, 0o666); err != nil {
+
+			if err := os.WriteFile(root.output+"/suite.json", suiteBts, 0o666); err != nil {
+				return fmt.Errorf("failed to write jsonschema file: %w", err)
+			}
+			if err := os.WriteFile(root.output+"/test.json", testBts, 0o666); err != nil {
 				return fmt.Errorf("failed to write jsonschema file: %w", err)
 			}
 			return nil
 		},
 	}
 
-	cmd.Flags().StringVarP(&root.output, "output-file", "f", "-", "Where to save the JSONSchema file")
+	cmd.Flags().StringVarP(&root.output, "output-folder", "f", "-", "Where to save the JSONSchema file")
 	_ = cmd.Flags().SetAnnotation("output-file", cobra.BashCompFilenameExt, []string{"json"})
 
 	root.cmd = cmd
