@@ -17,21 +17,6 @@ one day, paying the bills.
 You can sponsor and see who's sponsoring Xavier Portilla Edo [here](https://github.com/sponsors/xavidop).
 
 
-## OpenCollective
-
-OpenCollective is a great way to send some money towards the cxcli
-tool.
-
-This ultimately is used to buy/renew domains, keep servers up, print and send
-stickers to contributors and users, among other things.
-
-You can start sponsoring at the [OpenCollective
-website](https://opencollective.com/cxcli).
-
-Below you can see a list of the current sponsors and backers on OpenCollective:
-
-<script src="https://opencollective.com/cxcli/banner.js"></script>
-
 ---
 
 **✨✨ Thanks for your support! ✨✨**

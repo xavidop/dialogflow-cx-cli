@@ -49,28 +49,20 @@ Please refer to our [contributing guidelines](CONTRIBUTING.md) for further infor
 [![Artifact Hub](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/cxcli&style=for-the-badge)](https://artifacthub.io/packages/search?repo=cxcli)
 [![Go Doc](https://img.shields.io/badge/godoc-reference-blue.svg?style=for-the-badge)](http://godoc.org/github.com/xavidop/dialogflow-cx-cli)
 [![Powered By: GoReleaser](https://img.shields.io/badge/powered%20by-goreleaser-green.svg?style=for-the-badge)](https://github.com/goreleaser)
-[![Backers on Open Collective](https://opencollective.com/cxcli/backers/badge.svg?style=for-the-badge)](https://opencollective.com/cxcli/backers/)
-[![Sponsors on Open Collective](https://opencollective.com/cxcli/sponsors/badge.svg?style=for-the-badge)](https://opencollective.com/cxcli/sponsors/)
+[![Sponsors on Github](https://opencollective.com/cxcli/sponsors/badge.svg?style=for-the-badge)](https://github.com/sponsors/xavidop)
 [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg?style=for-the-badge)](https://conventionalcommits.org)
 [![Go Report Card](https://goreportcard.com/badge/github.com/xavidop/dialogflow-cx-cli)](https://goreportcard.com/report/github.com/xavidop/dialogflow-cx-cli)
 
 ## Sponsors
 
-Does your company use cxli? Help keep the project bug-free and feature rich by [sponsoring the project](https://opencollective.com/cxlci#sponsor).
+Does your company use cxli? Help keep the project bug-free and feature rich by [sponsoring the project](https://github.com/sponsors/xavidop).
 
-<a href="https://opencollective.com/cxcli/sponsors/0/website" target="_blank"><img src="https://opencollective.com/cxcli/sponsors/0/avatar"></a>
-
-## Backers
-
-Love our work and community? [Become a backer](https://opencollective.com/cxcli).
-
-<a href="https://opencollective.com/cxcli/backers/0/website" target="_blank"><img src="https://opencollective.com/cxcli/backers/0/avatar"></a>
+<a href="https://github.com/sponsors/xavidop" target="_blank"><img src="https://opencollective.com/cxcli/sponsors/0/avatar"></a>
 
 ## Contributors
 
 This project exists thanks to all the people who contribute. [[Contribute](CONTRIBUTING.md)].
-<a href="https://github.com/xavidop/dialogflow-cx-cli/graphs/contributors"><img src="https://opencollective.com/cxcli/contributors.svg?width=890" /></a>
-
+Check all the contributors [here](https://github.com/xavidop/dialogflow-cx-cli/graphs/contributors)
 ## Stargazers over time
 
 [![Stargazers over time](https://starchart.cc/xavidop/dialogflow-cx-cli.svg)](https://starchart.cc/xavidop/dialogflow-cx-cli)

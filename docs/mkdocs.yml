@@ -89,8 +89,8 @@ markdown_extensions:
   - pymdownx.tilde
 
 nav:
+  - Home: index.md
   - Overview:
-      - Introduction: index.md
       - Install: overview/install.md
       - Authentication: overview/authentication.md
       - Roadmap: overview/roadmap.md

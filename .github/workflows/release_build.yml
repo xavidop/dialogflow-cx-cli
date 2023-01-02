@@ -77,28 +77,4 @@ jobs:
           MASTODON_CLIENT_ID: ${{ secrets.MASTODON_CLIENT_ID }}
           MASTODON_CLIENT_SECRET: ${{ secrets.MASTODON_CLIENT_SECRET }}
           MASTODON_ACCESS_TOKEN: ${{ secrets.MASTODON_ACCESS_TOKEN }}
-
-  release-choco:
-    name: GoReleaser release choco
-    runs-on: windows-latest
-
-    steps:
-      - name: Check out code into the Go module directory
-        uses: actions/checkout@v3
-        with:
-          fetch-depth: 0 # See: https://goreleaser.com/ci/actions/
-
-      - name: Set up Go 1.19
-        uses: actions/setup-go@v3
-        with:
-          go-version: 1.19
-        id: go
-
-      - name: Run GoReleaser
-        uses: goreleaser/goreleaser-action@master
-        with:
-          version: latest
-          args: release --rm-dist -f .goreleaser_choco.yml
-        env:
-          GITHUB_TOKEN: ${{ secrets.GO_RELEASER_GITHUB_TOKEN }}
           CHOCOLATEY_API_KEY: ${{ secrets.CHOCOLATEY_API_KEY }}
