@@ -26,7 +26,7 @@ func CreateEntityTypesRESTClient(locationId string) (*cx.EntityTypesClient, erro
 
 }
 
-func CreateEntityType(entityTypesClient *cx.EntityTypesClient, agent *cxpb.Agent, entityName, localeId string, entities []string) (*cxpb.EntityType, error) {
+func CreateEntityType(entityTypesClient *cx.EntityTypesClient, agent *cxpb.Agent, entityTypeName, localeId string, entities []string) (*cxpb.EntityType, error) {
 	ctx := context.Background()
 	localeToUse := agent.GetDefaultLanguageCode()
 	if localeId != "" {
@@ -43,7 +43,7 @@ func CreateEntityType(entityTypesClient *cx.EntityTypesClient, agent *cxpb.Agent
 		LanguageCode: localeToUse,
 
 		EntityType: &cxpb.EntityType{
-			DisplayName: entityName,
+			DisplayName: entityTypeName,
 			Entities:    entityTypesEntities,
 			Kind:        cxpb.EntityType_KIND_MAP,
 		},
@@ -71,7 +71,7 @@ func CreateEntityTypesEntities(entities []string) ([]*cxpb.EntityType_Entity, er
 	return entityTypesEntities, nil
 }
 
-func GetEntityTypeIdByName(entityTypesClient *cx.EntityTypesClient, agent *cxpb.Agent, entityName string) (*cxpb.EntityType, error) {
+func GetEntityTypeIdByName(entityTypesClient *cx.EntityTypesClient, agent *cxpb.Agent, entityTypeName string) (*cxpb.EntityType, error) {
 	ctx := context.Background()
 
 	reqEntityTypeList := &cxpb.ListEntityTypesRequest{
@@ -81,7 +81,7 @@ func GetEntityTypeIdByName(entityTypesClient *cx.EntityTypesClient, agent *cxpb.
 	entityTypes := entityTypesClient.ListEntityTypes(ctx, reqEntityTypeList)
 
 	for entityType, err := entityTypes.Next(); err == nil; {
-		if entityType.DisplayName == entityName {
+		if entityType.DisplayName == entityTypeName {
 			return entityType, nil
 		}
 		entityType, err = entityTypes.Next()
@@ -93,4 +93,19 @@ func GetEntityTypeIdByName(entityTypesClient *cx.EntityTypesClient, agent *cxpb.
 
 	return nil, errors.New("entity type not found")
 
+}
+
+func DeleteEntityType(entityTypesClient *cx.EntityTypesClient, agent *cxpb.Agent, entityTypeName string, force bool) error {
+	ctx := context.Background()
+
+	entityType, err := GetEntityTypeIdByName(entityTypesClient, agent, entityTypeName)
+	if err != nil {
+		return err
+	}
+
+	reqDeleteEntityType := &cxpb.DeleteEntityTypeRequest{
+		Name:  entityType.GetName(),
+		Force: force,
+	}
+	return entityTypesClient.DeleteEntityType(ctx, reqDeleteEntityType)
 }

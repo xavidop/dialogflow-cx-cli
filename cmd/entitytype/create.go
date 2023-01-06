@@ -9,7 +9,7 @@ import (
 	"github.com/xavidop/dialogflow-cx-cli/pkg/entitytype"
 )
 
-// createCmd represents the export command
+// createCmd represents the create command
 var createCmd = &cobra.Command{
 	Use:     "create [entity-type-name]",
 	Aliases: []string{"creates", "c"},

@@ -2,6 +2,7 @@ package cx
 
 import (
 	"context"
+	"errors"
 	"fmt"
 	"strings"
 
@@ -126,4 +127,42 @@ func CreateIntentTrainingPhrases(trainingPhrases []string, entityTypesClient *cx
 		intentTrainingPhrases = append(intentTrainingPhrases, intentTrainingPhrase)
 	}
 	return intentTrainingPhrases, intentTrainingParameters, nil
+}
+
+func DeleteIntent(intentClient *cx.IntentsClient, agent *cxpb.Agent, intentName string) error {
+	ctx := context.Background()
+
+	intent, err := GetIntentTypeIdByName(intentClient, agent, intentName)
+	if err != nil {
+		return err
+	}
+
+	reqDeleteIntent := &cxpb.DeleteIntentRequest{
+		Name: intent.GetName(),
+	}
+	return intentClient.DeleteIntent(ctx, reqDeleteIntent)
+}
+
+func GetIntentTypeIdByName(intentClient *cx.IntentsClient, agent *cxpb.Agent, intentName string) (*cxpb.Intent, error) {
+	ctx := context.Background()
+
+	reqIntentList := &cxpb.ListIntentsRequest{
+		Parent: agent.GetName(),
+	}
+
+	intents := intentClient.ListIntents(ctx, reqIntentList)
+
+	for intent, err := intents.Next(); err == nil; {
+		if intent.DisplayName == intentName {
+			return intent, nil
+		}
+		intent, err = intents.Next()
+		if err != nil {
+			return nil, err
+		}
+
+	}
+
+	return nil, errors.New("intent not found")
+
 }
