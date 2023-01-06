@@ -1,15 +1,18 @@
-# cxcli intent
+# cxcli intent delete
 
-Actions on intent commands
+Deletes an intent in an agent
 
 ```
-cxcli intent [flags]
+cxcli intent delete [intent-name] [flags]
 ```
 
 ## Options
 
 ```
-  -h, --help   help for intent
+  -a, --agent-name string    Dialogflow CX Agent Name
+  -h, --help                 help for delete
+  -l, --location-id string   Dialogflow CX Location ID of the Project
+  -p, --project-id string    Dialogflow CX Project ID
 ```
 
 ## Options inherited from parent commands
@@ -23,7 +26,5 @@ cxcli intent [flags]
 
 ## See also
 
-* [cxcli](/cmd/cxcli/)	 - Dialogflow CX CLI
-* [cxcli intent create](/cmd/cxcli_intent_create/)	 - Creates an intent in an agent
-* [cxcli intent delete](/cmd/cxcli_intent_delete/)	 - Deletes an intent in an agent
+* [cxcli intent](/cmd/cxcli_intent/)	 - Actions on intent commands
 

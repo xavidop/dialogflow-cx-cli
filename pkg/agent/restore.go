@@ -25,7 +25,7 @@ func Restore(locationID, projectID, agentName, input string) error {
 		return err
 	}
 
-	err = cxpkg.RestoreAgentByFullName(agentClient, agent.GetName(), projectID, locationID, content)
+	err = cxpkg.RestoreAgentById(agentClient, agent.GetName(), content)
 	if err != nil {
 		return err
 	}

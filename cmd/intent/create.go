@@ -9,7 +9,7 @@ import (
 	"github.com/xavidop/dialogflow-cx-cli/pkg/intent"
 )
 
-// createCmd represents the export command
+// createCmd represents the create command
 var createCmd = &cobra.Command{
 	Use:     "create [intent-name]",
 	Aliases: []string{"creates", "c"},

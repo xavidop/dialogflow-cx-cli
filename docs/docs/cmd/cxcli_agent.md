@@ -24,6 +24,7 @@ cxcli agent [flags]
 ## See also
 
 * [cxcli](/cmd/cxcli/)	 - Dialogflow CX CLI
+* [cxcli agent delete](/cmd/cxcli_agent_delete/)	 - Deletes a specific agent
 * [cxcli agent export](/cmd/cxcli_agent_export/)	 - Executes an export for a specific agent
 * [cxcli agent restore](/cmd/cxcli_agent_restore/)	 - Executes a restore action for a specific agent
 

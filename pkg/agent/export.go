@@ -20,7 +20,7 @@ func Export(locationID, projectID, agentName, output string) error {
 		return err
 	}
 
-	responseData, err := cxpkg.ExportAgentByFullName(agentClient, agent.GetName(), projectID, locationID)
+	responseData, err := cxpkg.ExportAgentById(agentClient, agent.GetName())
 	if err != nil {
 		return err
 	}

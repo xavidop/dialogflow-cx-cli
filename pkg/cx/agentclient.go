@@ -64,11 +64,11 @@ func GetAgentIdByName(agentClient *cx.AgentsClient, agentName string, projectId 
 	return nil, errors.New("agent not found")
 }
 
-func ExportAgentByFullName(agentClient *cx.AgentsClient, agentFullName string, projectId string, locationId string) (*cxpb.ExportAgentResponse, error) {
+func ExportAgentById(agentClient *cx.AgentsClient, agentId string) (*cxpb.ExportAgentResponse, error) {
 	ctx := context.Background()
 
 	reqAgentExport := &cxpb.ExportAgentRequest{
-		Name: agentFullName,
+		Name: agentId,
 	}
 
 	longRunningOperation, err := agentClient.ExportAgent(ctx, reqAgentExport)
@@ -80,11 +80,11 @@ func ExportAgentByFullName(agentClient *cx.AgentsClient, agentFullName string, p
 
 }
 
-func RestoreAgentByFullName(agentClient *cx.AgentsClient, agentFullName string, projectId string, locationId string, agentContent []byte) error {
+func RestoreAgentById(agentClient *cx.AgentsClient, agentId string, agentContent []byte) error {
 	ctx := context.Background()
 
 	reqAgentRestore := &cxpb.RestoreAgentRequest{
-		Name: agentFullName,
+		Name: agentId,
 		Agent: &cxpb.RestoreAgentRequest_AgentContent{
 			AgentContent: agentContent,
 		},
@@ -97,4 +97,18 @@ func RestoreAgentByFullName(agentClient *cx.AgentsClient, agentFullName string, 
 
 	return longRunningOperation.Wait(ctx)
 
+}
+
+func DeleteAgent(agentClient *cx.AgentsClient, agentName, projectId, locationId string) error {
+	ctx := context.Background()
+
+	agent, err := GetAgentIdByName(agentClient, agentName, projectId, locationId)
+	if err != nil {
+		return err
+	}
+
+	reqDeleteAgent := &cxpb.DeleteAgentRequest{
+		Name: agent.GetName(),
+	}
+	return agentClient.DeleteAgent(ctx, reqDeleteAgent)
 }
