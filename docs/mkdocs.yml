@@ -119,6 +119,8 @@ nav:
       - cxcli: cmd/cxcli.md
       - cxcli agent: cmd/cxcli_agent.md
       - cxcli environment: cmd/cxcli_environment.md
+      - cxcli intent: cmd/cxcli_intent.md
+      - cxcli entity-type: cmd/cxcli_entity-type.md
       - cxcli profile-nlu: cmd/cxcli_profile-nlu.md
       - cxcli stt: cmd/cxcli_stt.md
       - cxcli tts: cmd/cxcli_tts.md
@@ -131,8 +133,8 @@ nav:
   - Troubleshooting: troubleshooting.md
   - Links: links.md
 
-# extra:
-#   analytics:
-#     provider: google
-#     property: UA-60759269-5
-#     anonymize_ip: true
+extra:
+  analytics:
+    provider: google
+    property: G-J48NTVMG9Y
+    anonymize_ip: true
