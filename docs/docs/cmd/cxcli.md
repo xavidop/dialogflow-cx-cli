@@ -31,7 +31,9 @@ cxcli [flags]
 
 * [cxcli agent](/cmd/cxcli_agent/)	 - Actions on agent commands
 * [cxcli completion](/cmd/cxcli_completion/)	 - Generate the autocompletion script for the specified shell
+* [cxcli entity-type](/cmd/cxcli_entity-type/)	 - Actions on entity type commands
 * [cxcli environment](/cmd/cxcli_environment/)	 - Actions on environment
+* [cxcli intent](/cmd/cxcli_intent/)	 - Actions on intent commands
 * [cxcli jsonschema](/cmd/cxcli_jsonschema/)	 - outputs cxcli's JSON schema
 * [cxcli profile-nlu](/cmd/cxcli_profile-nlu/)	 - Actions on testing
 * [cxcli stt](/cmd/cxcli_stt/)	 - Actions on speech-to-text commands
