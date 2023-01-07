@@ -110,6 +110,15 @@ nav:
     - Introduction: agents/introduction.md
     - Restore: agents/restore.md
     - Export: agents/export.md
+    - Delete: agents/delete.md
+  - Intents:
+    - Introduction: intents/introduction.md
+    - Create: intents/create.md
+    - Delete: intents/delete.md
+  - Entity Types:
+    - Introduction: entitytypes/introduction.md
+    - Create: entitytypes/create.md
+    - Delete: entitytypes/delete.md
   - Environments:
     - Introduction: environments/introduction.md
     - CICD: environments/cicd.md

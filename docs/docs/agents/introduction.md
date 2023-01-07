@@ -23,6 +23,9 @@ An agent can be exported as a `blob` file. Right now the Dialogflow CX API, used
 
 The `cxcli` has a command that allows you to export your agent. You can find the whole explanation [here](/agents/export)
 
+## Delete
+
+The `cxcli` has a command that allows you to delete your agent. You can find the whole explanation [here](/agents/delete)
 
 ## Useful Links
 
