@@ -13,7 +13,7 @@ require (
 
 require (
 	cloud.google.com/go/speech v1.10.0
-	cloud.google.com/go/texttospeech v1.5.0
+	cloud.google.com/go/texttospeech v1.6.0
 	github.com/google/go-github/v48 v48.2.0
 	github.com/invopop/jsonschema v0.7.0
 	github.com/muesli/mango-cobra v1.2.0
