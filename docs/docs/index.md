@@ -14,7 +14,7 @@ This CLI also has [text-to-speech](/tts) and [speech-to text](stt) capabilities 
 
 * [How to install the tool](/overview/install)
 * [Authentication](/overview/authentication)
-* [Read the FAQ](/overview/faq.md)
+* [Read the FAQ](/overview/faq)
 
 ## Got questions, comments or suggestions?
 
