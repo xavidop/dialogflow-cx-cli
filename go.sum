@@ -5,8 +5,8 @@ cloud.google.com/go/compute v1.13.0 h1:AYrLkB8NPdDRslNp4Jxmzrhdr03fUAIDbiGFjLWow
 cloud.google.com/go/compute v1.13.0/go.mod h1:5aPTS0cUNMIc1CE546K+Th6weJUNQErARyZtRXDJ8GE=
 cloud.google.com/go/compute/metadata v0.2.2 h1:aWKAjYaBaOSrpKl57+jnS/3fJRQnxL7TvR/u1VVbt6k=
 cloud.google.com/go/compute/metadata v0.2.2/go.mod h1:jgHgmJd2RKBGzXqF5LR2EZMGxBkeanZ9wwa75XHJgOM=
-cloud.google.com/go/dialogflow v1.21.0 h1:45CYXdJ/wXKt2n3cNzMdTRgqLl3QCWbNXdSgKoDWoig=
-cloud.google.com/go/dialogflow v1.21.0/go.mod h1:iRCdZ1KzIYWrTgeq5eQuLHT7RBY3qogiZZ0sPszq3Js=
+cloud.google.com/go/dialogflow v1.22.0 h1:E3NtjlnCV/IuOLvLQy8y3GsGFgMMRTq5xfJqkyKigDY=
+cloud.google.com/go/dialogflow v1.22.0/go.mod h1:zvqXBMsiR1vQv5dAAU7skSXF67p9IZcEynV4arjjPmk=
 cloud.google.com/go/longrunning v0.3.0 h1:NjljC+FYPV3uh5/OwWT6pVU+doBqMg2x/rZlE+CamDs=
 cloud.google.com/go/longrunning v0.3.0/go.mod h1:qth9Y41RRSUE69rDcOn6DdK3HfQfsUI0YSmW3iIlLJc=
 cloud.google.com/go/speech v1.11.0 h1:PDet2Im+tzrHpwsSJbI7vy8rITH9UlOqzvwaA0ySnOI=
