@@ -12,7 +12,7 @@ require (
 )
 
 require (
-	cloud.google.com/go/speech v1.11.0
+	cloud.google.com/go/speech v1.12.0
 	cloud.google.com/go/texttospeech v1.6.0
 	github.com/google/go-github/v48 v48.2.0
 	github.com/invopop/jsonschema v0.7.0
@@ -47,6 +47,6 @@ require (
 	golang.org/x/sys v0.1.0 // indirect
 	golang.org/x/text v0.5.0 // indirect
 	google.golang.org/appengine v1.6.7 // indirect
-	google.golang.org/genproto v0.0.0-20221227171554-f9683d7f8bef // indirect
+	google.golang.org/genproto v0.0.0-20230109162033-3c3c17ce83e6 // indirect
 	google.golang.org/grpc v1.51.0 // indirect
 )
