@@ -15,8 +15,8 @@ This CLI also has text-to-speech and speech-to text capabilities allowing the in
 
 ## Get cxcli
 
-- [On your machine](https://cxcli.xavidop.me/install/);
-- [On CI/CD systems](https://cxcli.xavidop.me/ci/).
+- [On your machine](https://cxcli.xavidop.me/overview/install/);
+<!-- - [On CI/CD systems](https://cxcli.xavidop.me/overview/ci/). -->
 
 ## Documentation
 
