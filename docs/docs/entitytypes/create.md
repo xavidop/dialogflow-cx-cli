@@ -6,7 +6,7 @@
 You can find the create command usage down the `cxcli entity-type create` command. You can read the documentation about this command [here](/cmd/cxcli_entity-type_create).
 
 
-The `--entities` is a list of the entities with its synonyms, comma separated. This parameter has the following format: 
+The `--entities` is a list of the entities with their synonyms, comma separated. This parameter has the following format: 
 ```
 entity1@synonym1|synonym2,entity2@synonym1|synonym2
 ```
