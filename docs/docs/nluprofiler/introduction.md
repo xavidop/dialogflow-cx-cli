@@ -22,9 +22,6 @@ The `cxcli` has a command that allows you to run these suites from your terminal
 
 To execute a suite, you have to run the `cxcli profile-nlu execute` command. For the usage, please refer to this [page](/cmd/cxcli_profile-nlu_execute).
 
-You can also generate it for your specific version using the
-[`cxcli jsonschema`](/cmd/cxcli_jsonschema) command.
-
 ## Examples
 
 You can find some useful examples on our [Github repo](https://github.com/xavidop/dialogflow-cx-cli/tree/master/examples) and the [Examples](/nluprofiler/examples) page.
@@ -38,7 +35,7 @@ This a simple example of the `cxcli profile-nlu execute` command:
 cxcli profile-nlu execute examples/suite.yaml
 ```
 
-The command above will give you an output similar this one:
+The command above will give you an output similar to this one:
 
 ```sh
 $ cxcli profile-nlu execute suite.yaml
