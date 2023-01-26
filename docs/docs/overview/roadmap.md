@@ -6,7 +6,7 @@ Our goal with the tool is to prove that there's market fit for a solution like t
 
 For now, if you're interested in participating and giving feedback, we believe `cxcli` already solves pain at this stage.
 
-Shipped
+Shipped:
 
 * [x] Available in homebrew, snapcraft, apt, yum, scoop, aur package managers 
 * [x] Documentation updated
@@ -18,7 +18,7 @@ Shipped
 
 Coming soon:
 
-* [ ] Continuous integration support
+* [ ] Continuous integration support (GitHub Action, CircleCI, etc.)
 * [ ] Intents and entities actions (create, update)
 * [ ] Support more environments (create, update) actions
 * [ ] Support more agent actions (create, update, train)

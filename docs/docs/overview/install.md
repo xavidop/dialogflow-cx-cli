@@ -30,12 +30,6 @@ scoop bucket add cxcli https://github.com/xavidop/scoop-bucket.git
 scoop install cxcli
 ```
 
-### chocolatey
-
-```powershell
-choco install cxcli
-```
-
 ### apt
 
 ```sh
