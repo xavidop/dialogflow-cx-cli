@@ -3,7 +3,7 @@ module github.com/xavidop/dialogflow-cx-cli
 go 1.19
 
 require (
-	cloud.google.com/go/dialogflow v1.23.0
+	cloud.google.com/go/dialogflow v1.26.0
 	github.com/google/uuid v1.3.0
 	github.com/pkg/errors v0.9.1
 	github.com/sirupsen/logrus v1.9.0
@@ -12,9 +12,9 @@ require (
 )
 
 require (
-	cloud.google.com/go/speech v1.12.0
+	cloud.google.com/go/speech v1.14.0
 	cloud.google.com/go/texttospeech v1.6.0
-	github.com/google/go-github/v48 v48.2.0
+	github.com/google/go-github/v50 v50.0.0
 	github.com/invopop/jsonschema v0.7.0
 	github.com/muesli/mango-cobra v1.2.0
 	github.com/muesli/roff v0.1.0
@@ -47,6 +47,6 @@ require (
 	golang.org/x/sys v0.1.0 // indirect
 	golang.org/x/text v0.5.0 // indirect
 	google.golang.org/appengine v1.6.7 // indirect
-	google.golang.org/genproto v0.0.0-20230113154510-dbe35b8444a5 // indirect
+	google.golang.org/genproto v0.0.0-20230125152338-dcaf20b6aeaa // indirect
 	google.golang.org/grpc v1.51.0 // indirect
 )
