@@ -9,8 +9,8 @@ cloud.google.com/go/dialogflow v1.27.0 h1:qCEXWPoU9oWZ5ikbwAJwna6cPWyi/LITKtnKEr
 cloud.google.com/go/dialogflow v1.27.0/go.mod h1:b+2bzMe+k1s9V+F2jbJwpHPzrnIyHihAdRFMtn2WXuM=
 cloud.google.com/go/longrunning v0.3.0 h1:NjljC+FYPV3uh5/OwWT6pVU+doBqMg2x/rZlE+CamDs=
 cloud.google.com/go/longrunning v0.3.0/go.mod h1:qth9Y41RRSUE69rDcOn6DdK3HfQfsUI0YSmW3iIlLJc=
-cloud.google.com/go/speech v1.14.0 h1:jz0T+JaD7OT9a7B5hDbIykJc/bP4F2HjjdcOTf9e25o=
-cloud.google.com/go/speech v1.14.0/go.mod h1:6yVJsXcOJq0O0Ik7V0knCE3mmWrOJQ14ZzWC1kfVb4E=
+cloud.google.com/go/speech v1.14.1 h1:x4ZJWhop/sLtnIP97IMmPtD6ZF003eD8hykJ0lOgEtw=
+cloud.google.com/go/speech v1.14.1/go.mod h1:gEosVRPJ9waG7zqqnsHpYTOoAS4KouMRLDFMekpJ0J0=
 cloud.google.com/go/texttospeech v1.6.0 h1:H4g1ULStsbVtalbZGktyzXzw6jP26RjVGYx9RaYjBzc=
 cloud.google.com/go/texttospeech v1.6.0/go.mod h1:YmwmFT8pj1aBblQOI3TfKmwibnsfvhIBzPXcW4EBovc=
 github.com/BurntSushi/toml v0.3.1/go.mod h1:xHWCNGjB5oqiDr8zfno3MHue2Ht5sIBksp03qcyfWMU=
