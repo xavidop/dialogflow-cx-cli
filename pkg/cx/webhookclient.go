@@ -9,6 +9,7 @@ import (
 	cxpb "cloud.google.com/go/dialogflow/cx/apiv3beta1/cxpb"
 	"github.com/xavidop/dialogflow-cx-cli/internal/global"
 	"google.golang.org/api/option"
+	"google.golang.org/protobuf/types/known/fieldmaskpb"
 )
 
 func CreateWebhookRESTClient(locationId string) (*cx.WebhooksClient, error) {
@@ -21,6 +22,20 @@ func CreateWebhookRESTClient(locationId string) (*cx.WebhooksClient, error) {
 		return cx.NewWebhooksRESTClient(ctx, credentials, endpoint)
 	} else {
 		return cx.NewWebhooksRESTClient(ctx, endpoint)
+	}
+
+}
+
+func CreateWebhookGRPCClient(locationId string) (*cx.WebhooksClient, error) {
+	ctx := context.Background()
+	endpointString := fmt.Sprintf("%s-dialogflow.googleapis.com:443", locationId)
+	endpoint := option.WithEndpoint(endpointString)
+
+	if global.Credentials != "" {
+		credentials := option.WithCredentialsFile(global.Credentials)
+		return cx.NewWebhooksClient(ctx, credentials, endpoint)
+	} else {
+		return cx.NewWebhooksClient(ctx, endpoint)
 	}
 
 }
@@ -43,6 +58,26 @@ func CreateWebhook(webhookClient *cx.WebhooksClient, agent *cxpb.Agent, url, nam
 	}
 
 	return webhookClient.CreateWebhook(ctx, reqCreateWebhook)
+}
+
+func UpdateWebhook(webhookClient *cx.WebhooksClient, agent *cxpb.Agent, url, name string) (*cxpb.Webhook, error) {
+	ctx := context.Background()
+
+	webhook, err := GetWebhookIdByName(webhookClient, agent, name)
+	if err != nil {
+		return nil, err
+	}
+
+	webhook.GetGenericWebService().Uri = url
+
+	reqUpdateWebhook := &cxpb.UpdateWebhookRequest{
+		Webhook: webhook,
+		UpdateMask: &fieldmaskpb.FieldMask{
+			Paths: []string{"generic_web_service"},
+		},
+	}
+
+	return webhookClient.UpdateWebhook(ctx, reqUpdateWebhook)
 }
 
 func GetWebhookIdByName(webhookClient *cx.WebhooksClient, agent *cxpb.Agent, name string) (*cxpb.Webhook, error) {

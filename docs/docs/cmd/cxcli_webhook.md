@@ -26,4 +26,5 @@ cxcli webhook [flags]
 * [cxcli](/cmd/cxcli/)	 - Dialogflow CX CLI
 * [cxcli webhook create](/cmd/cxcli_webhook_create/)	 - create a webhook
 * [cxcli webhook delete](/cmd/cxcli_webhook_delete/)	 - delete a webhook
+* [cxcli webhook update](/cmd/cxcli_webhook_update/)	 - update a webhook
 
