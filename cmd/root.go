@@ -13,6 +13,7 @@ import (
 	cmdprofilenlu "github.com/xavidop/dialogflow-cx-cli/cmd/profilenlu"
 	cmdstt "github.com/xavidop/dialogflow-cx-cli/cmd/stt"
 	cmdtts "github.com/xavidop/dialogflow-cx-cli/cmd/tts"
+	cmdwebhook "github.com/xavidop/dialogflow-cx-cli/cmd/webhook"
 	"github.com/xavidop/dialogflow-cx-cli/internal/global"
 )
 
@@ -60,6 +61,7 @@ func init() {
 	cmdintent.Register(rootCmd)
 	cmdentitytype.Register(rootCmd)
 	cmdstt.Register(rootCmd)
+	cmdwebhook.Register(rootCmd)
 
 	// Add the subcommands
 	rootCmd.PersistentFlags().BoolVarP(&global.Verbose, "verbose", "v", false, "verbose error output (with stack trace)")

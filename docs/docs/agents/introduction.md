@@ -12,14 +12,14 @@ All the commands that you have available in the `cxcli` to interact with your ag
 
 ## Restore
 
-You can restore an agent using a `blob` file. Right now the Dialogflow CX API, used by the `cxcli`, only works with the `blob` format.
+You can restore an agent using a `blob` or a `json-package` file. Right now the Dialogflow CX API, used by the `cxcli`, works with the `blob` and `json` format.
 
 The `cxcli` has a command that allows you to restore an agent. You can find the whole explanation [here](/agents/restore)
 
 
 ## Export
 
-An agent can be exported as a `blob` file. Right now the Dialogflow CX API, used by the `cxcli`, only works with the `blob` format.
+An agent can be exported as a `blob` or a `json-package` file. Right now the Dialogflow CX API, used by the `cxcli`, works with the `blob` and `json` format.
 
 The `cxcli` has a command that allows you to export your agent. You can find the whole explanation [here](/agents/export)
 

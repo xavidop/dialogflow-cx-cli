@@ -64,11 +64,22 @@ func GetAgentIdByName(agentClient *cx.AgentsClient, agentName string, projectId 
 	return nil, errors.New("agent not found")
 }
 
-func ExportAgentById(agentClient *cx.AgentsClient, agentId string) (*cxpb.ExportAgentResponse, error) {
+func ExportAgentById(agentClient *cx.AgentsClient, agentId, exportFormat string) (*cxpb.ExportAgentResponse, error) {
 	ctx := context.Background()
 
+	var format cxpb.ExportAgentRequest_DataFormat
+	switch exportFormat {
+	case "blob":
+		format = cxpb.ExportAgentRequest_BLOB
+	case "json":
+		format = cxpb.ExportAgentRequest_JSON_PACKAGE
+	default:
+		format = cxpb.ExportAgentRequest_DATA_FORMAT_UNSPECIFIED
+	}
+
 	reqAgentExport := &cxpb.ExportAgentRequest{
-		Name: agentId,
+		Name:       agentId,
+		DataFormat: format,
 	}
 
 	longRunningOperation, err := agentClient.ExportAgent(ctx, reqAgentExport)

@@ -17,7 +17,7 @@ func Create(entityTypeName, locationID, projectID, agentName, localeId string, e
 	if err != nil {
 		return err
 	}
-	defer agentClient.Close()
+	defer entityTypeClient.Close()
 
 	agent, err := cxpkg.GetAgentIdByName(agentClient, agentName, projectID, locationID)
 	if err != nil {

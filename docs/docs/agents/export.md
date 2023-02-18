@@ -7,7 +7,7 @@ You can find the export command usage down the `cxcli agent export` command. You
 
 
 !!! info "Exported file format"
-    Right now the Dialogflow CX API only supports exporting the agent in `blob` format. Once the `json` format is supported, we will add it in the tool.
+    You can export your agent in `blob` or `json` format. When you choose `json` format, the output file is going to be a `zip` file.
 
 
 ## Example
@@ -15,14 +15,14 @@ You can find the export command usage down the `cxcli agent export` command. You
 This a simple example of the `cxcli agent export` command:
 
 ```sh
-cxcli agent export test-agent --project-id test-cx-346408 --location-id us-central1
+cxcli agent export test-agent --project-id test-cx-346408 --location-id us-central1 --export-format blob
 ```
 
 The command above will give you an output like this one:
 
 ```sh
-$ cxcli agent export test-agent --project-id test-cx-346408 --location-id us-central1
-INFO Agent exported to file: agent.blob                    
+$ cxcli agent export test-agent --project-id test-cx-346408 --location-id us-central1 --export-format json --output-file agent.zip
+INFO Agent exported to file: agent.zip                    
 ```
 !!! info "are you running this command in a CICD pipeline?"
     If this is the case, we recommend you to execute with the `--output-format` parameter set to `json`.
