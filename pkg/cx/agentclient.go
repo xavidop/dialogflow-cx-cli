@@ -36,7 +36,6 @@ func CreateAgentGRPCClient(locationId string) (*cx.AgentsClient, error) {
 	} else {
 		return cx.NewAgentsClient(ctx, endpoint)
 	}
-
 }
 
 func GetAgentIdByName(agentClient *cx.AgentsClient, agentName string, projectId string, locationId string) (*cxpb.Agent, error) {
