@@ -1,4 +1,4 @@
-package entitytype
+package webhook
 
 import (
 	"os"
@@ -6,14 +6,14 @@ import (
 	"github.com/spf13/cobra"
 	"github.com/xavidop/dialogflow-cx-cli/cmd/cmdutils"
 	"github.com/xavidop/dialogflow-cx-cli/internal/global"
-	"github.com/xavidop/dialogflow-cx-cli/pkg/entitytype"
+	"github.com/xavidop/dialogflow-cx-cli/pkg/webhook"
 )
 
-// deleteCmd represents the delete command
+// deleteCmd represents the delete webhook set command
 var deleteCmd = &cobra.Command{
-	Use:     "delete [entity-type-name]",
-	Aliases: []string{"deletes", "d", "removes", "remove", "del"},
-	Short:   "Deletes an entity type in an agent",
+	Use:     "delete [name]",
+	Aliases: []string{"d", "del", "remove", "deletes", "removes"},
+	Short:   "delete a webhook",
 	Args:    cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		// Get the information
@@ -21,9 +21,9 @@ var deleteCmd = &cobra.Command{
 		projectID, _ := cmd.Flags().GetString("project-id")
 		agentName, _ := cmd.Flags().GetString("agent-name")
 		force, _ := cmd.Flags().GetBool("force")
-		entityTypeName := args[0]
+		name := args[0]
 
-		if err := entitytype.Delete(entityTypeName, locationID, projectID, agentName, force); err != nil {
+		if err := webhook.Delete(name, locationID, projectID, agentName, force); err != nil {
 			global.Log.Errorf(err.Error())
 			os.Exit(1)
 		}
@@ -36,10 +36,11 @@ var deleteCmd = &cobra.Command{
 }
 
 func init() {
-	entitytypeCmd.AddCommand(deleteCmd)
+	webhookCmd.AddCommand(deleteCmd)
 
+	deleteCmd.Flags().StringP("agent-name", "a", "", "Dialogflow CX Agent Name")
 	deleteCmd.Flags().StringP("project-id", "p", "", "Dialogflow CX Project ID")
 	deleteCmd.Flags().StringP("location-id", "l", "", "Dialogflow CX Location ID of the Project")
-	deleteCmd.Flags().StringP("agent-name", "a", "", "Dialogflow CX Agent Name")
-	deleteCmd.Flags().BoolP("force", "f", false, "Optional. Forces to delete the Entity type. NOTE: it will delete all any references to the entity type")
+	deleteCmd.Flags().BoolP("force", "f", false, "Optional. Forces to delete the webhook and its references in environments and flows")
+
 }

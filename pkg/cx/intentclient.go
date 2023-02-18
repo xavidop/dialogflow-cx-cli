@@ -132,7 +132,7 @@ func CreateIntentTrainingPhrases(trainingPhrases []string, entityTypesClient *cx
 func DeleteIntent(intentClient *cx.IntentsClient, agent *cxpb.Agent, intentName string) error {
 	ctx := context.Background()
 
-	intent, err := GetIntentTypeIdByName(intentClient, agent, intentName)
+	intent, err := GetIntentIdByName(intentClient, agent, intentName)
 	if err != nil {
 		return err
 	}
@@ -143,7 +143,7 @@ func DeleteIntent(intentClient *cx.IntentsClient, agent *cxpb.Agent, intentName 
 	return intentClient.DeleteIntent(ctx, reqDeleteIntent)
 }
 
-func GetIntentTypeIdByName(intentClient *cx.IntentsClient, agent *cxpb.Agent, intentName string) (*cxpb.Intent, error) {
+func GetIntentIdByName(intentClient *cx.IntentsClient, agent *cxpb.Agent, intentName string) (*cxpb.Intent, error) {
 	ctx := context.Background()
 
 	reqIntentList := &cxpb.ListIntentsRequest{

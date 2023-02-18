@@ -9,10 +9,10 @@ import (
 	"github.com/xavidop/dialogflow-cx-cli/pkg/webhook"
 )
 
-// createCmd represents the execute webhook set command
+// createCmd represents the create webhook set command
 var createCmd = &cobra.Command{
 	Use:     "create [name]",
-	Aliases: []string{"s"},
+	Aliases: []string{"creates", "s"},
 	Short:   "create a webhook",
 	Args:    cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

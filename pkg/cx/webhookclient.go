@@ -2,6 +2,7 @@ package cx
 
 import (
 	"context"
+	"errors"
 	"fmt"
 
 	cx "cloud.google.com/go/dialogflow/cx/apiv3beta1"
@@ -42,4 +43,44 @@ func CreateWebhook(webhookClient *cx.WebhooksClient, agent *cxpb.Agent, url, nam
 	}
 
 	return webhookClient.CreateWebhook(ctx, reqCreateWebhook)
+}
+
+func GetWebhookIdByName(webhookClient *cx.WebhooksClient, agent *cxpb.Agent, name string) (*cxpb.Webhook, error) {
+	ctx := context.Background()
+
+	reqWebhookList := &cxpb.ListWebhooksRequest{
+		Parent: agent.GetName(),
+	}
+
+	webhooks := webhookClient.ListWebhooks(ctx, reqWebhookList)
+
+	for webhook, err := webhooks.Next(); err == nil; {
+		if webhook.DisplayName == name {
+			return webhook, nil
+		}
+		webhook, err = webhooks.Next()
+		if err != nil {
+			return nil, err
+		}
+
+	}
+
+	return nil, errors.New("webhook not found")
+
+}
+
+func DeleteWebhook(webhookClient *cx.WebhooksClient, agent *cxpb.Agent, name string, force bool) error {
+	ctx := context.Background()
+
+	webhook, err := GetWebhookIdByName(webhookClient, agent, name)
+	if err != nil {
+		return err
+	}
+
+	reqDeleteWebhook := &cxpb.DeleteWebhookRequest{
+		Name:  webhook.GetName(),
+		Force: force,
+	}
+
+	return webhookClient.DeleteWebhook(ctx, reqDeleteWebhook)
 }
