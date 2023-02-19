@@ -13,7 +13,7 @@ func Create(entityTypeName, locationID, projectID, agentName, localeId string, e
 	}
 	defer agentClient.Close()
 
-	entityTypeClient, err := cxpkg.CreateEntityTypesRESTClient(locationID)
+	entityTypeClient, err := cxpkg.CreateEntityTypeRESTClient(locationID)
 	if err != nil {
 		return err
 	}

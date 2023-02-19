@@ -1,16 +1,22 @@
-package versioning
+package environment
 
 import (
 	"github.com/xavidop/dialogflow-cx-cli/internal/global"
 	cxpkg "github.com/xavidop/dialogflow-cx-cli/pkg/cx"
 )
 
-func Delete(name, startFlowName, locationID, projectID, agentName string) error {
+func Create(name, description, locationID, projectID, agentName string, flowVersions []string) error {
 	agentClient, err := cxpkg.CreateAgentRESTClient(locationID)
 	if err != nil {
 		return err
 	}
 	defer agentClient.Close()
+
+	environmentClient, err := cxpkg.CreateEnvironmentGRPCClient(locationID)
+	if err != nil {
+		return err
+	}
+	defer environmentClient.Close()
 
 	versionClient, err := cxpkg.CreateVersionRESTClient(locationID)
 	if err != nil {
@@ -29,16 +35,12 @@ func Delete(name, startFlowName, locationID, projectID, agentName string) error 
 		return err
 	}
 
-	flow, err := cxpkg.GetFlowIdByName(flowClient, agent, startFlowName)
+	version, err := cxpkg.CreateEnvironment(environmentClient, versionClient, flowClient, agent, name, description, flowVersions)
 	if err != nil {
 		return err
 	}
 
-	if err := cxpkg.DeleteVersion(versionClient, flow, name); err != nil {
-		return err
-	}
-
-	global.Log.Infof("Version deleted")
+	global.Log.Infof("Environment created with id: %v\n", version.GetName())
 
 	return nil
 }

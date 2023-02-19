@@ -60,7 +60,7 @@ func CreateIntentTrainingPhrases(trainingPhrases []string, entityTypesClient *cx
 		trainingPhrase = strings.TrimSpace(trainingPhrase)
 		var intentTrainingPhrase *cxpb.Intent_TrainingPhrase
 
-		// If the training phrases contains and entity
+		// If the training phrases contains an entity
 		if strings.Contains(trainingPhrase, "@") {
 
 			intentTrainingPhrase = &cxpb.Intent_TrainingPhrase{

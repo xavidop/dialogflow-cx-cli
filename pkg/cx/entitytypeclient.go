@@ -12,7 +12,7 @@ import (
 	"google.golang.org/api/option"
 )
 
-func CreateEntityTypesRESTClient(locationId string) (*cx.EntityTypesClient, error) {
+func CreateEntityTypeRESTClient(locationId string) (*cx.EntityTypesClient, error) {
 	ctx := context.Background()
 	endpointString := fmt.Sprintf("%s-dialogflow.googleapis.com:443", locationId)
 	endpoint := option.WithEndpoint(endpointString)

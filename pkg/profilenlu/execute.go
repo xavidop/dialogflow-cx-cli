@@ -34,7 +34,7 @@ func ExecuteSuite(suiteFile string) error {
 		return err
 	}
 
-	sessionsClient, err := cxpkg.CreateSessionsClient(suite.LocationID)
+	sessionsClient, err := cxpkg.CreateSessionRESTClient(suite.LocationID)
 	if err != nil {
 		return err
 	}

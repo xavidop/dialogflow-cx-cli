@@ -19,7 +19,7 @@ func Create(intentName, locationID, projectID, agentName, localeId string, train
 	}
 	defer intentClient.Close()
 
-	entityTypeClient, err := cxpkg.CreateEntityTypesRESTClient(locationID)
+	entityTypeClient, err := cxpkg.CreateEntityTypeRESTClient(locationID)
 	if err != nil {
 		return err
 	}

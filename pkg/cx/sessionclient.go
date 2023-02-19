@@ -13,7 +13,7 @@ import (
 	"google.golang.org/api/option"
 )
 
-func CreateSessionsClient(locationId string) (*cx.SessionsClient, error) {
+func CreateSessionRESTClient(locationId string) (*cx.SessionsClient, error) {
 	ctx := context.Background()
 
 	endpointString := fmt.Sprintf("%s-dialogflow.googleapis.com", locationId)
