@@ -13,7 +13,7 @@ import (
 var deleteCmd = &cobra.Command{
 	Use:     "delete [name]",
 	Aliases: []string{"d", "del", "remove", "deletes", "removes"},
-	Short:   "delete a environment",
+	Short:   "delete an environment",
 	Args:    cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		// Get the information

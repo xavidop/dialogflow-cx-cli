@@ -1,6 +1,6 @@
 # cxcli environment update
 
-update a version
+update an environment
 
 ```
 cxcli environment update [name] [flags]
@@ -9,12 +9,12 @@ cxcli environment update [name] [flags]
 ## Options
 
 ```
-  -a, --agent-name string    Dialogflow CX Agent Name
-  -d, --description string   Optional. Description for this version
-  -h, --help                 help for update
-  -l, --location-id string   Dialogflow CX Location ID of the Project
-  -p, --project-id string    Dialogflow CX Project ID
-  -s, --start-flow string    Start Flow name to create the version
+  -a, --agent-name string       Dialogflow CX Agent Name
+  -d, --description string      Optional. Description for this environment
+  -s, --flow-versions strings   List of Flow and its version to be added to this environment, comma separated. Format: flowName1@version1,flowName2|version2. Example: Default Start Flow@v1.0.0|Buy Flow@v1.0.1
+  -h, --help                    help for update
+  -l, --location-id string      Dialogflow CX Location ID of the Project
+  -p, --project-id string       Dialogflow CX Project ID
 ```
 
 ## Options inherited from parent commands

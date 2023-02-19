@@ -72,6 +72,50 @@ func CreateEnvironment(environmentClient *cx.EnvironmentsClient, versionClient *
 	return resp, nil
 }
 
+func UpdateEnvironment(environmentClient *cx.EnvironmentsClient, versionClient *cx.VersionsClient, flowClient *cx.FlowsClient, agent *cxpb.Agent, environmentName, description string, flowVersions []string) (*cxpb.Environment, error) {
+	ctx := context.Background()
+	paths := []string{}
+
+	environment, err := GetEnvironmentIdByName(environmentClient, agent.GetName(), environmentName)
+	if err != nil {
+		return nil, err
+	}
+
+	versionConfigs, err := parseFlowVersions(flowVersions, agent, versionClient, flowClient)
+	if err != nil {
+		return nil, err
+	}
+
+	if len(versionConfigs) > 0 {
+		environment.VersionConfigs = versionConfigs
+		paths = append(paths, "version_configs")
+	}
+
+	if len(description) > 0 {
+		environment.Description = description
+		paths = append(paths, "description")
+	}
+
+	reqUpdateEnvironment := &cxpb.UpdateEnvironmentRequest{
+		Environment: environment,
+		UpdateMask: &fieldmaskpb.FieldMask{
+			Paths: paths,
+		},
+	}
+
+	op, err := environmentClient.UpdateEnvironment(ctx, reqUpdateEnvironment)
+	if err != nil {
+		return nil, err
+	}
+
+	resp, err := op.Wait(ctx)
+	if err != nil {
+		return nil, err
+	}
+
+	return resp, nil
+}
+
 func parseFlowVersions(flowVersions []string, agent *cxpb.Agent, versionClient *cx.VersionsClient, flowClient *cx.FlowsClient) ([]*cxpb.Environment_VersionConfig, error) {
 	var versionConfigs []*cxpb.Environment_VersionConfig
 

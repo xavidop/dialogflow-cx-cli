@@ -1,6 +1,6 @@
 # cxcli environment delete
 
-delete a environment
+delete an environment
 
 ```
 cxcli environment delete [name] [flags]

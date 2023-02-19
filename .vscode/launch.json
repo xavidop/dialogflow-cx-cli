@@ -260,7 +260,21 @@
             "args": [
                 "environment", "delete", "my-env", "--agent-name", "test-agent", "--project-id", "test-cx-346408", "--location-id", "us-central1", "--credentials", "credentials.json"
             ]
-        }
+        },
+        {
+            "name": "Update environment command",
+            "type": "go",
+            "request": "launch",
+            "mode": "debug",
+            "program": "${workspaceFolder}/main.go",
+            "env": {
+                "ENV": "development"
+            },
+            "args": [
+                "environment", "update", "my-env", "--agent-name", "test-agent", "--project-id", "test-cx-346408", "--location-id", "us-central1", "--credentials", "credentials.json", "--flow-versions", "Default Start Flow@production_v1,Test Flow@v1.0.0", "--description", "my updated description"
+            ]
+        },
+        
 
     ]
 }
