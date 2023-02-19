@@ -1,9 +1,9 @@
-# cxcli entity-type create
+# cxcli entity-type update
 
-Creates an entity type in an agent
+Updates an entity type in an agent
 
 ```
-cxcli entity-type create [entity-type-name] [flags]
+cxcli entity-type update [entity-type-name] [flags]
 ```
 
 ## Options
@@ -11,7 +11,7 @@ cxcli entity-type create [entity-type-name] [flags]
 ```
   -a, --agent-name string    Dialogflow CX Agent Name
   -n, --entities strings     List of the entities for this entity type, comma separated. Format: entity1@synonym1|synonym2,entity2@synonym1|synonym2. Example: pikachu@25|pika,charmander@3
-  -h, --help                 help for create
+  -h, --help                 help for update
   -e, --locale string        Optional. Locale of the intent. Default: agent locale
   -l, --location-id string   Dialogflow CX Location ID of the Project
   -p, --project-id string    Dialogflow CX Project ID

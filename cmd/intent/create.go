@@ -22,9 +22,10 @@ var createCmd = &cobra.Command{
 		agentName, _ := cmd.Flags().GetString("agent-name")
 		localeId, _ := cmd.Flags().GetString("locale")
 		trainingPhrases, _ := cmd.Flags().GetStringSlice("training-phrases")
+		description, _ := cmd.Flags().GetString("description")
 		intentName := args[0]
 
-		if err := intent.Create(intentName, locationID, projectID, agentName, localeId, trainingPhrases); err != nil {
+		if err := intent.Create(intentName, description, locationID, projectID, agentName, localeId, trainingPhrases); err != nil {
 			global.Log.Errorf(err.Error())
 			os.Exit(1)
 		}
@@ -43,6 +44,7 @@ func init() {
 	createCmd.Flags().StringP("location-id", "l", "", "Dialogflow CX Location ID of the Project")
 	createCmd.Flags().StringP("agent-name", "a", "", "Dialogflow CX Agent Name")
 	createCmd.Flags().StringP("locale", "e", "", "Optional. Locale of the intent. Default: agent locale")
+	createCmd.Flags().StringP("description", "d", "", "Optional. Description for this intent")
 	createCmd.Flags().StringSliceP("training-phrases", "t", []string{}, "List of the training phrases for this intent, comma separated. Entities, add @entity-type to the word: word@entity-type in the training phrase. Example: hello,hi how are you today@sys.date,morning!")
 
 }

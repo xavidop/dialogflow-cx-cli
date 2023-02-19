@@ -5,7 +5,7 @@ import (
 	cxpkg "github.com/xavidop/dialogflow-cx-cli/pkg/cx"
 )
 
-func Create(entityTypeName, locationID, projectID, agentName, localeId string, entities []string, redacted bool) error {
+func Update(entityTypeName, locationID, projectID, agentName, localeId string, entities []string, redacted bool) error {
 
 	agentClient, err := cxpkg.CreateAgentRESTClient(locationID)
 	if err != nil {
@@ -13,7 +13,7 @@ func Create(entityTypeName, locationID, projectID, agentName, localeId string, e
 	}
 	defer agentClient.Close()
 
-	entityTypeClient, err := cxpkg.CreateEntityTypeRESTClient(locationID)
+	entityTypeClient, err := cxpkg.CreateEntityTypeGRPCClient(locationID)
 	if err != nil {
 		return err
 	}
@@ -24,12 +24,12 @@ func Create(entityTypeName, locationID, projectID, agentName, localeId string, e
 		return err
 	}
 
-	entityType, err := cxpkg.CreateEntityType(entityTypeClient, agent, entityTypeName, localeId, entities, redacted)
+	_, err = cxpkg.UpdateEntityType(entityTypeClient, agent, entityTypeName, localeId, entities, redacted)
 	if err != nil {
 		return err
 	}
 
-	global.Log.Infof("Entity Type created with id: %v\n", entityType.GetName())
+	global.Log.Infof("Entity Type updated")
 
 	return nil
 }

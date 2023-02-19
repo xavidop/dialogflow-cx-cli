@@ -102,7 +102,20 @@
                 "ENV": "development"
             },
             "args": [
-                "intent", "create", "test_intent", "--training-phrases","hello, hi how are you today@sys.date, morning!","--agent-name", "test-agent", "--project-id", "test-cx-346408", "--location-id", "us-central1", "--credentials", "credentials.json"
+                "intent", "create", "test_intent", "--training-phrases","hello, hi how are you today@sys.date, morning!","--agent-name", "test-agent", "--project-id", "test-cx-346408", "--location-id", "us-central1", "--credentials", "credentials.json", "--description", "my description"
+            ]
+        },
+        {
+            "name": "Update intent command",
+            "type": "go",
+            "request": "launch",
+            "mode": "debug",
+            "program": "${workspaceFolder}/main.go",
+            "env": {
+                "ENV": "development"
+            },
+            "args": [
+                "intent", "update", "test_intent", "--training-phrases","hello, hi how are you today@sys.date, morning!, I live in montreal@sys.geo-city","--agent-name", "test-agent", "--project-id", "test-cx-346408", "--location-id", "us-central1", "--credentials", "credentials.json", "--description", "my updated description"
             ]
         },
         {
@@ -116,6 +129,19 @@
             },
             "args": [
                 "entity-type", "create", "pokemon2", "--entities","pikachu@25|pika, charmander@3","--agent-name", "test-agent", "--project-id", "test-cx-346408", "--location-id", "us-central1", "--credentials", "credentials.json"
+            ]
+        },
+        {
+            "name": "Update Entity type command",
+            "type": "go",
+            "request": "launch",
+            "mode": "debug",
+            "program": "${workspaceFolder}/main.go",
+            "env": {
+                "ENV": "development"
+            },
+            "args": [
+                "entity-type", "update", "pokemon2", "--entities","pikachu@25|pika, charmander@3, blastoise@9","--agent-name", "test-agent", "--project-id", "test-cx-346408", "--location-id", "us-central1", "--credentials", "credentials.json", "--redacted"
             ]
         },
         {

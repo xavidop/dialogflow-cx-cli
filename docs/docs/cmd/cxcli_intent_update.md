@@ -1,9 +1,9 @@
-# cxcli intent create
+# cxcli intent update
 
-Creates an intent in an agent
+Updates an intent in an agent
 
 ```
-cxcli intent create [intent-name] [flags]
+cxcli intent update [intent-name] [flags]
 ```
 
 ## Options
@@ -11,7 +11,7 @@ cxcli intent create [intent-name] [flags]
 ```
   -a, --agent-name string          Dialogflow CX Agent Name
   -d, --description string         Optional. Description for this intent
-  -h, --help                       help for create
+  -h, --help                       help for update
   -e, --locale string              Optional. Locale of the intent. Default: agent locale
   -l, --location-id string         Dialogflow CX Location ID of the Project
   -p, --project-id string          Dialogflow CX Project ID

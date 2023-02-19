@@ -5,7 +5,7 @@ import (
 	cxpkg "github.com/xavidop/dialogflow-cx-cli/pkg/cx"
 )
 
-func Create(intentName, description, locationID, projectID, agentName, localeId string, trainingPhrases []string) error {
+func Update(intentName, description, locationID, projectID, agentName, localeId string, trainingPhrases []string) error {
 
 	agentClient, err := cxpkg.CreateAgentRESTClient(locationID)
 	if err != nil {
@@ -13,7 +13,7 @@ func Create(intentName, description, locationID, projectID, agentName, localeId 
 	}
 	defer agentClient.Close()
 
-	intentClient, err := cxpkg.CreateIntentRESTClient(locationID)
+	intentClient, err := cxpkg.CreateIntentGRPCClient(locationID)
 	if err != nil {
 		return err
 	}
@@ -30,12 +30,12 @@ func Create(intentName, description, locationID, projectID, agentName, localeId 
 		return err
 	}
 
-	intent, err := cxpkg.CreateIntent(intentClient, agent, intentName, description, localeId, trainingPhrases, entityTypeClient)
+	_, err = cxpkg.UpdateIntent(intentClient, agent, intentName, description, localeId, trainingPhrases, entityTypeClient)
 	if err != nil {
 		return err
 	}
 
-	global.Log.Infof("Intent created with id: %v\n", intent.GetName())
+	global.Log.Infof("Intent updated\n")
 
 	return nil
 }
