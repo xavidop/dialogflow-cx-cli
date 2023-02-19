@@ -9,10 +9,11 @@ cxcli agent export [agent-name] [flags]
 ## Options
 
 ```
-  -h, --help                 help for export
-  -l, --location-id string   Dialogflow CX Location ID of the Project
-  -f, --output-file string   Output file name (default "agent.blob")
-  -p, --project-id string    Dialogflow CX Project ID
+  -t, --export-format string   Export format type: json or blob. blob by default (default "blob")
+  -h, --help                   help for export
+  -l, --location-id string     Dialogflow CX Location ID of the Project
+  -f, --output-file string     Output file name (default "agent.blob")
+  -p, --project-id string      Dialogflow CX Project ID
 ```
 
 ## Options inherited from parent commands

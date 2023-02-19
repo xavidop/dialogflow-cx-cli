@@ -10,6 +10,7 @@ cxcli intent create [intent-name] [flags]
 
 ```
   -a, --agent-name string          Dialogflow CX Agent Name
+  -d, --description string         Optional. Description for this intent
   -h, --help                       help for create
   -e, --locale string              Optional. Locale of the intent. Default: agent locale
   -l, --location-id string         Dialogflow CX Location ID of the Project

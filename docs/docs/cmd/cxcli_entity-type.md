@@ -26,4 +26,5 @@ cxcli entity-type [flags]
 * [cxcli](/cmd/cxcli/)	 - Dialogflow CX CLI
 * [cxcli entity-type create](/cmd/cxcli_entity-type_create/)	 - Creates an entity type in an agent
 * [cxcli entity-type delete](/cmd/cxcli_entity-type_delete/)	 - Deletes an entity type in an agent
+* [cxcli entity-type update](/cmd/cxcli_entity-type_update/)	 - Updates an entity type in an agent
 

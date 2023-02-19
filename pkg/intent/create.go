@@ -5,7 +5,7 @@ import (
 	cxpkg "github.com/xavidop/dialogflow-cx-cli/pkg/cx"
 )
 
-func Create(intentName, locationID, projectID, agentName, localeId string, trainingPhrases []string) error {
+func Create(intentName, description, locationID, projectID, agentName, localeId string, trainingPhrases []string) error {
 
 	agentClient, err := cxpkg.CreateAgentRESTClient(locationID)
 	if err != nil {
@@ -17,20 +17,20 @@ func Create(intentName, locationID, projectID, agentName, localeId string, train
 	if err != nil {
 		return err
 	}
-	defer agentClient.Close()
+	defer intentClient.Close()
 
-	entityTypeClient, err := cxpkg.CreateEntityTypesRESTClient(locationID)
+	entityTypeClient, err := cxpkg.CreateEntityTypeRESTClient(locationID)
 	if err != nil {
 		return err
 	}
-	defer agentClient.Close()
+	defer entityTypeClient.Close()
 
 	agent, err := cxpkg.GetAgentIdByName(agentClient, agentName, projectID, locationID)
 	if err != nil {
 		return err
 	}
 
-	intent, err := cxpkg.CreateIntent(intentClient, agent, intentName, localeId, trainingPhrases, entityTypeClient)
+	intent, err := cxpkg.CreateIntent(intentClient, agent, intentName, description, localeId, trainingPhrases, entityTypeClient)
 	if err != nil {
 		return err
 	}

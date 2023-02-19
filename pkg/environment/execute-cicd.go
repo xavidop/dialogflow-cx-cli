@@ -23,7 +23,7 @@ func ExecutePipeline(envName string, locationID string, projectID string, agentN
 		return err
 	}
 
-	environmentClient, err := cxpkg.CreateEnvironmentsClient(locationID)
+	environmentClient, err := cxpkg.CreateEnvironmentRESTClient(locationID)
 	if err != nil {
 		return err
 	}

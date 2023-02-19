@@ -12,7 +12,7 @@ import (
 // deleteCmd represents the delete command
 var deleteCmd = &cobra.Command{
 	Use:     "delete [entity-type-name]",
-	Aliases: []string{"deletes", "d", "remove", "del"},
+	Aliases: []string{"deletes", "d", "removes", "remove", "del"},
 	Short:   "Deletes an entity type in an agent",
 	Args:    cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {

@@ -10,9 +10,10 @@ import (
 	cxpb "cloud.google.com/go/dialogflow/cx/apiv3beta1/cxpb"
 	"github.com/xavidop/dialogflow-cx-cli/internal/global"
 	"google.golang.org/api/option"
+	"google.golang.org/protobuf/types/known/fieldmaskpb"
 )
 
-func CreateEntityTypesRESTClient(locationId string) (*cx.EntityTypesClient, error) {
+func CreateEntityTypeRESTClient(locationId string) (*cx.EntityTypesClient, error) {
 	ctx := context.Background()
 	endpointString := fmt.Sprintf("%s-dialogflow.googleapis.com:443", locationId)
 	endpoint := option.WithEndpoint(endpointString)
@@ -26,7 +27,21 @@ func CreateEntityTypesRESTClient(locationId string) (*cx.EntityTypesClient, erro
 
 }
 
-func CreateEntityType(entityTypesClient *cx.EntityTypesClient, agent *cxpb.Agent, entityTypeName, localeId string, entities []string) (*cxpb.EntityType, error) {
+func CreateEntityTypeGRPCClient(locationId string) (*cx.EntityTypesClient, error) {
+	ctx := context.Background()
+	endpointString := fmt.Sprintf("%s-dialogflow.googleapis.com:443", locationId)
+	endpoint := option.WithEndpoint(endpointString)
+
+	if global.Credentials != "" {
+		credentials := option.WithCredentialsFile(global.Credentials)
+		return cx.NewEntityTypesClient(ctx, credentials, endpoint)
+	} else {
+		return cx.NewEntityTypesClient(ctx, endpoint)
+	}
+
+}
+
+func CreateEntityType(entityTypesClient *cx.EntityTypesClient, agent *cxpb.Agent, entityTypeName, localeId string, entities []string, redacted bool) (*cxpb.EntityType, error) {
 	ctx := context.Background()
 	localeToUse := agent.GetDefaultLanguageCode()
 	if localeId != "" {
@@ -46,10 +61,50 @@ func CreateEntityType(entityTypesClient *cx.EntityTypesClient, agent *cxpb.Agent
 			DisplayName: entityTypeName,
 			Entities:    entityTypesEntities,
 			Kind:        cxpb.EntityType_KIND_MAP,
+			Redact:      redacted,
 		},
 	}
 
 	return entityTypesClient.CreateEntityType(ctx, reqCreateEntityType)
+}
+
+func UpdateEntityType(entityTypesClient *cx.EntityTypesClient, agent *cxpb.Agent, entityTypeName, localeId string, entities []string, redacted bool) (*cxpb.EntityType, error) {
+	ctx := context.Background()
+	paths := []string{}
+
+	localeToUse := agent.GetDefaultLanguageCode()
+	if localeId != "" {
+		localeToUse = localeId
+	}
+
+	entityTypesEntities, err := CreateEntityTypesEntities(entities)
+	if err != nil {
+		return nil, err
+	}
+
+	entity, err := GetEntityTypeIdByName(entityTypesClient, agent, entityTypeName)
+	if err != nil {
+		return nil, err
+	}
+
+	if len(entityTypesEntities) > 0 {
+		entity.Entities = entityTypesEntities
+		paths = append(paths, "entities")
+	}
+	if redacted {
+		entity.Redact = redacted
+		paths = append(paths, "redact")
+	}
+
+	reqUpdateEntityType := &cxpb.UpdateEntityTypeRequest{
+		LanguageCode: localeToUse,
+		EntityType:   entity,
+		UpdateMask: &fieldmaskpb.FieldMask{
+			Paths: paths,
+		},
+	}
+
+	return entityTypesClient.UpdateEntityType(ctx, reqUpdateEntityType)
 }
 
 func CreateEntityTypesEntities(entities []string) ([]*cxpb.EntityType_Entity, error) {

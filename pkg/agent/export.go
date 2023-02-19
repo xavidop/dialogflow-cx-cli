@@ -7,7 +7,7 @@ import (
 	cxpkg "github.com/xavidop/dialogflow-cx-cli/pkg/cx"
 )
 
-func Export(locationID, projectID, agentName, output string) error {
+func Export(locationID, projectID, agentName, output, exportFormat string) error {
 
 	agentClient, err := cxpkg.CreateAgentGRPCClient(locationID)
 	if err != nil {
@@ -20,7 +20,7 @@ func Export(locationID, projectID, agentName, output string) error {
 		return err
 	}
 
-	responseData, err := cxpkg.ExportAgentById(agentClient, agent.GetName())
+	responseData, err := cxpkg.ExportAgentById(agentClient, agent.GetName(), exportFormat)
 	if err != nil {
 		return err
 	}

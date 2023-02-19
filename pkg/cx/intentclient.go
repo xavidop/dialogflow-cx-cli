@@ -11,9 +11,24 @@ import (
 
 	"github.com/xavidop/dialogflow-cx-cli/internal/global"
 	"google.golang.org/api/option"
+	"google.golang.org/protobuf/types/known/fieldmaskpb"
 )
 
 func CreateIntentRESTClient(locationId string) (*cx.IntentsClient, error) {
+	ctx := context.Background()
+	endpointString := fmt.Sprintf("%s-dialogflow.googleapis.com:443", locationId)
+	endpoint := option.WithEndpoint(endpointString)
+
+	if global.Credentials != "" {
+		credentials := option.WithCredentialsFile(global.Credentials)
+		return cx.NewIntentsRESTClient(ctx, credentials, endpoint)
+	} else {
+		return cx.NewIntentsRESTClient(ctx, endpoint)
+	}
+
+}
+
+func CreateIntentGRPCClient(locationId string) (*cx.IntentsClient, error) {
 	ctx := context.Background()
 	endpointString := fmt.Sprintf("%s-dialogflow.googleapis.com:443", locationId)
 	endpoint := option.WithEndpoint(endpointString)
@@ -27,7 +42,7 @@ func CreateIntentRESTClient(locationId string) (*cx.IntentsClient, error) {
 
 }
 
-func CreateIntent(intentClient *cx.IntentsClient, agent *cxpb.Agent, intentName, localeId string, trainingPhrases []string, entityTypesClient *cx.EntityTypesClient) (*cxpb.Intent, error) {
+func CreateIntent(intentClient *cx.IntentsClient, agent *cxpb.Agent, intentName, description, localeId string, trainingPhrases []string, entityTypesClient *cx.EntityTypesClient) (*cxpb.Intent, error) {
 	ctx := context.Background()
 	localeToUse := agent.GetDefaultLanguageCode()
 	if localeId != "" {
@@ -44,12 +59,58 @@ func CreateIntent(intentClient *cx.IntentsClient, agent *cxpb.Agent, intentName,
 		LanguageCode: localeToUse,
 		Intent: &cxpb.Intent{
 			DisplayName:     intentName,
+			Description:     description,
 			TrainingPhrases: intentTrainingPhrases,
 			Parameters:      intentTrainingParameters,
 		},
 	}
 
 	return intentClient.CreateIntent(ctx, reqCreateIntent)
+}
+
+func UpdateIntent(intentClient *cx.IntentsClient, agent *cxpb.Agent, intentName, description, localeId string, trainingPhrases []string, entityTypesClient *cx.EntityTypesClient) (*cxpb.Intent, error) {
+	ctx := context.Background()
+	paths := []string{}
+
+	localeToUse := agent.GetDefaultLanguageCode()
+	if localeId != "" {
+		localeToUse = localeId
+	}
+
+	intentTrainingPhrases, intentTrainingParameters, err := CreateIntentTrainingPhrases(trainingPhrases, entityTypesClient, agent)
+	if err != nil {
+		return nil, err
+	}
+
+	intent, err := GetIntentIdByName(intentClient, agent, intentName)
+	if err != nil {
+		return nil, err
+	}
+
+	if description != "" {
+		intent.Description = description
+		paths = append(paths, "description")
+	}
+
+	if len(intentTrainingPhrases) > 0 {
+		intent.TrainingPhrases = intentTrainingPhrases
+		paths = append(paths, "training_phrases")
+	}
+
+	if len(intentTrainingParameters) > 0 {
+		intent.Parameters = intentTrainingParameters
+		paths = append(paths, "parameters")
+	}
+
+	reqUpdateIntent := &cxpb.UpdateIntentRequest{
+		LanguageCode: localeToUse,
+		Intent:       intent,
+		UpdateMask: &fieldmaskpb.FieldMask{
+			Paths: paths,
+		},
+	}
+
+	return intentClient.UpdateIntent(ctx, reqUpdateIntent)
 }
 
 func CreateIntentTrainingPhrases(trainingPhrases []string, entityTypesClient *cx.EntityTypesClient, agent *cxpb.Agent) ([]*cxpb.Intent_TrainingPhrase, []*cxpb.Intent_Parameter, error) {
@@ -60,7 +121,7 @@ func CreateIntentTrainingPhrases(trainingPhrases []string, entityTypesClient *cx
 		trainingPhrase = strings.TrimSpace(trainingPhrase)
 		var intentTrainingPhrase *cxpb.Intent_TrainingPhrase
 
-		// If the training phrases contains and entity
+		// If the training phrases contains an entity
 		if strings.Contains(trainingPhrase, "@") {
 
 			intentTrainingPhrase = &cxpb.Intent_TrainingPhrase{
@@ -132,7 +193,7 @@ func CreateIntentTrainingPhrases(trainingPhrases []string, entityTypesClient *cx
 func DeleteIntent(intentClient *cx.IntentsClient, agent *cxpb.Agent, intentName string) error {
 	ctx := context.Background()
 
-	intent, err := GetIntentTypeIdByName(intentClient, agent, intentName)
+	intent, err := GetIntentIdByName(intentClient, agent, intentName)
 	if err != nil {
 		return err
 	}
@@ -143,7 +204,7 @@ func DeleteIntent(intentClient *cx.IntentsClient, agent *cxpb.Agent, intentName 
 	return intentClient.DeleteIntent(ctx, reqDeleteIntent)
 }
 
-func GetIntentTypeIdByName(intentClient *cx.IntentsClient, agent *cxpb.Agent, intentName string) (*cxpb.Intent, error) {
+func GetIntentIdByName(intentClient *cx.IntentsClient, agent *cxpb.Agent, intentName string) (*cxpb.Intent, error) {
 	ctx := context.Background()
 
 	reqIntentList := &cxpb.ListIntentsRequest{

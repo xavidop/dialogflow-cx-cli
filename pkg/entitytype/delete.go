@@ -13,7 +13,7 @@ func Delete(entityTypeName, locationID, projectID, agentName string, force bool)
 	}
 	defer agentClient.Close()
 
-	entityTypeClient, err := cxpkg.CreateEntityTypesRESTClient(locationID)
+	entityTypeClient, err := cxpkg.CreateEntityTypeRESTClient(locationID)
 	if err != nil {
 		return err
 	}

@@ -27,6 +27,7 @@ credentials.json
 outputs/
 
 *.blob
+*.zip
 
 *.key
 

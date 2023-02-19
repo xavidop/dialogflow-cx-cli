@@ -39,4 +39,6 @@ cxcli [flags]
 * [cxcli stt](/cmd/cxcli_stt/)	 - Actions on speech-to-text commands
 * [cxcli tts](/cmd/cxcli_tts/)	 - Actions on text-to-speech commands
 * [cxcli version](/cmd/cxcli_version/)	 - Get cxcli version
+* [cxcli versioning](/cmd/cxcli_versioning/)	 - Actions on flow versions commands
+* [cxcli webhook](/cmd/cxcli_webhook/)	 - Actions on webhook commands
 

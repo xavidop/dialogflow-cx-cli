@@ -26,4 +26,5 @@ cxcli intent [flags]
 * [cxcli](/cmd/cxcli/)	 - Dialogflow CX CLI
 * [cxcli intent create](/cmd/cxcli_intent_create/)	 - Creates an intent in an agent
 * [cxcli intent delete](/cmd/cxcli_intent_delete/)	 - Deletes an intent in an agent
+* [cxcli intent update](/cmd/cxcli_intent_update/)	 - Updates an intent in an agent
 

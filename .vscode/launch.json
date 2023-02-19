@@ -2,16 +2,6 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Run test",
-            "type": "go",
-            "request": "launch",
-            "mode": "debug",
-            "program": "${workspaceFolder}/runner.go",
-            "env": {
-                "ENV": "development"
-            }
-        },
-        {
             "name": "Version command",
             "type": "go",
             "request": "launch",
@@ -90,6 +80,32 @@
             ]
         },
         {
+            "name": "Agent create command",
+            "type": "go",
+            "request": "launch",
+            "mode": "debug",
+            "program": "${workspaceFolder}/main.go",
+            "env": {
+                "ENV": "development"
+            },
+            "args": [
+                "agent", "create", "my-agent", "--project-id", "test-cx-346408", "--location-id", "us-central1", "--locale", "en", "--credentials", "credentials.json", "--timezone", "Europe/Madrid", "--enable-stackdriver-logging", "--description", "my description", "--supported-locales", "es,de,it"
+            ]
+        },
+        {
+            "name": "Agent update command",
+            "type": "go",
+            "request": "launch",
+            "mode": "debug",
+            "program": "${workspaceFolder}/main.go",
+            "env": {
+                "ENV": "development"
+            },
+            "args": [
+                "agent", "update", "my-agent", "--project-id", "test-cx-346408", "--location-id", "us-central1", "--credentials", "credentials.json", "--timezone", "America/New_York", "--enable-stackdriver-logging", "--enable-interaction-logging", "--description", "my description", "--supported-locales", "es,de"
+            ]
+        },
+        {
             "name": "STT recognize command",
             "type": "go",
             "request": "launch",
@@ -112,7 +128,20 @@
                 "ENV": "development"
             },
             "args": [
-                "intent", "create", "test_intent", "--training-phrases","hello, hi how are you today@sys.date, morning!","--agent-name", "test-agent", "--project-id", "test-cx-346408", "--location-id", "us-central1", "--credentials", "credentials.json"
+                "intent", "create", "test_intent", "--training-phrases","hello, hi how are you today@sys.date, morning!","--agent-name", "test-agent", "--project-id", "test-cx-346408", "--location-id", "us-central1", "--credentials", "credentials.json", "--description", "my description"
+            ]
+        },
+        {
+            "name": "Update intent command",
+            "type": "go",
+            "request": "launch",
+            "mode": "debug",
+            "program": "${workspaceFolder}/main.go",
+            "env": {
+                "ENV": "development"
+            },
+            "args": [
+                "intent", "update", "test_intent", "--training-phrases","hello, hi how are you today@sys.date, morning!, I live in montreal@sys.geo-city","--agent-name", "test-agent", "--project-id", "test-cx-346408", "--location-id", "us-central1", "--credentials", "credentials.json", "--description", "my updated description"
             ]
         },
         {
@@ -129,6 +158,19 @@
             ]
         },
         {
+            "name": "Update Entity type command",
+            "type": "go",
+            "request": "launch",
+            "mode": "debug",
+            "program": "${workspaceFolder}/main.go",
+            "env": {
+                "ENV": "development"
+            },
+            "args": [
+                "entity-type", "update", "pokemon2", "--entities","pikachu@25|pika, charmander@3, blastoise@9","--agent-name", "test-agent", "--project-id", "test-cx-346408", "--location-id", "us-central1", "--credentials", "credentials.json", "--redacted"
+            ]
+        },
+        {
             "name": "Delete Entity type command",
             "type": "go",
             "request": "launch",
@@ -142,7 +184,7 @@
             ]
         },
         {
-            "name": "Delete Intent type command",
+            "name": "Delete Intent command",
             "type": "go",
             "request": "launch",
             "mode": "debug",
@@ -155,7 +197,7 @@
             ]
         },
         {
-            "name": "Delete agent type command",
+            "name": "Delete agent command",
             "type": "go",
             "request": "launch",
             "mode": "debug",
@@ -164,8 +206,127 @@
                 "ENV": "development"
             },
             "args": [
-                "agent", "delete", "test-delete", "--project-id", "test-cx-346408", "--location-id", "us-central1", "--credentials", "credentials.json"
+                "agent", "delete", "my-agent", "--project-id", "test-cx-346408", "--location-id", "us-central1", "--credentials", "credentials.json"
             ]
         },
+        {
+            "name": "Create webhook command",
+            "type": "go",
+            "request": "launch",
+            "mode": "debug",
+            "program": "${workspaceFolder}/main.go",
+            "env": {
+                "ENV": "development"
+            },
+            "args": [
+                "webhook", "create", "my-webhook", "--agent-name", "test-agent", "--project-id", "test-cx-346408", "--location-id", "us-central1", "--credentials", "credentials.json", "--url", "https://my-webhook.com",  "--environment", "production"
+            ]
+        },
+        {
+            "name": "Delete webhook command",
+            "type": "go",
+            "request": "launch",
+            "mode": "debug",
+            "program": "${workspaceFolder}/main.go",
+            "env": {
+                "ENV": "development"
+            },
+            "args": [
+                "webhook", "delete", "my-webhook", "--agent-name", "test-agent", "--project-id", "test-cx-346408", "--location-id", "us-central1", "--credentials", "credentials.json", "--force"
+            ]
+        },
+        {
+            "name": "Update webhook command",
+            "type": "go",
+            "request": "launch",
+            "mode": "debug",
+            "program": "${workspaceFolder}/main.go",
+            "env": {
+                "ENV": "development"
+            },
+            "args": [
+                "webhook", "update", "my-webhook", "--agent-name", "test-agent", "--project-id", "test-cx-346408", "--location-id", "us-central1", "--credentials", "credentials.json", "--url", "https://my-webhook-prod.com"
+            ]
+        },
+        {
+            "name": "Create flow version command",
+            "type": "go",
+            "request": "launch",
+            "mode": "debug",
+            "program": "${workspaceFolder}/main.go",
+            "env": {
+                "ENV": "development"
+            },
+            "args": [
+                "versioning", "create", "v1.0.0", "--agent-name", "test-agent", "--project-id", "test-cx-346408", "--location-id", "us-central1", "--credentials", "credentials.json", "--start-flow", "Test Flow"
+            ]
+        },
+        {
+            "name": "Delete flow version command",
+            "type": "go",
+            "request": "launch",
+            "mode": "debug",
+            "program": "${workspaceFolder}/main.go",
+            "env": {
+                "ENV": "development"
+            },
+            "args": [
+                "versioning", "delete", "v1.0.0", "--agent-name", "test-agent", "--project-id", "test-cx-346408", "--location-id", "us-central1", "--credentials", "credentials.json", "--start-flow", "Test Flow"
+            ]
+        },
+        {
+            "name": "Update flow version command",
+            "type": "go",
+            "request": "launch",
+            "mode": "debug",
+            "program": "${workspaceFolder}/main.go",
+            "env": {
+                "ENV": "development"
+            },
+            "args": [
+                "versioning", "update", "v1.0.0", "--agent-name", "test-agent", "--project-id", "test-cx-346408", "--location-id", "us-central1", "--credentials", "credentials.json", "--start-flow", "Test Flow", "--description", "my updated description"
+            ]
+        },
+        {
+            "name": "Create environment command",
+            "type": "go",
+            "request": "launch",
+            "mode": "debug",
+            "program": "${workspaceFolder}/main.go",
+            "env": {
+                "ENV": "development"
+            },
+            "args": [
+                "environment", "create", "my-env", "--agent-name", "test-agent", "--project-id", "test-cx-346408", "--location-id", "us-central1", "--credentials", "credentials.json", "--flow-versions", "Default Start Flow@production_v2,Test Flow@v1.0.0", "--description", "my env"
+            ]
+        },
+        {
+            "name": "Delete environment command",
+            "type": "go",
+            "request": "launch",
+            "mode": "debug",
+            "program": "${workspaceFolder}/main.go",
+            "env": {
+                "ENV": "development"
+            },
+            "args": [
+                "environment", "delete", "my-env", "--agent-name", "test-agent", "--project-id", "test-cx-346408", "--location-id", "us-central1", "--credentials", "credentials.json"
+            ]
+        },
+        {
+            "name": "Update environment command",
+            "type": "go",
+            "request": "launch",
+            "mode": "debug",
+            "program": "${workspaceFolder}/main.go",
+            "env": {
+                "ENV": "development"
+            },
+            "args": [
+                "environment", "update", "my-env", "--agent-name", "test-agent", "--project-id", "test-cx-346408", "--location-id", "us-central1", "--credentials", "credentials.json", "--flow-versions", "Default Start Flow@production_v1,Test Flow@v1.0.0", "--description", "my updated description"
+            ]
+        },
+        
+
     ]
 }

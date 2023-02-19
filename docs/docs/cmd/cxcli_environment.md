@@ -24,5 +24,8 @@ cxcli environment [flags]
 ## See also
 
 * [cxcli](/cmd/cxcli/)	 - Dialogflow CX CLI
+* [cxcli environment create](/cmd/cxcli_environment_create/)	 - create an environment
+* [cxcli environment delete](/cmd/cxcli_environment_delete/)	 - delete an environment
 * [cxcli environment execute-cicd](/cmd/cxcli_environment_execute-cicd/)	 - Executes a CICD pipeline for a specific environment
+* [cxcli environment update](/cmd/cxcli_environment_update/)	 - update an environment
 

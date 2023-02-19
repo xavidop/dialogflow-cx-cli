@@ -17,7 +17,7 @@ func Delete(intentName, locationID, projectID, agentName string) error {
 	if err != nil {
 		return err
 	}
-	defer agentClient.Close()
+	defer intentClient.Close()
 
 	agent, err := cxpkg.GetAgentIdByName(agentClient, agentName, projectID, locationID)
 	if err != nil {

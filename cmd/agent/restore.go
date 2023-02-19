@@ -6,6 +6,7 @@ import (
 	"github.com/spf13/cobra"
 	"github.com/xavidop/dialogflow-cx-cli/cmd/cmdutils"
 	"github.com/xavidop/dialogflow-cx-cli/internal/global"
+	"github.com/xavidop/dialogflow-cx-cli/internal/utils"
 	"github.com/xavidop/dialogflow-cx-cli/pkg/agent"
 )
 
@@ -20,6 +21,10 @@ var restoreCmd = &cobra.Command{
 		locationID, _ := cmd.Flags().GetString("location-id")
 		projectID, _ := cmd.Flags().GetString("project-id")
 		input, _ := cmd.Flags().GetString("input")
+		if err := utils.ValidateAgentFileType(input); err != nil {
+			global.Log.Errorf(err.Error())
+			os.Exit(1)
+		}
 		agentName := args[0]
 
 		if err := agent.Restore(locationID, projectID, agentName, input); err != nil {

@@ -15,6 +15,7 @@ cxcli entity-type create [entity-type-name] [flags]
   -e, --locale string        Optional. Locale of the intent. Default: agent locale
   -l, --location-id string   Dialogflow CX Location ID of the Project
   -p, --project-id string    Dialogflow CX Project ID
+  -r, --redacted             Optional. Set the entity type as redacted
 ```
 
 ## Options inherited from parent commands
