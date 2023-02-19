@@ -40,6 +40,8 @@ func Update(name, url, locationID, projectID, agentName, environment string) err
 			return err
 		}
 
+		webhook.GetGenericWebService().Uri = url
+
 		if _, err := cxpkg.UpdateWebhookConfig(environmentClient, env, webhook); err != nil {
 			return err
 		}

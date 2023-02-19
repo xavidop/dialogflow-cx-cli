@@ -68,7 +68,9 @@ func UpdateWebhook(webhookClient *cx.WebhooksClient, agent *cxpb.Agent, url, nam
 		return nil, err
 	}
 
-	webhook.GetGenericWebService().Uri = url
+	if url != "" {
+		webhook.GetGenericWebService().Uri = url
+	}
 
 	reqUpdateWebhook := &cxpb.UpdateWebhookRequest{
 		Webhook: webhook,

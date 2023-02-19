@@ -89,10 +89,9 @@ func UpdateEntityType(entityTypesClient *cx.EntityTypesClient, agent *cxpb.Agent
 
 	if len(entityTypesEntities) > 0 {
 		entity.Entities = entityTypesEntities
-
 		paths = append(paths, "entities")
 	}
-	if entity.Redact != redacted {
+	if redacted {
 		entity.Redact = redacted
 		paths = append(paths, "redact")
 	}

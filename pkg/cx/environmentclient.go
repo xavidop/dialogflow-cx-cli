@@ -91,7 +91,7 @@ func UpdateEnvironment(environmentClient *cx.EnvironmentsClient, versionClient *
 		paths = append(paths, "version_configs")
 	}
 
-	if len(description) > 0 {
+	if description != "" {
 		environment.Description = description
 		paths = append(paths, "description")
 	}
@@ -186,7 +186,7 @@ func UpdateWebhookConfig(environmentClient *cx.EnvironmentsClient, environment *
 		environment.GetWebhookConfig().WebhookOverrides = []*cxpb.Webhook{webhook}
 	} else {
 		for i, webhookOverrides := range environment.GetWebhookConfig().GetWebhookOverrides() {
-			if webhookOverrides.Name == webhook.Name {
+			if webhookOverrides.Name == webhook.Name && environment.GetWebhookConfig().GetWebhookOverrides()[i].GetGenericWebService().GetUri() != webhook.GetGenericWebService().GetUri() {
 				environment.GetWebhookConfig().GetWebhookOverrides()[i] = webhook
 			}
 		}

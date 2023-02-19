@@ -72,7 +72,9 @@ func UpdateVersion(versionClient *cx.VersionsClient, flow *cxpb.Flow, descriptio
 		return nil, err
 	}
 
-	version.Description = description
+	if description != "" {
+		version.Description = description
+	}
 
 	reqUpdateVersion := &cxpb.UpdateVersionRequest{
 		Version: version,

@@ -80,6 +80,32 @@
             ]
         },
         {
+            "name": "Agent create command",
+            "type": "go",
+            "request": "launch",
+            "mode": "debug",
+            "program": "${workspaceFolder}/main.go",
+            "env": {
+                "ENV": "development"
+            },
+            "args": [
+                "agent", "create", "my-agent", "--project-id", "test-cx-346408", "--location-id", "us-central1", "--locale", "en", "--credentials", "credentials.json", "--timezone", "Europe/Madrid", "--enable-stackdriver-logging", "--description", "my description", "--supported-locales", "es,de,it"
+            ]
+        },
+        {
+            "name": "Agent update command",
+            "type": "go",
+            "request": "launch",
+            "mode": "debug",
+            "program": "${workspaceFolder}/main.go",
+            "env": {
+                "ENV": "development"
+            },
+            "args": [
+                "agent", "update", "my-agent", "--project-id", "test-cx-346408", "--location-id", "us-central1", "--credentials", "credentials.json", "--timezone", "America/New_York", "--enable-stackdriver-logging", "--enable-interaction-logging", "--description", "my description", "--supported-locales", "es,de"
+            ]
+        },
+        {
             "name": "STT recognize command",
             "type": "go",
             "request": "launch",
@@ -180,7 +206,7 @@
                 "ENV": "development"
             },
             "args": [
-                "agent", "delete", "test-delete", "--project-id", "test-cx-346408", "--location-id", "us-central1", "--credentials", "credentials.json"
+                "agent", "delete", "my-agent", "--project-id", "test-cx-346408", "--location-id", "us-central1", "--credentials", "credentials.json"
             ]
         },
         {
@@ -219,7 +245,7 @@
                 "ENV": "development"
             },
             "args": [
-                "webhook", "update", "my-webhook", "--agent-name", "test-agent", "--project-id", "test-cx-346408", "--location-id", "us-central1", "--credentials", "credentials.json", "--url", "https://my-webhook-prod2.com"
+                "webhook", "update", "my-webhook", "--agent-name", "test-agent", "--project-id", "test-cx-346408", "--location-id", "us-central1", "--credentials", "credentials.json", "--url", "https://my-webhook-prod.com"
             ]
         },
         {
