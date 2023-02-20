@@ -89,7 +89,7 @@
                 "ENV": "development"
             },
             "args": [
-                "agent", "create", "my-agent", "--project-id", "test-cx-346408", "--location-id", "us-central1", "--locale", "en", "--credentials", "credentials.json", "--timezone", "Europe/Madrid", "--enable-stackdriver-logging", "--description", "my description", "--supported-locales", "es,de,it"
+                "agent", "create", "my-agent", "--project-id", "test-cx-346408", "--location-id", "us-central1", "--locale", "en", "--credentials", "credentials.json", "--timezone", "Europe/Madrid", "--enable-stackdriver-logging", "true", "--description", "my description", "--supported-locales", "es,de,it"
             ]
         },
         {
@@ -102,7 +102,7 @@
                 "ENV": "development"
             },
             "args": [
-                "agent", "update", "my-agent", "--project-id", "test-cx-346408", "--location-id", "us-central1", "--credentials", "credentials.json", "--timezone", "America/New_York", "--enable-stackdriver-logging", "--enable-interaction-logging", "--description", "my description", "--supported-locales", "es,de"
+                "agent", "update", "my-agent", "--project-id", "test-cx-346408", "--location-id", "us-central1", "--credentials", "credentials.json", "--timezone", "America/New_York", "--enable-stackdriver-logging",  "true", "--enable-interaction-logging",  "true", "--description", "my description", "--supported-locales", "es,de"
             ]
         },
         {
@@ -167,7 +167,7 @@
                 "ENV": "development"
             },
             "args": [
-                "entity-type", "update", "pokemon2", "--entities","pikachu@25|pika, charmander@3, blastoise@9","--agent-name", "test-agent", "--project-id", "test-cx-346408", "--location-id", "us-central1", "--credentials", "credentials.json", "--redacted"
+                "entity-type", "update", "pokemon2", "--entities","pikachu@25|pika, charmander@3, blastoise@9","--agent-name", "test-agent", "--project-id", "test-cx-346408", "--location-id", "us-central1", "--credentials", "credentials.json", "--redacted", "false"
             ]
         },
         {
@@ -180,7 +180,7 @@
                 "ENV": "development"
             },
             "args": [
-                "entity-type", "delete", "pokemon2", "--force", "--agent-name", "test-agent", "--project-id", "test-cx-346408", "--location-id", "us-central1", "--credentials", "credentials.json"
+                "entity-type", "delete", "pokemon2", "--force", "true", "--agent-name", "test-agent", "--project-id", "test-cx-346408", "--location-id", "us-central1", "--credentials", "credentials.json"
             ]
         },
         {
@@ -232,7 +232,7 @@
                 "ENV": "development"
             },
             "args": [
-                "webhook", "delete", "my-webhook", "--agent-name", "test-agent", "--project-id", "test-cx-346408", "--location-id", "us-central1", "--credentials", "credentials.json", "--force"
+                "webhook", "delete", "my-webhook", "--agent-name", "test-agent", "--project-id", "test-cx-346408", "--location-id", "us-central1", "--credentials", "credentials.json", "--force", "true"
             ]
         },
         {

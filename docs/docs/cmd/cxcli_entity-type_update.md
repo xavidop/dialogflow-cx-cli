@@ -15,7 +15,7 @@ cxcli entity-type update [entity-type-name] [flags]
   -e, --locale string        Optional. Locale of the intent. Default: agent locale
   -l, --location-id string   Dialogflow CX Location ID of the Project
   -p, --project-id string    Dialogflow CX Project ID
-  -r, --redacted             Optional. Set the entity type as redacted
+  -r, --redacted string      Optional. Set the entity type as redacted. Possible values: true or false
 ```
 
 ## Options inherited from parent commands

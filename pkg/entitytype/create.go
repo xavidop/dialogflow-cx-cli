@@ -5,7 +5,7 @@ import (
 	cxpkg "github.com/xavidop/dialogflow-cx-cli/pkg/cx"
 )
 
-func Create(entityTypeName, locationID, projectID, agentName, localeId string, entities []string, redacted bool) error {
+func Create(entityTypeName, locationID, projectID, agentName, localeId string, entities []string, redacted string) error {
 
 	agentClient, err := cxpkg.CreateAgentRESTClient(locationID)
 	if err != nil {

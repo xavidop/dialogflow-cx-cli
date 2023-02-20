@@ -5,7 +5,7 @@ import (
 	cxpkg "github.com/xavidop/dialogflow-cx-cli/pkg/cx"
 )
 
-func Delete(name, locationID, projectID, agentName string, force bool) error {
+func Delete(name, locationID, projectID, agentName, force string) error {
 	agentClient, err := cxpkg.CreateAgentRESTClient(locationID)
 	if err != nil {
 		return err

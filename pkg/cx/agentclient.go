@@ -9,6 +9,7 @@ import (
 	cxpb "cloud.google.com/go/dialogflow/cx/apiv3beta1/cxpb"
 	"github.com/xavidop/dialogflow-cx-cli/cmd/agent/types"
 	"github.com/xavidop/dialogflow-cx-cli/internal/global"
+	"github.com/xavidop/dialogflow-cx-cli/internal/utils"
 	"google.golang.org/api/option"
 	"google.golang.org/protobuf/types/known/fieldmaskpb"
 )
@@ -115,26 +116,57 @@ func CreateAgent(agentClient *cx.AgentsClient, agentName, locationID, projectID 
 	ctx := context.Background()
 	parentPath := fmt.Sprintf("projects/%s/locations/%s", projectID, locationID)
 
+	advancedSettings := &cxpb.AdvancedSettings{
+		LoggingSettings: &cxpb.AdvancedSettings_LoggingSettings{},
+	}
+
+	if createInput.EnableStackdriverLogging != "" {
+		enableStackdriverLogging, err := utils.ParseBool(createInput.EnableStackdriverLogging)
+		if err != nil {
+			return nil, err
+		}
+		advancedSettings.GetLoggingSettings().EnableStackdriverLogging = enableStackdriverLogging
+	}
+
+	if createInput.EnableInteractionLogging != "" {
+		enableInteractionLogging, err := utils.ParseBool(createInput.EnableInteractionLogging)
+		if err != nil {
+			return nil, err
+		}
+		advancedSettings.GetLoggingSettings().EnableInteractionLogging = enableInteractionLogging
+	}
+
+	speechToTextSettings := &cxpb.SpeechToTextSettings{}
+	if createInput.EnableSpeechAdaptation != "" {
+		enableSpeechAdaptation, err := utils.ParseBool(createInput.EnableSpeechAdaptation)
+		if err != nil {
+			return nil, err
+		}
+		speechToTextSettings.EnableSpeechAdaptation = enableSpeechAdaptation
+	}
+
+	agent := &cxpb.Agent{
+		DisplayName:            agentName,
+		DefaultLanguageCode:    createInput.DefaultLanguageCode,
+		TimeZone:               createInput.TimeZone,
+		Description:            createInput.Description,
+		SupportedLanguageCodes: createInput.SupportedLanguageCodes,
+		AvatarUri:              createInput.AvatarURI,
+		AdvancedSettings:       advancedSettings,
+		SpeechToTextSettings:   speechToTextSettings,
+	}
+
+	if createInput.EnableSpellCorrection != "" {
+		enableSpellCorrection, err := utils.ParseBool(createInput.EnableSpellCorrection)
+		if err != nil {
+			return nil, err
+		}
+		agent.EnableSpellCorrection = enableSpellCorrection
+	}
+
 	reqCreateAgent := &cxpb.CreateAgentRequest{
 		Parent: parentPath,
-		Agent: &cxpb.Agent{
-			DisplayName:            agentName,
-			DefaultLanguageCode:    createInput.DefaultLanguageCode,
-			TimeZone:               createInput.TimeZone,
-			Description:            createInput.Description,
-			SupportedLanguageCodes: createInput.SupportedLanguageCodes,
-			AvatarUri:              createInput.AvatarURI,
-			EnableSpellCorrection:  createInput.EnableSpellCorrection,
-			AdvancedSettings: &cxpb.AdvancedSettings{
-				LoggingSettings: &cxpb.AdvancedSettings_LoggingSettings{
-					EnableStackdriverLogging: createInput.EnableStackdriverLogging,
-					EnableInteractionLogging: createInput.EnableInteractionLogging,
-				},
-			},
-			SpeechToTextSettings: &cxpb.SpeechToTextSettings{
-				EnableSpeechAdaptation: createInput.EnableSpeechAdaptation,
-			},
-		},
+		Agent:  agent,
 	}
 	return agentClient.CreateAgent(ctx, reqCreateAgent)
 }
@@ -167,24 +199,40 @@ func UpdateAgent(agentClient *cx.AgentsClient, agentName, locationID, projectID 
 		paths = append(paths, "avatar_uri")
 	}
 
-	if updateInput.EnableStackdriverLogging {
-		agent.AdvancedSettings.LoggingSettings.EnableStackdriverLogging = updateInput.EnableStackdriverLogging
+	if updateInput.EnableStackdriverLogging != "" {
+		enableStackdriverLogging, err := utils.ParseBool(updateInput.EnableStackdriverLogging)
+		if err != nil {
+			return nil, err
+		}
+		agent.AdvancedSettings.LoggingSettings.EnableStackdriverLogging = enableStackdriverLogging
 		paths = append(paths, "advanced_settings")
 	}
 
-	if updateInput.EnableInteractionLogging {
-		agent.AdvancedSettings.LoggingSettings.EnableInteractionLogging = updateInput.EnableInteractionLogging
+	if updateInput.EnableInteractionLogging != "" {
+		enableInteractionLogging, err := utils.ParseBool(updateInput.EnableInteractionLogging)
+		if err != nil {
+			return nil, err
+		}
+		agent.AdvancedSettings.LoggingSettings.EnableInteractionLogging = enableInteractionLogging
 		paths = append(paths, "advanced_settings")
 	}
 
-	if updateInput.EnableSpellCorrection {
-		agent.EnableSpellCorrection = updateInput.EnableSpellCorrection
-		paths = append(paths, "enable_spell_correction")
-	}
-
-	if updateInput.EnableSpeechAdaptation {
-		agent.SpeechToTextSettings.EnableSpeechAdaptation = updateInput.EnableSpeechAdaptation
+	if updateInput.EnableSpeechAdaptation != "" {
+		enableSpeechAdaptation, err := utils.ParseBool(updateInput.EnableSpeechAdaptation)
+		if err != nil {
+			return nil, err
+		}
+		agent.SpeechToTextSettings.EnableSpeechAdaptation = enableSpeechAdaptation
 		paths = append(paths, "speech_to_text_settings")
+	}
+
+	if updateInput.EnableSpellCorrection != "" {
+		enableSpellCorrection, err := utils.ParseBool(updateInput.EnableSpellCorrection)
+		if err != nil {
+			return nil, err
+		}
+		agent.EnableSpellCorrection = enableSpellCorrection
+		paths = append(paths, "enable_spell_correction")
 	}
 
 	reqUpdateAgent := &cxpb.UpdateAgentRequest{

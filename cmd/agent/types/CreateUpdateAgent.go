@@ -6,8 +6,8 @@ type CreateUpdateAgent struct {
 	DefaultLanguageCode      string
 	SupportedLanguageCodes   []string
 	AvatarURI                string
-	EnableStackdriverLogging bool
-	EnableInteractionLogging bool
-	EnableSpellCorrection    bool
-	EnableSpeechAdaptation   bool
+	EnableStackdriverLogging string
+	EnableInteractionLogging string
+	EnableSpellCorrection    string
+	EnableSpeechAdaptation   string
 }
