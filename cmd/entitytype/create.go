@@ -22,7 +22,7 @@ var createCmd = &cobra.Command{
 		agentName, _ := cmd.Flags().GetString("agent-name")
 		localeId, _ := cmd.Flags().GetString("locale")
 		entities, _ := cmd.Flags().GetStringSlice("entities")
-		redacted, _ := cmd.Flags().GetBool("redacted")
+		redacted, _ := cmd.Flags().GetString("redacted")
 		entityTypeName := args[0]
 
 		if err := entitytype.Create(entityTypeName, locationID, projectID, agentName, localeId, entities, redacted); err != nil {
@@ -44,6 +44,6 @@ func init() {
 	createCmd.Flags().StringP("location-id", "l", "", "Dialogflow CX Location ID of the Project")
 	createCmd.Flags().StringP("agent-name", "a", "", "Dialogflow CX Agent Name")
 	createCmd.Flags().StringP("locale", "e", "", "Optional. Locale of the intent. Default: agent locale")
-	createCmd.Flags().BoolP("redacted", "r", false, "Optional. Set the entity type as redacted")
+	createCmd.Flags().StringP("redacted", "r", "", "Optional. Set the entity type as redacted. Possible values: true or false")
 	createCmd.Flags().StringSliceP("entities", "n", []string{}, "List of the entities for this entity type, comma separated. Format: entity1@synonym1|synonym2,entity2@synonym1|synonym2. Example: pikachu@25|pika,charmander@3")
 }

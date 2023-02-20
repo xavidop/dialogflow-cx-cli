@@ -20,7 +20,7 @@ var deleteCmd = &cobra.Command{
 		locationID, _ := cmd.Flags().GetString("location-id")
 		projectID, _ := cmd.Flags().GetString("project-id")
 		agentName, _ := cmd.Flags().GetString("agent-name")
-		force, _ := cmd.Flags().GetBool("force")
+		force, _ := cmd.Flags().GetString("force")
 		name := args[0]
 
 		if err := webhook.Delete(name, locationID, projectID, agentName, force); err != nil {
@@ -41,6 +41,6 @@ func init() {
 	deleteCmd.Flags().StringP("agent-name", "a", "", "Dialogflow CX Agent Name")
 	deleteCmd.Flags().StringP("project-id", "p", "", "Dialogflow CX Project ID")
 	deleteCmd.Flags().StringP("location-id", "l", "", "Dialogflow CX Location ID of the Project")
-	deleteCmd.Flags().BoolP("force", "f", false, "Optional. Forces to delete the webhook and its references in environments and flows")
+	deleteCmd.Flags().StringP("force", "f", "", "Optional. Forces to delete the webhook and its references in environments and flows. Possible values: true or false")
 
 }

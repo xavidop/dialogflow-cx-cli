@@ -10,7 +10,7 @@ cxcli webhook delete [name] [flags]
 
 ```
   -a, --agent-name string    Dialogflow CX Agent Name
-  -f, --force                Optional. Forces to delete the webhook and its references in environments and flows
+  -f, --force string         Optional. Forces to delete the webhook and its references in environments and flows. Possible values: true or false
   -h, --help                 help for delete
   -l, --location-id string   Dialogflow CX Location ID of the Project
   -p, --project-id string    Dialogflow CX Project ID

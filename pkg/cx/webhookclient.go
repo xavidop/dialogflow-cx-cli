@@ -8,6 +8,7 @@ import (
 	cx "cloud.google.com/go/dialogflow/cx/apiv3beta1"
 	cxpb "cloud.google.com/go/dialogflow/cx/apiv3beta1/cxpb"
 	"github.com/xavidop/dialogflow-cx-cli/internal/global"
+	"github.com/xavidop/dialogflow-cx-cli/internal/utils"
 	"google.golang.org/api/option"
 	"google.golang.org/protobuf/types/known/fieldmaskpb"
 )
@@ -106,7 +107,7 @@ func GetWebhookIdByName(webhookClient *cx.WebhooksClient, agent *cxpb.Agent, nam
 
 }
 
-func DeleteWebhook(webhookClient *cx.WebhooksClient, agent *cxpb.Agent, name string, force bool) error {
+func DeleteWebhook(webhookClient *cx.WebhooksClient, agent *cxpb.Agent, name, force string) error {
 	ctx := context.Background()
 
 	webhook, err := GetWebhookIdByName(webhookClient, agent, name)
@@ -115,8 +116,15 @@ func DeleteWebhook(webhookClient *cx.WebhooksClient, agent *cxpb.Agent, name str
 	}
 
 	reqDeleteWebhook := &cxpb.DeleteWebhookRequest{
-		Name:  webhook.GetName(),
-		Force: force,
+		Name: webhook.GetName(),
+	}
+
+	if force != "" {
+		forceBool, err := utils.ParseBool(force)
+		if err != nil {
+			return err
+		}
+		reqDeleteWebhook.Force = forceBool
 	}
 
 	return webhookClient.DeleteWebhook(ctx, reqDeleteWebhook)

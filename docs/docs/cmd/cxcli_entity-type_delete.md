@@ -10,7 +10,7 @@ cxcli entity-type delete [entity-type-name] [flags]
 
 ```
   -a, --agent-name string    Dialogflow CX Agent Name
-  -f, --force                Optional. Forces to delete the Entity type. NOTE: it will delete all any references to the entity type
+  -f, --force string         Optional. Forces to delete the Entity type. NOTE: it will delete all any references to the entity type. Possible values: true or false
   -h, --help                 help for delete
   -l, --location-id string   Dialogflow CX Location ID of the Project
   -p, --project-id string    Dialogflow CX Project ID

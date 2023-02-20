@@ -25,10 +25,10 @@ var createCmd = &cobra.Command{
 		timezone, _ := cmd.Flags().GetString("timezone")
 		supportedLocales, _ := cmd.Flags().GetStringSlice("supported-locales")
 		avatarURI, _ := cmd.Flags().GetString("avatar-uri")
-		enableStackdriverLogging, _ := cmd.Flags().GetBool("enable-stackdriver-logging")
-		enableInteractionLogging, _ := cmd.Flags().GetBool("enable-interaction-logging")
-		enableSpeechAdaptation, _ := cmd.Flags().GetBool("enable-speech-adaptation")
-		enableSpellCorrection, _ := cmd.Flags().GetBool("enable-spell-correction")
+		enableStackdriverLogging, _ := cmd.Flags().GetString("enable-stackdriver-logging")
+		enableInteractionLogging, _ := cmd.Flags().GetString("enable-interaction-logging")
+		enableSpeechAdaptation, _ := cmd.Flags().GetString("enable-speech-adaptation")
+		enableSpellCorrection, _ := cmd.Flags().GetString("enable-spell-correction")
 
 		agentName := args[0]
 
@@ -66,9 +66,9 @@ func init() {
 	createCmd.Flags().StringP("description", "d", "", "Description of the agent")
 	createCmd.Flags().StringSliceP("supported-locales", "x", []string{}, "Supported locales of the agent, comma separated. Example: fr,es,de")
 	createCmd.Flags().StringP("avatar-uri", "r", "", "Avatar URI of the agent")
-	createCmd.Flags().BoolP("enable-stackdriver-logging", "a", false, "Enable Google Stackdriver logging for this agent")
-	createCmd.Flags().BoolP("enable-interaction-logging", "b", false, "Enable interaction logging for this agent")
-	createCmd.Flags().BoolP("enable-speech-adaptation", "s", false, "Enable speech adaptation for this agent")
-	createCmd.Flags().BoolP("enable-spell-correction", "n", false, "Enable spell correction for this agent")
+	createCmd.Flags().StringP("enable-stackdriver-logging", "a", "", "Enable Google Stackdriver logging for this agent. Possible values: true or false")
+	createCmd.Flags().StringP("enable-interaction-logging", "b", "", "Enable interaction logging for this agent. Possible values: true or false")
+	createCmd.Flags().StringP("enable-speech-adaptation", "s", "", "Enable speech adaptation for this agent. Possible values: true or false")
+	createCmd.Flags().StringP("enable-spell-correction", "n", "", "Enable spell correction for this agent. Possible values: true or false")
 
 }

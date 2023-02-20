@@ -9,6 +9,7 @@ import (
 	cx "cloud.google.com/go/dialogflow/cx/apiv3beta1"
 	cxpb "cloud.google.com/go/dialogflow/cx/apiv3beta1/cxpb"
 	"github.com/xavidop/dialogflow-cx-cli/internal/global"
+	"github.com/xavidop/dialogflow-cx-cli/internal/utils"
 	"google.golang.org/api/option"
 	"google.golang.org/protobuf/types/known/fieldmaskpb"
 )
@@ -41,7 +42,7 @@ func CreateEntityTypeGRPCClient(locationId string) (*cx.EntityTypesClient, error
 
 }
 
-func CreateEntityType(entityTypesClient *cx.EntityTypesClient, agent *cxpb.Agent, entityTypeName, localeId string, entities []string, redacted bool) (*cxpb.EntityType, error) {
+func CreateEntityType(entityTypesClient *cx.EntityTypesClient, agent *cxpb.Agent, entityTypeName, localeId string, entities []string, redacted string) (*cxpb.EntityType, error) {
 	ctx := context.Background()
 	localeToUse := agent.GetDefaultLanguageCode()
 	if localeId != "" {
@@ -53,22 +54,31 @@ func CreateEntityType(entityTypesClient *cx.EntityTypesClient, agent *cxpb.Agent
 		return nil, err
 	}
 
+	entityType := &cxpb.EntityType{
+		DisplayName: entityTypeName,
+		Entities:    entityTypesEntities,
+		Kind:        cxpb.EntityType_KIND_MAP,
+	}
+
+	if redacted != "" {
+		redactedBool, err := utils.ParseBool(redacted)
+		if err != nil {
+			return nil, err
+		}
+		entityType.Redact = redactedBool
+	}
+
 	reqCreateEntityType := &cxpb.CreateEntityTypeRequest{
 		Parent:       agent.GetName(),
 		LanguageCode: localeToUse,
 
-		EntityType: &cxpb.EntityType{
-			DisplayName: entityTypeName,
-			Entities:    entityTypesEntities,
-			Kind:        cxpb.EntityType_KIND_MAP,
-			Redact:      redacted,
-		},
+		EntityType: entityType,
 	}
 
 	return entityTypesClient.CreateEntityType(ctx, reqCreateEntityType)
 }
 
-func UpdateEntityType(entityTypesClient *cx.EntityTypesClient, agent *cxpb.Agent, entityTypeName, localeId string, entities []string, redacted bool) (*cxpb.EntityType, error) {
+func UpdateEntityType(entityTypesClient *cx.EntityTypesClient, agent *cxpb.Agent, entityTypeName, localeId string, entities []string, redacted string) (*cxpb.EntityType, error) {
 	ctx := context.Background()
 	paths := []string{}
 
@@ -91,8 +101,12 @@ func UpdateEntityType(entityTypesClient *cx.EntityTypesClient, agent *cxpb.Agent
 		entity.Entities = entityTypesEntities
 		paths = append(paths, "entities")
 	}
-	if redacted {
-		entity.Redact = redacted
+	if redacted != "" {
+		redactedBool, err := utils.ParseBool(redacted)
+		if err != nil {
+			return nil, err
+		}
+		entity.Redact = redactedBool
 		paths = append(paths, "redact")
 	}
 
@@ -150,7 +164,7 @@ func GetEntityTypeIdByName(entityTypesClient *cx.EntityTypesClient, agent *cxpb.
 
 }
 
-func DeleteEntityType(entityTypesClient *cx.EntityTypesClient, agent *cxpb.Agent, entityTypeName string, force bool) error {
+func DeleteEntityType(entityTypesClient *cx.EntityTypesClient, agent *cxpb.Agent, entityTypeName, force string) error {
 	ctx := context.Background()
 
 	entityType, err := GetEntityTypeIdByName(entityTypesClient, agent, entityTypeName)
@@ -159,8 +173,16 @@ func DeleteEntityType(entityTypesClient *cx.EntityTypesClient, agent *cxpb.Agent
 	}
 
 	reqDeleteEntityType := &cxpb.DeleteEntityTypeRequest{
-		Name:  entityType.GetName(),
-		Force: force,
+		Name: entityType.GetName(),
 	}
+
+	if force != "" {
+		forceBool, err := utils.ParseBool(force)
+		if err != nil {
+			return err
+		}
+		reqDeleteEntityType.Force = forceBool
+	}
+
 	return entityTypesClient.DeleteEntityType(ctx, reqDeleteEntityType)
 }
