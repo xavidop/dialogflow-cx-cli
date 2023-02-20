@@ -9,7 +9,7 @@ repo_url: https://github.com/xavidop/dialogflow-cx-cli
 edit_uri: "edit/master/docs/docs/"
 
 copyright: |
-  Copyright &copy; 2022 Xavier Portilla Edo
+  Copyright &copy; 2023 Xavier Portilla Edo
 theme:
   name: material
   # custom_dir: docs/theme

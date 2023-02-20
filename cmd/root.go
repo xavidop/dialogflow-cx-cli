@@ -9,6 +9,7 @@ import (
 	"github.com/xavidop/dialogflow-cx-cli/cmd/cmdutils"
 	cmdentitytype "github.com/xavidop/dialogflow-cx-cli/cmd/entitytype"
 	environmentCmd "github.com/xavidop/dialogflow-cx-cli/cmd/environment"
+	cmdflow "github.com/xavidop/dialogflow-cx-cli/cmd/flow"
 	cmdflowversion "github.com/xavidop/dialogflow-cx-cli/cmd/flowversion"
 	cmdintent "github.com/xavidop/dialogflow-cx-cli/cmd/intent"
 	cmdprofilenlu "github.com/xavidop/dialogflow-cx-cli/cmd/profilenlu"
@@ -63,6 +64,7 @@ func init() {
 	cmdentitytype.Register(rootCmd)
 	cmdstt.Register(rootCmd)
 	cmdwebhook.Register(rootCmd)
+	cmdflow.Register(rootCmd)
 	cmdflowversion.Register(rootCmd)
 
 	// Add the subcommands

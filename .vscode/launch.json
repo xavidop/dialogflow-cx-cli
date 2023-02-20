@@ -326,7 +326,58 @@
                 "environment", "update", "my-env", "--agent-name", "test-agent", "--project-id", "test-cx-346408", "--location-id", "us-central1", "--credentials", "credentials.json", "--flow-versions", "Default Start Flow@production_v1,Test Flow@v1.0.0", "--description", "my updated description"
             ]
         },
-        
+        {
+            "name": "Create flow command",
+            "type": "go",
+            "request": "launch",
+            "mode": "debug",
+            "program": "${workspaceFolder}/main.go",
+            "env": {
+                "ENV": "development"
+            },
+            "args": [
+                "flow", "create", "my-flow", "--agent-name", "test-agent", "--project-id", "test-cx-346408", "--location-id", "us-central1", "--credentials", "credentials.json", "--locale", "en", "--description", "my description"
+            ]
+        },
+        {
+            "name": "Update flow command",
+            "type": "go",
+            "request": "launch",
+            "mode": "debug",
+            "program": "${workspaceFolder}/main.go",
+            "env": {
+                "ENV": "development"
+            },
+            "args": [
+                "flow", "update", "my-flow", "--agent-name", "test-agent", "--project-id", "test-cx-346408", "--location-id", "us-central1", "--credentials", "credentials.json", "--locale", "en", "--description", "my updated description", "--nlu-classification-threshold", "0.4", "--nlu-model-type", "advanced", "--nlu-model-training-mode", "automatic"
+            ]
+        },
+        {
+            "name": "Delete flow command",
+            "type": "go",
+            "request": "launch",
+            "mode": "debug",
+            "program": "${workspaceFolder}/main.go",
+            "env": {
+                "ENV": "development"
+            },
+            "args": [
+                "flow", "delete", "my-flow", "--agent-name", "test-agent", "--project-id", "test-cx-346408", "--location-id", "us-central1", "--credentials", "credentials.json"
+            ]
+        },
+        {
+            "name": "Train flow command",
+            "type": "go",
+            "request": "launch",
+            "mode": "debug",
+            "program": "${workspaceFolder}/main.go",
+            "env": {
+                "ENV": "development"
+            },
+            "args": [
+                "flow", "train", "my-flow", "--agent-name", "test-agent", "--project-id", "test-cx-346408", "--location-id", "us-central1", "--credentials", "credentials.json"
+            ]
+        },
 
     ]
 }
