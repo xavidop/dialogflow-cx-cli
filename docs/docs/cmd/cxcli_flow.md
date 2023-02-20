@@ -26,5 +26,6 @@ cxcli flow [flags]
 * [cxcli](/cmd/cxcli/)	 - Dialogflow CX CLI
 * [cxcli flow create](/cmd/cxcli_flow_create/)	 - Creates a flow in an agent
 * [cxcli flow delete](/cmd/cxcli_flow_delete/)	 - Deletes a flow in an agent
+* [cxcli flow train](/cmd/cxcli_flow_train/)	 - Trains a flow in an agent. If flow name is set to "all", it will train all flows in an agent
 * [cxcli flow update](/cmd/cxcli_flow_update/)	 - Updates a flow in an agent
 

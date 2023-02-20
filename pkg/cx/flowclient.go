@@ -154,6 +154,51 @@ func DeleteFlow(flowClient *cx.FlowsClient, agent *cxpb.Agent, flowName string) 
 	return flowClient.DeleteFlow(ctx, reqDeleteFlow)
 }
 
+func TrainAll(flowClient *cx.FlowsClient, agent *cxpb.Agent) error {
+	ctx := context.Background()
+
+	reqList := &cxpb.ListFlowsRequest{
+		Parent: agent.GetName(),
+	}
+
+	flows := flowClient.ListFlows(ctx, reqList)
+
+	for flow, err := flows.Next(); err == nil; {
+		if err := Train(flowClient, agent, flow.GetDisplayName(), flow.GetName()); err != nil {
+			return err
+		}
+		flow, err = flows.Next()
+		if flows.PageInfo().Remaining() == 0 {
+			return nil
+		}
+	}
+
+	return nil
+
+}
+
+func Train(flowClient *cx.FlowsClient, agent *cxpb.Agent, flowName, flowId string) error {
+	ctx := context.Background()
+	if flowId == "" {
+		flow, err := GetFlowIdByName(flowClient, agent, flowName)
+		if err != nil {
+			return err
+		}
+		flowId = flow.GetName()
+	}
+
+	reqTrainFlow := &cxpb.TrainFlowRequest{
+		Name: flowId,
+	}
+	op, err := flowClient.TrainFlow(ctx, reqTrainFlow)
+	if err != nil {
+		return err
+	}
+
+	return op.Wait(ctx)
+
+}
+
 func GetFlowIdByName(flowClient *cx.FlowsClient, agent *cxpb.Agent, flowName string) (*cxpb.Flow, error) {
 	ctx := context.Background()
 
