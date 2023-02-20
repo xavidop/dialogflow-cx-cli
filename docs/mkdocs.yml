@@ -131,6 +131,7 @@ nav:
       - cxcli intent: cmd/cxcli_intent.md
       - cxcli entity-type: cmd/cxcli_entity-type.md
       - cxcli profile-nlu: cmd/cxcli_profile-nlu.md
+      - cxcli flow: cmd/cxcli_flow.md
       - cxcli flow-version: cmd/cxcli_flow-version.md
       - cxcli webhook: cmd/cxcli_webhook.md
       - cxcli stt: cmd/cxcli_stt.md
