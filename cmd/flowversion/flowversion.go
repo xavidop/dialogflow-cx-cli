@@ -1,4 +1,4 @@
-package versioning
+package flowversion
 
 import (
 	"os"
@@ -7,9 +7,9 @@ import (
 	"github.com/xavidop/dialogflow-cx-cli/cmd/cmdutils"
 )
 
-// versioningCmd represents the versioning root command
-var versioningCmd = &cobra.Command{
-	Use:     "versioning",
+// flowversionCmd represents the flowversion root command
+var flowversionCmd = &cobra.Command{
+	Use:     "flow-version",
 	Aliases: []string{"ver"},
 	Short:   "Actions on flow versions commands",
 	Run: func(cmd *cobra.Command, args []string) {
@@ -26,5 +26,5 @@ var versioningCmd = &cobra.Command{
 }
 
 func Register(rootCmd *cobra.Command) {
-	rootCmd.AddCommand(versioningCmd)
+	rootCmd.AddCommand(flowversionCmd)
 }

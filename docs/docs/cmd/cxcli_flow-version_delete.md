@@ -1,17 +1,16 @@
-# cxcli versioning create
+# cxcli flow-version delete
 
-create a version
+delete a version
 
 ```
-cxcli versioning create [name] [flags]
+cxcli flow-version delete [name] [flags]
 ```
 
 ## Options
 
 ```
   -a, --agent-name string    Dialogflow CX Agent Name
-  -d, --description string   Optional. Description for this version
-  -h, --help                 help for create
+  -h, --help                 help for delete
   -l, --location-id string   Dialogflow CX Location ID of the Project
   -p, --project-id string    Dialogflow CX Project ID
   -s, --start-flow string    Start Flow name to create the version
@@ -28,5 +27,5 @@ cxcli versioning create [name] [flags]
 
 ## See also
 
-* [cxcli versioning](/cmd/cxcli_versioning/)	 - Actions on flow versions commands
+* [cxcli flow-version](/cmd/cxcli_flow-version/)	 - Actions on flow versions commands
 

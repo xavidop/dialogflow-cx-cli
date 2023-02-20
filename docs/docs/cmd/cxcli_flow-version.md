@@ -1,15 +1,15 @@
-# cxcli versioning
+# cxcli flow-version
 
 Actions on flow versions commands
 
 ```
-cxcli versioning [flags]
+cxcli flow-version [flags]
 ```
 
 ## Options
 
 ```
-  -h, --help   help for versioning
+  -h, --help   help for flow-version
 ```
 
 ## Options inherited from parent commands
@@ -24,7 +24,7 @@ cxcli versioning [flags]
 ## See also
 
 * [cxcli](/cmd/cxcli/)	 - Dialogflow CX CLI
-* [cxcli versioning create](/cmd/cxcli_versioning_create/)	 - create a version
-* [cxcli versioning delete](/cmd/cxcli_versioning_delete/)	 - delete a version
-* [cxcli versioning update](/cmd/cxcli_versioning_update/)	 - update a version
+* [cxcli flow-version create](/cmd/cxcli_flow-version_create/)	 - create a version
+* [cxcli flow-version delete](/cmd/cxcli_flow-version_delete/)	 - delete a version
+* [cxcli flow-version update](/cmd/cxcli_flow-version_update/)	 - update a version
 

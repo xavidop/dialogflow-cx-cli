@@ -1,9 +1,9 @@
-# cxcli versioning update
+# cxcli flow-version create
 
-update a version
+create a version
 
 ```
-cxcli versioning update [name] [flags]
+cxcli flow-version create [name] [flags]
 ```
 
 ## Options
@@ -11,7 +11,7 @@ cxcli versioning update [name] [flags]
 ```
   -a, --agent-name string    Dialogflow CX Agent Name
   -d, --description string   Optional. Description for this version
-  -h, --help                 help for update
+  -h, --help                 help for create
   -l, --location-id string   Dialogflow CX Location ID of the Project
   -p, --project-id string    Dialogflow CX Project ID
   -s, --start-flow string    Start Flow name to create the version
@@ -28,5 +28,5 @@ cxcli versioning update [name] [flags]
 
 ## See also
 
-* [cxcli versioning](/cmd/cxcli_versioning/)	 - Actions on flow versions commands
+* [cxcli flow-version](/cmd/cxcli_flow-version/)	 - Actions on flow versions commands
 

@@ -1,4 +1,4 @@
-package versioning
+package flowversion
 
 import (
 	"os"
@@ -6,7 +6,7 @@ import (
 	"github.com/spf13/cobra"
 	"github.com/xavidop/dialogflow-cx-cli/cmd/cmdutils"
 	"github.com/xavidop/dialogflow-cx-cli/internal/global"
-	"github.com/xavidop/dialogflow-cx-cli/pkg/versioning"
+	"github.com/xavidop/dialogflow-cx-cli/pkg/flowversion"
 )
 
 // deleteCmd represents the delete version set command
@@ -23,7 +23,7 @@ var deleteCmd = &cobra.Command{
 		startFlow, _ := cmd.Flags().GetString("start-flow")
 		name := args[0]
 
-		if err := versioning.Delete(name, startFlow, locationID, projectID, agentName); err != nil {
+		if err := flowversion.Delete(name, startFlow, locationID, projectID, agentName); err != nil {
 			global.Log.Errorf(err.Error())
 			os.Exit(1)
 		}
@@ -36,7 +36,7 @@ var deleteCmd = &cobra.Command{
 }
 
 func init() {
-	versioningCmd.AddCommand(deleteCmd)
+	flowversionCmd.AddCommand(deleteCmd)
 
 	deleteCmd.Flags().StringP("agent-name", "a", "", "Dialogflow CX Agent Name")
 	deleteCmd.Flags().StringP("project-id", "p", "", "Dialogflow CX Project ID")

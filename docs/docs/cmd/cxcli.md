@@ -33,12 +33,12 @@ cxcli [flags]
 * [cxcli completion](/cmd/cxcli_completion/)	 - Generate the autocompletion script for the specified shell
 * [cxcli entity-type](/cmd/cxcli_entity-type/)	 - Actions on entity type commands
 * [cxcli environment](/cmd/cxcli_environment/)	 - Actions on environment
+* [cxcli flow-version](/cmd/cxcli_flow-version/)	 - Actions on flow versions commands
 * [cxcli intent](/cmd/cxcli_intent/)	 - Actions on intent commands
 * [cxcli jsonschema](/cmd/cxcli_jsonschema/)	 - outputs cxcli's JSON schema
 * [cxcli profile-nlu](/cmd/cxcli_profile-nlu/)	 - Actions on testing
 * [cxcli stt](/cmd/cxcli_stt/)	 - Actions on speech-to-text commands
 * [cxcli tts](/cmd/cxcli_tts/)	 - Actions on text-to-speech commands
 * [cxcli version](/cmd/cxcli_version/)	 - Get cxcli version
-* [cxcli versioning](/cmd/cxcli_versioning/)	 - Actions on flow versions commands
 * [cxcli webhook](/cmd/cxcli_webhook/)	 - Actions on webhook commands
 

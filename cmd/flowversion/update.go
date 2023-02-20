@@ -1,4 +1,4 @@
-package versioning
+package flowversion
 
 import (
 	"os"
@@ -6,7 +6,7 @@ import (
 	"github.com/spf13/cobra"
 	"github.com/xavidop/dialogflow-cx-cli/cmd/cmdutils"
 	"github.com/xavidop/dialogflow-cx-cli/internal/global"
-	"github.com/xavidop/dialogflow-cx-cli/pkg/versioning"
+	"github.com/xavidop/dialogflow-cx-cli/pkg/flowversion"
 )
 
 // updateCmd represents the update version set command
@@ -24,7 +24,7 @@ var updateCmd = &cobra.Command{
 		description, _ := cmd.Flags().GetString("description")
 		name := args[0]
 
-		if err := versioning.Update(name, description, startFlow, locationID, projectID, agentName); err != nil {
+		if err := flowversion.Update(name, description, startFlow, locationID, projectID, agentName); err != nil {
 			global.Log.Errorf(err.Error())
 			os.Exit(1)
 		}
@@ -37,7 +37,7 @@ var updateCmd = &cobra.Command{
 }
 
 func init() {
-	versioningCmd.AddCommand(updateCmd)
+	flowversionCmd.AddCommand(updateCmd)
 
 	updateCmd.Flags().StringP("start-flow", "s", "", "Start Flow name to create the version")
 	updateCmd.Flags().StringP("agent-name", "a", "", "Dialogflow CX Agent Name")

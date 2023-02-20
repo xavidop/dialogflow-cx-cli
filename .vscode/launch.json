@@ -258,7 +258,7 @@
                 "ENV": "development"
             },
             "args": [
-                "versioning", "create", "v1.0.0", "--agent-name", "test-agent", "--project-id", "test-cx-346408", "--location-id", "us-central1", "--credentials", "credentials.json", "--start-flow", "Test Flow"
+                "flow-version", "create", "v1.0.0", "--agent-name", "test-agent", "--project-id", "test-cx-346408", "--location-id", "us-central1", "--credentials", "credentials.json", "--start-flow", "Test Flow"
             ]
         },
         {
@@ -271,7 +271,7 @@
                 "ENV": "development"
             },
             "args": [
-                "versioning", "delete", "v1.0.0", "--agent-name", "test-agent", "--project-id", "test-cx-346408", "--location-id", "us-central1", "--credentials", "credentials.json", "--start-flow", "Test Flow"
+                "flow-version", "delete", "v1.0.0", "--agent-name", "test-agent", "--project-id", "test-cx-346408", "--location-id", "us-central1", "--credentials", "credentials.json", "--start-flow", "Test Flow"
             ]
         },
         {
@@ -284,7 +284,7 @@
                 "ENV": "development"
             },
             "args": [
-                "versioning", "update", "v1.0.0", "--agent-name", "test-agent", "--project-id", "test-cx-346408", "--location-id", "us-central1", "--credentials", "credentials.json", "--start-flow", "Test Flow", "--description", "my updated description"
+                "flow-version", "update", "v1.0.0", "--agent-name", "test-agent", "--project-id", "test-cx-346408", "--location-id", "us-central1", "--credentials", "credentials.json", "--start-flow", "Test Flow", "--description", "my updated description"
             ]
         },
         {
