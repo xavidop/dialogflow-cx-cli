@@ -19,6 +19,9 @@ Shipped:
 Coming soon:
 
 * [ ] Continuous integration support (GitHub Action, CircleCI, etc.)
-* [ ] Intents and entities actions (create, update)
-* [ ] Support more environments (create, update) actions
-* [ ] Support more agent actions (create, update, train)
+* [ ] Dialog from the terminal
+* [ ] More Agent actions (validate)
+* [ ] Pages Action (crate, update, delete)
+* [ ] Test Cases actions (export, import, run, run-all)
+* [ ] Changelog actions (show)
+* [ ] Experiment Actions - TBD
