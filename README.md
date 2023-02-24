@@ -52,6 +52,7 @@ Please refer to our [contributing guidelines](CONTRIBUTING.md) for further infor
 [![Sponsors on Github](https://opencollective.com/cxcli/sponsors/badge.svg?style=for-the-badge)](https://github.com/sponsors/xavidop)
 [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg?style=for-the-badge)](https://conventionalcommits.org)
 [![Go Report Card](https://goreportcard.com/badge/github.com/xavidop/dialogflow-cx-cli)](https://goreportcard.com/report/github.com/xavidop/dialogflow-cx-cli)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fxavidop%2Fdialogflow-cx-cli.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fxavidop%2Fdialogflow-cx-cli?ref=badge_shield)
 
 ## Sponsors
 
@@ -66,3 +67,7 @@ Check all contributors [here](https://github.com/xavidop/dialogflow-cx-cli/graph
 ## Stargazers over time
 
 [![Stargazers over time](https://starchart.cc/xavidop/dialogflow-cx-cli.svg)](https://starchart.cc/xavidop/dialogflow-cx-cli)
+
+
+## License
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fxavidop%2Fdialogflow-cx-cli.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fxavidop%2Fdialogflow-cx-cli?ref=badge_large)
