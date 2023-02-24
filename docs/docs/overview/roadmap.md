@@ -19,6 +19,7 @@ Shipped:
 Coming soon:
 
 * [ ] Continuous integration support (GitHub Action, CircleCI, etc.)
+* [ ] Flow import and export
 * [ ] Dialog from the terminal
 * [ ] More Agent actions (validate)
 * [ ] Pages Action (crate, update, delete)
