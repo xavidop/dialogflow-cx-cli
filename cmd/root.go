@@ -24,13 +24,13 @@ var rootCmd = &cobra.Command{
 	Use:   "cxcli",
 	Short: "Dialogflow CX CLI",
 	Long: `Welcome to cxcli!
-	
+
 This utility provides you with an easy way to interact
-with your Dialogflow CX agents. 
+with your Dialogflow CX agents.
 
 You can find the documentation at https://github.com/xavidop/dialogflow-cx-cli.
 
-Please file all bug reports on Github at https://github.com/xavidop/dialogflow-cx-cli/issues.`,
+Please file all bug reports on GitHub at https://github.com/xavidop/dialogflow-cx-cli/issues.`,
 	Run: func(cmd *cobra.Command, args []string) {
 		if len(args) == 0 {
 			if err := cmd.Help(); err != nil {

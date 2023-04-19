@@ -59,5 +59,5 @@ Push your branch to your `cxcli` fork and open a pull request against the main b
 
 ## Financial contributions
 
-You can contribute in our Github Sponsors or to any of the contributors directly.
+You can contribute in our GitHub Sponsors or to any of the contributors directly.
 See [this page](https://cxcli.xavidop.me/sponsors) for more details.

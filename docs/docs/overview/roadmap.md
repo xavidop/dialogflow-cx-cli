@@ -8,13 +8,13 @@ For now, if you're interested in participating and giving feedback, we believe `
 
 Shipped:
 
-* [x] Available in homebrew, snapcraft, apt, yum, scoop, aur package managers 
+* [x] Available in homebrew, snapcraft, apt, yum, scoop, aur package managers
 * [x] Documentation updated
 * [x] Profile NLU
 * [x] Speech-to-text and Text-to-speech actions
 * [x] Container image available for multiple architectures
 * [x] SBOM files created
-* [x] Artifacts uploaded, signed and available on Github
+* [x] Artifacts uploaded, signed and available on GitHub
 
 Coming soon:
 

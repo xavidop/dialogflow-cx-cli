@@ -1,6 +1,6 @@
 # Contributing
 
-By participating in this project, you agree to abide our
+By participating in this project, you agree to abide by our
 [code of conduct](https://github.com/xavidop/dialogflow-cx-cli/blob/master/CODE_OF_CONDUCT.md).
 
 ## Set up your machine
@@ -31,7 +31,7 @@ git clone git@github.com:xavidop/dialogflow-cx-cli.git
 go mod tidy
 ```
 
-A good way of making sure everything is all right is running the build:
+A good way of making sure everything is all right is by running the build:
 
 ```sh
 go build -o cxcli .
@@ -59,5 +59,5 @@ Push your branch to your `cxcli` fork and open a pull request against the main b
 
 ## Financial contributions
 
-You can contribute in our Github Sponsors or to any of the contributors directly.
+You can contribute in our GitHub Sponsors or to any of the contributors directly.
 See [this page](https://cxcli.xavidop.me/sponsors) for more details.

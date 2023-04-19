@@ -11,7 +11,7 @@ A test is a yaml file with the following structure:
 name: Example test
 # Brief description of the test.
 description: These are some tests
-# Locale of the interaction model that is gonna be tested. 
+# Locale of the interaction model that is gonna be tested.
 # You can find the locales here: https://cloud.google.com/dialogflow/cx/docs/reference/language
 localeId: en
 # A check is the test itself: given an input, you will validate the intents and the parameters/entities detected by Dialogflow CX
@@ -39,10 +39,10 @@ checks:
 
 ## Audio input
 
-It is important to know that the input has to have this format:
+It is important to know that the input audio needs to have the following format:
 
-1. A Sample Rate Hertz of 16000Hz
-2. The audio encoding has to be be Linear16. Linear16 is a 16-bit linear pulse-code modulation (PCM) encoding.
+1. A sample rate of 16000 Hertz
+2. The audio encoding has to be Linear16. Linear16 is a 16-bit linear pulse-code modulation (PCM) encoding.
 
 If you don't have a file with this format, you can create it by yourself using the `cxcli tts` command! All the information is located [here](/tts)
 
