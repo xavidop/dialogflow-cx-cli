@@ -27,7 +27,7 @@ func chat() error {
 	if err != nil {
 		return err
 	}
-	defer terminal.Restore(0, oldState)
+	defer restore(oldState)
 	screen := struct {
 		io.Reader
 		io.Writer
@@ -49,5 +49,11 @@ func chat() error {
 			continue
 		}
 		fmt.Fprintln(term, rePrefix, line)
+	}
+}
+
+func restore(oldState *terminal.State) {
+	if err := terminal.Restore(0, oldState); err != nil {
+		global.Log.Errorf("failed to restore terminal: %v", err)
 	}
 }
