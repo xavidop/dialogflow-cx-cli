@@ -1,6 +1,6 @@
 ## Who uses cxcli?
 
-As the cxcli Community grows, we'd like to keep a list of our users.
+As the cxcli community grows, we'd like to keep a list of our users.
 
 Here's a running list of some organizations using cxcli[^1]:
 

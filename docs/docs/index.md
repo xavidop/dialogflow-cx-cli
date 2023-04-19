@@ -5,10 +5,10 @@
 </p>
 
 
-`cxcli` is a tool that helps Dialogflow CX users to test their projects and interact with them in multiple ways.
-It is useful for your day-today taks or if you want to integrate it in your favorite CI.
+`cxcli` is a command-line tool that helps Dialogflow CX users test their agents and interact with them in various ways.
+It is useful for your day-to-day tasks or if you want to integrate it with your favorite CI tool.
 
-This CLI also has [text-to-speech](/tts) and [speech-to text](stt) capabilities allowing the interaction with Google Cloud Platform APIs.
+This CLI also allows you to interact with the [text-to-speech](/tts) and [speech-to text](/stt) APIs in Google Cloud.
 
 ## Get started
 
@@ -20,9 +20,8 @@ This CLI also has [text-to-speech](/tts) and [speech-to text](stt) capabilities 
 
 `cxcli` is developed by [xavidop](https://github.com/xavidop).
 
-You can contact us via email at: [dialogflowcxcli@gmail.com](mailto:dialogflowcxcli@gmail.com)
+You can contact us via email at: [dialogflowcxcli@gmail.com](mailto:dialogflowcxcli@gmail.com).
 
-Follow [@dialogflowcxcli on Twitter](https://twitter.com/dialogflowcxcli) for updates and announcements
+Follow [@dialogflowcxcli on Twitter](https://twitter.com/dialogflowcxcli) for updates and announcements.
 
-Visit our [links](/links) section for more information about how stay in touch with us
-
+Visit our [links](/links) section for more information about staying connected with us.

@@ -1,13 +1,11 @@
 # Install
 
-You can install the pre-compiled binary (in several ways), using Docker or compiling it from source.
+You can use `cxcli` by installing a pre-compiled binary (in several ways), using Docker, or compiling it from source. In the below sections, you can find the steps for each approach.
 
-Below you can find the steps for each of them.
-
-## Install the pre-compiled binary
+## Install a pre-compiled binary
 
 ### homebrew tap
-1. Add the Hombrew tab:
+1. Add the Homebrew tap:
 ```sh
 brew tap xavidop/tap git@github.com:xavidop/homebrew-tap.git
 brew update
@@ -99,7 +97,7 @@ Download the pre-compiled binaries from the [releases page][releases] and copy t
 
 All artifacts are checksummed, and the checksum file is signed with [cosign][].
 
-1. Download the files you want, and the `checksums.txt`, `checksum.txt.pem` and `checksums.txt.sig` files from the [releases][releases] page:
+1. Download the files you want along with the `checksums.txt`, `checksum.txt.pem`, and `checksums.txt.sig` files from the [releases][releases] page:
     ```sh
     wget https://github.com/xavidop/dialogflow-cx-cli/releases/download/__VERSION__/checksums.txt
     wget https://github.com/xavidop/dialogflow-cx-cli/releases/download/__VERSION__/checksums.txt.sig
@@ -132,7 +130,7 @@ COSIGN_EXPERIMENTAL=1 cosign verify xavidop/cxcli
 
 ## Running with Docker
 
-You can also use it within a Docker container.
+You can also use `cxcli` within a Docker container.
 To do that, you'll need to execute something more-or-less like the examples below.
 
 Registries:
@@ -149,9 +147,8 @@ docker run --rm \
 
 Note that the image will almost always have the last stable Go version.
 
-If you need more things, you are encouraged to keep your own image. You can
-always use cxcli's [own Dockerfile][dockerfile] as an example though
-and iterate from that.
+If you need other packages and dependencies, you are encouraged to keep your own image. You can
+always use cxcli's [own Dockerfile][dockerfile] as a starting point and iterate on that.
 
 [dockerfile]: https://github.com/xavidop/dialogflow-cx-cli/blob/master/Dockerfile
 [releases]: https://github.com/xavidop/dialogflow-cx-cli/releases
@@ -185,7 +182,7 @@ go mod tidy
 go build -o cxcli .
 ```
 
-**verify it works:**
+**verify that it works:**
 
 ```sh
 ./cxcli version

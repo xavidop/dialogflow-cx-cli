@@ -3,7 +3,7 @@
 
 ## Usage
 
-You can find the restore command usage down the `cxcli agent restore` command. You can read the documentation about this command [here](/cmd/cxcli_agent_restore).
+You can find the restore functionality within the `cxcli agent restore` subcommand. You can read the documentation about this command [here](/cmd/cxcli_agent_restore).
 
 
 !!! info "File format to be restored"
@@ -11,21 +11,21 @@ You can find the restore command usage down the `cxcli agent restore` command. Y
 
 ## Example
 
-This a simple example of the `cxcli agent restore` command:
+Here is a simple example of the `cxcli agent restore` command:
 
 ```sh
 cxcli agent restore test-agent --project-id test-cx-346408 --location-id us-central1 --input agent.blob
 ```
 
-The command above will give you an output like this one:
+The above command will give you output similar to the following:
 
 ```sh
 $ cxcli agent restore test-agent --project-id test-cx-346408 --location-id us-central1 --input agent.zip
-INFO Agent restored 
+INFO Agent restored
 ```
-!!! info "are you running this command in a CICD pipeline?"
-    If this is the case, we recommend you to execute with the `--output-format` parameter set to `json`.
+!!! info "Are you running this command in a CI/CD pipeline?"
+    If this is the case, we recommend that you set the `--output-format` parameter to `json`.
 
 ## Useful Links
 
-If you want to learn more about Dialogflow CX restores, check the [official documentation](https://cloud.google.com/dialogflow/cx/docs/concept/agent#export).
+If you want to learn more about Dialogflow CX restores, refer to the [official documentation](https://cloud.google.com/dialogflow/cx/docs/concept/agent#export).

@@ -3,24 +3,24 @@
 
 ## Usage
 
-You can find the delete command usage down the `cxcli agent delete` command. You can read the documentation about this command [here](/cmd/cxcli_agent_delete).
+You can find the delete functionality within the `cxcli agent delete` subcommand. You can read the documentation about this command [here](/cmd/cxcli_agent_delete).
 
 
 ## Example
 
-This a simple example of the `cxcli agent delete` command:
+Here is a simple example of the `cxcli agent delete` command:
 
 ```sh
 cxcli agent delete test-agent --project-id test-cx-346408 --location-id us-central1
 ```
 
-The command above will give you an output like this one:
+The above command will give you output similar to the following:
 
 ```sh
 $ cxcli agent delete test-agent --project-id test-cx-346408 --location-id us-central1
-INFO Agent deleted                          
+INFO Agent deleted
 ```
 
 ## Useful Links
 
-If you want to learn more about Dialogflow CX Agent deletion, check the [official documentation](https://cloud.google.com/dialogflow/cx/docs/concept/agent).
+If you want to learn more about Dialogflow CX Agent deletion, refer to the [official documentation](https://cloud.google.com/dialogflow/cx/docs/concept/agent).

@@ -6,7 +6,7 @@ project and its maintainers.
 
 ## GitHub Sponsors
 
-GitHub Sponsors is a great way to contribute directly to the main maintainer,
+GitHub Sponsors is a great way to contribute directly to the primary maintainer,
 [xavidop](https://github.com/xavidop).
 
 This money usually goes to buying coffee, beer, better hardware, and, hopefully,
