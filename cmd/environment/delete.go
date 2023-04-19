@@ -37,8 +37,11 @@ var deleteCmd = &cobra.Command{
 func init() {
 	environmentCmd.AddCommand(deleteCmd)
 
-	deleteCmd.Flags().StringP("agent-name", "a", "", "Dialogflow CX Agent Name")
-	deleteCmd.Flags().StringP("project-id", "p", "", "Dialogflow CX Project ID")
-	deleteCmd.Flags().StringP("location-id", "l", "", "Dialogflow CX Location ID of the Project")
+	deleteCmd.Flags().StringP("agent-name", "a", "", "Dialogflow CX Agent Name (required)")
+	deleteCmd.MarkFlagRequired("agent-name")
+	deleteCmd.Flags().StringP("project-id", "p", "", "Dialogflow CX Project ID (required)")
+	deleteCmd.MarkFlagRequired("project-id")
+	deleteCmd.Flags().StringP("location-id", "l", "", "Dialogflow CX Location ID of the Project (required)")
+	deleteCmd.MarkFlagRequired("location-id")
 
 }

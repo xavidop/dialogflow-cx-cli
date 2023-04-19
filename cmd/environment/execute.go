@@ -13,7 +13,7 @@ import (
 var executeCicdCmd = &cobra.Command{
 	Use:     "execute-cicd [environment]",
 	Aliases: []string{"execute", "e", "exe", "exec"},
-	Short:   "Executes a CICD pipeline for a specific environment",
+	Short:   "Executes a CI/CD pipeline for a specific environment",
 	Args:    cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		// Get the information
@@ -37,7 +37,11 @@ var executeCicdCmd = &cobra.Command{
 func init() {
 	environmentCmd.AddCommand(executeCicdCmd)
 
-	executeCicdCmd.Flags().StringP("agent-name", "a", "", "Dialogflow CX Agent Name")
-	executeCicdCmd.Flags().StringP("project-id", "p", "", "Dialogflow CX Project ID")
-	executeCicdCmd.Flags().StringP("location-id", "l", "", "Dialogflow CX Location ID of the Project")
+	executeCicdCmd.Flags().StringP("agent-name", "a", "", "Dialogflow CX Agent Name (required)")
+	executeCicdCmd.MarkFlagRequired("agent-name")
+	executeCicdCmd.Flags().StringP("project-id", "p", "", "Dialogflow CX Project ID (required)")
+	executeCicdCmd.MarkFlagRequired("project-id")
+	executeCicdCmd.Flags().StringP("location-id", "l", "", "Dialogflow CX Location ID of the Project (required)")
+	executeCicdCmd.MarkFlagRequired("location-id")
+
 }

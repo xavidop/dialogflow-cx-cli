@@ -40,10 +40,15 @@ var updateCmd = &cobra.Command{
 func init() {
 	entitytypeCmd.AddCommand(updateCmd)
 
-	updateCmd.Flags().StringP("project-id", "p", "", "Dialogflow CX Project ID")
-	updateCmd.Flags().StringP("location-id", "l", "", "Dialogflow CX Location ID of the Project")
-	updateCmd.Flags().StringP("agent-name", "a", "", "Dialogflow CX Agent Name")
+	updateCmd.Flags().StringP("agent-name", "a", "", "Dialogflow CX Agent Name (required)")
+	updateCmd.MarkFlagRequired("agent-name")
+	updateCmd.Flags().StringP("project-id", "p", "", "Dialogflow CX Project ID (required)")
+	updateCmd.MarkFlagRequired("project-id")
+	updateCmd.Flags().StringP("location-id", "l", "", "Dialogflow CX Location ID of the Project (required)")
+	updateCmd.MarkFlagRequired("location-id")
+	updateCmd.Flags().StringSliceP("entities", "n", []string{}, "List of the entities for this entity type, comma separated. Format: entity1@synonym1|synonym2,entity2@synonym1|synonym2. Example: pikachu@25|pika,charmander@3 (required)")
+	updateCmd.MarkFlagRequired("entities")
+
 	updateCmd.Flags().StringP("locale", "e", "", "Optional. Locale of the intent. Default: agent locale")
 	updateCmd.Flags().StringP("redacted", "r", "", "Optional. Set the entity type as redacted. Possible values: true or false")
-	updateCmd.Flags().StringSliceP("entities", "n", []string{}, "List of the entities for this entity type, comma separated. Format: entity1@synonym1|synonym2,entity2@synonym1|synonym2. Example: pikachu@25|pika,charmander@3")
 }

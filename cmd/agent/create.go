@@ -59,10 +59,14 @@ var createCmd = &cobra.Command{
 func init() {
 	agentCmd.AddCommand(createCmd)
 
-	createCmd.Flags().StringP("project-id", "p", "", "Dialogflow CX Project ID")
-	createCmd.Flags().StringP("location-id", "l", "", "Dialogflow CX Location ID of the Project")
-	createCmd.Flags().StringP("locale", "e", "", "Default locale of the agent")
-	createCmd.Flags().StringP("timezone", "t", "", "Timezone of the agent from the time zone database https://www.iana.org/time-zones. Example: America/New_York, Europe/Madrid")
+	createCmd.Flags().StringP("project-id", "p", "", "Dialogflow CX Project ID (required)")
+	createCmd.MarkFlagRequired("project-id")
+	createCmd.Flags().StringP("location-id", "l", "", "Dialogflow CX Location ID of the Project (required)")
+	createCmd.MarkFlagRequired("location-id")
+	createCmd.Flags().StringP("locale", "e", "", "Default locale of the agent (required)")
+	createCmd.MarkFlagRequired("locale")
+	createCmd.Flags().StringP("timezone", "t", "", "Timezone of the agent from the time zone database https://www.iana.org/time-zones. Example: America/New_York, Europe/Madrid (required))")
+	createCmd.MarkFlagRequired("timezone")
 	createCmd.Flags().StringP("description", "d", "", "Description of the agent")
 	createCmd.Flags().StringSliceP("supported-locales", "x", []string{}, "Supported locales of the agent, comma separated. Example: fr,es,de")
 	createCmd.Flags().StringP("avatar-uri", "r", "", "Avatar URI of the agent")
