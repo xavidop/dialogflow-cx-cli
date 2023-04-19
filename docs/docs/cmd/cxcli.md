@@ -5,13 +5,13 @@ Dialogflow CX CLI
 ## Synopsis
 
 Welcome to cxcli!
-	
+
 This utility provides you with an easy way to interact
-with your Dialogflow CX agents. 
+with your Dialogflow CX agents.
 
 You can find the documentation at https://github.com/xavidop/dialogflow-cx-cli.
 
-Please file all bug reports on Github at https://github.com/xavidop/dialogflow-cx-cli/issues.
+Please file all bug reports on GitHub at https://github.com/xavidop/dialogflow-cx-cli/issues.
 
 ```
 cxcli [flags]
@@ -42,4 +42,3 @@ cxcli [flags]
 * [cxcli tts](/cmd/cxcli_tts/)	 - Actions on text-to-speech commands
 * [cxcli version](/cmd/cxcli_version/)	 - Get cxcli version
 * [cxcli webhook](/cmd/cxcli_webhook/)	 - Actions on webhook commands
-

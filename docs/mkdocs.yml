@@ -59,7 +59,7 @@ extra:
 
 plugins:
   - search
-  
+
 markdown_extensions:
   - attr_list
   - md_in_html
@@ -101,7 +101,7 @@ nav:
     - Reference:
       - Suites: nluprofiler/suites.md
       - Tests: nluprofiler/tests.md
-      - Examples: 
+      - Examples:
         - Simple: nluprofiler/examples/simple.md
         - Text input with entities: nluprofiler/examples/text.md
         - System entities detection: nluprofiler/examples/system.md
@@ -121,7 +121,7 @@ nav:
     - Delete: entitytypes/delete.md
   - Environments:
     - Introduction: environments/introduction.md
-    - CICD: environments/cicd.md
+    - CI/CD: environments/cicd.md
   - Text-to-speech: tts.md
   - Speech-to-text: stt.md
   - Command Line Usage:

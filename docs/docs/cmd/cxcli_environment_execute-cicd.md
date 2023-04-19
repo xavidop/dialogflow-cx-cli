@@ -1,6 +1,6 @@
 # cxcli environment execute-cicd
 
-Executes a CICD pipeline for a specific environment
+Executes a CI/CD pipeline for a specific environment
 
 ```
 cxcli environment execute-cicd [environment] [flags]
@@ -27,4 +27,3 @@ cxcli environment execute-cicd [environment] [flags]
 ## See also
 
 * [cxcli environment](/cmd/cxcli_environment/)	 - Actions on environment
-

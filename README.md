@@ -6,10 +6,10 @@
 
 ---
 
-`cxcli` is a tool that helps Dialogflow CX users to test their projects and interact with them in multiple ways.
-It is useful for your day-today taks or if you want to integrate it in your favorite CI.
+`cxcli` is a command-line tool that helps Dialogflow CX users test their agents and interact with them in various ways.
+It is useful for your day-to-day tasks or if you want to integrate it with your favorite CI tool.
 
-This CLI also has text-to-speech and speech-to text capabilities allowing the interaction with Google Cloud Platform APIs.
+This CLI also allows you to interact with the [text-to-speech](/tts) and [speech-to text](/stt) APIs in Google Cloud.
 
 ---
 
@@ -49,7 +49,7 @@ Please refer to our [contributing guidelines](CONTRIBUTING.md) for further infor
 [![Artifact Hub](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/cxcli&style=for-the-badge)](https://artifacthub.io/packages/search?repo=cxcli)
 [![Go Doc](https://img.shields.io/badge/godoc-reference-blue.svg?style=for-the-badge)](http://godoc.org/github.com/xavidop/dialogflow-cx-cli)
 [![Powered By: GoReleaser](https://img.shields.io/badge/powered%20by-goreleaser-green.svg?style=for-the-badge)](https://github.com/goreleaser)
-[![Sponsors on Github](https://opencollective.com/cxcli/sponsors/badge.svg?style=for-the-badge)](https://github.com/sponsors/xavidop)
+[![Sponsors on GitHub](https://opencollective.com/cxcli/sponsors/badge.svg?style=for-the-badge)](https://github.com/sponsors/xavidop)
 [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg?style=for-the-badge)](https://conventionalcommits.org)
 [![Go Report Card](https://goreportcard.com/badge/github.com/xavidop/dialogflow-cx-cli)](https://goreportcard.com/report/github.com/xavidop/dialogflow-cx-cli)
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fxavidop%2Fdialogflow-cx-cli.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fxavidop%2Fdialogflow-cx-cli?ref=badge_shield)
