@@ -5,21 +5,50 @@ import (
 	"io"
 	"os"
 
+	cx "cloud.google.com/go/dialogflow/cx/apiv3beta1"
+	cxpb "cloud.google.com/go/dialogflow/cx/apiv3beta1/cxpb"
+	"github.com/google/uuid"
 	"github.com/xavidop/dialogflow-cx-cli/internal/global"
+	cxpkg "github.com/xavidop/dialogflow-cx-cli/pkg/cx"
 	terminal "golang.org/x/term"
 )
 
-func Dialog() error {
+func Dialog(locationID, projectID, agentName, localeId string) error {
 	global.Log.Infof("Please press Ctrl+C whenever you want to stop the interaction.\n")
 
-	if err := chat(); err != nil {
+	agentClient, err := cxpkg.CreateAgentRESTClient(locationID)
+	if err != nil {
+		return err
+	}
+	defer agentClient.Close()
+
+	agent, err := cxpkg.GetAgentIdByName(agentClient, agentName, projectID, locationID)
+	if err != nil {
+		return err
+	}
+
+	localeToUse := agent.GetDefaultLanguageCode()
+	if localeId != "" {
+		localeToUse = localeId
+	}
+
+	sessionsClient, err := cxpkg.CreateSessionRESTClient(locationID)
+	if err != nil {
+		return err
+	}
+	defer sessionsClient.Close()
+
+	sessionId := uuid.NewString()
+
+	if err := chat(sessionsClient, agent, localeToUse, sessionId); err != nil {
 		return err
 	}
 
 	return nil
 }
 
-func chat() error {
+func chat(sessionsClient *cx.SessionsClient, agent *cxpb.Agent, locale, sessionId string) error {
+
 	if !terminal.IsTerminal(0) || !terminal.IsTerminal(1) {
 		return fmt.Errorf("stdin/stdout should be terminal")
 	}
@@ -48,7 +77,20 @@ func chat() error {
 		if line == "" {
 			continue
 		}
-		fmt.Fprintln(term, rePrefix, line)
+		response, _ := cxpkg.DetectIntentFromText(sessionsClient, agent, locale, line, sessionId)
+
+		for _, message := range response.GetQueryResult().GetResponseMessages() {
+			if message.GetEndInteraction() != nil {
+				return nil
+			}
+
+			for _, txtToShow := range message.GetText().GetText() {
+
+				fmt.Fprintln(term, rePrefix, txtToShow)
+			}
+
+		}
+
 	}
 }
 

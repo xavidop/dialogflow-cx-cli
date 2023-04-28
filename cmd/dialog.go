@@ -15,7 +15,12 @@ var dialogCmd = &cobra.Command{
 	Aliases: []string{"d"},
 	Short:   "Test your CX Agent interactively directly from your terminal",
 	Run: func(cmd *cobra.Command, args []string) {
-		if err := dialog.Dialog(); err != nil {
+
+		locationID, _ := cmd.Flags().GetString("location-id")
+		projectID, _ := cmd.Flags().GetString("project-id")
+		agentName, _ := cmd.Flags().GetString("agent-name")
+		localeId, _ := cmd.Flags().GetString("locale")
+		if err := dialog.Dialog(locationID, projectID, agentName, localeId); err != nil {
 			global.Log.Errorf(err.Error())
 			os.Exit(1)
 		}
