@@ -29,7 +29,23 @@ func CreateSessionRESTClient(locationId string) (*cx.SessionsClient, error) {
 	}
 }
 
-func DetectIntentFromText(sessionClient *cx.SessionsClient, agent *cxpb.Agent, localeId string, input string) (*cxpb.DetectIntentResponse, error) {
+func CreateSessionGRPCClient(locationId string) (*cx.SessionsClient, error) {
+	ctx := context.Background()
+
+	endpointString := fmt.Sprintf("%s-dialogflow.googleapis.com", locationId)
+	endpoint := option.WithEndpoint(endpointString)
+
+	if global.Credentials != "" {
+		credentials := option.WithCredentialsFile(global.Credentials)
+		return cx.NewSessionsClient(ctx, credentials, endpoint)
+
+	} else {
+		return cx.NewSessionsClient(ctx, endpoint)
+
+	}
+}
+
+func DetectIntentFromText(sessionClient *cx.SessionsClient, agent *cxpb.Agent, localeId string, input string, sessionId string) (*cxpb.DetectIntentResponse, error) {
 
 	textInput := cxpb.TextInput{Text: input}
 	queryTextInput := cxpb.QueryInput_Text{Text: &textInput}
@@ -38,7 +54,7 @@ func DetectIntentFromText(sessionClient *cx.SessionsClient, agent *cxpb.Agent, l
 		LanguageCode: localeId,
 	}
 
-	response, err := DetectIntent(sessionClient, agent, &queryInput)
+	response, err := DetectIntent(sessionClient, agent, &queryInput, sessionId)
 	if err != nil {
 		return nil, err
 	}
@@ -46,7 +62,7 @@ func DetectIntentFromText(sessionClient *cx.SessionsClient, agent *cxpb.Agent, l
 	return response, nil
 }
 
-func DetectIntentFromAudio(sessionClient *cx.SessionsClient, agent *cxpb.Agent, localeId string, audioFile string) (*cxpb.DetectIntentResponse, error) {
+func DetectIntentFromAudio(sessionClient *cx.SessionsClient, agent *cxpb.Agent, localeId string, audioFile string, sessionId string) (*cxpb.DetectIntentResponse, error) {
 
 	dat, err := os.ReadFile(audioFile)
 	if err != nil {
@@ -70,7 +86,7 @@ func DetectIntentFromAudio(sessionClient *cx.SessionsClient, agent *cxpb.Agent, 
 		LanguageCode: localeId,
 	}
 
-	response, err := DetectIntent(sessionClient, agent, &queryInput)
+	response, err := DetectIntent(sessionClient, agent, &queryInput, sessionId)
 	if err != nil {
 		return nil, err
 	}
@@ -78,10 +94,13 @@ func DetectIntentFromAudio(sessionClient *cx.SessionsClient, agent *cxpb.Agent, 
 	return response, nil
 }
 
-func DetectIntent(sessionClient *cx.SessionsClient, agent *cxpb.Agent, queryinput *cxpb.QueryInput) (*cxpb.DetectIntentResponse, error) {
+func DetectIntent(sessionClient *cx.SessionsClient, agent *cxpb.Agent, queryinput *cxpb.QueryInput, sessionId string) (*cxpb.DetectIntentResponse, error) {
+	if sessionId == "" {
+		sessionId = uuid.NewString()
+	}
 	ctx := context.Background()
 
-	sessionPath := fmt.Sprintf("%s/sessions/%s", agent.GetName(), uuid.NewString())
+	sessionPath := fmt.Sprintf("%s/sessions/%s", agent.GetName(), sessionId)
 
 	request := cxpb.DetectIntentRequest{Session: sessionPath, QueryInput: queryinput}
 

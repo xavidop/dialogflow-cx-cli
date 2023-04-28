@@ -7,6 +7,7 @@ import (
 
 	cx "cloud.google.com/go/dialogflow/cx/apiv3beta1"
 	"cloud.google.com/go/dialogflow/cx/apiv3beta1/cxpb"
+	"github.com/google/uuid"
 	"github.com/xavidop/dialogflow-cx-cli/internal/global"
 	"github.com/xavidop/dialogflow-cx-cli/internal/types"
 	"github.com/xavidop/dialogflow-cx-cli/internal/utils"
@@ -41,6 +42,7 @@ func ExecuteSuite(suiteFile string) error {
 	defer sessionsClient.Close()
 
 	global.Log.Infof("Suite Information: %s", suite.AgentName)
+	sessionId := uuid.NewString()
 
 	for _, testInfo := range suite.Tests {
 		testInfo.File = utils.GetRelativeFilePathFromParentFile(suiteFile, testInfo.File)
@@ -53,7 +55,7 @@ func ExecuteSuite(suiteFile string) error {
 
 		for _, check := range test.Checks {
 
-			response, err := getResponse(sessionsClient, agent, test, check, testInfo)
+			response, err := getResponse(sessionsClient, agent, test, check, testInfo, sessionId)
 			if err != nil {
 				return err
 			}
@@ -103,16 +105,16 @@ func ExecuteSuite(suiteFile string) error {
 
 }
 
-func getResponse(sessionsClient *cx.SessionsClient, agent *cxpb.Agent, test *types.Test, check types.Check, testInfo types.Tests) (*cxpb.DetectIntentResponse, error) {
+func getResponse(sessionsClient *cx.SessionsClient, agent *cxpb.Agent, test *types.Test, check types.Check, testInfo types.Tests, sessionId string) (*cxpb.DetectIntentResponse, error) {
 	if check.Input.Type == "text" {
 		global.Log.Infof("Input: type: %s, value: %s \n", check.Input.Type, check.Input.Text)
 
-		return cxpkg.DetectIntentFromText(sessionsClient, agent, test.LocaleID, check.Input.Text)
+		return cxpkg.DetectIntentFromText(sessionsClient, agent, test.LocaleID, check.Input.Text, sessionId)
 	} else {
 		global.Log.Infof("Input: type: %s, value: %s \n", check.Input.Type, check.Input.Audio)
 
 		audioFile := utils.GetRelativeFilePathFromParentFile(testInfo.File, check.Input.Audio)
-		return cxpkg.DetectIntentFromAudio(sessionsClient, agent, test.LocaleID, audioFile)
+		return cxpkg.DetectIntentFromAudio(sessionsClient, agent, test.LocaleID, audioFile, sessionId)
 	}
 
 }
