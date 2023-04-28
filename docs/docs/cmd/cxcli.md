@@ -31,6 +31,7 @@ cxcli [flags]
 
 * [cxcli agent](/cmd/cxcli_agent/)	 - Actions on agent commands
 * [cxcli completion](/cmd/cxcli_completion/)	 - Generate the autocompletion script for the specified shell
+* [cxcli dialog](/cmd/cxcli_dialog/)	 - Test your CX Agent interactively directly from your terminal
 * [cxcli entity-type](/cmd/cxcli_entity-type/)	 - Actions on entity type commands
 * [cxcli environment](/cmd/cxcli_environment/)	 - Actions on environment
 * [cxcli flow](/cmd/cxcli_flow/)	 - Actions on flow commands
@@ -42,3 +43,4 @@ cxcli [flags]
 * [cxcli tts](/cmd/cxcli_tts/)	 - Actions on text-to-speech commands
 * [cxcli version](/cmd/cxcli_version/)	 - Get cxcli version
 * [cxcli webhook](/cmd/cxcli_webhook/)	 - Actions on webhook commands
+

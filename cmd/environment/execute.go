@@ -13,7 +13,7 @@ import (
 var executeCicdCmd = &cobra.Command{
 	Use:     "execute-cicd [environment]",
 	Aliases: []string{"execute", "e", "exe", "exec"},
-	Short:   "Executes a CICD pipeline for a specific environment",
+	Short:   "Executes a CI/CD pipeline for a specific environment",
 	Args:    cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		// Get the information

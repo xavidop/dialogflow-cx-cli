@@ -126,6 +126,7 @@ nav:
   - Speech-to-text: stt.md
   - Command Line Usage:
       - cxcli: cmd/cxcli.md
+      - cxcli dialog: cmd/cxcli_dialog.md
       - cxcli agent: cmd/cxcli_agent.md
       - cxcli environment: cmd/cxcli_environment.md
       - cxcli intent: cmd/cxcli_intent.md

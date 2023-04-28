@@ -31,7 +31,7 @@ git clone git@github.com:xavidop/dialogflow-cx-cli.git
 go mod tidy
 ```
 
-A good way of making sure everything is all right is by running the build:
+A good way of making sure everything is all right is running the build:
 
 ```sh
 go build -o cxcli .
