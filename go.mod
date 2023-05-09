@@ -13,7 +13,7 @@ require (
 
 require (
 	cloud.google.com/go/speech v1.15.0
-	cloud.google.com/go/texttospeech v1.6.0
+	cloud.google.com/go/texttospeech v1.6.1
 	github.com/google/go-github/v50 v50.2.0
 	github.com/invopop/jsonschema v0.7.0
 	github.com/muesli/mango-cobra v1.2.0
@@ -32,7 +32,7 @@ require (
 	github.com/ProtonMail/go-crypto v0.0.0-20230217124315-7d5c6f04bbb8 // indirect
 	github.com/cloudflare/circl v1.1.0 // indirect
 	github.com/cpuguy83/go-md2man/v2 v2.0.2 // indirect
-	github.com/golang/groupcache v0.0.0-20200121045136-8c9f03a8e57e // indirect
+	github.com/golang/groupcache v0.0.0-20210331224755-41bb18bfe9da // indirect
 	github.com/golang/protobuf v1.5.3 // indirect
 	github.com/google/go-cmp v0.5.9 // indirect
 	github.com/google/go-querystring v1.1.0 // indirect
@@ -53,5 +53,5 @@ require (
 	golang.org/x/text v0.9.0 // indirect
 	google.golang.org/appengine v1.6.7 // indirect
 	google.golang.org/genproto v0.0.0-20230410155749-daa745c078e1 // indirect
-	google.golang.org/grpc v1.54.0 // indirect
+	google.golang.org/grpc v1.55.0 // indirect
 )
