@@ -1,6 +1,6 @@
 # Contributing
 
-By participating in this project, you agree to abide our
+By participating in this project, you agree to abide by our
 [code of conduct](https://github.com/xavidop/dialogflow-cx-cli/blob/master/CODE_OF_CONDUCT.md).
 
 ## Set up your machine

@@ -1,16 +1,17 @@
-# cxcli environment execute-cicd
+# cxcli dialog
 
-Executes a CI/CD pipeline for a specific environment
+Test your CX Agent interactively directly from your terminal
 
 ```
-cxcli environment execute-cicd [environment] [flags]
+cxcli dialog [flags]
 ```
 
 ## Options
 
 ```
   -a, --agent-name string    Dialogflow CX Agent Name
-  -h, --help                 help for execute-cicd
+  -h, --help                 help for dialog
+  -e, --locale string        Optional. Locale of the intent. Default: agent locale
   -l, --location-id string   Dialogflow CX Location ID of the Project
   -p, --project-id string    Dialogflow CX Project ID
 ```
@@ -26,5 +27,5 @@ cxcli environment execute-cicd [environment] [flags]
 
 ## See also
 
-* [cxcli environment](/cmd/cxcli_environment/)	 - Actions on environment
+* [cxcli](/cmd/cxcli/)	 - Dialogflow CX CLI
 
