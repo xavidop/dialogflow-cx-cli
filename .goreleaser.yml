@@ -303,9 +303,9 @@ brews:
       man1.install "manpages/cxcli.1.gz"
 
 announce:
-  # twitter:
-  #   enabled: true
-  #   message_template: 'cxcli {{ .Tag }} is out! Check it out: https://github.com/xavidop/dialogflow-cx-cli/releases/tag/{{ .Tag }}'
+  twitter:
+    enabled: false
+    message_template: 'cxcli {{ .Tag }} is out! Check it out: https://github.com/xavidop/dialogflow-cx-cli/releases/tag/{{ .Tag }}'
 
   mastodon:
     enabled: true
