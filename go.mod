@@ -12,7 +12,7 @@ require (
 )
 
 require (
-	cloud.google.com/go/speech v1.17.0
+	cloud.google.com/go/speech v1.17.1
 	cloud.google.com/go/texttospeech v1.7.0
 	github.com/google/go-github/v50 v50.2.0
 	github.com/invopop/jsonschema v0.7.0
@@ -38,7 +38,7 @@ require (
 	github.com/google/go-querystring v1.1.0 // indirect
 	github.com/google/s2a-go v0.1.4 // indirect
 	github.com/googleapis/enterprise-certificate-proxy v0.2.4 // indirect
-	github.com/googleapis/gax-go/v2 v2.10.0 // indirect
+	github.com/googleapis/gax-go/v2 v2.11.0 // indirect
 	github.com/iancoleman/orderedmap v0.0.0-20190318233801-ac98e3ecb4b0 // indirect
 	github.com/inconshreveable/mousetrap v1.1.0 // indirect
 	github.com/muesli/mango v0.1.0 // indirect
