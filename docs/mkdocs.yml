@@ -123,6 +123,12 @@ nav:
     - Create: entitytypes/create.md
     - Update: entitytypes/update.md
     - Delete: entitytypes/delete.md
+  - Flows:
+    - Introduction: flows/introduction.md
+    - Create: flows/create.md
+    - Update: flows/update.md
+    - Delete: flows/delete.md
+    - Train: flows/train.md
   - Environments:
     - Introduction: environments/introduction.md
     - Create: environments/create.md

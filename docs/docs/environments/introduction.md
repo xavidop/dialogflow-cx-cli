@@ -12,11 +12,11 @@ All of the commands that you have available in `cxcli` to interact with your env
 
 ## Create
 
-The `cxcli` has a command that allows you to create an environment. You can find a more detailed [here](/environments/create).
+The `cxcli` has a command that allows you to create an environment. You can find a more detailed information [here](/environments/create).
 
 ## Update
 
-The `cxcli` has a command that allows you to update an environment. You can find a more detailed [here](/environments/update).
+The `cxcli` has a command that allows you to update an environment. You can find a more detailed information [here](/environments/update).
 
 
 ## Delete
