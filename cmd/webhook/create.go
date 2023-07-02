@@ -39,9 +39,25 @@ var createCmd = &cobra.Command{
 func init() {
 	webhookCmd.AddCommand(createCmd)
 
-	createCmd.Flags().StringP("url", "r", "", "Webhook URL")
-	createCmd.Flags().StringP("agent-name", "a", "", "Dialogflow CX Agent Name")
-	createCmd.Flags().StringP("project-id", "p", "", "Dialogflow CX Project ID")
-	createCmd.Flags().StringP("location-id", "l", "", "Dialogflow CX Location ID of the Project")
-	createCmd.Flags().StringP("environment", "e", "global", "Optional. Environment where you want to set the webhook url. Default: global")
+	createCmd.Flags().StringP("url", "r", "", "Webhook URL (required)")
+	if err := createCmd.MarkFlagRequired("url"); err != nil {
+		global.Log.Errorf(err.Error())
+		os.Exit(1)
+	}
+	createCmd.Flags().StringP("project-id", "p", "", "Dialogflow CX Project ID (required)")
+	if err := createCmd.MarkFlagRequired("project-id"); err != nil {
+		global.Log.Errorf(err.Error())
+		os.Exit(1)
+	}
+	createCmd.Flags().StringP("location-id", "l", "", "Dialogflow CX Location ID of the Project (required)")
+	if err := createCmd.MarkFlagRequired("location-id"); err != nil {
+		global.Log.Errorf(err.Error())
+		os.Exit(1)
+	}
+	createCmd.Flags().StringP("agent-name", "a", "", "Dialogflow CX Agent Name (required)")
+	if err := createCmd.MarkFlagRequired("agent-name"); err != nil {
+		global.Log.Errorf(err.Error())
+		os.Exit(1)
+	}
+	createCmd.Flags().StringP("environment", "e", "global", "Environment where you want to set the webhook url. Default: global (optional)")
 }

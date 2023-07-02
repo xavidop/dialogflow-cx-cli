@@ -59,5 +59,5 @@ func init() {
 		global.Log.Errorf(err.Error())
 		os.Exit(1)
 	}
-	createCmd.Flags().StringP("description", "d", "", "Optional. Description for this environment")
+	createCmd.Flags().StringP("description", "d", "", "Description for this environment (optional)")
 }

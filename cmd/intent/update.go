@@ -40,11 +40,23 @@ var updateCmd = &cobra.Command{
 func init() {
 	intentCmd.AddCommand(updateCmd)
 
-	updateCmd.Flags().StringP("project-id", "p", "", "Dialogflow CX Project ID")
-	updateCmd.Flags().StringP("location-id", "l", "", "Dialogflow CX Location ID of the Project")
-	updateCmd.Flags().StringP("agent-name", "a", "", "Dialogflow CX Agent Name")
-	updateCmd.Flags().StringP("locale", "e", "", "Optional. Locale of the intent. Default: agent locale")
-	updateCmd.Flags().StringP("description", "d", "", "Optional. Description for this intent")
-	updateCmd.Flags().StringSliceP("training-phrases", "t", []string{}, "List of the training phrases for this intent, comma separated. Entities, add @entity-type to the word: word@entity-type in the training phrase. Example: hello,hi how are you today@sys.date,morning!")
+	updateCmd.Flags().StringP("project-id", "p", "", "Dialogflow CX Project ID (required)")
+	if err := updateCmd.MarkFlagRequired("project-id"); err != nil {
+		global.Log.Errorf(err.Error())
+		os.Exit(1)
+	}
+	updateCmd.Flags().StringP("location-id", "l", "", "Dialogflow CX Location ID of the Project (required)")
+	if err := updateCmd.MarkFlagRequired("location-id"); err != nil {
+		global.Log.Errorf(err.Error())
+		os.Exit(1)
+	}
+	updateCmd.Flags().StringP("agent-name", "a", "", "Dialogflow CX Agent Name (required)")
+	if err := updateCmd.MarkFlagRequired("agent-name"); err != nil {
+		global.Log.Errorf(err.Error())
+		os.Exit(1)
+	}
+	updateCmd.Flags().StringP("locale", "e", "", "Locale of the intent. Default: agent locale (optional)")
+	updateCmd.Flags().StringP("description", "d", "", "Description for this intent (optional)")
+	updateCmd.Flags().StringSliceP("training-phrases", "t", []string{}, "List of the training phrases for this intent, comma separated. Entities, add @entity-type to the word: word@entity-type in the training phrase. Example: hello,hi how are you today@sys.date,morning!. (Optional)")
 
 }

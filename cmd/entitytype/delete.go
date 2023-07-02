@@ -53,5 +53,5 @@ func init() {
 		global.Log.Errorf(err.Error())
 		os.Exit(1)
 	}
-	deleteCmd.Flags().StringP("force", "f", "", "Optional. Forces to delete the Entity type. NOTE: it will delete all any references to the entity type. Possible values: true or false")
+	deleteCmd.Flags().StringP("force", "f", "", "Forces to delete the Entity type. NOTE: it will delete all any references to the entity type. Possible values: true or false (optional)")
 }

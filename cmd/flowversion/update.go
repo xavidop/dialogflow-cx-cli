@@ -39,9 +39,25 @@ var updateCmd = &cobra.Command{
 func init() {
 	flowversionCmd.AddCommand(updateCmd)
 
-	updateCmd.Flags().StringP("start-flow", "s", "", "Start Flow name to create the version")
-	updateCmd.Flags().StringP("agent-name", "a", "", "Dialogflow CX Agent Name")
-	updateCmd.Flags().StringP("project-id", "p", "", "Dialogflow CX Project ID")
-	updateCmd.Flags().StringP("location-id", "l", "", "Dialogflow CX Location ID of the Project")
-	updateCmd.Flags().StringP("description", "d", "", "Optional. Description for this version")
+	updateCmd.Flags().StringP("start-flow", "s", "", "Start Flow name to create the version (required)")
+	if err := updateCmd.MarkFlagRequired("start-flow"); err != nil {
+		global.Log.Errorf(err.Error())
+		os.Exit(1)
+	}
+	updateCmd.Flags().StringP("project-id", "p", "", "Dialogflow CX Project ID (required)")
+	if err := updateCmd.MarkFlagRequired("project-id"); err != nil {
+		global.Log.Errorf(err.Error())
+		os.Exit(1)
+	}
+	updateCmd.Flags().StringP("location-id", "l", "", "Dialogflow CX Location ID of the Project (required)")
+	if err := updateCmd.MarkFlagRequired("location-id"); err != nil {
+		global.Log.Errorf(err.Error())
+		os.Exit(1)
+	}
+	updateCmd.Flags().StringP("agent-name", "a", "", "Dialogflow CX Agent Name (required)")
+	if err := updateCmd.MarkFlagRequired("agent-name"); err != nil {
+		global.Log.Errorf(err.Error())
+		os.Exit(1)
+	}
+	updateCmd.Flags().StringP("description", "d", "", "Description for this version (optional)")
 }

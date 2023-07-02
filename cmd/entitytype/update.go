@@ -61,6 +61,6 @@ func init() {
 		os.Exit(1)
 	}
 
-	updateCmd.Flags().StringP("locale", "e", "", "Optional. Locale of the intent. Default: agent locale")
-	updateCmd.Flags().StringP("redacted", "r", "", "Optional. Set the entity type as redacted. Possible values: true or false")
+	updateCmd.Flags().StringP("locale", "e", "", "Locale of the intent. Default: agent locale (optional)")
+	updateCmd.Flags().StringP("redacted", "r", "", "Set the entity type as redacted. Possible values: true or false (optional)")
 }

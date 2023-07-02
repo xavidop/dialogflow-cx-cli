@@ -47,9 +47,17 @@ var exportCmd = &cobra.Command{
 func init() {
 	agentCmd.AddCommand(exportCmd)
 
-	exportCmd.Flags().StringP("project-id", "p", "", "Dialogflow CX Project ID")
-	exportCmd.Flags().StringP("location-id", "l", "", "Dialogflow CX Location ID of the Project")
-	exportCmd.Flags().StringP("output-file", "f", "agent.blob", "Output file name")
-	exportCmd.Flags().StringP("export-format", "t", "blob", "Export format type: json or blob. blob by default")
+	exportCmd.Flags().StringP("project-id", "p", "", "Dialogflow CX Project ID (required)")
+	if err := exportCmd.MarkFlagRequired("project-id"); err != nil {
+		global.Log.Errorf(err.Error())
+		os.Exit(1)
+	}
+	exportCmd.Flags().StringP("location-id", "l", "", "Dialogflow CX Location ID of the Project (required)")
+	if err := exportCmd.MarkFlagRequired("location-id"); err != nil {
+		global.Log.Errorf(err.Error())
+		os.Exit(1)
+	}
+	exportCmd.Flags().StringP("output-file", "f", "agent.blob", "Output file name. Default: agent.blob (optional)")
+	exportCmd.Flags().StringP("export-format", "t", "blob", "Export format type: json or blob. blob by default. Default: blob (optional)")
 
 }

@@ -79,12 +79,12 @@ func init() {
 		global.Log.Errorf(err.Error())
 		os.Exit(1)
 	}
-	createCmd.Flags().StringP("description", "d", "", "Description of the agent")
-	createCmd.Flags().StringSliceP("supported-locales", "x", []string{}, "Supported locales of the agent, comma separated. Example: fr,es,de")
-	createCmd.Flags().StringP("avatar-uri", "r", "", "Avatar URI of the agent")
-	createCmd.Flags().StringP("enable-stackdriver-logging", "a", "", "Enable Google Stackdriver logging for this agent. Possible values: true or false")
-	createCmd.Flags().StringP("enable-interaction-logging", "b", "", "Enable interaction logging for this agent. Possible values: true or false")
-	createCmd.Flags().StringP("enable-speech-adaptation", "s", "", "Enable speech adaptation for this agent. Possible values: true or false")
-	createCmd.Flags().StringP("enable-spell-correction", "n", "", "Enable spell correction for this agent. Possible values: true or false")
+	createCmd.Flags().StringP("description", "d", "", "Description of the agent (optional)")
+	createCmd.Flags().StringSliceP("supported-locales", "x", []string{}, "Supported locales of the agent, comma separated. Example: fr,es,de (optional)")
+	createCmd.Flags().StringP("avatar-uri", "r", "", "Avatar URI of the agent (optional)")
+	createCmd.Flags().StringP("enable-stackdriver-logging", "a", "", "Enable Google Stackdriver logging for this agent. Possible values: true or false (optional)")
+	createCmd.Flags().StringP("enable-interaction-logging", "b", "", "Enable interaction logging for this agent. Possible values: true or false (optional)")
+	createCmd.Flags().StringP("enable-speech-adaptation", "s", "", "Enable speech adaptation for this agent. Possible values: true or false (optional)")
+	createCmd.Flags().StringP("enable-spell-correction", "n", "", "Enable spell correction for this agent. Possible values: true or false (optional)")
 
 }

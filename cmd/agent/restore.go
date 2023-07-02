@@ -42,8 +42,16 @@ var restoreCmd = &cobra.Command{
 func init() {
 	agentCmd.AddCommand(restoreCmd)
 
-	restoreCmd.Flags().StringP("project-id", "p", "", "Dialogflow CX Project ID")
-	restoreCmd.Flags().StringP("location-id", "l", "", "Dialogflow CX Location ID of the Project")
-	restoreCmd.Flags().StringP("input", "i", "agent.blob", "Input file name")
+	restoreCmd.Flags().StringP("project-id", "p", "", "Dialogflow CX Project ID (required)")
+	if err := restoreCmd.MarkFlagRequired("project-id"); err != nil {
+		global.Log.Errorf(err.Error())
+		os.Exit(1)
+	}
+	restoreCmd.Flags().StringP("location-id", "l", "", "Dialogflow CX Location ID of the Project (required)")
+	if err := restoreCmd.MarkFlagRequired("location-id"); err != nil {
+		global.Log.Errorf(err.Error())
+		os.Exit(1)
+	}
+	restoreCmd.Flags().StringP("input", "i", "agent.blob", "Input file name. Default: agent.blob (optional)")
 
 }

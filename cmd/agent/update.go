@@ -57,15 +57,23 @@ var updateCmd = &cobra.Command{
 func init() {
 	agentCmd.AddCommand(updateCmd)
 
-	updateCmd.Flags().StringP("project-id", "p", "", "Dialogflow CX Project ID")
-	updateCmd.Flags().StringP("location-id", "l", "", "Dialogflow CX Location ID of the Project")
-	updateCmd.Flags().StringP("timezone", "t", "", "Timezone of the agent from the time zone database https://www.iana.org/time-zones. Example: America/New_York, Europe/Madrid")
-	updateCmd.Flags().StringP("description", "d", "", "Description of the agent")
-	updateCmd.Flags().StringSliceP("supported-locales", "x", []string{}, "Supported locales of the agent, comma separated. Example: fr,es,de")
-	updateCmd.Flags().StringP("avatar-uri", "r", "", "Avatar URI of the agent")
-	updateCmd.Flags().StringP("enable-stackdriver-logging", "a", "", "Enable Google Stackdriver logging for this agent. Possible values: true or false")
-	updateCmd.Flags().StringP("enable-interaction-logging", "b", "", "Enable interaction logging for this agent. Possible values: true or false")
-	updateCmd.Flags().StringP("enable-speech-adaptation", "s", "", "Enable speech adaptation for this agent. Possible values: true or false")
-	updateCmd.Flags().StringP("enable-spell-correction", "n", "", "Enable spell correction for this agent. Possible values: true or false")
+	updateCmd.Flags().StringP("project-id", "p", "", "Dialogflow CX Project ID (required)")
+	if err := updateCmd.MarkFlagRequired("project-id"); err != nil {
+		global.Log.Errorf(err.Error())
+		os.Exit(1)
+	}
+	updateCmd.Flags().StringP("location-id", "l", "", "Dialogflow CX Location ID of the Project (required)")
+	if err := updateCmd.MarkFlagRequired("location-id"); err != nil {
+		global.Log.Errorf(err.Error())
+		os.Exit(1)
+	}
+	updateCmd.Flags().StringP("timezone", "t", "", "Timezone of the agent from the time zone database https://www.iana.org/time-zones. Example: America/New_York, Europe/Madrid (optional)")
+	updateCmd.Flags().StringP("description", "d", "", "Description of the agent (optional)")
+	updateCmd.Flags().StringSliceP("supported-locales", "x", []string{}, "Supported locales of the agent, comma separated. Example: fr,es,de (optional)")
+	updateCmd.Flags().StringP("avatar-uri", "r", "", "Avatar URI of the agent (optional)")
+	updateCmd.Flags().StringP("enable-stackdriver-logging", "a", "", "Enable Google Stackdriver logging for this agent. Possible values: true or false (optional)")
+	updateCmd.Flags().StringP("enable-interaction-logging", "b", "", "Enable interaction logging for this agent. Possible values: true or false (optional)")
+	updateCmd.Flags().StringP("enable-speech-adaptation", "s", "", "Enable speech adaptation for this agent. Possible values: true or false (optional)")
+	updateCmd.Flags().StringP("enable-spell-correction", "n", "", "Enable spell correction for this agent. Possible values: true or false (optional)")
 
 }
