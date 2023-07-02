@@ -40,12 +40,24 @@ func init() {
 	environmentCmd.AddCommand(createCmd)
 
 	createCmd.Flags().StringSliceP("flow-versions", "s", []string{}, "List of Flow and its version to be added to this environment, comma separated. Format: flowName1@version1,flowName2|version2. Example: Default Start Flow@v1.0.0|Buy Flow@v1.0.1 (required)")
-	createCmd.MarkFlagRequired("flow-versions")
+	if err := createCmd.MarkFlagRequired("flow-versions"); err != nil {
+		global.Log.Errorf(err.Error())
+		os.Exit(1)
+	}
 	createCmd.Flags().StringP("agent-name", "a", "", "Dialogflow CX Agent Name (required)")
-	createCmd.MarkFlagRequired("agent-name")
+	if err := createCmd.MarkFlagRequired("agent-name"); err != nil {
+		global.Log.Errorf(err.Error())
+		os.Exit(1)
+	}
 	createCmd.Flags().StringP("project-id", "p", "", "Dialogflow CX Project ID (required)")
-	createCmd.MarkFlagRequired("project-id")
+	if err := createCmd.MarkFlagRequired("project-id"); err != nil {
+		global.Log.Errorf(err.Error())
+		os.Exit(1)
+	}
 	createCmd.Flags().StringP("location-id", "l", "", "Dialogflow CX Location ID of the Project (required)")
-	createCmd.MarkFlagRequired("location-id")
+	if err := createCmd.MarkFlagRequired("location-id"); err != nil {
+		global.Log.Errorf(err.Error())
+		os.Exit(1)
+	}
 	createCmd.Flags().StringP("description", "d", "", "Optional. Description for this environment")
 }

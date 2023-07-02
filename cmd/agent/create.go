@@ -60,13 +60,25 @@ func init() {
 	agentCmd.AddCommand(createCmd)
 
 	createCmd.Flags().StringP("project-id", "p", "", "Dialogflow CX Project ID (required)")
-	createCmd.MarkFlagRequired("project-id")
+	if err := createCmd.MarkFlagRequired("project-id"); err != nil {
+		global.Log.Errorf(err.Error())
+		os.Exit(1)
+	}
 	createCmd.Flags().StringP("location-id", "l", "", "Dialogflow CX Location ID of the Project (required)")
-	createCmd.MarkFlagRequired("location-id")
+	if err := createCmd.MarkFlagRequired("location-id"); err != nil {
+		global.Log.Errorf(err.Error())
+		os.Exit(1)
+	}
 	createCmd.Flags().StringP("locale", "e", "", "Default locale of the agent (required)")
-	createCmd.MarkFlagRequired("locale")
+	if err := createCmd.MarkFlagRequired("locale"); err != nil {
+		global.Log.Errorf(err.Error())
+		os.Exit(1)
+	}
 	createCmd.Flags().StringP("timezone", "t", "", "Timezone of the agent from the time zone database https://www.iana.org/time-zones. Example: America/New_York, Europe/Madrid (required))")
-	createCmd.MarkFlagRequired("timezone")
+	if err := createCmd.MarkFlagRequired("timezone"); err != nil {
+		global.Log.Errorf(err.Error())
+		os.Exit(1)
+	}
 	createCmd.Flags().StringP("description", "d", "", "Description of the agent")
 	createCmd.Flags().StringSliceP("supported-locales", "x", []string{}, "Supported locales of the agent, comma separated. Example: fr,es,de")
 	createCmd.Flags().StringP("avatar-uri", "r", "", "Avatar URI of the agent")

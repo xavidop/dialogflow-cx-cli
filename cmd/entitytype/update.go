@@ -41,13 +41,25 @@ func init() {
 	entitytypeCmd.AddCommand(updateCmd)
 
 	updateCmd.Flags().StringP("agent-name", "a", "", "Dialogflow CX Agent Name (required)")
-	updateCmd.MarkFlagRequired("agent-name")
+	if err := updateCmd.MarkFlagRequired("agent-name"); err != nil {
+		global.Log.Errorf(err.Error())
+		os.Exit(1)
+	}
 	updateCmd.Flags().StringP("project-id", "p", "", "Dialogflow CX Project ID (required)")
-	updateCmd.MarkFlagRequired("project-id")
+	if err := updateCmd.MarkFlagRequired("project-id"); err != nil {
+		global.Log.Errorf(err.Error())
+		os.Exit(1)
+	}
 	updateCmd.Flags().StringP("location-id", "l", "", "Dialogflow CX Location ID of the Project (required)")
-	updateCmd.MarkFlagRequired("location-id")
+	if err := updateCmd.MarkFlagRequired("location-id"); err != nil {
+		global.Log.Errorf(err.Error())
+		os.Exit(1)
+	}
 	updateCmd.Flags().StringSliceP("entities", "n", []string{}, "List of the entities for this entity type, comma separated. Format: entity1@synonym1|synonym2,entity2@synonym1|synonym2. Example: pikachu@25|pika,charmander@3 (required)")
-	updateCmd.MarkFlagRequired("entities")
+	if err := updateCmd.MarkFlagRequired("entities"); err != nil {
+		global.Log.Errorf(err.Error())
+		os.Exit(1)
+	}
 
 	updateCmd.Flags().StringP("locale", "e", "", "Optional. Locale of the intent. Default: agent locale")
 	updateCmd.Flags().StringP("redacted", "r", "", "Optional. Set the entity type as redacted. Possible values: true or false")

@@ -38,10 +38,19 @@ func init() {
 	environmentCmd.AddCommand(deleteCmd)
 
 	deleteCmd.Flags().StringP("agent-name", "a", "", "Dialogflow CX Agent Name (required)")
-	deleteCmd.MarkFlagRequired("agent-name")
+	if err := deleteCmd.MarkFlagRequired("agent-name"); err != nil {
+		global.Log.Errorf(err.Error())
+		os.Exit(1)
+	}
 	deleteCmd.Flags().StringP("project-id", "p", "", "Dialogflow CX Project ID (required)")
-	deleteCmd.MarkFlagRequired("project-id")
+	if err := deleteCmd.MarkFlagRequired("project-id"); err != nil {
+		global.Log.Errorf(err.Error())
+		os.Exit(1)
+	}
 	deleteCmd.Flags().StringP("location-id", "l", "", "Dialogflow CX Location ID of the Project (required)")
-	deleteCmd.MarkFlagRequired("location-id")
+	if err := deleteCmd.MarkFlagRequired("location-id"); err != nil {
+		global.Log.Errorf(err.Error())
+		os.Exit(1)
+	}
 
 }
