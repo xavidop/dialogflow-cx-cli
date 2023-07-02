@@ -108,19 +108,26 @@ nav:
         - Audio input: nluprofiler/examples/audio.md
   - Agents:
     - Introduction: agents/introduction.md
+    - Create: agents/create.md
+    - Update: agents/update.md
+    - Delete: agents/delete.md
     - Restore: agents/restore.md
     - Export: agents/export.md
-    - Delete: agents/delete.md
   - Intents:
     - Introduction: intents/introduction.md
     - Create: intents/create.md
+    - Update: intents/update.md
     - Delete: intents/delete.md
   - Entity Types:
     - Introduction: entitytypes/introduction.md
     - Create: entitytypes/create.md
+    - Update: entitytypes/update.md
     - Delete: entitytypes/delete.md
   - Environments:
     - Introduction: environments/introduction.md
+    - Create: environments/create.md
+    - Update: environments/update.md
+    - Delete: environments/delete.md
     - CI/CD: environments/cicd.md
   - Text-to-speech: tts.md
   - Speech-to-text: stt.md

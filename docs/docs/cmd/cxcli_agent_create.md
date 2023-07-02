@@ -20,7 +20,7 @@ cxcli agent create [agent-name] [flags]
   -l, --location-id string                  Dialogflow CX Location ID of the Project (required)
   -p, --project-id string                   Dialogflow CX Project ID (required)
   -x, --supported-locales strings           Supported locales of the agent, comma separated. Example: fr,es,de (optional)
-  -t, --timezone string                     Timezone of the agent from the time zone database https://www.iana.org/time-zones. Example: America/New_York, Europe/Madrid (required))
+  -t, --timezone string                     Timezone of the agent from the time zone database https://www.iana.org/time-zones. Example: America/New_York, Europe/Madrid (required)
 ```
 
 ## Options inherited from parent commands

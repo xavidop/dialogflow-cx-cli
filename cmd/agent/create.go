@@ -74,7 +74,7 @@ func init() {
 		global.Log.Errorf(err.Error())
 		os.Exit(1)
 	}
-	createCmd.Flags().StringP("timezone", "t", "", "Timezone of the agent from the time zone database https://www.iana.org/time-zones. Example: America/New_York, Europe/Madrid (required))")
+	createCmd.Flags().StringP("timezone", "t", "", "Timezone of the agent from the time zone database https://www.iana.org/time-zones. Example: America/New_York, Europe/Madrid (required)")
 	if err := createCmd.MarkFlagRequired("timezone"); err != nil {
 		global.Log.Errorf(err.Error())
 		os.Exit(1)

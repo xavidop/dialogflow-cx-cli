@@ -40,7 +40,7 @@ func Update(name, description, locationID, projectID, agentName string, flowVers
 		return err
 	}
 
-	global.Log.Infof("Environment updated:")
+	global.Log.Infof("Environment updated")
 
 	return nil
 }

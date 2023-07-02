@@ -24,6 +24,10 @@ All of the commands that you have available in `cxcli` to interact with your int
 
 The `cxcli` has a command that allows you to create an intent. You can find a more detailed explanation [here](/intents/create)
 
+## Update
+
+The `cxcli` has a command that allows you to update an intent. You can find a more detailed explanation [here](/intents/update)
+
 
 ## Delete
 

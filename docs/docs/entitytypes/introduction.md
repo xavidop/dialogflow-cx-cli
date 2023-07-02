@@ -23,6 +23,10 @@ All of the commands that you have available in `cxcli` to interact with your ent
 
 The `cxcli` has a command that allows you to create an entity type. You can find a more detailed [here](/entitytypes/create).
 
+## Update
+
+The `cxcli` has a command that allows you to update an entity type. You can find a more detailed [here](/entitytypes/update).
+
 
 ## Delete
 
