@@ -17,7 +17,7 @@ The above command will give you output similar to the following:
 
 ```sh
 $ cxcli flow update my-flow --agent-name test-agent --project-id test-cx-346408 --location-id us-central1 --description "My updated test flow"
-INFO flow updated
+INFO Flow updated
 ```
 
 ## Useful Links

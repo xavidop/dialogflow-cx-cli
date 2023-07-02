@@ -129,6 +129,11 @@ nav:
     - Update: flows/update.md
     - Delete: flows/delete.md
     - Train: flows/train.md
+  - Flow Versions:
+    - Introduction: flowversions/introduction.md
+    - Create: flowversions/create.md
+    - Update: flowversions/update.md
+    - Delete: flowversions/delete.md
   - Environments:
     - Introduction: environments/introduction.md
     - Create: environments/create.md

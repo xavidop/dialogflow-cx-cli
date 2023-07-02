@@ -19,6 +19,9 @@ $ cxcli flow train my-flow --project-id test-cx-346408 --location-id us-central1
 INFO Flow trained
 ```
 
+!!! info "Is it taking longer than expected?"
+    That is okay, depending on the amount of data to train it takes longer.
+
 ## Useful Links
 
 If you want to learn more about Dialogflow CX flow train execution, refer to the [official documentation](https://cloud.google.com/dialogflow/cx/docs/concept/flow).
