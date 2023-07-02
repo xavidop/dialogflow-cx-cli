@@ -304,7 +304,7 @@ brews:
 
 announce:
   twitter:
-    enabled: true
+    enabled: false
     message_template: 'cxcli {{ .Tag }} is out! Check it out: https://github.com/xavidop/dialogflow-cx-cli/releases/tag/{{ .Tag }}'
 
   mastodon:
