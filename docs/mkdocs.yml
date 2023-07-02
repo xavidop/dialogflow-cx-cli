@@ -96,6 +96,7 @@ nav:
       - Roadmap: overview/roadmap.md
       - FAQ: overview/faq.md
   # - Continuous Integration: ci.md
+  - Dialog: dialog.md
   - NLU Profiler:
     - Introduction: nluprofiler/introduction.md
     - Reference:
