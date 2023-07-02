@@ -5,7 +5,7 @@ import (
 	cxpkg "github.com/xavidop/dialogflow-cx-cli/pkg/cx"
 )
 
-func Update(name, url, locationID, projectID, agentName, environment string) error {
+func Update(name, url, locationID, projectID, agentName, environment, flexible, requestBody, parametersMapping string) error {
 	agentClient, err := cxpkg.CreateAgentRESTClient(locationID)
 	if err != nil {
 		return err
@@ -47,7 +47,7 @@ func Update(name, url, locationID, projectID, agentName, environment string) err
 		}
 
 	} else {
-		_, err := cxpkg.UpdateWebhook(webhookClient, agent, url, name)
+		_, err := cxpkg.UpdateWebhook(webhookClient, agent, url, name, flexible, requestBody, parametersMapping)
 		if err != nil {
 			return err
 		}

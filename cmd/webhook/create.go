@@ -22,9 +22,12 @@ var createCmd = &cobra.Command{
 		agentName, _ := cmd.Flags().GetString("agent-name")
 		environment, _ := cmd.Flags().GetString("environment")
 		url, _ := cmd.Flags().GetString("url")
+		flexible, _ := cmd.Flags().GetString("flexible")
+		requestBody, _ := cmd.Flags().GetString("request-body")
+		parametersMapping, _ := cmd.Flags().GetString("parameters-mapping")
 		name := args[0]
 
-		if err := webhook.Create(name, url, locationID, projectID, agentName, environment); err != nil {
+		if err := webhook.Create(name, url, locationID, projectID, agentName, environment, flexible, requestBody, parametersMapping); err != nil {
 			global.Log.Errorf(err.Error())
 			os.Exit(1)
 		}
@@ -60,4 +63,8 @@ func init() {
 		os.Exit(1)
 	}
 	createCmd.Flags().StringP("environment", "e", "global", "Environment where you want to set the webhook url. Default: global (optional)")
+	createCmd.Flags().StringP("flexible", "f", "false", "Creates a flexible webhook. Possible values: true or false (optional)")
+	createCmd.Flags().StringP("request-body", "t", "", "Creates a request body for flexible webhook. It has to be in JSON Format (required only if flexible is true)")
+	createCmd.Flags().StringP("parameters-mapping", "m", "", "Creates a parameter mapping for flexible webhook, comma separated. The format is parameter@json-path,paramter2@json-path2. Example: my-param@$.fully.qualified.path.to.field (required only if flexible is true)")
+
 }
