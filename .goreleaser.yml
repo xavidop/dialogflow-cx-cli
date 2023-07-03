@@ -37,7 +37,6 @@ archives:
     builds_info:
       group: root
       owner: root
-    rlcp: true
     files:
       - README.md
       - LICENSE.md
@@ -256,15 +255,16 @@ publishers:
 milestones:
   - close: true
 
-scoop:
-  bucket:
-    owner: xavidop
-    name: scoop-bucket
-    token: "{{ .Env.GITHUB_TOKEN }}"
-  name: cxcli
-  homepage:  https://cxcli.xavidop.me
-  description: The missing CLI for your Dialogflow CX projects
-  license: Apache-2.0
+scoops:
+  - repository:
+      owner: xavidop
+      name: scoop-bucket
+      token: "{{ .Env.GITHUB_TOKEN }}"
+    folder: bucket
+    name: cxcli
+    homepage:  https://cxcli.xavidop.me
+    description: The missing CLI for your Dialogflow CX projects
+    license: Apache-2.0
 
 # chocolateys:
 #   - name: cxcli
@@ -282,19 +282,19 @@ scoop:
 #     api_key: '{{ .Env.CHOCOLATEY_API_KEY }}'
 
 brews:
-  - name: cxcli
+  - repository:
+      owner: xavidop
+      name: homebrew-tap
+    folder: Formula
+    name: cxcli
     homepage: 'https://cxcli.xavidop.me'
     description: 'The missing CLI for your Dialogflow CX projects'
-    folder: Formula
     goarm: "7"
     test: |
       system "#{bin}/cxcli version"
     commit_author:
       name: xavidop
       email: xavi_tb@hotmail.com
-    tap:
-      owner: xavidop
-      name: homebrew-tap
     install: |-
       bin.install "cxcli"
       bash_completion.install "completions/cxcli.bash" => "cxcli"
