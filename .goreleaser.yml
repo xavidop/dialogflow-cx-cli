@@ -311,7 +311,7 @@ winget:
     repository:
       owner: xavidop
       name: winget-pkgs
-      branch: "goreleaser-{{.Version}}"
+      branch: "cxcli-{{.Version}}"
       pull_request:
         enabled: true
         draft: true
