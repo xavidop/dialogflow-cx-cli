@@ -1,0 +1,27 @@
+name: fig
+
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: read
+
+jobs:
+  fig:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@c85c95e3d7251135ab7dc9ce3241c5835cc595a9 # v3
+      - uses: actions/setup-go@fac708d6674e30b6ba41289acaab6d4b75aa0753 # v4
+        with:
+          go-version: stable
+          cache: true
+      - run: go run . generate-fig-spec >cxcli.ts
+      - uses: withfig/push-to-fig-autocomplete-action@v1
+        with:
+          token: ${{ secrets.GO_RELEASER_GITHUB_TOKEN }}
+          autocomplete-spec-name: cxcli
+          spec-path: cxcli.ts
+          integration: commander

@@ -302,6 +302,39 @@ brews:
       fish_completion.install "completions/cxcli.fish"
       man1.install "manpages/cxcli.1.gz"
 
+winget:
+  - name: cxcli
+    publisher: xavidop
+    license: Apache-2.0
+    homepage: https://cxcli.xavidop.me
+    short_description: 'The missing CLI for your Dialogflow CX projects'
+    repository:
+      owner: xavidop
+      name: winget-pkgs
+      branch: "goreleaser-{{.Version}}"
+      pull_request:
+        enabled: true
+        draft: true
+        base:
+          owner: microsoft
+          name: winget-pkgs
+          branch: master
+
+nix:
+  - name: cxcli
+    repository:
+      owner: xavidop
+      name: nur
+    homepage: https://cxcli.xavidop.me
+    description: 'The missing CLI for your Dialogflow CX projects'
+    path: pkgs/cxcli/default.nix
+    license: Apache-2.0
+    install: |-
+      mkdir -p $out/bin
+      cp -vr ./cxcli $out/bin/cxcli
+      installManPage ./manpages/cxcli.1.gz
+      installShellCompletion ./completions/*
+
 announce:
   twitter:
     enabled: false
