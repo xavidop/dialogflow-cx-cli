@@ -260,7 +260,6 @@ scoops:
       owner: xavidop
       name: scoop-bucket
       token: "{{ .Env.GITHUB_TOKEN }}"
-    folder: bucket
     name: cxcli
     homepage:  https://cxcli.xavidop.me
     description: The missing CLI for your Dialogflow CX projects
@@ -268,7 +267,6 @@ scoops:
 
 # chocolateys:
 #   - name: cxcli
-#     owners: Xavier Portilla Edo
 #     authors: Xavier Portilla Edo
 #     title: Dialogflow CX CLI
 #     project_url:  https://cxcli.xavidop.me
