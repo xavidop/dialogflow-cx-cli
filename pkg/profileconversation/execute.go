@@ -8,6 +8,7 @@ import (
 	"cloud.google.com/go/dialogflow/cx/apiv3beta1/cxpb"
 	"github.com/adrg/strutil"
 	"github.com/adrg/strutil/metrics"
+	"github.com/google/uuid"
 	"github.com/xavidop/dialogflow-cx-cli/internal/global"
 	types "github.com/xavidop/dialogflow-cx-cli/internal/types/profileconversation"
 	"github.com/xavidop/dialogflow-cx-cli/internal/types/profileconversation/configurations"
@@ -24,25 +25,25 @@ func ExecuteSuite(suiteFile string) error {
 		return err
 	}
 
-	// agentClient, err := cxpkg.CreateAgentRESTClient(suite.LocationID)
-	// if err != nil {
-	// 	return err
-	// }
-	// defer agentClient.Close()
+	agentClient, err := cxpkg.CreateAgentRESTClient(suite.LocationID)
+	if err != nil {
+		return err
+	}
+	defer agentClient.Close()
 
-	// agent, err := cxpkg.GetAgentIdByName(agentClient, suite.AgentName, suite.ProjectID, suite.LocationID)
-	// if err != nil {
-	// 	return err
-	// }
+	agent, err := cxpkg.GetAgentIdByName(agentClient, suite.AgentName, suite.ProjectID, suite.LocationID)
+	if err != nil {
+		return err
+	}
 
-	// sessionsClient, err := cxpkg.CreateSessionRESTClient(suite.LocationID)
-	// if err != nil {
-	// 	return err
-	// }
-	// defer sessionsClient.Close()
+	sessionsClient, err := cxpkg.CreateSessionRESTClient(suite.LocationID)
+	if err != nil {
+		return err
+	}
+	defer sessionsClient.Close()
 
 	global.Log.Infof("Suite Information: %s", suite.AgentName)
-	//sessionId := uuid.NewString()
+	sessionId := uuid.NewString()
 
 	for _, testInfo := range suite.Tests {
 		testInfo.File = utils.GetRelativeFilePathFromParentFile(suiteFile, testInfo.File)
@@ -55,13 +56,14 @@ func ExecuteSuite(suiteFile string) error {
 
 		for _, interaction := range test.Interactions {
 
-			// response, err := getResponse(sessionsClient, agent, test, interaction, testInfo, sessionId)
-			// if err != nil {
-			// 	return err
-			// }
+			response, err := getResponse(sessionsClient, agent, test, interaction, testInfo, sessionId)
+			if err != nil {
+				return err
+			}
 
-			// queryResult := response.GetQueryResult()
-			// messages := queryResult.GetResponseMessages()
+			queryResult := response.GetQueryResult()
+			messages := queryResult.GetResponseMessages()
+			global.Log.Printf("%v", messages[0])
 
 			validations := interaction.Agent.Validate
 
