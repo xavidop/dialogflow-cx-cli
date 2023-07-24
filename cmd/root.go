@@ -68,9 +68,9 @@ func init() {
 	cmdflowversion.Register(rootCmd)
 
 	// Add the subcommands
-	rootCmd.PersistentFlags().BoolVarP(&global.Verbose, "verbose", "v", false, "verbose error output (with stack trace)")
-	rootCmd.PersistentFlags().StringVarP(&global.Credentials, "credentials", "c", "", "Google Cloud credentials JSON file")
-	rootCmd.PersistentFlags().BoolVarP(&global.SkipUpdate, "skip-update-check", "u", false, "Skip the check for updates check run before every command")
-	rootCmd.PersistentFlags().StringVarP(&global.Output, "output-format", "o", "text", "Output Format")
+	rootCmd.PersistentFlags().BoolVarP(&global.Verbose, "verbose", "v", false, "verbose error output (with stack trace) (optional)")
+	rootCmd.PersistentFlags().StringVarP(&global.Credentials, "credentials", "c", "", "Google Cloud credentials JSON file path (optional)")
+	rootCmd.PersistentFlags().BoolVarP(&global.SkipUpdate, "skip-update-check", "u", false, "Skip the check for updates check run before every command (optional)")
+	rootCmd.PersistentFlags().StringVarP(&global.Output, "output-format", "o", "text", "Output Format. Options: text, json. Default: text (optional)")
 
 }

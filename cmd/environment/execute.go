@@ -37,7 +37,20 @@ var executeCicdCmd = &cobra.Command{
 func init() {
 	environmentCmd.AddCommand(executeCicdCmd)
 
-	executeCicdCmd.Flags().StringP("agent-name", "a", "", "Dialogflow CX Agent Name")
-	executeCicdCmd.Flags().StringP("project-id", "p", "", "Dialogflow CX Project ID")
-	executeCicdCmd.Flags().StringP("location-id", "l", "", "Dialogflow CX Location ID of the Project")
+	executeCicdCmd.Flags().StringP("agent-name", "a", "", "Dialogflow CX Agent Name (required)")
+	if err := executeCicdCmd.MarkFlagRequired("agent-name"); err != nil {
+		global.Log.Errorf(err.Error())
+		os.Exit(1)
+	}
+	executeCicdCmd.Flags().StringP("project-id", "p", "", "Dialogflow CX Project ID (required)")
+	if err := executeCicdCmd.MarkFlagRequired("project-id"); err != nil {
+		global.Log.Errorf(err.Error())
+		os.Exit(1)
+	}
+	executeCicdCmd.Flags().StringP("location-id", "l", "", "Dialogflow CX Location ID of the Project (required)")
+	if err := executeCicdCmd.MarkFlagRequired("location-id"); err != nil {
+		global.Log.Errorf(err.Error())
+		os.Exit(1)
+	}
+
 }

@@ -40,9 +40,25 @@ var updateCmd = &cobra.Command{
 func init() {
 	environmentCmd.AddCommand(updateCmd)
 
-	updateCmd.Flags().StringSliceP("flow-versions", "s", []string{}, "List of Flow and its version to be added to this environment, comma separated. Format: flowName1@version1,flowName2|version2. Example: Default Start Flow@v1.0.0|Buy Flow@v1.0.1")
-	updateCmd.Flags().StringP("agent-name", "a", "", "Dialogflow CX Agent Name")
-	updateCmd.Flags().StringP("project-id", "p", "", "Dialogflow CX Project ID")
-	updateCmd.Flags().StringP("location-id", "l", "", "Dialogflow CX Location ID of the Project")
-	updateCmd.Flags().StringP("description", "d", "", "Optional. Description for this environment")
+	updateCmd.Flags().StringSliceP("flow-versions", "s", []string{}, "List of Flow and its version to be added to this environment, comma separated. Format: flowName1@version1,flowName2|version2. Example: Default Start Flow@v1.0.0|Buy Flow@v1.0.1 (required)")
+	if err := updateCmd.MarkFlagRequired("flow-versions"); err != nil {
+		global.Log.Errorf(err.Error())
+		os.Exit(1)
+	}
+	updateCmd.Flags().StringP("agent-name", "a", "", "Dialogflow CX Agent Name (required)")
+	if err := updateCmd.MarkFlagRequired("agent-name"); err != nil {
+		global.Log.Errorf(err.Error())
+		os.Exit(1)
+	}
+	updateCmd.Flags().StringP("project-id", "p", "", "Dialogflow CX Project ID (required)")
+	if err := updateCmd.MarkFlagRequired("project-id"); err != nil {
+		global.Log.Errorf(err.Error())
+		os.Exit(1)
+	}
+	updateCmd.Flags().StringP("location-id", "l", "", "Dialogflow CX Location ID of the Project (required)")
+	if err := updateCmd.MarkFlagRequired("location-id"); err != nil {
+		global.Log.Errorf(err.Error())
+		os.Exit(1)
+	}
+	updateCmd.Flags().StringP("description", "d", "", "Description for this environment (optional)")
 }

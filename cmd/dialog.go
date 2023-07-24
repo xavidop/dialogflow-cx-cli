@@ -35,8 +35,20 @@ var dialogCmd = &cobra.Command{
 func init() {
 	rootCmd.AddCommand(dialogCmd)
 
-	dialogCmd.Flags().StringP("project-id", "p", "", "Dialogflow CX Project ID")
-	dialogCmd.Flags().StringP("location-id", "l", "", "Dialogflow CX Location ID of the Project")
-	dialogCmd.Flags().StringP("agent-name", "a", "", "Dialogflow CX Agent Name")
-	dialogCmd.Flags().StringP("locale", "e", "", "Optional. Locale of the intent. Default: agent locale")
+	dialogCmd.Flags().StringP("project-id", "p", "", "Dialogflow CX Project ID (required)")
+	if err := dialogCmd.MarkFlagRequired("project-id"); err != nil {
+		global.Log.Errorf(err.Error())
+		os.Exit(1)
+	}
+	dialogCmd.Flags().StringP("location-id", "l", "", "Dialogflow CX Location ID of the Project (required)")
+	if err := dialogCmd.MarkFlagRequired("location-id"); err != nil {
+		global.Log.Errorf(err.Error())
+		os.Exit(1)
+	}
+	dialogCmd.Flags().StringP("agent-name", "a", "", "Dialogflow CX Agent Name (required)")
+	if err := dialogCmd.MarkFlagRequired("agent-name"); err != nil {
+		global.Log.Errorf(err.Error())
+		os.Exit(1)
+	}
+	dialogCmd.Flags().StringP("locale", "e", "", "Locale of the intent. Default: agent locale (optional)")
 }

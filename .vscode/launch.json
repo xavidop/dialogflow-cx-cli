@@ -245,7 +245,7 @@
                 "ENV": "development"
             },
             "args": [
-                "webhook", "update", "my-webhook", "--agent-name", "test-agent", "--project-id", "test-cx-346408", "--location-id", "us-central1", "--credentials", "credentials.json", "--url", "https://my-webhook-prod.com"
+                "webhook", "update", "my-webhook", "--agent-name", "test-agent", "--project-id", "test-cx-346408", "--location-id", "us-central1", "--credentials", "credentials.json", "--url", "https://my-webhook-prod.com", "--flexible", "true", "--request-body", "{\"hello\": true}", "--parameters-mapping", "my-param@$.fully.qualified.path.to.field, my-param2@$.fully.qualified.path.to.field2"
             ]
         },
         {

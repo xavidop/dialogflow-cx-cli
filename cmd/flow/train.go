@@ -37,7 +37,19 @@ var trainCmd = &cobra.Command{
 func init() {
 	flowCmd.AddCommand(trainCmd)
 
-	trainCmd.Flags().StringP("project-id", "p", "", "Dialogflow CX Project ID")
-	trainCmd.Flags().StringP("location-id", "l", "", "Dialogflow CX Location ID of the Project")
-	trainCmd.Flags().StringP("agent-name", "a", "", "Dialogflow CX Agent Name")
+	trainCmd.Flags().StringP("project-id", "p", "", "Dialogflow CX Project ID (required)")
+	if err := trainCmd.MarkFlagRequired("project-id"); err != nil {
+		global.Log.Errorf(err.Error())
+		os.Exit(1)
+	}
+	trainCmd.Flags().StringP("location-id", "l", "", "Dialogflow CX Location ID of the Project (required)")
+	if err := trainCmd.MarkFlagRequired("location-id"); err != nil {
+		global.Log.Errorf(err.Error())
+		os.Exit(1)
+	}
+	trainCmd.Flags().StringP("agent-name", "a", "", "Dialogflow CX Agent Name (required)")
+	if err := trainCmd.MarkFlagRequired("agent-name"); err != nil {
+		global.Log.Errorf(err.Error())
+		os.Exit(1)
+	}
 }

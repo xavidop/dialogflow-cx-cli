@@ -42,13 +42,25 @@ var updateCmd = &cobra.Command{
 func init() {
 	flowCmd.AddCommand(updateCmd)
 
-	updateCmd.Flags().StringP("project-id", "p", "", "Dialogflow CX Project ID")
-	updateCmd.Flags().StringP("location-id", "l", "", "Dialogflow CX Location ID of the Project")
-	updateCmd.Flags().StringP("agent-name", "a", "", "Dialogflow CX Agent Name")
-	updateCmd.Flags().StringP("locale", "e", "", "Optional. Locale of the flow. Default: agent locale")
-	updateCmd.Flags().StringP("description", "d", "", "Optional. Description for this flow")
-	updateCmd.Flags().StringP("nlu-classification-threshold", "s", "", "Optional. NLU Classification Threshold. From 0.0 (completely uncertain) to 1.0 (completely certain)")
-	updateCmd.Flags().StringP("nlu-model-type", "m", "", "Optional. NLU Model Type. Possible values: advanced or standard")
-	updateCmd.Flags().StringP("nlu-model-training-mode", "t", "", "Optional. NLU Model training mode. Possible values: automatic or manual")
+	updateCmd.Flags().StringP("project-id", "p", "", "Dialogflow CX Project ID (required)")
+	if err := updateCmd.MarkFlagRequired("project-id"); err != nil {
+		global.Log.Errorf(err.Error())
+		os.Exit(1)
+	}
+	updateCmd.Flags().StringP("location-id", "l", "", "Dialogflow CX Location ID of the Project (required)")
+	if err := updateCmd.MarkFlagRequired("location-id"); err != nil {
+		global.Log.Errorf(err.Error())
+		os.Exit(1)
+	}
+	updateCmd.Flags().StringP("agent-name", "a", "", "Dialogflow CX Agent Name (required)")
+	if err := updateCmd.MarkFlagRequired("agent-name"); err != nil {
+		global.Log.Errorf(err.Error())
+		os.Exit(1)
+	}
+	updateCmd.Flags().StringP("locale", "e", "", "Locale of the flow. Default: agent locale (optional)")
+	updateCmd.Flags().StringP("description", "d", "", "Description for this flow (optional)")
+	updateCmd.Flags().StringP("nlu-classification-threshold", "s", "", "NLU Classification Threshold. From 0.0 (completely uncertain) to 1.0 (completely certain). (optional)")
+	updateCmd.Flags().StringP("nlu-model-type", "m", "", "NLU Model Type. Possible values: advanced or standard (optional)")
+	updateCmd.Flags().StringP("nlu-model-training-mode", "t", "", "NLU Model training mode. Possible values: automatic or manual (optional)")
 
 }

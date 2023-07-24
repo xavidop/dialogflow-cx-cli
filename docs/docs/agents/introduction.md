@@ -10,6 +10,22 @@ With `cxcli`, you can easily interact with your Dialogflow CX agents.
 
 All of the commands that are available in `cxcli` to interact with your agents are located within the `cxcli agent` subcommand.
 
+## Create
+
+You can create an agent using this tool.
+
+The `cxcli` has a command that allows you to create an agent. You can find a more detailed explanation [here](/agents/create)
+
+## Update
+
+You can update an agent using this cli.
+
+The `cxcli` has a command that allows you to update an agent. You can find a more detailed explanation [here](/agents/udpate)
+
+## Delete
+
+The `cxcli` has a command that allows you to delete your agent. You can find a more detailed explanation [here](/agents/delete)
+
 ## Restore
 
 You can restore an agent using a `blob` or a `json-package` file. Right now the Dialogflow CX API, used by the `cxcli`, works with the `blob` and `json` format.
@@ -22,10 +38,6 @@ The `cxcli` has a command that allows you to restore an agent. You can find a mo
 An agent can be exported as a `blob` or a `json-package` file. Right now the Dialogflow CX API, used by the `cxcli`, works with the `blob` and `json` format.
 
 The `cxcli` has a command that allows you to export your agent. You can find a more detailed explanation [here](/agents/export)
-
-## Delete
-
-The `cxcli` has a command that allows you to delete your agent. You can find a more detailed explanation [here](/agents/delete)
 
 ## Useful Links
 

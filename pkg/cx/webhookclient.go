@@ -4,6 +4,7 @@ import (
 	"context"
 	"errors"
 	"fmt"
+	"strings"
 
 	cx "cloud.google.com/go/dialogflow/cx/apiv3beta1"
 	cxpb "cloud.google.com/go/dialogflow/cx/apiv3beta1/cxpb"
@@ -41,14 +42,31 @@ func CreateWebhookGRPCClient(locationId string) (*cx.WebhooksClient, error) {
 
 }
 
-func CreateWebhook(webhookClient *cx.WebhooksClient, agent *cxpb.Agent, url, name string) (*cxpb.Webhook, error) {
+func CreateWebhook(webhookClient *cx.WebhooksClient, agent *cxpb.Agent, url, name, flexible, requestBody, parametersMapping string) (*cxpb.Webhook, error) {
 	ctx := context.Background()
+	webhookType := cxpb.Webhook_GenericWebService_STANDARD
+
+	flexibleBool, err := utils.ParseBool(flexible)
+	if err != nil {
+		return nil, err
+	}
+	if flexibleBool {
+		webhookType = cxpb.Webhook_GenericWebService_FLEXIBLE
+	}
+
+	parametersMappingMap, err := ParseParametersMapping(parametersMapping)
+	if err != nil {
+		return nil, err
+	}
 
 	webhook := &cxpb.Webhook{
 		DisplayName: name,
 		Webhook: &cxpb.Webhook_GenericWebService_{
 			GenericWebService: &cxpb.Webhook_GenericWebService{
-				Uri: url,
+				Uri:              url,
+				WebhookType:      webhookType,
+				RequestBody:      requestBody,
+				ParameterMapping: parametersMappingMap,
 			},
 		},
 	}
@@ -61,7 +79,23 @@ func CreateWebhook(webhookClient *cx.WebhooksClient, agent *cxpb.Agent, url, nam
 	return webhookClient.CreateWebhook(ctx, reqCreateWebhook)
 }
 
-func UpdateWebhook(webhookClient *cx.WebhooksClient, agent *cxpb.Agent, url, name string) (*cxpb.Webhook, error) {
+func ParseParametersMapping(parametersMapping string) (map[string]string, error) {
+	parametersMappingMap := make(map[string]string)
+	if parametersMapping != "" {
+		mappings := strings.Split(parametersMapping, ",")
+		for _, mapping := range mappings {
+			mappingSplit := strings.Split(mapping, "@")
+			if len(mappingSplit) != 2 {
+				return nil, errors.New("invalid parameters mapping")
+			}
+			parametersMappingMap[strings.TrimSpace(mappingSplit[0])] = strings.TrimSpace(mappingSplit[1])
+		}
+		return parametersMappingMap, nil
+	}
+	return parametersMappingMap, nil
+}
+
+func UpdateWebhook(webhookClient *cx.WebhooksClient, agent *cxpb.Agent, url, name, flexible, requestBody, parametersMapping string) (*cxpb.Webhook, error) {
 	ctx := context.Background()
 
 	webhook, err := GetWebhookIdByName(webhookClient, agent, name)
@@ -69,8 +103,31 @@ func UpdateWebhook(webhookClient *cx.WebhooksClient, agent *cxpb.Agent, url, nam
 		return nil, err
 	}
 
+	if flexible != "" {
+		flexibelBool, err := utils.ParseBool(flexible)
+		if err != nil {
+			return nil, err
+		}
+		if flexibelBool {
+			webhook.GetGenericWebService().WebhookType = cxpb.Webhook_GenericWebService_FLEXIBLE
+		} else {
+			webhook.GetGenericWebService().WebhookType = cxpb.Webhook_GenericWebService_STANDARD
+		}
+	}
+
+	if requestBody != "" {
+		webhook.GetGenericWebService().RequestBody = requestBody
+	}
+
 	if url != "" {
 		webhook.GetGenericWebService().Uri = url
+	}
+	if parametersMapping != "" {
+		parametersMappingMap, err := ParseParametersMapping(parametersMapping)
+		if err != nil {
+			return nil, err
+		}
+		webhook.GetGenericWebService().ParameterMapping = parametersMappingMap
 	}
 
 	reqUpdateWebhook := &cxpb.UpdateWebhookRequest{

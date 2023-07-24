@@ -40,11 +40,27 @@ var createCmd = &cobra.Command{
 func init() {
 	intentCmd.AddCommand(createCmd)
 
-	createCmd.Flags().StringP("project-id", "p", "", "Dialogflow CX Project ID")
-	createCmd.Flags().StringP("location-id", "l", "", "Dialogflow CX Location ID of the Project")
-	createCmd.Flags().StringP("agent-name", "a", "", "Dialogflow CX Agent Name")
-	createCmd.Flags().StringP("locale", "e", "", "Optional. Locale of the intent. Default: agent locale")
-	createCmd.Flags().StringP("description", "d", "", "Optional. Description for this intent")
-	createCmd.Flags().StringSliceP("training-phrases", "t", []string{}, "List of the training phrases for this intent, comma separated. Entities, add @entity-type to the word: word@entity-type in the training phrase. Example: hello,hi how are you today@sys.date,morning!")
+	createCmd.Flags().StringP("project-id", "p", "", "Dialogflow CX Project ID (required)")
+	if err := createCmd.MarkFlagRequired("project-id"); err != nil {
+		global.Log.Errorf(err.Error())
+		os.Exit(1)
+	}
+	createCmd.Flags().StringP("location-id", "l", "", "Dialogflow CX Location ID of the Project (required)")
+	if err := createCmd.MarkFlagRequired("location-id"); err != nil {
+		global.Log.Errorf(err.Error())
+		os.Exit(1)
+	}
+	createCmd.Flags().StringP("agent-name", "a", "", "Dialogflow CX Agent Name (required)")
+	if err := createCmd.MarkFlagRequired("agent-name"); err != nil {
+		global.Log.Errorf(err.Error())
+		os.Exit(1)
+	}
+	createCmd.Flags().StringSliceP("training-phrases", "t", []string{}, "List of the training phrases for this intent, comma separated. Entities, add @entity-type to the word: word@entity-type in the training phrase. Example: hello,hi how are you today@sys.date,morning!. (required)")
+	if err := createCmd.MarkFlagRequired("training-phrases"); err != nil {
+		global.Log.Errorf(err.Error())
+		os.Exit(1)
+	}
+	createCmd.Flags().StringP("locale", "e", "", "Locale of the intent. Default: agent locale (optional)")
+	createCmd.Flags().StringP("description", "d", "", "Description for this intent (optional)")
 
 }

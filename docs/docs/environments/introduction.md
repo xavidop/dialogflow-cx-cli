@@ -10,6 +10,19 @@ With `cxcli`, you can easily interact with the environments of your Dialogflow C
 
 All of the commands that you have available in `cxcli` to interact with your environments are located within the `cxcli environment` subcommand.
 
+## Create
+
+The `cxcli` has a command that allows you to create an environment. You can find a more detailed information [here](/environments/create).
+
+## Update
+
+The `cxcli` has a command that allows you to update an environment. You can find a more detailed information [here](/environments/update).
+
+
+## Delete
+
+The `cxcli` has a command that allows you to delete your environment. You can find a more detailed explanation [here](/environments/delete).
+
 ## CI/CD
 
 In Dialogflow CX, when you are testing your agents, you can save those tests and associate them with a specific environment.
