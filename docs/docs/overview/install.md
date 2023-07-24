@@ -54,6 +54,35 @@ sudo yum install cxcli
 yay -S cxcli-bin
 ```
 
+### nix
+
+#### nixpkgs
+
+```bash
+nix-env -iA cxcli
+```
+
+!!! info
+    The [package in nixpkgs](https://github.com/NixOS/nixpkgs/blob/master/pkgs/tools/misc/cxcli/default.nix)
+    might be slightly outdated, as it is not updated automatically.
+    Use our NUR to always get the latest updates.
+
+#### nur
+
+First, you'll need to add our [NUR](https://github.com/xavidop/nur) to your nix configuration.
+You can follow the guides
+[here](https://github.com/nix-community/NUR#installation).
+
+Once you do that, you can install the packages.
+
+```nix
+{ pkgs, lib, ... }: {
+    home.packages = with pkgs; [
+    nur.repos.xavidop.cxcli
+    ];
+}
+```
+
 ### deb, rpm and apk packages
 
 Download the `.deb`, `.rpm` or `.apk` packages from the [OSS releases page][releases] and install them with the appropriate tools.
