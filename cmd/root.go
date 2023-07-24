@@ -6,6 +6,7 @@ import (
 	"github.com/pkg/errors"
 	"github.com/spf13/cobra"
 	"github.com/tmc/langchaingo/llms/vertexai"
+	cobracompletefig "github.com/withfig/autocomplete-tools/integrations/cobra"
 	cmdagent "github.com/xavidop/dialogflow-cx-cli/cmd/agent"
 	"github.com/xavidop/dialogflow-cx-cli/cmd/cmdutils"
 	cmdentitytype "github.com/xavidop/dialogflow-cx-cli/cmd/entitytype"
@@ -71,6 +72,7 @@ func init() {
 	cmdwebhook.Register(rootCmd)
 	cmdflow.Register(rootCmd)
 	cmdflowversion.Register(rootCmd)
+	rootCmd.AddCommand(cobracompletefig.CreateCompletionSpecCommand())
 
 	// Add the subcommands
 	rootCmd.PersistentFlags().BoolVarP(&global.Verbose, "verbose", "v", false, "verbose error output (with stack trace) (optional)")

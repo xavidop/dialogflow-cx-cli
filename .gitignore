@@ -35,3 +35,5 @@ cxcli
 dist/
 completions/
 manpages/
+
+cxcli.ts
