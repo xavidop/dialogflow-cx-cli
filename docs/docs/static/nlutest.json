@@ -1,6 +1,6 @@
 {
 		"$schema": "https://json-schema.org/draft/2020-12/schema",
-		"$id": "https://github.com/xavidop/dialogflow-cx-cli/internal/types/test",
+		"$id": "https://github.com/xavidop/dialogflow-cx-cli/internal/types/profilenlu/test",
 		"$ref": "#/$defs/Test",
 		"$defs": {
 			"Check": {
@@ -106,5 +106,5 @@
 				]
 			}
 		},
-		"description": "cxcli test definition file"
+		"description": "cxcli NLU Profiler test definition file"
 	}

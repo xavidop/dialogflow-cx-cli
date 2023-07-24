@@ -38,7 +38,8 @@ cxcli [flags]
 * [cxcli flow-version](/cmd/cxcli_flow-version/)	 - Actions on flow versions commands
 * [cxcli intent](/cmd/cxcli_intent/)	 - Actions on intent commands
 * [cxcli jsonschema](/cmd/cxcli_jsonschema/)	 - outputs cxcli's JSON schema
-* [cxcli profile-nlu](/cmd/cxcli_profile-nlu/)	 - Actions on testing
+* [cxcli profile-conversation](/cmd/cxcli_profile-conversation/)	 - Actions on conversation testing
+* [cxcli profile-nlu](/cmd/cxcli_profile-nlu/)	 - Actions on NLU testing
 * [cxcli stt](/cmd/cxcli_stt/)	 - Actions on speech-to-text commands
 * [cxcli tts](/cmd/cxcli_tts/)	 - Actions on text-to-speech commands
 * [cxcli version](/cmd/cxcli_version/)	 - Get cxcli version

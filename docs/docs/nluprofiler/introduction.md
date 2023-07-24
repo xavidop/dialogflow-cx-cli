@@ -24,7 +24,7 @@ To execute a suite, you can run the `cxcli profile-nlu execute` command. For the
 
 ## Examples
 
-You can find some useful examples on our [GitHub repo](https://github.com/xavidop/dialogflow-cx-cli/tree/master/examples) and the [Examples](/nluprofiler/examples) page.
+You can find some useful examples on our [GitHub repo](https://github.com/xavidop/dialogflow-cx-cli/tree/master/examples/profilenlu) and the [Examples](/nluprofiler/examples) page.
 
 
 ## Execution Example
@@ -32,7 +32,7 @@ You can find some useful examples on our [GitHub repo](https://github.com/xavido
 Here is a simple example of the `cxcli profile-nlu execute` command:
 
 ```sh
-cxcli profile-nlu execute examples/suite.yaml
+cxcli profile-nlu execute examples/profilenlu/suite.yaml
 ```
 
 The above command will give you output similar to the following:

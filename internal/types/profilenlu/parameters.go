@@ -1,4 +1,4 @@
-package types
+package profilenlu
 
 type Parameter struct {
 	Parameter string `yaml:"parameter"`

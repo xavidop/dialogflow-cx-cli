@@ -1,4 +1,4 @@
-package types
+package profilenlu
 
 import (
 	"os"
@@ -7,10 +7,10 @@ import (
 )
 
 type Test struct {
-	Name        string  `yaml:"name"`
-	Description string  `yaml:"description"`
-	LocaleID    string  `yaml:"localeId"`
-	Checks      []Check `yaml:"checks"`
+	Name        string   `yaml:"name"`
+	Description string   `yaml:"description"`
+	LocaleID    string   `yaml:"localeId"`
+	Checks      []*Check `yaml:"checks"`
 }
 
 func NewTest(file string) (*Test, error) {

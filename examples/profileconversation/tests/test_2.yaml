@@ -1,0 +1,25 @@
+name: Example test
+description: These are some tests
+localeId: en
+interactions:
+  - id: test_2_1
+    user: 
+      type: text
+      text: I want 3 pizzas
+    agent:
+      validate:
+        - type: contains
+          value: 3
+        - type: equals
+          value: pizza
+
+  - id: test_2_2
+    user: 
+      type: text
+      text: I want 2 cokes
+    agent:
+      validate:
+        - type: regexp
+          value: '/my-regex/'
+        - type: order_type
+          value: coke

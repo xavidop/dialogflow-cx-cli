@@ -5,6 +5,7 @@ import (
 
 	"github.com/pkg/errors"
 	"github.com/spf13/cobra"
+	"github.com/tmc/langchaingo/llms/vertexai"
 	cmdagent "github.com/xavidop/dialogflow-cx-cli/cmd/agent"
 	"github.com/xavidop/dialogflow-cx-cli/cmd/cmdutils"
 	cmdentitytype "github.com/xavidop/dialogflow-cx-cli/cmd/entitytype"
@@ -12,6 +13,7 @@ import (
 	cmdflow "github.com/xavidop/dialogflow-cx-cli/cmd/flow"
 	cmdflowversion "github.com/xavidop/dialogflow-cx-cli/cmd/flowversion"
 	cmdintent "github.com/xavidop/dialogflow-cx-cli/cmd/intent"
+	cmdprofileconversation "github.com/xavidop/dialogflow-cx-cli/cmd/profileconversation"
 	cmdprofilenlu "github.com/xavidop/dialogflow-cx-cli/cmd/profilenlu"
 	cmdstt "github.com/xavidop/dialogflow-cx-cli/cmd/stt"
 	cmdtts "github.com/xavidop/dialogflow-cx-cli/cmd/tts"
@@ -55,7 +57,10 @@ func Execute() {
 
 func init() {
 
+	vertexai.NewChat()
+
 	// Add the subcommands
+	cmdprofileconversation.Register(rootCmd)
 	cmdprofilenlu.Register(rootCmd)
 	environmentCmd.Register(rootCmd)
 	cmdtts.Register(rootCmd)

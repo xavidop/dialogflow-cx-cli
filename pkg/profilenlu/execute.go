@@ -9,7 +9,7 @@ import (
 	"cloud.google.com/go/dialogflow/cx/apiv3beta1/cxpb"
 	"github.com/google/uuid"
 	"github.com/xavidop/dialogflow-cx-cli/internal/global"
-	"github.com/xavidop/dialogflow-cx-cli/internal/types"
+	types "github.com/xavidop/dialogflow-cx-cli/internal/types/profilenlu"
 	"github.com/xavidop/dialogflow-cx-cli/internal/utils"
 	cxpkg "github.com/xavidop/dialogflow-cx-cli/pkg/cx"
 	"google.golang.org/protobuf/types/known/structpb"
@@ -76,7 +76,7 @@ func ExecuteSuite(suiteFile string) error {
 			for paramName, p := range parametersDetected {
 				extractedValue := extractDialogflowEntities(p)
 				global.Log.Printf("Param %s: %s ", paramName, extractedValue)
-				param, err := types.FindParameterByName(check.Validate, paramName)
+				param, err := types.FindParameterByName(*check.Validate, paramName)
 				if err != nil {
 					errstrings = append(errstrings, err.Error())
 					continue
@@ -105,7 +105,7 @@ func ExecuteSuite(suiteFile string) error {
 
 }
 
-func getResponse(sessionsClient *cx.SessionsClient, agent *cxpb.Agent, test *types.Test, check types.Check, testInfo types.Tests, sessionId string) (*cxpb.DetectIntentResponse, error) {
+func getResponse(sessionsClient *cx.SessionsClient, agent *cxpb.Agent, test *types.Test, check *types.Check, testInfo *types.Tests, sessionId string) (*cxpb.DetectIntentResponse, error) {
 	if check.Input.Type == "text" {
 		global.Log.Infof("Input: type: %s, value: %s \n", check.Input.Type, check.Input.Text)
 

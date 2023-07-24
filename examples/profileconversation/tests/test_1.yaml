@@ -1,0 +1,30 @@
+name: Example test
+description: These are some tests
+localeId: en
+interactions:
+  - id: test_1_1
+    user: 
+      type: text
+      text: hi
+    agent:
+      validate:
+        - type: contains
+          value: hello
+
+  - id: test_1_2
+    user: 
+      type: text
+      text: hello
+    agent:
+      validate:
+        - type: equals
+          value: hello
+
+  - id: test_1_3
+    user: 
+      type: audio
+      audio: ./audio/hi.mp3
+    agent:
+      validate:
+        - type: regexp
+          value: '/my-regex/'

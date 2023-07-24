@@ -1,15 +1,15 @@
-# cxcli profile-nlu
+# cxcli profile-conversation
 
-Actions on NLU testing
+Actions on conversation testing
 
 ```
-cxcli profile-nlu [flags]
+cxcli profile-conversation [flags]
 ```
 
 ## Options
 
 ```
-  -h, --help   help for profile-nlu
+  -h, --help   help for profile-conversation
 ```
 
 ## Options inherited from parent commands
@@ -24,5 +24,5 @@ cxcli profile-nlu [flags]
 ## See also
 
 * [cxcli](/cmd/cxcli/)	 - Dialogflow CX CLI
-* [cxcli profile-nlu execute](/cmd/cxcli_profile-nlu_execute/)	 - Execute a suite
+* [cxcli profile-conversation execute](/cmd/cxcli_profile-conversation_execute/)	 - Execute a suite
 

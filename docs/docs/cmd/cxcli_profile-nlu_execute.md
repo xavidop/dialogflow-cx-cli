@@ -23,5 +23,5 @@ cxcli profile-nlu execute [suite-file] [flags]
 
 ## See also
 
-* [cxcli profile-nlu](/cmd/cxcli_profile-nlu/)	 - Actions on testing
+* [cxcli profile-nlu](/cmd/cxcli_profile-nlu/)	 - Actions on NLU testing
 

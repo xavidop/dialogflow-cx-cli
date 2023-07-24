@@ -52,11 +52,11 @@ If you don't have a file with this format, you can create it by yourself using t
 editor support:
 
 ```sh
-https://cxcli.xavidop.me/static/test.json
+https://cxcli.xavidop.me/static/nlutest.json
 ```
 
 You can also specify it in your `yml` config files by adding a
 comment like the following:
 ```yaml
-# yaml-language-server: $schema=https://cxcli.xavidop.me/static/test.json
+# yaml-language-server: $schema=https://cxcli.xavidop.me/static/nlutest.json
 ```

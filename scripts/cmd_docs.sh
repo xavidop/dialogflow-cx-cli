@@ -12,6 +12,7 @@ cp -rf SECURITY.md docs/docs/security.md
 
 rm -rf docs/docs/cmd/*.md
 go run . docs
+rm -rf docs/docs/static/*.json
 go run . schema -f ./docs/docs/static/
 "$SED" \
 	-i'' \

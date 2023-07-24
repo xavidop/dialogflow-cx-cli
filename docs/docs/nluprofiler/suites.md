@@ -33,11 +33,11 @@ tests:
 editor support:
 
 ```sh
-https://cxcli.xavidop.me/static/suite.json
+https://cxcli.xavidop.me/static/nlusuite.json
 ```
 
 You can also specify it in your `yml` config files by adding a
 comment like the following:
 ```yaml
-# yaml-language-server: $schema=https://cxcli.xavidop.me/static/suite.json
+# yaml-language-server: $schema=https://cxcli.xavidop.me/static/nlusuite.json
 ```

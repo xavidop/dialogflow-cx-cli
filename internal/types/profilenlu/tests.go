@@ -1,4 +1,4 @@
-package types
+package profilenlu
 
 type Tests struct {
 	ID   string `yaml:"id"`

@@ -1,4 +1,4 @@
-package profilenlu
+package profileconversation
 
 import (
 	"os"
@@ -7,11 +7,11 @@ import (
 	"github.com/xavidop/dialogflow-cx-cli/cmd/cmdutils"
 )
 
-// profilenluCmd represents the profile-nlu root command
-var profilenluCmd = &cobra.Command{
-	Use:     "profile-nlu",
-	Aliases: []string{"test-nlu", "tn", "nlu-tests"},
-	Short:   "Actions on NLU testing",
+// profileconversationCmd represents the profile-conversation root command
+var profileconversationCmd = &cobra.Command{
+	Use:     "profile-conversation",
+	Aliases: []string{"test-conversation", "tc", "conversation-tests"},
+	Short:   "Actions on conversation testing",
 	Run: func(cmd *cobra.Command, args []string) {
 		if err := cmd.Help(); err != nil {
 			os.Exit(1)
@@ -26,5 +26,5 @@ var profilenluCmd = &cobra.Command{
 }
 
 func Register(rootCmd *cobra.Command) {
-	rootCmd.AddCommand(profilenluCmd)
+	rootCmd.AddCommand(profileconversationCmd)
 }

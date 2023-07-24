@@ -1,4 +1,4 @@
-package types
+package profilenlu
 
 type Input struct {
 	Type  string `yaml:"type"`
