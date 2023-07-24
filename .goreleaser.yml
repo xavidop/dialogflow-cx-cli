@@ -326,7 +326,7 @@ nix:
     homepage: https://cxcli.xavidop.me
     description: 'The missing CLI for your Dialogflow CX projects'
     path: pkgs/cxcli/default.nix
-    license: Apache-2.0
+    license: asl20
     install: |-
       mkdir -p $out/bin
       cp -vr ./cxcli $out/bin/cxcli
