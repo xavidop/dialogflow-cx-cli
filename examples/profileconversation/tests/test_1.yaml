@@ -4,6 +4,14 @@ localeId: en
 interactions:
   - id: test_1_1
     user: 
+      type: prompt
+      prompt: give me a one line hello
+    agent:
+      validate:
+        - type: equals
+          value: hello
+  - id: test_1_2
+    user: 
       type: text
       text: hi
     agent:
@@ -11,7 +19,7 @@ interactions:
         - type: contains
           value: hello
 
-  - id: test_1_2
+  - id: test_1_3
     user: 
       type: text
       text: hello
@@ -20,7 +28,7 @@ interactions:
         - type: equals
           value: hello
 
-  - id: test_1_3
+  - id: test_1_4
     user: 
       type: audio
       audio: ./audio/hi.mp3

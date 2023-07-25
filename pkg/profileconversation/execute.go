@@ -9,11 +9,13 @@ import (
 	"github.com/adrg/strutil"
 	"github.com/adrg/strutil/metrics"
 	"github.com/google/uuid"
+	"github.com/tmc/langchaingo/llms/vertexai"
 	"github.com/xavidop/dialogflow-cx-cli/internal/global"
 	types "github.com/xavidop/dialogflow-cx-cli/internal/types/profileconversation"
 	"github.com/xavidop/dialogflow-cx-cli/internal/types/profileconversation/configurations"
 	"github.com/xavidop/dialogflow-cx-cli/internal/utils"
 	cxpkg "github.com/xavidop/dialogflow-cx-cli/pkg/cx"
+	vertexaipkg "github.com/xavidop/dialogflow-cx-cli/pkg/vertexai"
 )
 
 func ExecuteSuite(suiteFile string) error {
@@ -32,6 +34,11 @@ func ExecuteSuite(suiteFile string) error {
 	defer agentClient.Close()
 
 	agent, err := cxpkg.GetAgentIdByName(agentClient, suite.AgentName, suite.ProjectID, suite.LocationID)
+	if err != nil {
+		return err
+	}
+
+	palmTextClient, err := vertexaipkg.CreatePalmClient(suite.ProjectID)
 	if err != nil {
 		return err
 	}
@@ -56,14 +63,24 @@ func ExecuteSuite(suiteFile string) error {
 
 		for _, interaction := range test.Interactions {
 
-			response, err := getResponse(sessionsClient, agent, test, interaction, testInfo, sessionId)
+			response, err := getResponse(sessionsClient, palmTextClient, agent, test, interaction, testInfo, sessionId)
 			if err != nil {
 				return err
 			}
 
-			queryResult := response.GetQueryResult()
-			messages := queryResult.GetResponseMessages()
-			global.Log.Printf("%v", messages[0])
+			responseText := ""
+
+			for _, message := range response.GetQueryResult().GetResponseMessages() {
+				if message.GetEndInteraction() != nil {
+					return nil
+				}
+
+				for _, txtToShow := range message.GetText().GetText() {
+
+					responseText += ". " + txtToShow
+				}
+
+			}
 
 			validations := interaction.Agent.Validate
 
@@ -72,22 +89,22 @@ func ExecuteSuite(suiteFile string) error {
 
 				switch validation.Type {
 				case "contains":
-					if err := executeContains(validation, ""); err != nil {
+					if err := executeContains(validation, responseText); err != nil {
 						errstrings = append(errstrings, err.Error())
 						continue
 					}
 				case "regexp":
-					if err := executeRegexp(validation, ""); err != nil {
+					if err := executeRegexp(validation, responseText); err != nil {
 						errstrings = append(errstrings, err.Error())
 						continue
 					}
 				case "equals":
-					if err := executeEquals(validation, ""); err != nil {
+					if err := executeEquals(validation, responseText); err != nil {
 						errstrings = append(errstrings, err.Error())
 						continue
 					}
 				case "similarity":
-					if err := executeSimilarity(validation, ""); err != nil {
+					if err := executeSimilarity(validation, responseText); err != nil {
 						errstrings = append(errstrings, err.Error())
 						continue
 					}
@@ -110,35 +127,35 @@ func ExecuteSuite(suiteFile string) error {
 func executeSimilarity(validation *types.Validate, agentResponse string) error {
 	switch validation.Algorithm {
 	case "hamming":
-		if err := executeSimilarityHamming(validation, ""); err != nil {
+		if err := executeSimilarityHamming(validation, agentResponse); err != nil {
 			return err
 		}
 	case "levenshtein":
-		if err := executeSimilarityLevenshtein(validation, ""); err != nil {
+		if err := executeSimilarityLevenshtein(validation, agentResponse); err != nil {
 			return err
 		}
 	case "jaro":
-		if err := executeSimilarityJaro(validation, ""); err != nil {
+		if err := executeSimilarityJaro(validation, agentResponse); err != nil {
 			return err
 		}
 	case "jaro-winkler":
-		if err := executeSimilarityJaroWinkler(validation, ""); err != nil {
+		if err := executeSimilarityJaroWinkler(validation, agentResponse); err != nil {
 			return err
 		}
 	case "smith-waterman-gotoh":
-		if err := executeSimilaritySmithWatermanGotoh(validation, ""); err != nil {
+		if err := executeSimilaritySmithWatermanGotoh(validation, agentResponse); err != nil {
 			return err
 		}
 	case "sorensen-dice":
-		if err := executeSimilaritySorensenDice(validation, ""); err != nil {
+		if err := executeSimilaritySorensenDice(validation, agentResponse); err != nil {
 			return err
 		}
 	case "jaccard":
-		if err := executeSimilarityJaccard(validation, ""); err != nil {
+		if err := executeSimilarityJaccard(validation, agentResponse); err != nil {
 			return err
 		}
 	case "overlap-coefficient":
-		if err := executeSimilarityOverlapCoefficient(validation, ""); err != nil {
+		if err := executeSimilarityOverlapCoefficient(validation, agentResponse); err != nil {
 			return err
 		}
 	}
@@ -314,10 +331,16 @@ func executeSimilarityOverlapCoefficient(validation *types.Validate, agentRespon
 	return nil
 }
 
-func getResponse(sessionsClient *cx.SessionsClient, agent *cxpb.Agent, test *types.Test, interaction *types.Interaction, testInfo *types.Tests, sessionId string) (*cxpb.DetectIntentResponse, error) {
+func getResponse(sessionsClient *cx.SessionsClient, palmTextClient *vertexai.LLM, agent *cxpb.Agent, test *types.Test, interaction *types.Interaction, testInfo *types.Tests, sessionId string) (*cxpb.DetectIntentResponse, error) {
 	switch interaction.User.Type {
 	case "prompt":
-		global.Log.Infof("User: type: %s, value: %s \n", interaction.User.Type, interaction.User.Text)
+		completion, err := vertexaipkg.GenerateText(palmTextClient, interaction.User.Prompt)
+		if err != nil {
+			return nil, err
+		}
+
+		global.Log.Infof("User: type: %s, value: %s \n", interaction.User.Type, interaction.User.Prompt)
+		global.Log.Infof("Information get: %s \n", completion)
 
 		global.Log.Infof("prompt generated: %s \n", interaction.User.Text)
 
