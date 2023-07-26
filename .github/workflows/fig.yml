@@ -13,7 +13,7 @@ jobs:
   fig:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/setup-node@v2
+      - uses: actions/setup-node@v3
       - uses: actions/checkout@v3
       - uses: actions/setup-go@v4
         with:
