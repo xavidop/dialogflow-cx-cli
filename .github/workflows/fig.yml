@@ -13,12 +13,13 @@ jobs:
   fig:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v4
       - uses: actions/setup-go@v4
         with:
           go-version: stable
           cache: true
-      - run: go run . generate-fig-spec >cxcli.ts
+      - run: go mod tidy && go run . generate-fig-spec >cxcli.ts
       - uses: withfig/push-to-fig-autocomplete-action@v1
         with:
           token: ${{ secrets.GO_RELEASER_GITHUB_TOKEN }}
