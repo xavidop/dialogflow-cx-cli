@@ -12,7 +12,7 @@ require (
 )
 
 require (
-	cloud.google.com/go/speech v1.20.0
+	cloud.google.com/go/speech v1.20.1
 	cloud.google.com/go/texttospeech v1.7.3
 	github.com/google/go-github/v50 v50.2.0
 	github.com/invopop/jsonschema v0.12.0
