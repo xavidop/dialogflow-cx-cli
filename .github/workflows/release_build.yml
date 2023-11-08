@@ -29,7 +29,7 @@ jobs:
         id: go
       - uses: docker/setup-qemu-action@v3
       - uses: docker/setup-buildx-action@v3
-      - uses: sigstore/cosign-installer@v2.8.1
+      - uses: sigstore/cosign-installer@v3.2.0
       - uses: anchore/sbom-action/download-syft@v0.13.4
       - uses: cachix/install-nix-action@v22
         with:
