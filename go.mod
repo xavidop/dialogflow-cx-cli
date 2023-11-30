@@ -3,7 +3,7 @@ module github.com/xavidop/dialogflow-cx-cli
 go 1.20
 
 require (
-	cloud.google.com/go/dialogflow v1.45.0
+	cloud.google.com/go/dialogflow v1.46.0
 	github.com/google/uuid v1.4.0
 	github.com/pkg/errors v0.9.1
 	github.com/sirupsen/logrus v1.9.3
