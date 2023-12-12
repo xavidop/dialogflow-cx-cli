@@ -23,15 +23,15 @@ jobs:
           fetch-depth: 0 # See: https://goreleaser.com/ci/actions/
 
       - name: Set up Go
-        uses: actions/setup-go@v4
+        uses: actions/setup-go@v5
         with:
           go-version: stable
         id: go
       - uses: docker/setup-qemu-action@v3
       - uses: docker/setup-buildx-action@v3
       - uses: sigstore/cosign-installer@v2.8.1
-      - uses: anchore/sbom-action/download-syft@v0.13.4
-      - uses: cachix/install-nix-action@v22
+      - uses: anchore/sbom-action/download-syft@v0.15.1
+      - uses: cachix/install-nix-action@v24
         with:
           github_access_token: ${{ secrets.GO_RELEASER_GITHUB_TOKEN }}
       - name: setup-snapcraft
