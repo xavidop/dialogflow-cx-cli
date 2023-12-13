@@ -4,7 +4,7 @@ go 1.20
 
 require (
 	cloud.google.com/go/dialogflow v1.47.0
-	github.com/google/uuid v1.4.0
+	github.com/google/uuid v1.5.0
 	github.com/pkg/errors v0.9.1
 	github.com/sirupsen/logrus v1.9.3
 	github.com/spf13/cobra v1.8.0
