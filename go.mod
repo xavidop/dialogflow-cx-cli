@@ -19,9 +19,9 @@ require (
 	github.com/invopop/jsonschema v0.12.0
 	github.com/muesli/mango-cobra v1.2.0
 	github.com/muesli/roff v0.1.0
-	github.com/tmc/langchaingo v0.0.0-20230910230029-9c8845b2b019
+	github.com/tmc/langchaingo v0.1.0
 	github.com/withfig/autocomplete-tools/integrations/cobra v1.2.1
-	golang.org/x/exp v0.0.0-20230213192124-5e25df0256eb
+	golang.org/x/exp v0.0.0-20231206192017-f3f8817b8deb
 	golang.org/x/term v0.15.0
 	google.golang.org/protobuf v1.31.0
 	gopkg.in/yaml.v3 v3.0.1
@@ -29,10 +29,10 @@ require (
 
 require (
 	cloud.google.com/go v0.110.10 // indirect
-	cloud.google.com/go/aiplatform v1.48.0 // indirect
+	cloud.google.com/go/aiplatform v1.52.0 // indirect
 	cloud.google.com/go/compute v1.23.3 // indirect
-  cloud.google.com/go/compute/metadata v0.2.3 // indirect
-	cloud.google.com/go/iam v1.1.1 // indirect
+	cloud.google.com/go/compute/metadata v0.2.3 // indirect
+	cloud.google.com/go/iam v1.1.5 // indirect
 	cloud.google.com/go/longrunning v0.5.4 // indirect
 	github.com/ProtonMail/go-crypto v0.0.0-20230217124315-7d5c6f04bbb8 // indirect
 	github.com/bahlo/generic-list-go v0.2.0 // indirect
