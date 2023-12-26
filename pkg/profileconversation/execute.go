@@ -200,13 +200,20 @@ func executeRegexp(validation *types.Validate, agentResponse string, log *logrus
 
 	log.Infof("Validation configuration: %+v", *validation.ConfigurationRegexp)
 
-	match, err := regexp.MatchString(validation.Value, agentResponse)
+	r, err := regexp.Compile(validation.Value)
 	if err != nil {
 		return err
 	}
-
-	if !match {
-		return fmt.Errorf("regex %s does not match text \"%s\"", validation.Value, agentResponse)
+	if validation.ConfigurationRegexp.FindInSubmatches {
+		match := r.FindAllStringSubmatch(agentResponse, -1)
+		if match == nil {
+			return fmt.Errorf("regex %s does not match text \"%s\" in submatches", validation.Value, agentResponse)
+		}
+	} else {
+		match := r.FindAllString(agentResponse, -1)
+		if match == nil {
+			return fmt.Errorf("regex %s does not match text \"%s\"", validation.Value, agentResponse)
+		}
 	}
 
 	return nil
