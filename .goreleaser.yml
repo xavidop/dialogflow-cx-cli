@@ -143,28 +143,24 @@ sboms:
 
 signs:
 - cmd: cosign
-  env:
-  - COSIGN_EXPERIMENTAL=1
-  certificate: '${artifact}.pem'
-  stdin: '{{ .Env.COSIGN_PWD }}'
+  certificate: "${artifact}.pem"
   output: true
   artifacts: checksum
   args:
     - sign-blob
-    - '--output-certificate=${certificate}'
-    - '--output-signature=${signature}'
-    - '${artifact}'
+    - "--output-certificate=${certificate}"
+    - "--output-signature=${signature}"
+    - "${artifact}"
+    - --yes
 
 docker_signs:
 - cmd: cosign
-  env:
-  - COSIGN_EXPERIMENTAL=1
   artifacts: manifests
-  stdin: '{{ .Env.COSIGN_PWD }}'
   output: true
   args:
-  - 'sign'
-  - '${artifact}@${digest}'
+    - "sign"
+    - "${artifact}@${digest}"
+    - --yes
 
 snapcrafts:
   - name_template: 'cxcli_{{ .Arch }}{{ if .Arm }}v{{ .Arm }}{{ end }}'
