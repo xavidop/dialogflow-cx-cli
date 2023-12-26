@@ -45,8 +45,10 @@ jobs:
           mkdir -p $HOME/.cache/snapcraft/stage-packages
       - name: snapcraft-login
         run: |
-          export SNAPCRAFT_STORE_CREDENTIALS=$(echo "${{ secrets.SNAPCRAFT_LOGIN }}") snapcraft export-login
+          export SNAPCRAFT_STORE_CREDENTIALS=$(echo "${{ secrets.SNAPCRAFT_LOGIN }}") snapcraft login
           snapcraft whoami
+          echo "SNAPCRAFT_STORE_CREDENTIALS=$SNAPCRAFT_STORE_CREDENTIALS" >> $GITHUB_ENV
+          echo "$SNAPCRAFT_STORE_CREDENTIALS"
       - name: Write signing key to disk
         run: 'echo "$KEY" > cosign.key'
         shell: bash
