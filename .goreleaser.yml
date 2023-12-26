@@ -146,6 +146,7 @@ signs:
   certificate: "${artifact}.pem"
   output: true
   artifacts: checksum
+  stdin: '{{ .Env.COSIGN_PWD }}'
   args:
     - sign-blob
     - "--output-certificate=${certificate}"
@@ -158,6 +159,7 @@ docker_signs:
 - cmd: cosign
   artifacts: manifests
   output: true
+  stdin: '{{ .Env.COSIGN_PWD }}'
   args:
     - "sign"
     - "${artifact}@${digest}"
