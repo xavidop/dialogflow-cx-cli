@@ -146,21 +146,25 @@ signs:
   certificate: "${artifact}.pem"
   output: true
   artifacts: checksum
+  stdin: '{{ .Env.COSIGN_PWD }}'
   args:
     - sign-blob
     - "--output-certificate=${certificate}"
     - "--output-signature=${signature}"
     - "${artifact}"
     - --yes
+    - "--key=cosign.key"
 
 docker_signs:
 - cmd: cosign
   artifacts: manifests
   output: true
+  stdin: '{{ .Env.COSIGN_PWD }}'
   args:
     - "sign"
     - "${artifact}@${digest}"
     - --yes
+    - "--key=cosign.key"
 
 snapcrafts:
   - name_template: 'cxcli_{{ .Arch }}{{ if .Arm }}v{{ .Arm }}{{ end }}'
