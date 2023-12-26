@@ -45,8 +45,8 @@ jobs:
           mkdir -p $HOME/.cache/snapcraft/stage-packages
       - name: snapcraft-login
         run: |
-          #export SNAPCRAFT_STORE_CREDENTIALS=$(echo "${{ secrets.SNAPCRAFT_LOGIN }}") snapcraft login
-          snapcraft login --with <(echo "${{ secrets.SNAPCRAFT_LOGIN }}")
+          export SNAPCRAFT_STORE_CREDENTIALS=$(echo "${{ secrets.SNAPCRAFT_LOGIN }}") snapcraft export-login
+          snapcraft whoami
       - name: Write signing key to disk
         run: 'echo "$KEY" > cosign.key'
         shell: bash
