@@ -41,7 +41,7 @@ func PreRun(command string) {
 			HideKeys:      false,
 			NoFieldsSpace: true,
 			ShowFullLevel: true,
-			FieldsOrder:   []string{"test-file", "interaction", "type", "validation"},
+			FieldsOrder:   []string{"test-file", "interaction", "check", "input", "validation"},
 		})
 	}
 

@@ -4,8 +4,8 @@ localeId: en
 checks:
   - id: test_1_1
     input: 
-      type: text
-      text: hi
+      type: prompt
+      prompt: give me a one line hello without exclamation mark using only 2 characters and lowercase
     validate:
       intent: hi_intent
 

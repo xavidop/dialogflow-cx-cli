@@ -67,7 +67,7 @@ func ExecuteSuite(suiteFile string) error {
 		for _, interaction := range test.Interactions {
 			interactionLog := testFileLog.WithField("interaction", interaction.ID)
 
-			interactionTypeLog := interactionLog.WithField("type", interaction.User.Type)
+			interactionTypeLog := interactionLog.WithField("input", interaction.User.Type)
 
 			response, err := getResponse(sessionsClient, palmTextClient, agent, test, interaction, testInfo, sessionId, interactionTypeLog)
 			if err != nil {
@@ -371,7 +371,7 @@ func getResponse(sessionsClient *cx.SessionsClient, palmTextClient *vertexai.LLM
 
 		log.Infof("User> %s (auto-generated from prompt: \"%s\")", textGenerated, interaction.User.Prompt)
 
-		return cxpkg.DetectIntentFromText(sessionsClient, agent, test.LocaleID, interaction.User.Text, sessionId)
+		return cxpkg.DetectIntentFromText(sessionsClient, agent, test.LocaleID, textGenerated, sessionId)
 	case "text":
 		log.Infof("User> %s", interaction.User.Text)
 
