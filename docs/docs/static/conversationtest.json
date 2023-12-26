@@ -160,14 +160,14 @@
 			},
 			"Regexp": {
 				"properties": {
-					"CaseSensitive": {
+					"FindInSubmatches": {
 						"type": "boolean"
 					}
 				},
 				"additionalProperties": false,
 				"type": "object",
 				"required": [
-					"CaseSensitive"
+					"FindInSubmatches"
 				]
 			},
 			"SmithWatermanGotoh": {
