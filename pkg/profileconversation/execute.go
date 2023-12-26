@@ -2,6 +2,7 @@ package profileconversation
 
 import (
 	"fmt"
+	"regexp"
 	"strings"
 
 	cx "cloud.google.com/go/dialogflow/cx/apiv3beta1"
@@ -9,6 +10,7 @@ import (
 	"github.com/adrg/strutil"
 	"github.com/adrg/strutil/metrics"
 	"github.com/google/uuid"
+	"github.com/sirupsen/logrus"
 	"github.com/tmc/langchaingo/llms/vertexai"
 	"github.com/xavidop/dialogflow-cx-cli/internal/global"
 	types "github.com/xavidop/dialogflow-cx-cli/internal/types/profileconversation"
@@ -49,21 +51,25 @@ func ExecuteSuite(suiteFile string) error {
 	}
 	defer sessionsClient.Close()
 
-	global.Log.Infof("Suite Information: %s", suite.AgentName)
+	global.Log.Infof("Running suite: %s", suite.Name)
 	sessionId := uuid.NewString()
 
 	for _, testInfo := range suite.Tests {
 		testInfo.File = utils.GetRelativeFilePathFromParentFile(suiteFile, testInfo.File)
-		global.Log.Infof("Test ID: %s", testInfo.ID)
 
 		test, err := types.NewTest(testInfo.File)
 		if err != nil {
 			return err
 		}
 
-		for _, interaction := range test.Interactions {
+		testFileLog := global.Log.WithField("test-file", testInfo.ID)
 
-			response, err := getResponse(sessionsClient, palmTextClient, agent, test, interaction, testInfo, sessionId)
+		for _, interaction := range test.Interactions {
+			interactionLog := testFileLog.WithField("interaction", interaction.ID)
+
+			interactionTypeLog := interactionLog.WithField("type", interaction.User.Type)
+
+			response, err := getResponse(sessionsClient, palmTextClient, agent, test, interaction, testInfo, sessionId, interactionTypeLog)
 			if err != nil {
 				return err
 			}
@@ -75,36 +81,41 @@ func ExecuteSuite(suiteFile string) error {
 					return nil
 				}
 
-				for _, txtToShow := range message.GetText().GetText() {
-
-					responseText += ". " + txtToShow
-				}
+				responseText += strings.Join(message.GetText().GetText(), ". ")
 
 			}
+
+			interactionTypeLog.Infof("Agent> %s", responseText)
 
 			validations := interaction.Agent.Validate
 
 			for _, validation := range validations {
-				global.Log.Printf("Validation %s: %s ", validation.Type, validation.Value)
+				validationLog := interactionLog.WithField("validation", validation.Type)
+
+				validationLog.Printf("Validation with value \"%s\" ", validation.Value)
 
 				switch validation.Type {
 				case "contains":
-					if err := executeContains(validation, responseText); err != nil {
+					if err := executeContains(validation, responseText, validationLog); err != nil {
+						validationLog.Errorf(err.Error())
 						errstrings = append(errstrings, err.Error())
 						continue
 					}
 				case "regexp":
-					if err := executeRegexp(validation, responseText); err != nil {
+					if err := executeRegexp(validation, responseText, validationLog); err != nil {
+						validationLog.Errorf(err.Error())
 						errstrings = append(errstrings, err.Error())
 						continue
 					}
 				case "equals":
-					if err := executeEquals(validation, responseText); err != nil {
+					if err := executeEquals(validation, responseText, validationLog); err != nil {
+						validationLog.Errorf(err.Error())
 						errstrings = append(errstrings, err.Error())
 						continue
 					}
 				case "similarity":
-					if err := executeSimilarity(validation, responseText); err != nil {
+					if err := executeSimilarity(validation, responseText, validationLog); err != nil {
+						validationLog.Errorf(err.Error())
 						errstrings = append(errstrings, err.Error())
 						continue
 					}
@@ -117,45 +128,45 @@ func ExecuteSuite(suiteFile string) error {
 	}
 
 	if len(errstrings) > 0 {
-		return fmt.Errorf(strings.Join(errstrings, "\n"))
+		return fmt.Errorf("there are %d errors in total", len(errstrings))
 	} else {
 		return nil
 	}
 
 }
 
-func executeSimilarity(validation *types.Validate, agentResponse string) error {
+func executeSimilarity(validation *types.Validate, agentResponse string, log *logrus.Entry) error {
 	switch validation.Algorithm {
 	case "hamming":
-		if err := executeSimilarityHamming(validation, agentResponse); err != nil {
+		if err := executeSimilarityHamming(validation, agentResponse, log); err != nil {
 			return err
 		}
 	case "levenshtein":
-		if err := executeSimilarityLevenshtein(validation, agentResponse); err != nil {
+		if err := executeSimilarityLevenshtein(validation, agentResponse, log); err != nil {
 			return err
 		}
 	case "jaro":
-		if err := executeSimilarityJaro(validation, agentResponse); err != nil {
+		if err := executeSimilarityJaro(validation, agentResponse, log); err != nil {
 			return err
 		}
 	case "jaro-winkler":
-		if err := executeSimilarityJaroWinkler(validation, agentResponse); err != nil {
+		if err := executeSimilarityJaroWinkler(validation, agentResponse, log); err != nil {
 			return err
 		}
 	case "smith-waterman-gotoh":
-		if err := executeSimilaritySmithWatermanGotoh(validation, agentResponse); err != nil {
+		if err := executeSimilaritySmithWatermanGotoh(validation, agentResponse, log); err != nil {
 			return err
 		}
 	case "sorensen-dice":
-		if err := executeSimilaritySorensenDice(validation, agentResponse); err != nil {
+		if err := executeSimilaritySorensenDice(validation, agentResponse, log); err != nil {
 			return err
 		}
 	case "jaccard":
-		if err := executeSimilarityJaccard(validation, agentResponse); err != nil {
+		if err := executeSimilarityJaccard(validation, agentResponse, log); err != nil {
 			return err
 		}
 	case "overlap-coefficient":
-		if err := executeSimilarityOverlapCoefficient(validation, agentResponse); err != nil {
+		if err := executeSimilarityOverlapCoefficient(validation, agentResponse, log); err != nil {
 			return err
 		}
 	}
@@ -163,18 +174,18 @@ func executeSimilarity(validation *types.Validate, agentResponse string) error {
 	return nil
 }
 
-func executeContains(validation *types.Validate, agentResponse string) error {
+func executeContains(validation *types.Validate, agentResponse string, log *logrus.Entry) error {
 	if validation.ConfigurationContains == nil {
 		validation.ConfigurationContains = &configurations.Contains{}
 	}
-	global.Log.Printf("Validation configuration: %v ", validation.ConfigurationContains)
+	log.Infof("Validation configuration: %+v", *validation.ConfigurationContains)
 
 	if validation.ConfigurationContains.CaseSensitive {
 		if !strings.Contains(validation.Value, agentResponse) {
 			return fmt.Errorf("text %s does not contains \"%s\"", validation.Value, agentResponse)
 		}
 	} else {
-		if !strings.Contains(validation.Value, agentResponse) {
+		if !strings.Contains(strings.ToLower(validation.Value), strings.ToLower(agentResponse)) {
 			return fmt.Errorf("text %s does not contains \"%s\"", validation.Value, agentResponse)
 		}
 
@@ -182,27 +193,37 @@ func executeContains(validation *types.Validate, agentResponse string) error {
 	return nil
 }
 
-func executeRegexp(validation *types.Validate, agentResponse string) error {
+func executeRegexp(validation *types.Validate, agentResponse string, log *logrus.Entry) error {
 	if validation.ConfigurationRegexp == nil {
 		validation.ConfigurationRegexp = &configurations.Regexp{}
 	}
-	global.Log.Printf("Validation configuration: %v ", validation.ConfigurationRegexp)
+
+	log.Infof("Validation configuration: %+v", *validation.ConfigurationRegexp)
+
+	match, err := regexp.MatchString(validation.Value, agentResponse)
+	if err != nil {
+		return err
+	}
+
+	if !match {
+		return fmt.Errorf("regex %s does not match text \"%s\"", validation.Value, agentResponse)
+	}
 
 	return nil
 }
 
-func executeEquals(validation *types.Validate, agentResponse string) error {
+func executeEquals(validation *types.Validate, agentResponse string, log *logrus.Entry) error {
 	if validation.ConfigurationEquals == nil {
 		validation.ConfigurationEquals = &configurations.Equals{}
 	}
-	global.Log.Printf("Validation configuration: %v ", validation.ConfigurationEquals)
+	log.Infof("Validation configuration: %+v", *validation.ConfigurationEquals)
 
 	if validation.ConfigurationEquals.CaseSensitive {
 		if validation.Value != agentResponse {
 			return fmt.Errorf("text %s is not equal to \"%s\"", validation.Value, agentResponse)
 		}
 	} else {
-		if validation.Value != agentResponse {
+		if strings.EqualFold(validation.Value, agentResponse) {
 			return fmt.Errorf("text %s is not equal to \"%s\"", validation.Value, agentResponse)
 		}
 
@@ -211,11 +232,11 @@ func executeEquals(validation *types.Validate, agentResponse string) error {
 	return nil
 }
 
-func executeSimilarityHamming(validation *types.Validate, agentResponse string) error {
+func executeSimilarityHamming(validation *types.Validate, agentResponse string, log *logrus.Entry) error {
 	if validation.ConfigurationHamming == nil {
 		validation.ConfigurationHamming = metrics.NewHamming()
 	}
-	global.Log.Printf("Validation configuration: %v", validation.ConfigurationHamming)
+	log.Infof("Validation configuration: %+v", *validation.ConfigurationHamming)
 
 	similarity := strutil.Similarity(validation.Value, agentResponse, validation.ConfigurationHamming)
 
@@ -226,11 +247,11 @@ func executeSimilarityHamming(validation *types.Validate, agentResponse string) 
 	return nil
 }
 
-func executeSimilarityLevenshtein(validation *types.Validate, agentResponse string) error {
+func executeSimilarityLevenshtein(validation *types.Validate, agentResponse string, log *logrus.Entry) error {
 	if validation.ConfigurationLevenshtein == nil {
 		validation.ConfigurationLevenshtein = metrics.NewLevenshtein()
 	}
-	global.Log.Printf("Validation configuration: %v", validation.ConfigurationLevenshtein)
+	log.Infof("Validation configuration: %+v", *validation.ConfigurationLevenshtein)
 
 	similarity := strutil.Similarity(validation.Value, agentResponse, validation.ConfigurationLevenshtein)
 
@@ -241,11 +262,11 @@ func executeSimilarityLevenshtein(validation *types.Validate, agentResponse stri
 	return nil
 }
 
-func executeSimilarityJaro(validation *types.Validate, agentResponse string) error {
+func executeSimilarityJaro(validation *types.Validate, agentResponse string, log *logrus.Entry) error {
 	if validation.ConfigurationJaro == nil {
 		validation.ConfigurationJaro = metrics.NewJaro()
 	}
-	global.Log.Printf("Validation configuration: %v", validation.ConfigurationJaro)
+	log.Infof("Validation configuration: %+v", *validation.ConfigurationJaro)
 
 	similarity := strutil.Similarity(validation.Value, agentResponse, validation.ConfigurationJaro)
 
@@ -256,11 +277,11 @@ func executeSimilarityJaro(validation *types.Validate, agentResponse string) err
 	return nil
 }
 
-func executeSimilarityJaroWinkler(validation *types.Validate, agentResponse string) error {
+func executeSimilarityJaroWinkler(validation *types.Validate, agentResponse string, log *logrus.Entry) error {
 	if validation.ConfigurationJaroWinkler == nil {
 		validation.ConfigurationJaroWinkler = metrics.NewJaroWinkler()
 	}
-	global.Log.Printf("Validation configuration: %v", validation.ConfigurationJaroWinkler)
+	log.Infof("Validation configuration: %+v", *validation.ConfigurationJaroWinkler)
 
 	similarity := strutil.Similarity(validation.Value, agentResponse, validation.ConfigurationJaroWinkler)
 
@@ -271,11 +292,11 @@ func executeSimilarityJaroWinkler(validation *types.Validate, agentResponse stri
 	return nil
 }
 
-func executeSimilaritySmithWatermanGotoh(validation *types.Validate, agentResponse string) error {
+func executeSimilaritySmithWatermanGotoh(validation *types.Validate, agentResponse string, log *logrus.Entry) error {
 	if validation.ConfigurationSmithWatermanGotoh == nil {
 		validation.ConfigurationSmithWatermanGotoh = metrics.NewSmithWatermanGotoh()
 	}
-	global.Log.Printf("Validation configuration: %v", validation.ConfigurationSmithWatermanGotoh)
+	log.Infof("Validation configuration: %+v", *validation.ConfigurationSmithWatermanGotoh)
 
 	similarity := strutil.Similarity(validation.Value, agentResponse, validation.ConfigurationSmithWatermanGotoh)
 
@@ -286,11 +307,11 @@ func executeSimilaritySmithWatermanGotoh(validation *types.Validate, agentRespon
 	return nil
 }
 
-func executeSimilaritySorensenDice(validation *types.Validate, agentResponse string) error {
+func executeSimilaritySorensenDice(validation *types.Validate, agentResponse string, log *logrus.Entry) error {
 	if validation.ConfigurationSorensenDice == nil {
 		validation.ConfigurationSorensenDice = metrics.NewSorensenDice()
 	}
-	global.Log.Printf("Validation configuration: %v", validation.ConfigurationSorensenDice)
+	log.Infof("Validation configuration: %+v", *validation.ConfigurationSorensenDice)
 
 	similarity := strutil.Similarity(validation.Value, agentResponse, validation.ConfigurationSorensenDice)
 
@@ -301,11 +322,11 @@ func executeSimilaritySorensenDice(validation *types.Validate, agentResponse str
 	return nil
 }
 
-func executeSimilarityJaccard(validation *types.Validate, agentResponse string) error {
+func executeSimilarityJaccard(validation *types.Validate, agentResponse string, log *logrus.Entry) error {
 	if validation.ConfigurationJaccard == nil {
 		validation.ConfigurationJaccard = metrics.NewJaccard()
 	}
-	global.Log.Printf("Validation configuration: %v", validation.ConfigurationJaccard)
+	log.Infof("Validation configuration: %+v", *validation.ConfigurationJaccard)
 
 	similarity := strutil.Similarity(validation.Value, agentResponse, validation.ConfigurationJaccard)
 
@@ -316,11 +337,11 @@ func executeSimilarityJaccard(validation *types.Validate, agentResponse string) 
 	return nil
 }
 
-func executeSimilarityOverlapCoefficient(validation *types.Validate, agentResponse string) error {
+func executeSimilarityOverlapCoefficient(validation *types.Validate, agentResponse string, log *logrus.Entry) error {
 	if validation.ConfigurationOverlapCoefficient == nil {
 		validation.ConfigurationOverlapCoefficient = metrics.NewOverlapCoefficient()
 	}
-	global.Log.Printf("Validation configuration: %v", validation.ConfigurationOverlapCoefficient)
+	log.Infof("Validation configuration: %+v", *validation.ConfigurationOverlapCoefficient)
 
 	similarity := strutil.Similarity(validation.Value, agentResponse, validation.ConfigurationOverlapCoefficient)
 
@@ -331,31 +352,30 @@ func executeSimilarityOverlapCoefficient(validation *types.Validate, agentRespon
 	return nil
 }
 
-func getResponse(sessionsClient *cx.SessionsClient, palmTextClient *vertexai.LLM, agent *cxpb.Agent, test *types.Test, interaction *types.Interaction, testInfo *types.Tests, sessionId string) (*cxpb.DetectIntentResponse, error) {
+func getResponse(sessionsClient *cx.SessionsClient, palmTextClient *vertexai.LLM, agent *cxpb.Agent, test *types.Test, interaction *types.Interaction, testInfo *types.Tests, sessionId string, log *logrus.Entry) (*cxpb.DetectIntentResponse, error) {
+
 	switch interaction.User.Type {
 	case "prompt":
-		completion, err := vertexaipkg.GenerateText(palmTextClient, interaction.User.Prompt)
+		textGenerated, err := vertexaipkg.GenerateText(palmTextClient, interaction.User.Prompt)
 		if err != nil {
 			return nil, err
 		}
+		textGenerated = strings.TrimSpace(textGenerated)
 
-		global.Log.Infof("User: type: %s, value: %s \n", interaction.User.Type, interaction.User.Prompt)
-		global.Log.Infof("Information get: %s \n", completion)
-
-		global.Log.Infof("prompt generated: %s \n", interaction.User.Text)
+		log.Infof("User> %s (auto-generated from prompt: \"%s\")", textGenerated, interaction.User.Prompt)
 
 		return cxpkg.DetectIntentFromText(sessionsClient, agent, test.LocaleID, interaction.User.Text, sessionId)
 	case "text":
-		global.Log.Infof("User: type: %s, value: %s \n", interaction.User.Type, interaction.User.Text)
+		log.Infof("User> %s", interaction.User.Text)
 
 		return cxpkg.DetectIntentFromText(sessionsClient, agent, test.LocaleID, interaction.User.Text, sessionId)
 	case "audio":
-		global.Log.Infof("User: type: %s, value: %s \n", interaction.User.Type, interaction.User.Audio)
+		log.Infof("User> %s", interaction.User.Audio)
 
 		audioFile := utils.GetRelativeFilePathFromParentFile(testInfo.File, interaction.User.Audio)
 		return cxpkg.DetectIntentFromAudio(sessionsClient, agent, test.LocaleID, audioFile, sessionId)
 	}
 
-	return nil, fmt.Errorf("option not %s accepted", interaction.User.Type)
+	return nil, fmt.Errorf("option not \"%s\" accepted", interaction.User.Type)
 
 }

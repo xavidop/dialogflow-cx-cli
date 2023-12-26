@@ -30,6 +30,18 @@ interactions:
 
   - id: test_1_4
     user: 
+      type: text
+      text: hi
+    agent:
+      validate:
+        - type: similarity
+          algorithm: levenshtein
+          value: hello
+          configuration-levenshtein:
+            casesensitive: false
+
+  - id: test_1_4
+    user: 
       type: audio
       audio: ./audio/hi.mp3
     agent:

@@ -1,6 +1,7 @@
 package cmdutils
 
 import (
+	nested "github.com/antonfisher/nested-logrus-formatter"
 	log "github.com/sirupsen/logrus"
 	"github.com/xavidop/dialogflow-cx-cli/internal/global"
 	"github.com/xavidop/dialogflow-cx-cli/internal/utils"
@@ -34,9 +35,13 @@ func PreRun(command string) {
 		global.Log.Formatter = new(log.JSONFormatter)
 
 	} else {
+
 		global.Log.Formatter = new(log.TextFormatter)
-		global.Log.SetFormatter(&log.TextFormatter{
-			FullTimestamp: true,
+		global.Log.SetFormatter(&nested.Formatter{
+			HideKeys:      false,
+			NoFieldsSpace: true,
+			ShowFullLevel: true,
+			FieldsOrder:   []string{"test-file", "interaction", "type", "validation"},
 		})
 	}
 

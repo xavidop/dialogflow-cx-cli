@@ -15,6 +15,7 @@ require (
 	cloud.google.com/go/speech v1.21.0
 	cloud.google.com/go/texttospeech v1.7.4
 	github.com/adrg/strutil v0.3.0
+	github.com/antonfisher/nested-logrus-formatter v1.3.1
 	github.com/google/go-github/v50 v50.2.0
 	github.com/invopop/jsonschema v0.12.0
 	github.com/muesli/mango-cobra v1.2.0
