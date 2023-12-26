@@ -46,9 +46,9 @@ jobs:
       - name: snapcraft-login
         run: |
           export SNAPCRAFT_STORE_CREDENTIALS=$(echo "${{ secrets.SNAPCRAFT_LOGIN }}") snapcraft login
-          snapcraft whoami
           echo "SNAPCRAFT_STORE_CREDENTIALS=$SNAPCRAFT_STORE_CREDENTIALS" >> $GITHUB_ENV
           echo "$SNAPCRAFT_STORE_CREDENTIALS"
+          snapcraft whoami
       - name: Write signing key to disk
         run: 'echo "$KEY" > cosign.key'
         shell: bash
