@@ -31,3 +31,7 @@ You will need to enable the `Cloud Speech-to-Text API` on your project. More inf
 ### Text-to-speech
 
 You will need to enable the `Cloud Text-to-Speech API` on your project. More information [here](https://cloud.google.com/text-to-speech/docs/apis)
+
+### Generative AI on Vertex AI
+
+You will need to enable the `Vertex AI API` on your project. More information [here](https://cloud.google.com/vertex-ai/docs/reference)

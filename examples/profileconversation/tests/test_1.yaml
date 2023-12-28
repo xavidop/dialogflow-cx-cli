@@ -37,6 +37,7 @@ interactions:
         - type: similarity
           algorithm: levenshtein
           value: hello
+          threshold: 0.4
           configuration-levenshtein:
             casesensitive: false
 

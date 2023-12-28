@@ -23,7 +23,7 @@ checks:
       # the input type
       # it could be text or audio
       type: text
-      # The input itself in text format. For type: audio, you have to specify the audio tag.
+      # The input itself in text format. For type: audio, you have to specify the audio file.
       text: I want 3 pizzas
     validate:
       # Intent that is supposed to be detected
@@ -37,7 +37,15 @@ checks:
           value: 3
 ```
 
-## Audio input
+## Input types
+
+### Text input
+
+The input text is the simplest one. You just have to specify the text you want to send to Dialogflow CX. Make sure that the text is in the language you specified in the `localeId` field. to use this type you have to set the `type` field to `text` and the `text` field to the text you want to send.
+
+### Audio input
+
+The audio input is a little bit more complex. You have to specify the path to the audio file you want to send to Dialogflow CX. Make sure that the audio file is in the language you specified in the `localeId` field. To use this type you have to set the `type` field to `audio` and the `file` field to the path to the audio file.
 
 It is important to know that the input audio needs to have the following format:
 
@@ -45,6 +53,12 @@ It is important to know that the input audio needs to have the following format:
 2. The audio encoding has to be Linear16. Linear16 is a 16-bit linear pulse-code modulation (PCM) encoding.
 
 If you don't have a file with this format, you can create it by yourself using the `cxcli tts` command! All the information is located [here](/tts)
+
+### Prompt input
+
+The prompt input is the most complex one. You have to specify the input prompt you want to send to Dialogflow CX. To use this type you have to set the `type` field to `prompt` and the `prompt` field to the prompt you want to send.
+
+It is important to know that the input prompt needs Vertex AI API to be enabled in your project and the proper permissions granted.  You can find more information on the [Authentication](/overview/authentication) page.
 
 ## JSON Schema
 

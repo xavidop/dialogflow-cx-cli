@@ -31,6 +31,9 @@
 					"Text": {
 						"type": "string"
 					},
+					"Prompt": {
+						"type": "string"
+					},
 					"Audio": {
 						"type": "string"
 					}
@@ -40,6 +43,7 @@
 				"required": [
 					"Type",
 					"Text",
+					"Prompt",
 					"Audio"
 				]
 			},

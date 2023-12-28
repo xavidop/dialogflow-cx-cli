@@ -27,7 +27,7 @@ tests:
     file: ./test.yaml
 ```
 
-It has the same structure as the Conversation Profiler suite.
+It has the same structure as the NLU Profiler suite.
 
 ## JSON Schema
 
@@ -35,11 +35,11 @@ It has the same structure as the Conversation Profiler suite.
 editor support:
 
 ```sh
-https://cxcli.xavidop.me/static/nlusuite.json
+https://cxcli.xavidop.me/static/conversationsuite.json
 ```
 
 You can also specify it in your `yml` config files by adding a
 comment like the following:
 ```yaml
-# yaml-language-server: $schema=https://cxcli.xavidop.me/static/nlusuite.json
+# yaml-language-server: $schema=https://cxcli.xavidop.me/static/conversationsuite.json
 ```

@@ -37,3 +37,5 @@ completions/
 manpages/
 
 cxcli.ts
+env
+site
