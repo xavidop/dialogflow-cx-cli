@@ -230,7 +230,7 @@ func executeEquals(validation *types.Validate, agentResponse string, log *logrus
 			return fmt.Errorf("text %s is not equal to \"%s\"", validation.Value, agentResponse)
 		}
 	} else {
-		if strings.EqualFold(validation.Value, agentResponse) {
+		if !strings.EqualFold(validation.Value, agentResponse) {
 			return fmt.Errorf("text %s is not equal to \"%s\"", validation.Value, agentResponse)
 		}
 
