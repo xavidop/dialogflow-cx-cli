@@ -194,6 +194,7 @@ validate:
       replacecost: 1
 ```
 Let's explain each one of them:
+
 1. The `casesensitive` field is used to check if the algorithm is case sensitive. By default, it is set to `true`.
 2. the `insertcost` field is used to set the cost of an insert operation. By default, it is set to `1`.
 3. the `deletecost` field is used to set the cost of a delete operation. By default, it is set to `1`.
@@ -280,6 +281,7 @@ validate:
 ```
 
 Let's explain each one of them:
+
 1. The `casesensitive` field is used to check if the algorithm is case sensitive. By default, it is set to `true`.
 2. the `gappenalty` defines a score penalty for character insertions or deletions. For relevant results, the gap penalty should be a non-positive number. By default, it is set to `-0.5`.
 
@@ -310,6 +312,7 @@ validate:
 ```
 
 Let's explain each one of them:
+
 1. The `casesensitive` field is used to check if the algorithm is case sensitive. By default, it is set to `true`.
 2. The `NgramSize` represents the size (in characters) of the tokens generated when comparing the input sequences. By default, it is set to `2`.
 
@@ -340,6 +343,7 @@ validate:
 ```
 
 Let's explain each one of them:
+
 1. The `casesensitive` field is used to check if the algorithm is case sensitive. By default, it is set to `true`.
 2. The `NgramSize` represents the size (in characters) of the tokens generated when comparing the input sequences. By default, it is set to `2`.
 
@@ -370,6 +374,7 @@ validate:
 ```
 
 Let's explain each one of them:
+
 1. The `casesensitive` field is used to check if the algorithm is case sensitive. By default, it is set to `true`.
 2. The `NgramSize` represents the size (in characters) of the tokens generated when comparing the input sequences. By default, it is set to `2`.
 

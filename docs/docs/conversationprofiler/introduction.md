@@ -8,7 +8,7 @@
 
 Use the Conversation Profiler to test user utterances and improve your agent's interaction model.
 
-With the Conversation Profiler, you can test the conversation flow of your agent. This means that you can send user's utterances to your agent and check if the agent is responding as expected. This feature is also useful when you have generative AI models in your agent, and you want to test if the agent is responding as expected. It is similar to the Dialogflow CX console's Test Agent feature, but with the Conversation Profiler, you can run your tests in your CI/CD pipelines and also it has additional features. Every suite is executed in the same Dialogflow CX session.
+With the Conversation Profiler, you can test the conversation flow of your agent. This means that you can send user's utterances to your agent and check if the agent is responding as expected (interactions). This feature is also useful when you have generative AI models in your agent, and you want to test if the agent is responding as expected. It is similar to the Dialogflow CX console's Test Agent feature, but with the Conversation Profiler, you can run your tests in your CI/CD pipelines and also it has additional features. Every suite is executed in the same Dialogflow CX session.
 
 All of the commands that are available in `cxcli` to execute the Conversation profiler are located within the [`cxcli profile-conversation` subcommand](/cmd/cxcli_profile-conversation).
 

@@ -60,6 +60,35 @@ The prompt input is the most complex one. You have to specify the input prompt y
 
 It is important to know that the input prompt needs Vertex AI API to be enabled in your project and the proper permissions granted.  You can find more information on the [Authentication](/overview/authentication) page.
 
+## Validation types
+
+### Intent validation
+
+The intent validation is the simplest one. You just have to specify the intent you want to validate. To use this type you have to set the `intent` field to the intent you want to validate:
+
+```yaml
+validate:
+  # Intent that is supposed to be detected
+  intent: order_intent
+```
+
+### Parameter validation
+
+The parameter validation is a little bit more complex. You have to specify the parameters you want to validate and the values that are supposed to be detected. To use this type you have to set a list wit of parameters and each value must have the `parameter` field to the parameter you want to validate and the `value` field to the value that is supposed to be detected:
+
+```yaml
+validate:
+  # Intent that is supposed to be detected
+  intent: order_intent
+  # You can have multiple parameters/intents
+  # Notice: this could be empty if your intent does not have any entities/parameters.
+  parameters:
+    # Entity name that is supposed to be detected
+    - parameter: number
+      # Value that is supposed to be detected
+      value: 3
+```
+
 ## JSON Schema
 
 `cxcli` also has a [jsonschema](http://json-schema.org/draft/2020-12/json-schema-validation.html) file, which you can use to have better

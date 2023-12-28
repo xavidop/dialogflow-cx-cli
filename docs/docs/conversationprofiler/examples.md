@@ -1,18 +1,13 @@
 # Examples
 
-## Simple
+## Contains
 
-Simple example that demonstrates the NLU Profiler in action. Find it [here](/nluprofiler/examples/simple)
+Simple example that demonstrates the Conversational Profiler in action using the contains validator. Find it [here](/conversationprofiler/examples/contains)
 
-## System entity detection
+## Prompt
 
-Example that shows how to validate Dialogflow CX built-in entities. Find it [here](/nluprofiler/examples/system)
+Example that shows how to use a prompt as an user input Dialogflow CX. Find it [here](/conversationprofiler/examples/prompt)
 
-## Text input with entities
+## String Similarity Algorithm 
 
-Full example with multiple user-defined entities and Dialogflow CX built-in entities. Find it [here](/nluprofiler/examples/text)
-
-
-## Audio input
-
-Example using an audio file as an input. Find it [here](/nluprofiler/examples/audio)
+Full example using a string similarity algorithm to validate the agent's response. Find it [here](/conversationprofiler/examples/similarity)
