@@ -277,17 +277,11 @@ validate:
     configuration-smith-waterman-gotoh:
       casesensitive: true
       gappenalty: -0.5
-      substitution:
-        match: 1
-        mismatch: -2
 ```
 
 Let's explain each one of them:
 1. The `casesensitive` field is used to check if the algorithm is case sensitive. By default, it is set to `true`.
 2. the `gappenalty` defines a score penalty for character insertions or deletions. For relevant results, the gap penalty should be a non-positive number. By default, it is set to `-0.5`.
-3. the `substitution` Substitution represents a substitution function which is used to calculate a score for character substitutions. By default, it is set to:
-   1. the `match` represents the score of equal character substitutions. By default, it is set to `1`.
-   2. the `mismatch` represents the score of unequal character substitutions. By default, it is set to `-2`.
 
 #### Sorensen-Dice
 

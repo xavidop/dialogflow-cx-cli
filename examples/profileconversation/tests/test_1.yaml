@@ -41,7 +41,7 @@ interactions:
           configuration-levenshtein:
             casesensitive: false
 
-  - id: test_1_4
+  - id: test_1_5
     user: 
       type: audio
       audio: ./audio/hi.mp3
@@ -49,3 +49,17 @@ interactions:
       validate:
         - type: regexp
           value: '/my-regex/'
+
+  - id: test_1_6
+    user: 
+      type: text
+      text: hi
+    agent:
+      validate:
+        - type: similarity
+          algorithm: smith-waterman-gotoh
+          value: hello
+          threshold: 0.4
+          configuration-smith-waterman-gotoh:
+            casesensitive: true
+            gappenalty: -0.5

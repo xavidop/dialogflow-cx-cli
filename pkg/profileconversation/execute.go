@@ -248,7 +248,7 @@ func executeSimilarityHamming(validation *types.Validate, agentResponse string, 
 	similarity := strutil.Similarity(validation.Value, agentResponse, validation.ConfigurationHamming)
 
 	if similarity < validation.Threshold {
-		return fmt.Errorf("text not similar. similarity expected: %f, similarity obtained: %f", validation.Threshold, similarity)
+		return fmt.Errorf("text not similar. similarity expected: %.1f, similarity obtained: %.1f", validation.Threshold, similarity)
 	}
 
 	return nil
@@ -263,7 +263,7 @@ func executeSimilarityLevenshtein(validation *types.Validate, agentResponse stri
 	similarity := strutil.Similarity(validation.Value, agentResponse, validation.ConfigurationLevenshtein)
 
 	if similarity < validation.Threshold {
-		return fmt.Errorf("text not similar. similarity expected: %f, similarity obtained: %f", validation.Threshold, similarity)
+		return fmt.Errorf("text not similar. similarity expected: %.1f, similarity obtained: %.1f", validation.Threshold, similarity)
 	}
 
 	return nil
@@ -278,7 +278,7 @@ func executeSimilarityJaro(validation *types.Validate, agentResponse string, log
 	similarity := strutil.Similarity(validation.Value, agentResponse, validation.ConfigurationJaro)
 
 	if similarity < validation.Threshold {
-		return fmt.Errorf("text not similar. similarity expected: %f, similarity obtained: %f", validation.Threshold, similarity)
+		return fmt.Errorf("text not similar. similarity expected: %.1f, similarity obtained: %.1f", validation.Threshold, similarity)
 	}
 
 	return nil
@@ -293,7 +293,7 @@ func executeSimilarityJaroWinkler(validation *types.Validate, agentResponse stri
 	similarity := strutil.Similarity(validation.Value, agentResponse, validation.ConfigurationJaroWinkler)
 
 	if similarity < validation.Threshold {
-		return fmt.Errorf("text not similar. similarity expected: %f, similarity obtained: %f", validation.Threshold, similarity)
+		return fmt.Errorf("text not similar. similarity expected: %.1f, similarity obtained: %.1f", validation.Threshold, similarity)
 	}
 
 	return nil
@@ -303,12 +303,18 @@ func executeSimilaritySmithWatermanGotoh(validation *types.Validate, agentRespon
 	if validation.ConfigurationSmithWatermanGotoh == nil {
 		validation.ConfigurationSmithWatermanGotoh = metrics.NewSmithWatermanGotoh()
 	}
+	if validation.ConfigurationSmithWatermanGotoh.Substitution == nil {
+		validation.ConfigurationSmithWatermanGotoh.Substitution = metrics.MatchMismatch{
+			Match:    1,
+			Mismatch: -2,
+		}
+	}
 	log.Infof("Validation configuration: %+v", *validation.ConfigurationSmithWatermanGotoh)
 
 	similarity := strutil.Similarity(validation.Value, agentResponse, validation.ConfigurationSmithWatermanGotoh)
 
 	if similarity < validation.Threshold {
-		return fmt.Errorf("text not similar. similarity expected: %f, similarity obtained: %f", validation.Threshold, similarity)
+		return fmt.Errorf("text not similar. similarity expected: %.1f, similarity obtained: %.1f", validation.Threshold, similarity)
 	}
 
 	return nil
@@ -323,7 +329,7 @@ func executeSimilaritySorensenDice(validation *types.Validate, agentResponse str
 	similarity := strutil.Similarity(validation.Value, agentResponse, validation.ConfigurationSorensenDice)
 
 	if similarity < validation.Threshold {
-		return fmt.Errorf("text not similar. similarity expected: %f, similarity obtained: %f", validation.Threshold, similarity)
+		return fmt.Errorf("text not similar. similarity expected: %.1f, similarity obtained: %.1f", validation.Threshold, similarity)
 	}
 
 	return nil
@@ -338,7 +344,7 @@ func executeSimilarityJaccard(validation *types.Validate, agentResponse string, 
 	similarity := strutil.Similarity(validation.Value, agentResponse, validation.ConfigurationJaccard)
 
 	if similarity < validation.Threshold {
-		return fmt.Errorf("text not similar. similarity expected: %f, similarity obtained: %f", validation.Threshold, similarity)
+		return fmt.Errorf("text not similar. similarity expected: %.1f, similarity obtained: %.1f", validation.Threshold, similarity)
 	}
 
 	return nil
@@ -353,7 +359,7 @@ func executeSimilarityOverlapCoefficient(validation *types.Validate, agentRespon
 	similarity := strutil.Similarity(validation.Value, agentResponse, validation.ConfigurationOverlapCoefficient)
 
 	if similarity < validation.Threshold {
-		return fmt.Errorf("text not similar. similarity expected: %f, similarity obtained: %f", validation.Threshold, similarity)
+		return fmt.Errorf("text not similar. similarity expected: %.1f, similarity obtained: %.1f", validation.Threshold, similarity)
 	}
 
 	return nil
