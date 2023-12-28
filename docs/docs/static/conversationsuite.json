@@ -1,6 +1,6 @@
 {
 		"$schema": "https://json-schema.org/draft/2020-12/schema",
-		"$id": "https://github.com/xavidop/dialogflow-cx-cli/internal/types/suite",
+		"$id": "https://github.com/xavidop/dialogflow-cx-cli/internal/types/profileconversation/suite",
 		"$ref": "#/$defs/Suite",
 		"$defs": {
 			"Suite": {
@@ -40,7 +40,7 @@
 			},
 			"Tests": {
 				"$schema": "https://json-schema.org/draft/2020-12/schema",
-				"$id": "https://github.com/xavidop/dialogflow-cx-cli/internal/types/tests",
+				"$id": "https://github.com/xavidop/dialogflow-cx-cli/internal/types/profileconversation/tests",
 				"$ref": "#/$defs/Tests",
 				"$defs": {
 					"Tests": {
@@ -62,5 +62,5 @@
 				}
 			}
 		},
-		"description": "cxcli suite definition file"
+		"description": "cxcli Conversation Profiler suite definition file"
 	}

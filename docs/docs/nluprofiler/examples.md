@@ -12,6 +12,9 @@ Example that shows how to validate Dialogflow CX built-in entities. Find it [her
 
 Full example with multiple user-defined entities and Dialogflow CX built-in entities. Find it [here](/nluprofiler/examples/text)
 
+## Prompt
+
+Example that shows how to use a prompt as an user input Dialogflow CX. Find it [here](/nluprofiler/examples/prompt)
 
 ## Audio input
 

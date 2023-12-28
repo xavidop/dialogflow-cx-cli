@@ -1,4 +1,4 @@
-package types
+package profilenlu
 
 import (
 	"os"
@@ -7,12 +7,12 @@ import (
 )
 
 type Suite struct {
-	Name        string  `yaml:"name"`
-	Description string  `yaml:"description"`
-	ProjectID   string  `yaml:"projectId"`
-	LocationID  string  `yaml:"locationId"`
-	AgentName   string  `yaml:"agentName"`
-	Tests       []Tests `yaml:"tests"`
+	Name        string   `yaml:"name"`
+	Description string   `yaml:"description"`
+	ProjectID   string   `yaml:"projectId"`
+	LocationID  string   `yaml:"locationId"`
+	AgentName   string   `yaml:"agentName"`
+	Tests       []*Tests `yaml:"tests"`
 }
 
 func NewSuite(file string) (*Suite, error) {

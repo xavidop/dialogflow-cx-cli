@@ -13,6 +13,7 @@ import (
 	cmdflow "github.com/xavidop/dialogflow-cx-cli/cmd/flow"
 	cmdflowversion "github.com/xavidop/dialogflow-cx-cli/cmd/flowversion"
 	cmdintent "github.com/xavidop/dialogflow-cx-cli/cmd/intent"
+	cmdprofileconversation "github.com/xavidop/dialogflow-cx-cli/cmd/profileconversation"
 	cmdprofilenlu "github.com/xavidop/dialogflow-cx-cli/cmd/profilenlu"
 	cmdstt "github.com/xavidop/dialogflow-cx-cli/cmd/stt"
 	cmdtts "github.com/xavidop/dialogflow-cx-cli/cmd/tts"
@@ -57,6 +58,7 @@ func Execute() {
 func init() {
 
 	// Add the subcommands
+	cmdprofileconversation.Register(rootCmd)
 	cmdprofilenlu.Register(rootCmd)
 	environmentCmd.Register(rootCmd)
 	cmdtts.Register(rootCmd)

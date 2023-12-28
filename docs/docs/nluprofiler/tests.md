@@ -23,7 +23,7 @@ checks:
       # the input type
       # it could be text or audio
       type: text
-      # The input itself in text format. For type: audio, you have to specify the audio tag.
+      # The input itself in text format. For type: audio, you have to specify the audio file.
       text: I want 3 pizzas
     validate:
       # Intent that is supposed to be detected
@@ -37,7 +37,15 @@ checks:
           value: 3
 ```
 
-## Audio input
+## Input types
+
+### Text input
+
+The input text is the simplest one. You just have to specify the text you want to send to Dialogflow CX. Make sure that the text is in the language you specified in the `localeId` field. to use this type you have to set the `type` field to `text` and the `text` field to the text you want to send.
+
+### Audio input
+
+The audio input is a little bit more complex. You have to specify the path to the audio file you want to send to Dialogflow CX. Make sure that the audio file is in the language you specified in the `localeId` field. To use this type you have to set the `type` field to `audio` and the `file` field to the path to the audio file.
 
 It is important to know that the input audio needs to have the following format:
 
@@ -46,17 +54,52 @@ It is important to know that the input audio needs to have the following format:
 
 If you don't have a file with this format, you can create it by yourself using the `cxcli tts` command! All the information is located [here](/tts)
 
+### Prompt input
+
+The prompt input is the most complex one. You have to specify the input prompt you want to send to Dialogflow CX. To use this type you have to set the `type` field to `prompt` and the `prompt` field to the prompt you want to send.
+
+It is important to know that the input prompt needs Vertex AI API to be enabled in your project and the proper permissions granted.  You can find more information on the [Authentication](/overview/authentication) page.
+
+## Validation types
+
+### Intent validation
+
+The intent validation is the simplest one. You just have to specify the intent you want to validate. To use this type you have to set the `intent` field to the intent you want to validate:
+
+```yaml
+validate:
+  # Intent that is supposed to be detected
+  intent: order_intent
+```
+
+### Parameter validation
+
+The parameter validation is a little bit more complex. You have to specify the parameters you want to validate and the values that are supposed to be detected. To use this type you have to set a list wit of parameters and each value must have the `parameter` field to the parameter you want to validate and the `value` field to the value that is supposed to be detected:
+
+```yaml
+validate:
+  # Intent that is supposed to be detected
+  intent: order_intent
+  # You can have multiple parameters/intents
+  # Notice: this could be empty if your intent does not have any entities/parameters.
+  parameters:
+    # Entity name that is supposed to be detected
+    - parameter: number
+      # Value that is supposed to be detected
+      value: 3
+```
+
 ## JSON Schema
 
 `cxcli` also has a [jsonschema](http://json-schema.org/draft/2020-12/json-schema-validation.html) file, which you can use to have better
 editor support:
 
 ```sh
-https://cxcli.xavidop.me/static/test.json
+https://cxcli.xavidop.me/static/nlutest.json
 ```
 
 You can also specify it in your `yml` config files by adding a
 comment like the following:
 ```yaml
-# yaml-language-server: $schema=https://cxcli.xavidop.me/static/test.json
+# yaml-language-server: $schema=https://cxcli.xavidop.me/static/nlutest.json
 ```

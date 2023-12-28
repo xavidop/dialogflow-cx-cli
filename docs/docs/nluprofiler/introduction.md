@@ -3,7 +3,7 @@
 ## What is this?
 
 <p align="center">
-  <img alt="Flow" src="/images/flow.png" style="height:512px;width:512px" />
+  <img alt="Flow" src="/images/nlu.png" />
 </p>
 
 Use the NLU Profiler to test user utterances and improve your agent's interaction model.
@@ -24,7 +24,7 @@ To execute a suite, you can run the `cxcli profile-nlu execute` command. For the
 
 ## Examples
 
-You can find some useful examples on our [GitHub repo](https://github.com/xavidop/dialogflow-cx-cli/tree/master/examples) and the [Examples](/nluprofiler/examples) page.
+You can find some useful examples on our [GitHub repo](https://github.com/xavidop/dialogflow-cx-cli/tree/master/examples/profilenlu) and the [Examples](/nluprofiler/examples) page.
 
 
 ## Execution Example
@@ -32,30 +32,33 @@ You can find some useful examples on our [GitHub repo](https://github.com/xavido
 Here is a simple example of the `cxcli profile-nlu execute` command:
 
 ```sh
-cxcli profile-nlu execute examples/suite.yaml
+cxcli profile-nlu execute examples/profilenlu/suite.yaml
 ```
 
 The above command will give you output similar to the following:
 
 ```sh
 $ cxcli profile-nlu execute suite.yaml
-INFO Suite Information: test-agent
-INFO Test ID: test_1
-INFO Input: type: text, value: hi
-INFO Intent Detected: hi_intent
-INFO Input: type: text, value: hello
-INFO Intent Detected: hi_intent
-INFO Input: type: audio, value: ./audio/hi.mp3
-INFO Intent Detected: hi_intent
-INFO Test ID: test_2
-INFO Input: type: text, value: I want 3 pizzas
-INFO Intent Detected: order_intent
-INFO Param order_type: pizza
-INFO Param number: 3
-INFO Input: type: text, value: I want 2 cokes
-INFO Intent Detected: order_intent
-INFO Param number: 2
-INFO Param order_type: coke
+[INFO] Running suite: Example NLU Profiler Suite
+[INFO][test-file:test_1][check:test_1_1][input:prompt] User> hi (auto-generated from prompt: "give me a one line hello without exclamation mark using only 2 characters and lowercase")
+[INFO][test-file:test_1][check:test_1_1][input:prompt] Agent> Hi! How are you doing?
+[INFO][test-file:test_1][check:test_1_1][validation:hi_intent] Intent Detected: hi_intent
+[INFO][test-file:test_1][check:test_1_2][input:text] User> hello
+[INFO][test-file:test_1][check:test_1_2][input:text] Agent> Hi! How are you doing?
+[INFO][test-file:test_1][check:test_1_2][validation:hi_intent] Intent Detected: hi_intent
+[INFO][test-file:test_1][check:test_1_3][input:audio] User> ./audio/hi.mp3
+[INFO][test-file:test_1][check:test_1_3][input:audio] Agent> Hi! How are you doing?
+[INFO][test-file:test_1][check:test_1_3][validation:hi_intent] Intent Detected: hi_intent
+[INFO][test-file:test_2][check:test_2_1][input:text] User> I want 3 pizzas
+[INFO][test-file:test_2][check:test_2_1][input:text] Agent> 
+[INFO][test-file:test_2][check:test_2_1][validation:order_intent] Intent Detected: order_intent
+[INFO][test-file:test_2][check:test_2_1][validation:order_intent] Param order_type: pizza 
+[INFO][test-file:test_2][check:test_2_1][validation:order_intent] Param number: 3 
+[INFO][test-file:test_2][check:test_2_2][input:text] User> I want 2 cokes
+[INFO][test-file:test_2][check:test_2_2][input:text] Agent> 
+[INFO][test-file:test_2][check:test_2_2][validation:order_intent] Intent Detected: order_intent
+[INFO][test-file:test_2][check:test_2_2][validation:order_intent] Param number: 2 
+[INFO][test-file:test_2][check:test_2_2][validation:order_intent] Param order_type: coke 
 ```
 
 !!! info "Are you running this command in a CI/CD pipeline?"

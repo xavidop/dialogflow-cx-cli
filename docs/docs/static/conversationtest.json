@@ -1,0 +1,328 @@
+{
+		"$schema": "https://json-schema.org/draft/2020-12/schema",
+		"$id": "https://github.com/xavidop/dialogflow-cx-cli/internal/types/profileconversation/test",
+		"$ref": "#/$defs/Test",
+		"$defs": {
+			"Agent": {
+				"properties": {
+					"Intent": {
+						"type": "string"
+					},
+					"Validate": {
+						"items": {
+							"$ref": "#/$defs/Validate"
+						},
+						"type": "array"
+					}
+				},
+				"additionalProperties": false,
+				"type": "object",
+				"required": [
+					"Intent",
+					"Validate"
+				]
+			},
+			"Contains": {
+				"properties": {
+					"CaseSensitive": {
+						"type": "boolean"
+					}
+				},
+				"additionalProperties": false,
+				"type": "object",
+				"required": [
+					"CaseSensitive"
+				]
+			},
+			"Equals": {
+				"properties": {
+					"CaseSensitive": {
+						"type": "boolean"
+					}
+				},
+				"additionalProperties": false,
+				"type": "object",
+				"required": [
+					"CaseSensitive"
+				]
+			},
+			"Hamming": {
+				"properties": {
+					"CaseSensitive": {
+						"type": "boolean"
+					}
+				},
+				"additionalProperties": false,
+				"type": "object",
+				"required": [
+					"CaseSensitive"
+				]
+			},
+			"Interaction": {
+				"properties": {
+					"ID": {
+						"type": "string"
+					},
+					"User": {
+						"$ref": "#/$defs/User"
+					},
+					"Agent": {
+						"$ref": "#/$defs/Agent"
+					}
+				},
+				"additionalProperties": false,
+				"type": "object",
+				"required": [
+					"ID",
+					"User",
+					"Agent"
+				]
+			},
+			"Jaccard": {
+				"properties": {
+					"CaseSensitive": {
+						"type": "boolean"
+					},
+					"NgramSize": {
+						"type": "integer"
+					}
+				},
+				"additionalProperties": false,
+				"type": "object",
+				"required": [
+					"CaseSensitive",
+					"NgramSize"
+				]
+			},
+			"Jaro": {
+				"properties": {
+					"CaseSensitive": {
+						"type": "boolean"
+					}
+				},
+				"additionalProperties": false,
+				"type": "object",
+				"required": [
+					"CaseSensitive"
+				]
+			},
+			"JaroWinkler": {
+				"properties": {
+					"CaseSensitive": {
+						"type": "boolean"
+					}
+				},
+				"additionalProperties": false,
+				"type": "object",
+				"required": [
+					"CaseSensitive"
+				]
+			},
+			"Levenshtein": {
+				"properties": {
+					"CaseSensitive": {
+						"type": "boolean"
+					},
+					"InsertCost": {
+						"type": "integer"
+					},
+					"DeleteCost": {
+						"type": "integer"
+					},
+					"ReplaceCost": {
+						"type": "integer"
+					}
+				},
+				"additionalProperties": false,
+				"type": "object",
+				"required": [
+					"CaseSensitive",
+					"InsertCost",
+					"DeleteCost",
+					"ReplaceCost"
+				]
+			},
+			"OverlapCoefficient": {
+				"properties": {
+					"CaseSensitive": {
+						"type": "boolean"
+					},
+					"NgramSize": {
+						"type": "integer"
+					}
+				},
+				"additionalProperties": false,
+				"type": "object",
+				"required": [
+					"CaseSensitive",
+					"NgramSize"
+				]
+			},
+			"Regexp": {
+				"properties": {
+					"FindInSubmatches": {
+						"type": "boolean"
+					}
+				},
+				"additionalProperties": false,
+				"type": "object",
+				"required": [
+					"FindInSubmatches"
+				]
+			},
+			"SmithWatermanGotoh": {
+				"properties": {
+					"CaseSensitive": {
+						"type": "boolean"
+					},
+					"GapPenalty": {
+						"type": "number"
+					},
+					"Substitution": true
+				},
+				"additionalProperties": false,
+				"type": "object",
+				"required": [
+					"CaseSensitive",
+					"GapPenalty",
+					"Substitution"
+				]
+			},
+			"SorensenDice": {
+				"properties": {
+					"CaseSensitive": {
+						"type": "boolean"
+					},
+					"NgramSize": {
+						"type": "integer"
+					}
+				},
+				"additionalProperties": false,
+				"type": "object",
+				"required": [
+					"CaseSensitive",
+					"NgramSize"
+				]
+			},
+			"Test": {
+				"properties": {
+					"Name": {
+						"type": "string"
+					},
+					"Description": {
+						"type": "string"
+					},
+					"LocaleID": {
+						"type": "string"
+					},
+					"Interactions": {
+						"items": {
+							"$ref": "#/$defs/Interaction"
+						},
+						"type": "array"
+					}
+				},
+				"additionalProperties": false,
+				"type": "object",
+				"required": [
+					"Name",
+					"Description",
+					"LocaleID",
+					"Interactions"
+				]
+			},
+			"User": {
+				"properties": {
+					"Type": {
+						"type": "string"
+					},
+					"Text": {
+						"type": "string"
+					},
+					"Prompt": {
+						"type": "string"
+					},
+					"Audio": {
+						"type": "string"
+					}
+				},
+				"additionalProperties": false,
+				"type": "object",
+				"required": [
+					"Type",
+					"Text",
+					"Prompt",
+					"Audio"
+				]
+			},
+			"Validate": {
+				"properties": {
+					"Type": {
+						"type": "string"
+					},
+					"Value": {
+						"type": "string"
+					},
+					"Algorithm": {
+						"type": "string"
+					},
+					"Threshold": {
+						"type": "number"
+					},
+					"ConfigurationContains": {
+						"$ref": "#/$defs/Contains"
+					},
+					"ConfigurationRegexp": {
+						"$ref": "#/$defs/Regexp"
+					},
+					"ConfigurationEquals": {
+						"$ref": "#/$defs/Equals"
+					},
+					"ConfigurationHamming": {
+						"$ref": "#/$defs/Hamming"
+					},
+					"ConfigurationLevenshtein": {
+						"$ref": "#/$defs/Levenshtein"
+					},
+					"ConfigurationJaro": {
+						"$ref": "#/$defs/Jaro"
+					},
+					"ConfigurationJaroWinkler": {
+						"$ref": "#/$defs/JaroWinkler"
+					},
+					"ConfigurationSmithWatermanGotoh": {
+						"$ref": "#/$defs/SmithWatermanGotoh"
+					},
+					"ConfigurationSorensenDice": {
+						"$ref": "#/$defs/SorensenDice"
+					},
+					"ConfigurationJaccard": {
+						"$ref": "#/$defs/Jaccard"
+					},
+					"ConfigurationOverlapCoefficient": {
+						"$ref": "#/$defs/OverlapCoefficient"
+					}
+				},
+				"additionalProperties": false,
+				"type": "object",
+				"required": [
+					"Type",
+					"Value",
+					"Algorithm",
+					"Threshold",
+					"ConfigurationContains",
+					"ConfigurationRegexp",
+					"ConfigurationEquals",
+					"ConfigurationHamming",
+					"ConfigurationLevenshtein",
+					"ConfigurationJaro",
+					"ConfigurationJaroWinkler",
+					"ConfigurationSmithWatermanGotoh",
+					"ConfigurationSorensenDice",
+					"ConfigurationJaccard",
+					"ConfigurationOverlapCoefficient"
+				]
+			}
+		},
+		"description": "cxcli Conversation Profiler test definition file"
+	}

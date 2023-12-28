@@ -8,10 +8,13 @@ import (
 	cx "cloud.google.com/go/dialogflow/cx/apiv3beta1"
 	"cloud.google.com/go/dialogflow/cx/apiv3beta1/cxpb"
 	"github.com/google/uuid"
+	"github.com/sirupsen/logrus"
+	"github.com/tmc/langchaingo/llms/vertexai"
 	"github.com/xavidop/dialogflow-cx-cli/internal/global"
-	"github.com/xavidop/dialogflow-cx-cli/internal/types"
+	types "github.com/xavidop/dialogflow-cx-cli/internal/types/profilenlu"
 	"github.com/xavidop/dialogflow-cx-cli/internal/utils"
 	cxpkg "github.com/xavidop/dialogflow-cx-cli/pkg/cx"
+	vertexaipkg "github.com/xavidop/dialogflow-cx-cli/pkg/vertexai"
 	"google.golang.org/protobuf/types/known/structpb"
 )
 
@@ -30,6 +33,11 @@ func ExecuteSuite(suiteFile string) error {
 	}
 	defer agentClient.Close()
 
+	palmTextClient, err := vertexaipkg.CreatePalmClient(suite.ProjectID)
+	if err != nil {
+		return err
+	}
+
 	agent, err := cxpkg.GetAgentIdByName(agentClient, suite.AgentName, suite.ProjectID, suite.LocationID)
 	if err != nil {
 		return err
@@ -41,12 +49,13 @@ func ExecuteSuite(suiteFile string) error {
 	}
 	defer sessionsClient.Close()
 
-	global.Log.Infof("Suite Information: %s", suite.AgentName)
+	global.Log.Infof("Running suite: %s", suite.Name)
 	sessionId := uuid.NewString()
 
 	for _, testInfo := range suite.Tests {
+
 		testInfo.File = utils.GetRelativeFilePathFromParentFile(suiteFile, testInfo.File)
-		global.Log.Infof("Test ID: %s", testInfo.ID)
+		testFileLog := global.Log.WithField("test-file", testInfo.ID)
 
 		test, err := types.NewTest(testInfo.File)
 		if err != nil {
@@ -55,7 +64,11 @@ func ExecuteSuite(suiteFile string) error {
 
 		for _, check := range test.Checks {
 
-			response, err := getResponse(sessionsClient, agent, test, check, testInfo, sessionId)
+			checkLog := testFileLog.WithField("check", check.ID)
+
+			checkTypeLog := checkLog.WithField("input", check.Input.Type)
+
+			response, err := getResponse(sessionsClient, palmTextClient, agent, test, check, testInfo, sessionId, checkTypeLog)
 			if err != nil {
 				return err
 			}
@@ -63,10 +76,26 @@ func ExecuteSuite(suiteFile string) error {
 			queryResult := response.GetQueryResult()
 			intentDetected := queryResult.GetMatch().GetIntent().GetDisplayName()
 			parametersDetected := queryResult.Parameters.GetFields()
-			global.Log.Infof("Intent Detected: %s\n", intentDetected)
-			if check.Validate.Intent != intentDetected {
-				intentError := fmt.Errorf("intent %s does not match with the intent detected %s", check.Validate.Intent, intentDetected)
+			responseText := ""
 
+			for _, message := range queryResult.GetResponseMessages() {
+				if message.GetEndInteraction() != nil {
+					return nil
+				}
+
+				responseText += strings.Join(message.GetText().GetText(), ". ")
+
+			}
+
+			checkTypeLog.Infof("Agent> %s", responseText)
+
+			validationLog := checkLog.WithField("validation", check.Validate.Intent)
+
+			validationLog.Infof("Intent Detected: %s", intentDetected)
+
+			if check.Validate.Intent != intentDetected {
+				intentError := fmt.Errorf("intent \"%s\" does not match with the intent detected \"%s\"", check.Validate.Intent, intentDetected)
+				validationLog.Errorf(intentError.Error())
 				errstrings = append(errstrings, intentError.Error())
 				continue
 			}
@@ -75,14 +104,15 @@ func ExecuteSuite(suiteFile string) error {
 
 			for paramName, p := range parametersDetected {
 				extractedValue := extractDialogflowEntities(p)
-				global.Log.Printf("Param %s: %s ", paramName, extractedValue)
-				param, err := types.FindParameterByName(check.Validate, paramName)
+				validationLog.Infof("Param %s: %s ", paramName, extractedValue)
+				param, err := types.FindParameterByName(*check.Validate, paramName)
 				if err != nil {
 					errstrings = append(errstrings, err.Error())
 					continue
 				}
 				if param.Value != extractedValue {
-					parameterError := fmt.Errorf("parameter value %s does not match with the parameter detected %s", param.Value, extractedValue)
+					parameterError := fmt.Errorf("parameter value \"%s\" does not match with the parameter detected \"%s\"", param.Value, extractedValue)
+					validationLog.Errorf(parameterError.Error())
 					errstrings = append(errstrings, parameterError.Error())
 				}
 				parameters = types.RemoveParameterByName(parameters, param.Parameter)
@@ -91,6 +121,7 @@ func ExecuteSuite(suiteFile string) error {
 
 			if len(parameters) > 0 {
 				parametersNotDetectedError := fmt.Errorf("parameters not detected: %v", parameters)
+				validationLog.Errorf(parametersNotDetectedError.Error())
 				errstrings = append(errstrings, parametersNotDetectedError.Error())
 			}
 		}
@@ -98,24 +129,38 @@ func ExecuteSuite(suiteFile string) error {
 	}
 
 	if len(errstrings) > 0 {
-		return fmt.Errorf(strings.Join(errstrings, "\n"))
+		return fmt.Errorf("there are %d errors in total", len(errstrings))
 	} else {
 		return nil
 	}
 
 }
 
-func getResponse(sessionsClient *cx.SessionsClient, agent *cxpb.Agent, test *types.Test, check types.Check, testInfo types.Tests, sessionId string) (*cxpb.DetectIntentResponse, error) {
-	if check.Input.Type == "text" {
-		global.Log.Infof("Input: type: %s, value: %s \n", check.Input.Type, check.Input.Text)
+func getResponse(sessionsClient *cx.SessionsClient, palmTextClient *vertexai.LLM, agent *cxpb.Agent, test *types.Test, check *types.Check, testInfo *types.Tests, sessionId string, log *logrus.Entry) (*cxpb.DetectIntentResponse, error) {
+
+	switch check.Input.Type {
+	case "prompt":
+		textGenerated, err := vertexaipkg.GenerateText(palmTextClient, check.Input.Prompt)
+		if err != nil {
+			return nil, err
+		}
+		textGenerated = strings.TrimSpace(textGenerated)
+
+		log.Infof("User> %s (auto-generated from prompt: \"%s\")", textGenerated, check.Input.Prompt)
+
+		return cxpkg.DetectIntentFromText(sessionsClient, agent, test.LocaleID, textGenerated, sessionId)
+	case "text":
+		log.Infof("User> %s", check.Input.Text)
 
 		return cxpkg.DetectIntentFromText(sessionsClient, agent, test.LocaleID, check.Input.Text, sessionId)
-	} else {
-		global.Log.Infof("Input: type: %s, value: %s \n", check.Input.Type, check.Input.Audio)
+	case "audio":
+		log.Infof("User> %s", check.Input.Audio)
 
 		audioFile := utils.GetRelativeFilePathFromParentFile(testInfo.File, check.Input.Audio)
 		return cxpkg.DetectIntentFromAudio(sessionsClient, agent, test.LocaleID, audioFile, sessionId)
 	}
+
+	return nil, fmt.Errorf("option not \"%s\" accepted", check.Input.Type)
 
 }
 

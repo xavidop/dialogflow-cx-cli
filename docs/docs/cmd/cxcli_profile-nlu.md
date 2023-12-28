@@ -1,6 +1,6 @@
 # cxcli profile-nlu
 
-Actions on testing
+Actions on NLU testing
 
 ```
 cxcli profile-nlu [flags]

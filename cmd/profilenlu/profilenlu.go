@@ -10,8 +10,8 @@ import (
 // profilenluCmd represents the profile-nlu root command
 var profilenluCmd = &cobra.Command{
 	Use:     "profile-nlu",
-	Aliases: []string{"test", "t", "tests"},
-	Short:   "Actions on testing",
+	Aliases: []string{"test-nlu", "tn", "nlu-tests"},
+	Short:   "Actions on NLU testing",
 	Run: func(cmd *cobra.Command, args []string) {
 		if err := cmd.Help(); err != nil {
 			os.Exit(1)

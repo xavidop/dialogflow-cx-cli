@@ -38,7 +38,7 @@ theme:
     - search.suggest
     - search.highlight
     - search.share
-
+    - content.code.copy
     - navigation.instant
 
   include_search_page: false
@@ -63,13 +63,15 @@ plugins:
 markdown_extensions:
   - attr_list
   - md_in_html
-  - markdown.extensions.admonition
-  - markdown.extensions.codehilite:
-      guess_lang: false
-  - markdown.extensions.def_list
-  - markdown.extensions.footnotes
-  - markdown.extensions.meta
-  - markdown.extensions.toc:
+  - admonition
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - def_list
+  - footnotes
+  - meta
+  - toc:
       permalink: true
   - pymdownx.arithmatex
   - pymdownx.betterem:
@@ -78,12 +80,14 @@ markdown_extensions:
   - pymdownx.critic
   - pymdownx.details
   - pymdownx.emoji:
-      emoji_generator: !!python/name:pymdownx.emoji.to_svg
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
   - pymdownx.inlinehilite
   - pymdownx.magiclink
   - pymdownx.mark
   - pymdownx.smartsymbols
   - pymdownx.superfences
+  - pymdownx.snippets
   - pymdownx.tasklist:
       custom_checkbox: true
   - pymdownx.tilde
@@ -97,6 +101,15 @@ nav:
       - FAQ: overview/faq.md
   # - Continuous Integration: ci.md
   - Dialog: dialog.md
+  - Conversation Profiler:
+    - Introduction: conversationprofiler/introduction.md
+    - Reference:
+      - Suites: conversationprofiler/suites.md
+      - Tests: conversationprofiler/tests.md
+      - Examples:
+        - Contains: conversationprofiler/examples/contains.md
+        - Prompt: conversationprofiler/examples/prompt.md
+        - String Similarity Algorithm: conversationprofiler/examples/similarity.md
   - NLU Profiler:
     - Introduction: nluprofiler/introduction.md
     - Reference:
@@ -104,6 +117,7 @@ nav:
       - Tests: nluprofiler/tests.md
       - Examples:
         - Simple: nluprofiler/examples/simple.md
+        - Prompt: nluprofiler/examples/prompt.md
         - Text input with entities: nluprofiler/examples/text.md
         - System entities detection: nluprofiler/examples/system.md
         - Audio input: nluprofiler/examples/audio.md

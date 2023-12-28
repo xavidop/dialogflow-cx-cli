@@ -27,17 +27,19 @@ tests:
     file: ./test.yaml
 ```
 
+It has the same structure as the Conversation Profiler suite.
+
 ## JSON Schema
 
 `cxcli` also has a [jsonschema](http://json-schema.org/draft/2020-12/json-schema-validation.html) file, which you can use to have better
 editor support:
 
 ```sh
-https://cxcli.xavidop.me/static/suite.json
+https://cxcli.xavidop.me/static/nlusuite.json
 ```
 
 You can also specify it in your `yml` config files by adding a
 comment like the following:
 ```yaml
-# yaml-language-server: $schema=https://cxcli.xavidop.me/static/suite.json
+# yaml-language-server: $schema=https://cxcli.xavidop.me/static/nlusuite.json
 ```
