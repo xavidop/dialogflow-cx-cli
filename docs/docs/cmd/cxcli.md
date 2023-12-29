@@ -36,6 +36,7 @@ cxcli [flags]
 * [cxcli environment](/cmd/cxcli_environment/)	 - Actions on environment
 * [cxcli flow](/cmd/cxcli_flow/)	 - Actions on flow commands
 * [cxcli flow-version](/cmd/cxcli_flow-version/)	 - Actions on flow versions commands
+* [cxcli generator](/cmd/cxcli_generator/)	 - Actions on generator commands
 * [cxcli intent](/cmd/cxcli_intent/)	 - Actions on intent commands
 * [cxcli jsonschema](/cmd/cxcli_jsonschema/)	 - outputs cxcli's JSON schema
 * [cxcli profile-conversation](/cmd/cxcli_profile-conversation/)	 - Actions on conversation testing
