@@ -11,7 +11,7 @@ cxcli generator create [name] [flags]
 ```
   -a, --agent-name string    Dialogflow CX Agent Name (required)
   -h, --help                 help for create
-  -e, --locale string        Locale of the intent. Default: agent locale (optional)
+  -e, --locale string        Locale of the generator. Default: agent locale (optional)
   -l, --location-id string   Dialogflow CX Location ID of the Project (required)
   -p, --project-id string    Dialogflow CX Project ID (required)
   -r, --prompt string        Prompt (required)

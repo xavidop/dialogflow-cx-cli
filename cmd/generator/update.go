@@ -60,6 +60,6 @@ func init() {
 		os.Exit(1)
 	}
 
-	updateCmd.Flags().StringP("locale", "e", "", "Locale of the intent. Default: agent locale (optional)")
+	updateCmd.Flags().StringP("locale", "e", "", "Locale of the generator. Default: agent locale (optional)")
 
 }
