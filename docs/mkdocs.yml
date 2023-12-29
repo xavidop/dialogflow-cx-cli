@@ -155,6 +155,11 @@ nav:
     - Update: environments/update.md
     - Delete: environments/delete.md
     - CI/CD: environments/cicd.md
+  - Generators:
+    - Introduction: generators/introduction.md
+    - Create: generators/create.md
+    - Update: generators/update.md
+    - Delete: generators/delete.md
   - Webhooks:
     - Introduction: webhooks/introduction.md
     - Create: webhooks/create.md
@@ -170,8 +175,10 @@ nav:
       - cxcli intent: cmd/cxcli_intent.md
       - cxcli entity-type: cmd/cxcli_entity-type.md
       - cxcli profile-nlu: cmd/cxcli_profile-nlu.md
+      - cxcli profile-conversation: cmd/cxcli_profile-conversation.md
       - cxcli flow: cmd/cxcli_flow.md
       - cxcli flow-version: cmd/cxcli_flow-version.md
+      - cxcli generator: cmd/cxcli_generator.md
       - cxcli webhook: cmd/cxcli_webhook.md
       - cxcli stt: cmd/cxcli_stt.md
       - cxcli tts: cmd/cxcli_tts.md
