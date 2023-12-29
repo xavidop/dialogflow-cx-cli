@@ -12,12 +12,14 @@ import (
 	environmentCmd "github.com/xavidop/dialogflow-cx-cli/cmd/environment"
 	cmdflow "github.com/xavidop/dialogflow-cx-cli/cmd/flow"
 	cmdflowversion "github.com/xavidop/dialogflow-cx-cli/cmd/flowversion"
+	cmdgenerator "github.com/xavidop/dialogflow-cx-cli/cmd/generator"
 	cmdintent "github.com/xavidop/dialogflow-cx-cli/cmd/intent"
 	cmdprofileconversation "github.com/xavidop/dialogflow-cx-cli/cmd/profileconversation"
 	cmdprofilenlu "github.com/xavidop/dialogflow-cx-cli/cmd/profilenlu"
 	cmdstt "github.com/xavidop/dialogflow-cx-cli/cmd/stt"
 	cmdtts "github.com/xavidop/dialogflow-cx-cli/cmd/tts"
 	cmdwebhook "github.com/xavidop/dialogflow-cx-cli/cmd/webhook"
+
 	"github.com/xavidop/dialogflow-cx-cli/internal/global"
 )
 
@@ -69,6 +71,7 @@ func init() {
 	cmdwebhook.Register(rootCmd)
 	cmdflow.Register(rootCmd)
 	cmdflowversion.Register(rootCmd)
+	cmdgenerator.Register(rootCmd)
 	rootCmd.AddCommand(cobracompletefig.CreateCompletionSpecCommand())
 
 	// Add the subcommands
