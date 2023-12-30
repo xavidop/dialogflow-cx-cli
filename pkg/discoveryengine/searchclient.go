@@ -4,16 +4,20 @@ import (
 	"context"
 	"fmt"
 
-	discoveryengine "cloud.google.com/go/discoveryengine/apiv1beta"
-	discoveryenginepb "cloud.google.com/go/discoveryengine/apiv1beta/discoveryenginepb"
+	discoveryengine "cloud.google.com/go/discoveryengine/apiv1alpha"
+	discoveryenginepb "cloud.google.com/go/discoveryengine/apiv1alpha/discoveryenginepb"
 	"github.com/xavidop/dialogflow-cx-cli/internal/global"
-	"google.golang.org/api/iterator"
 	"google.golang.org/api/option"
 )
 
 func CreateSearchRESTClient(locationId string) (*discoveryengine.SearchClient, error) {
 	ctx := context.Background()
-	endpointString := fmt.Sprintf("%s-discoveryengine.googleapis.com:443", locationId)
+	endpointString := "discoveryengine.googleapis.com:443"
+
+	if locationId != "global" {
+		endpointString = fmt.Sprintf("%s-discoveryengine.googleapis.com:443", locationId)
+
+	}
 	endpoint := option.WithEndpoint(endpointString)
 
 	if global.Credentials != "" {
@@ -27,7 +31,13 @@ func CreateSearchRESTClient(locationId string) (*discoveryengine.SearchClient, e
 
 func CreateSearchGRPCClient(locationId string) (*discoveryengine.SearchClient, error) {
 	ctx := context.Background()
-	endpointString := fmt.Sprintf("%s-discoveryengine.googleapis.com:443", locationId)
+
+	endpointString := "discoveryengine.googleapis.com:443"
+
+	if locationId != "global" {
+		endpointString = fmt.Sprintf("%s-discoveryengine.googleapis.com:443", locationId)
+	}
+
 	endpoint := option.WithEndpoint(endpointString)
 
 	if global.Credentials != "" {
@@ -43,24 +53,25 @@ func Search(searchClient *discoveryengine.SearchClient, projectId string, locati
 	ctx := context.Background()
 
 	// Full resource name of search engine serving config
-	servingConfig := fmt.Sprintf("projects/%s/locations/%s/collections/default_collection/dataStores/%s/servingConfigs/default_serving_config",
+	servingConfig := fmt.Sprintf("projects/%s/locations/%s/collections/default_collection/dataStores/%s/servingConfigs/default_config",
 		projectId, locationId, dataStoreId)
 
 	searchRequest := &discoveryenginepb.SearchRequest{
 		ServingConfig: servingConfig,
 		Query:         query,
+		PageSize:      10,
 	}
 
-	it := searchClient.Search(ctx, searchRequest)
-	for {
-		resp, err := it.Next()
-		if err == iterator.Done {
-			break
-		}
+	results := searchClient.Search(ctx, searchRequest)
+
+	for result, err := results.Next(); err == nil; {
+		fmt.Printf("%+v\n", result)
+
+		result, err = results.Next()
 		if err != nil {
 			return err
 		}
-		fmt.Printf("%+v\n", resp)
+
 	}
 
 	return nil

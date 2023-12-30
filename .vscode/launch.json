@@ -440,7 +440,7 @@
                 "ENV": "development"
             },
             "args": [
-                "datastore", "search", "vf_1693091953100", "--project-id", "test-cx-346408", "--location-id", "global", "--credentials", "credentials.json", "--query", "what is the cxcli"
+                "datastore", "search", "cxcli_1703976487926", "--project-id", "test-cx-346408", "--location-id", "global", "--credentials", "credentials.json", "--query", "cxcli"
             ]
         },
     ]

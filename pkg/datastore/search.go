@@ -6,7 +6,7 @@ import (
 )
 
 func Search(name, locationID, projectID, query string) error {
-	searchClient, err := discoveryenginepkg.CreateSearchGRPCClient(locationID)
+	searchClient, err := discoveryenginepkg.CreateSearchRESTClient(locationID)
 	if err != nil {
 		return err
 	}
