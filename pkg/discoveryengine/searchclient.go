@@ -38,7 +38,7 @@ func CreateSearchGRPCClient(locationId string) (*discoveryengine.SearchClient, e
 	}
 }
 
-func Search(searchClient *discoveryengine.SearchClient, projectId string, locationId string, dataStoreId string, query string) (string, error) {
+func Search(searchClient *discoveryengine.SearchClient, projectId string, locationId string, dataStoreId string, query string) error {
 
 	ctx := context.Background()
 
@@ -58,10 +58,10 @@ func Search(searchClient *discoveryengine.SearchClient, projectId string, locati
 			break
 		}
 		if err != nil {
-			return "", err
+			return err
 		}
 		fmt.Printf("%+v\n", resp)
 	}
 
-	return "", nil
+	return nil
 }

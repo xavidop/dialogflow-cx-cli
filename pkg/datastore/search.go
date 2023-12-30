@@ -12,9 +12,11 @@ func Search(name, locationID, projectID, query string) error {
 	}
 	defer searchClient.Close()
 
-	discoveryenginepkg.Search(searchClient, projectID, locationID, name, query)
+	if err := discoveryenginepkg.Search(searchClient, projectID, locationID, name, query); err != nil {
+		return err
+	}
 
-	global.Log.Infof("Webhook created with id: %v\n", "")
+	global.Log.Infof("Datastore search finished")
 
 	return nil
 }
