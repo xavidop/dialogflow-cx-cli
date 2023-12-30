@@ -8,6 +8,7 @@ import (
 	cobracompletefig "github.com/withfig/autocomplete-tools/integrations/cobra"
 	cmdagent "github.com/xavidop/dialogflow-cx-cli/cmd/agent"
 	"github.com/xavidop/dialogflow-cx-cli/cmd/cmdutils"
+	cmddatastore "github.com/xavidop/dialogflow-cx-cli/cmd/datastore"
 	cmdentitytype "github.com/xavidop/dialogflow-cx-cli/cmd/entitytype"
 	environmentCmd "github.com/xavidop/dialogflow-cx-cli/cmd/environment"
 	cmdflow "github.com/xavidop/dialogflow-cx-cli/cmd/flow"
@@ -72,6 +73,8 @@ func init() {
 	cmdflow.Register(rootCmd)
 	cmdflowversion.Register(rootCmd)
 	cmdgenerator.Register(rootCmd)
+	cmddatastore.Register(rootCmd)
+
 	rootCmd.AddCommand(cobracompletefig.CreateCompletionSpecCommand())
 
 	// Add the subcommands

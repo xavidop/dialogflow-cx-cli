@@ -160,6 +160,9 @@ nav:
     - Create: generators/create.md
     - Update: generators/update.md
     - Delete: generators/delete.md
+  - Data Stores:
+    - Introduction: datastores/introduction.md
+    - Search: datastores/search.md
   - Webhooks:
     - Introduction: webhooks/introduction.md
     - Create: webhooks/create.md
@@ -179,6 +182,7 @@ nav:
       - cxcli flow: cmd/cxcli_flow.md
       - cxcli flow-version: cmd/cxcli_flow-version.md
       - cxcli generator: cmd/cxcli_generator.md
+      - cxcli datastore: cmd/cxcli_datastore.md
       - cxcli webhook: cmd/cxcli_webhook.md
       - cxcli stt: cmd/cxcli_stt.md
       - cxcli tts: cmd/cxcli_tts.md
