@@ -60,6 +60,11 @@ func Search(searchClient *discoveryengine.SearchClient, projectId string, locati
 		ServingConfig: servingConfig,
 		Query:         query,
 		PageSize:      10,
+		ContentSearchSpec: &discoveryenginepb.SearchRequest_ContentSearchSpec{
+			SnippetSpec: &discoveryenginepb.SearchRequest_ContentSearchSpec_SnippetSpec{
+				ReturnSnippet: true,
+			},
+		},
 	}
 
 	results := searchClient.Search(ctx, searchRequest)
