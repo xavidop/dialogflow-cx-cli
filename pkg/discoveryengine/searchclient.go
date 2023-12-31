@@ -53,7 +53,7 @@ func Search(searchClient *discoveryengine.SearchClient, projectId string, locati
 	ctx := context.Background()
 
 	// Full resource name of search engine serving config
-	servingConfig := fmt.Sprintf("projects/%s/locations/%s/collections/default_collection/dataStores/%s/servingConfigs/default_config",
+	servingConfig := fmt.Sprintf("projects/%s/locations/%s/collections/default_collection/dataStores/%s/servingConfigs/default_search",
 		projectId, locationId, dataStoreId)
 
 	searchRequest := &discoveryenginepb.SearchRequest{
