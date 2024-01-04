@@ -1,6 +1,8 @@
 module github.com/xavidop/dialogflow-cx-cli
 
-go 1.20
+go 1.21
+
+toolchain go1.21.5
 
 require (
 	cloud.google.com/go/dialogflow v1.48.0
