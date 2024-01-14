@@ -2,9 +2,11 @@ package discoveryengine
 
 import (
 	"context"
+	"errors"
 	"fmt"
 
 	discoveryengine "cloud.google.com/go/discoveryengine/apiv1alpha"
+	discoveryenginepb "cloud.google.com/go/discoveryengine/apiv1alpha/discoveryenginepb"
 	"github.com/xavidop/dialogflow-cx-cli/internal/global"
 	"google.golang.org/api/option"
 )
@@ -47,6 +49,31 @@ func CreateDocumentGRPCClient(locationId string) (*discoveryengine.DocumentClien
 	}
 }
 
-func GetDocumentIdByName(client *discoveryengine.DocumentClient) {
+func GetDocumentIdByName(client *discoveryengine.DocumentClient, dataStore *discoveryenginepb.DataStore, documentName string) (*discoveryenginepb.Document, error) {
+	ctx := context.Background()
 
+	parentPath := fmt.Sprintf("%s/branches/default_branch", dataStore.GetName())
+	reqDocumentList := &discoveryenginepb.ListDocumentsRequest{
+		Parent: parentPath,
+	}
+
+	documents := client.ListDocuments(ctx, reqDocumentList)
+
+	for document, err := documents.Next(); err == nil; {
+		// GCS Documents
+		if len(document.GetContent().GetRawBytes()) == 0 {
+			if document.GetContent().GetUri() == documentName {
+				return document, nil
+			}
+		} else {
+			// JSON Documents
+		}
+		document, err = documents.Next()
+		if err != nil {
+			return nil, err
+		}
+
+	}
+
+	return nil, errors.New("document not found")
 }

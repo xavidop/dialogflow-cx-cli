@@ -55,11 +55,11 @@ func GetDataStoreIdByName(client *discoveryengine.DataStoreClient, dataStoreName
 
 	parentPath := fmt.Sprintf("projects/%s/locations/%s/collections/default_collection", projectId, locationId)
 
-	reqAgentList := &discoveryenginepb.ListDataStoresRequest{
+	reqDataStoreList := &discoveryenginepb.ListDataStoresRequest{
 		Parent: parentPath,
 	}
 
-	datastores := client.ListDataStores(ctx, reqAgentList)
+	datastores := client.ListDataStores(ctx, reqDataStoreList)
 
 	for datastore, err := datastores.Next(); err == nil; {
 		if datastore.DisplayName == dataStoreName {
@@ -75,11 +75,11 @@ func GetDataStoreIdByName(client *discoveryengine.DataStoreClient, dataStoreName
 	return nil, errors.New("datastore not found")
 }
 
-func DeleteDataStore(dataStoreClient *discoveryengine.DataStoreClient, dataStoreId, projectId, locationId string) error {
+func DeleteDataStore(dataStoreClient *discoveryengine.DataStoreClient, dataStore *discoveryenginepb.DataStore, projectId, locationId string) error {
 	ctx := context.Background()
 
 	reqDeleteDataStore := &discoveryenginepb.DeleteDataStoreRequest{
-		Name: dataStoreId,
+		Name: dataStore.GetName(),
 	}
 	longRunningOperation, err := dataStoreClient.DeleteDataStore(ctx, reqDeleteDataStore)
 	if err != nil {
