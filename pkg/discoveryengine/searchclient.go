@@ -3,6 +3,7 @@ package discoveryengine
 import (
 	"context"
 	"fmt"
+	"strings"
 
 	discoveryengine "cloud.google.com/go/discoveryengine/apiv1alpha"
 	discoveryenginepb "cloud.google.com/go/discoveryengine/apiv1alpha/discoveryenginepb"
@@ -48,13 +49,12 @@ func CreateSearchGRPCClient(locationId string) (*discoveryengine.SearchClient, e
 	}
 }
 
-func Search(searchClient *discoveryengine.SearchClient, projectId string, locationId string, dataStoreId string, query string) error {
+func Search(searchClient *discoveryengine.SearchClient, projectId string, locationId string, query string, datastore *discoveryenginepb.DataStore) error {
 
 	ctx := context.Background()
 
 	// Full resource name of search engine serving config
-	servingConfig := fmt.Sprintf("projects/%s/locations/%s/collections/default_collection/dataStores/%s/servingConfigs/default_search",
-		projectId, locationId, dataStoreId)
+	servingConfig := fmt.Sprintf("%s/servingConfigs/default_search", datastore.GetName())
 
 	searchRequest := &discoveryenginepb.SearchRequest{
 		ServingConfig: servingConfig,
@@ -73,7 +73,7 @@ func Search(searchClient *discoveryengine.SearchClient, projectId string, locati
 		fmt.Printf("%+v\n", result)
 
 		result, err = results.Next()
-		if err != nil {
+		if err != nil && !strings.Contains(err.Error(), "no more items") {
 			return err
 		}
 

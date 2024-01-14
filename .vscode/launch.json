@@ -440,7 +440,20 @@
                 "ENV": "development"
             },
             "args": [
-                "datastore", "search", "cxcli_1703976487926", "--project-id", "test-cx-346408", "--location-id", "global", "--credentials", "credentials.json", "--query", "cxcli"
+                "datastore", "search", "cxcli", "--project-id", "test-cx-346408", "--location-id", "global", "--credentials", "credentials.json", "--query", "cxcli"
+            ]
+        },
+        {
+            "name": "Data store delete command",
+            "type": "go",
+            "request": "launch",
+            "mode": "debug",
+            "program": "${workspaceFolder}/main.go",
+            "env": {
+                "ENV": "development"
+            },
+            "args": [
+                "datastore", "delete", "gengar", "--project-id", "test-cx-346408", "--location-id", "global", "--credentials", "credentials.json"
             ]
         },
     ]
