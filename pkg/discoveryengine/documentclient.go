@@ -4,6 +4,7 @@ import (
 	"context"
 	"errors"
 	"fmt"
+	"strings"
 
 	discoveryengine "cloud.google.com/go/discoveryengine/apiv1alpha"
 	discoveryenginepb "cloud.google.com/go/discoveryengine/apiv1alpha/discoveryenginepb"
@@ -60,13 +61,16 @@ func GetDocumentIdByName(client *discoveryengine.DocumentClient, dataStore *disc
 	documents := client.ListDocuments(ctx, reqDocumentList)
 
 	for document, err := documents.Next(); err == nil; {
-		// GCS Documents
-		if len(document.GetContent().GetRawBytes()) == 0 {
-			if document.GetContent().GetUri() == documentName {
+		// GCS Documents and websites
+		if document.GetStructData().String() == "" {
+			if strings.Contains(document.GetContent().GetUri(), documentName) {
 				return document, nil
 			}
 		} else {
 			// JSON Documents
+			if strings.Contains(document.GetStructData().String(), documentName) {
+				return document, nil
+			}
 		}
 		document, err = documents.Next()
 		if err != nil {
