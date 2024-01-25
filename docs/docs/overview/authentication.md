@@ -22,7 +22,7 @@ The following APIs should be enabled on your Google Cloud project if you want to
 
 ### Dialogflow CX
 
-You will need to enable the `Dialogflow API` on your project. More information [here](https://cloud.google.com/dialogflow/cx/docs)
+You will need to enable the [`Dialogflow API`](https://console.cloud.google.com/apis/library/dialogflow.googleapis.com) on your project. More information [here](https://cloud.google.com/dialogflow/cx/docs)
 
 ### Speech-to-text
 
