@@ -7,10 +7,10 @@ cloud.google.com/go/compute v1.23.3 h1:6sVlXXBmbd7jNX0Ipq0trII3e4n1/MsADLK6a+aiV
 cloud.google.com/go/compute v1.23.3/go.mod h1:VCgBUoMnIVIR0CscqQiPJLAG25E3ZRZMzcFZeQ+h8CI=
 cloud.google.com/go/compute/metadata v0.2.3 h1:mg4jlk7mCAj6xXp9UJ4fjI9VUI5rubuGBW5aJ7UnBMY=
 cloud.google.com/go/compute/metadata v0.2.3/go.mod h1:VAV5nSsACxMJvgaAuX6Pk2AawlZn8kiOGuCv6gTkwuA=
-cloud.google.com/go/discoveryengine v1.4.0 h1:Ztz1Jq8H81emcxCT3tu4N+VawFl323ZSTTAAovd+uNk=
-cloud.google.com/go/discoveryengine v1.4.0/go.mod h1:b0tgM9YMGvvzoHldepS7id7S6/8U8y9ZNS3n5Xk4ApI=
 cloud.google.com/go/dialogflow v1.49.0 h1:KqG0oxGE71qo0lRVyAoeBozefCvsMfcDzDjoLYSY0F4=
 cloud.google.com/go/dialogflow v1.49.0/go.mod h1:dhVrXKETtdPlpPhE7+2/k4Z8FRNUp6kMV3EW3oz/fe0=
+cloud.google.com/go/discoveryengine v1.5.0 h1:A7MyGfAhitsnXcSHV9VS8ahxmFuBTPxVbWmt6NPFqcQ=
+cloud.google.com/go/discoveryengine v1.5.0/go.mod h1:mTP3lRXcYb8luOOUFERJ6hAFH+j9/HGl11HFDtDUaJI=
 cloud.google.com/go/iam v1.1.5 h1:1jTsCu4bcsNsE4iiqNT5SHwrDRCfRmIaaaVFhRveTJI=
 cloud.google.com/go/iam v1.1.5/go.mod h1:rB6P/Ic3mykPbFio+vo7403drjlgvoWfYpJhMXEbzv8=
 cloud.google.com/go/longrunning v0.5.5 h1:GOE6pZFdSrTb4KAiKnXsJBtlE6mEyaW44oKyMILWnOg=
