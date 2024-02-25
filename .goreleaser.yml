@@ -261,19 +261,19 @@ scoops:
     description: The missing CLI for your Dialogflow CX projects
     license: Apache-2.0
 
-# chocolateys:
-#   - name: cxcli
-#     authors: Xavier Portilla Edo
-#     title: Dialogflow CX CLI
-#     project_url:  https://cxcli.xavidop.me
-#     license_url: https://github.com/xavidop/dialogflow-cx-cli/blob/master/LICENSE.md
-#     project_source_url: https://github.com/xavidop/dialogflow-cx-cli
-#     docs_url: https://github.com/xavidop/dialogflow-cx-cli/blob/master/README.md
-#     bug_tracker_url: https://github.com/xavidop/dialogflow-cx-cli/issues
-#     tags: "dialogflow cx cli"
-#     description: The missing CLI for your Dialogflow CX projects
-#     icon_url: https://cxcli.xavidop.me/images/logo.png
-#     api_key: '{{ .Env.CHOCOLATEY_API_KEY }}'
+chocolateys:
+  - name: cxcli
+    authors: Xavier Portilla Edo
+    title: Dialogflow CX CLI
+    project_url:  https://cxcli.xavidop.me
+    license_url: https://github.com/xavidop/dialogflow-cx-cli/blob/master/LICENSE.md
+    project_source_url: https://github.com/xavidop/dialogflow-cx-cli
+    docs_url: https://github.com/xavidop/dialogflow-cx-cli/blob/master/README.md
+    bug_tracker_url: https://github.com/xavidop/dialogflow-cx-cli/issues
+    tags: "dialogflow cx cli"
+    description: The missing CLI for your Dialogflow CX projects
+    icon_url: https://cxcli.xavidop.me/images/logo.png
+    api_key: '{{ .Env.CHOCOLATEY_API_KEY }}'
 
 brews:
   - repository:
