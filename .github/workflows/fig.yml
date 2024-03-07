@@ -20,7 +20,7 @@ jobs:
           go-version: stable
           cache: true
       - run: go mod tidy && go run . generate-fig-spec >cxcli.ts
-      - uses: withfig/push-to-fig-autocomplete-action@v1
+      - uses: withfig/push-to-fig-autocomplete-action@v2
         with:
           token: ${{ secrets.GO_RELEASER_GITHUB_TOKEN }}
           autocomplete-spec-name: cxcli
