@@ -30,13 +30,32 @@ jobs:
       - uses: docker/setup-qemu-action@v3
       - uses: docker/setup-buildx-action@v3
       - uses: sigstore/cosign-installer@v3.4.0
-      - uses: anchore/sbom-action/download-syft@v0.15.8
+      - uses: anchore/sbom-action/download-syft@v0.15.9
       - uses: crazy-max/ghaction-upx@v3
         with:
           install-only: true
-      - uses: cachix/install-nix-action@v25
+      - uses: cachix/install-nix-action@v26
         with:
           github_access_token: ${{ secrets.GO_RELEASER_GITHUB_TOKEN }}
+      - name: Checkout chocolatey/choco 📥
+        uses: actions/checkout@v4.1.1
+        with:
+          repository: chocolatey/choco
+          path: ${{ github.workspace }}/dialogflow-cx-cli/choco
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Chocolatey 🍫📦
+        run: |
+          chmod +x *.sh
+          # prevent choco build to calculate version from tag of main repository
+          unset GITHUB_REF GITHUB_BASE_REF GITHUB_HEAD_REF
+          ./build.sh --configuration=ReleaseOfficial
+          cp docker/choco_wrapper code_drop/temp/_PublishedApps/choco/choco_wrapper
+          cp -r ./code_drop/temp/_PublishedApps/choco/ /opt/chocolatey
+          mkdir /opt/chocolatey/lib
+          cp /opt/chocolatey/choco_wrapper /usr/local/bin/choco
+          cp /opt/chocolatey/choco_wrapper /usr/local/bin/choco.exe
+        working-directory: ${{ github.workspace }}/dialogflow-cx-cli/choco
       - name: setup-snapcraft
         run: |
           sudo apt-get update

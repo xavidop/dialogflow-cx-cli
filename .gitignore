@@ -39,3 +39,5 @@ manpages/
 cxcli.ts
 env
 site
+
+dialogflow-cx-cli/choco
