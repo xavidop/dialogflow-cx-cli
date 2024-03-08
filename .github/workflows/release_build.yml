@@ -34,7 +34,7 @@ jobs:
       - uses: crazy-max/ghaction-upx@v3
         with:
           install-only: true
-      - uses: cachix/install-nix-action@v25
+      - uses: cachix/install-nix-action@v26
         with:
           github_access_token: ${{ secrets.GO_RELEASER_GITHUB_TOKEN }}
       - name: Checkout chocolatey/choco 📥
