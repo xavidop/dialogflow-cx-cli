@@ -14,9 +14,9 @@ require (
 )
 
 require (
-	cloud.google.com/go/discoveryengine v1.5.0
-	cloud.google.com/go/texttospeech v1.7.6
+	cloud.google.com/go/discoveryengine v1.6.0
 	cloud.google.com/go/speech v1.22.1
+	cloud.google.com/go/texttospeech v1.7.6
 	github.com/adrg/strutil v0.3.1
 	github.com/antonfisher/nested-logrus-formatter v1.3.1
 	github.com/google/go-github/v50 v50.2.0
