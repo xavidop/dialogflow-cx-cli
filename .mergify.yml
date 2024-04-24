@@ -1,0 +1,46 @@
+pull_request_rules:
+  - name: Make sure PR are up to date before merging with rebase
+    description: >-
+      This automatically rebases PRs when they are out-of-date with the base
+      branch to avoid semantic conflicts (next step is using a merge queue).
+    conditions: []
+    actions:
+      rebase: 
+  - name: Ping PR author when conflicting
+    description: Warn the pull request author when their PR are conflicting
+    conditions:
+      - conflict
+      - '-closed'
+    actions:
+      comment:
+        message: >
+          👋 {{author}} your PR is conflicting and needs to be updated to be
+          merged
+  - name: Assign t-shirt size to PR
+    description: >-
+      Assign a t-shirt size label to a pull request based on the number of lines
+      changed.
+    conditions:
+      - '#modified-lines >= 100'
+      - '#modified-lines < 500'
+    actions:
+      label:
+        toggle:
+          - size/L
+  - name: Add a queue label when PR is queued
+    description: Toggle the queue label when a pull request is (un)queued.
+    conditions:
+      - queue-position > 0
+    actions:
+      label:
+        toggle:
+          - merge-queued
+  - name: Label conflicting pull requests
+    description: Add a label to a pull request with conflict to spot it easily
+    conditions:
+      - conflict
+      - '-closed'
+    actions:
+      label:
+        toggle:
+          - conflict
