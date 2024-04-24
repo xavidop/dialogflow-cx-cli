@@ -58,7 +58,7 @@ jobs:
         working-directory: ${{ github.workspace }}/dialogflow-cx-cli/choco
       - name: setup-snapcraft
         run: |
-          sudo apt-get update
+          sudo apt-get update || true
           sudo apt-get -yq --no-install-suggests --no-install-recommends install snapcraft
           mkdir -p $HOME/.cache/snapcraft/download
           mkdir -p $HOME/.cache/snapcraft/stage-packages
