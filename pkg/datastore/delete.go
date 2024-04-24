@@ -18,7 +18,7 @@ func Delete(name, locationID, projectID string) error {
 		return err
 	}
 
-	if err := discoveryenginepkg.DeleteDataStore(dataStoreClient, datastore.GetName(), projectID, locationID); err != nil {
+	if err := discoveryenginepkg.DeleteDataStore(dataStoreClient, datastore, projectID, locationID); err != nil {
 		return err
 	}
 
