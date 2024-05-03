@@ -1,0 +1,5 @@
+{
+    "circleci.persistedProjectSelection": [
+        "gh/xavidop/dialogflow-cx-cli"
+    ]
+}
