@@ -1,0 +1,5 @@
+reviews:
+  path_filters:
+    - "!**/*.mod"
+    - "!**/*.sum"
+    - "!docs/docs/cmd/*.md"

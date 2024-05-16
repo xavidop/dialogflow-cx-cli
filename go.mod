@@ -14,7 +14,7 @@ require (
 )
 
 require (
-	cloud.google.com/go/discoveryengine v1.6.0
+	cloud.google.com/go/discoveryengine v1.7.1
 	cloud.google.com/go/speech v1.23.1
 	cloud.google.com/go/texttospeech v1.7.7
 	github.com/adrg/strutil v0.3.1
