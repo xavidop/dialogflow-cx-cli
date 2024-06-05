@@ -9,7 +9,7 @@ import (
 	"cloud.google.com/go/dialogflow/cx/apiv3beta1/cxpb"
 	"github.com/google/uuid"
 	"github.com/sirupsen/logrus"
-	"github.com/tmc/langchaingo/llms/vertexai"
+	"github.com/tmc/langchaingo/llms/googleai/palm"
 	"github.com/xavidop/dialogflow-cx-cli/internal/global"
 	types "github.com/xavidop/dialogflow-cx-cli/internal/types/profilenlu"
 	"github.com/xavidop/dialogflow-cx-cli/internal/utils"
@@ -136,7 +136,7 @@ func ExecuteSuite(suiteFile string) error {
 
 }
 
-func getResponse(sessionsClient *cx.SessionsClient, palmTextClient *vertexai.LLM, agent *cxpb.Agent, test *types.Test, check *types.Check, testInfo *types.Tests, sessionId string, log *logrus.Entry) (*cxpb.DetectIntentResponse, error) {
+func getResponse(sessionsClient *cx.SessionsClient, palmTextClient *palm.LLM, agent *cxpb.Agent, test *types.Test, check *types.Check, testInfo *types.Tests, sessionId string, log *logrus.Entry) (*cxpb.DetectIntentResponse, error) {
 
 	switch check.Input.Type {
 	case "prompt":

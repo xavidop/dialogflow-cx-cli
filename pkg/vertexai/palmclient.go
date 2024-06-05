@@ -3,23 +3,23 @@ package vertexai
 import (
 	"context"
 
-	"github.com/tmc/langchaingo/llms/vertexai"
+	"github.com/tmc/langchaingo/llms/googleai/palm"
 	"github.com/xavidop/dialogflow-cx-cli/internal/global"
 )
 
-func CreatePalmClient(projectId string) (*vertexai.LLM, error) {
+func CreatePalmClient(projectId string) (*palm.LLM, error) {
 
 	if global.Credentials != "" {
-		credentials := vertexai.WithCredentialsFile(global.Credentials)
-		project := vertexai.WithProjectID(projectId)
-		return vertexai.New(credentials, project)
+		credentials := palm.WithCredentialsFile(global.Credentials)
+		project := palm.WithProjectID(projectId)
+		return palm.New(credentials, project)
 	} else {
-		return vertexai.New()
+		return palm.New()
 	}
 
 }
 
-func GenerateText(palmClient *vertexai.LLM, prompt string) (string, error) {
+func GenerateText(palmClient *palm.LLM, prompt string) (string, error) {
 	ctx := context.Background()
 
 	return palmClient.Call(ctx, prompt)

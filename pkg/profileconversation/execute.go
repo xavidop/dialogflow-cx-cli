@@ -11,7 +11,7 @@ import (
 	"github.com/adrg/strutil/metrics"
 	"github.com/google/uuid"
 	"github.com/sirupsen/logrus"
-	"github.com/tmc/langchaingo/llms/vertexai"
+	"github.com/tmc/langchaingo/llms/googleai/palm"
 	"github.com/xavidop/dialogflow-cx-cli/internal/global"
 	types "github.com/xavidop/dialogflow-cx-cli/internal/types/profileconversation"
 	"github.com/xavidop/dialogflow-cx-cli/internal/types/profileconversation/configurations"
@@ -365,7 +365,7 @@ func executeSimilarityOverlapCoefficient(validation *types.Validate, agentRespon
 	return nil
 }
 
-func getResponse(sessionsClient *cx.SessionsClient, palmTextClient *vertexai.LLM, agent *cxpb.Agent, test *types.Test, interaction *types.Interaction, testInfo *types.Tests, sessionId string, log *logrus.Entry) (*cxpb.DetectIntentResponse, error) {
+func getResponse(sessionsClient *cx.SessionsClient, palmTextClient *palm.LLM, agent *cxpb.Agent, test *types.Test, interaction *types.Interaction, testInfo *types.Tests, sessionId string, log *logrus.Entry) (*cxpb.DetectIntentResponse, error) {
 
 	switch interaction.User.Type {
 	case "prompt":
