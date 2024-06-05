@@ -279,7 +279,7 @@ brews:
   - repository:
       owner: xavidop
       name: homebrew-tap
-    folder: Formula
+    directory: Formula
     name: cxcli
     homepage: 'https://cxcli.xavidop.me'
     description: 'The missing CLI for your Dialogflow CX projects'
