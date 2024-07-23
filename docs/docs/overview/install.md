@@ -5,14 +5,9 @@ You can use `cxcli` by installing a pre-compiled binary (in several ways), using
 ## Install a pre-compiled binary
 
 ### homebrew tap
-1. Add the Homebrew tap:
+Install the Dialogflow CX CLI:
 ```sh
-brew tap xavidop/tap git@github.com:xavidop/homebrew-tap.git
-brew update
-```
-2. Install the Dialogflow CX CLI:
-```sh
-brew install cxcli
+brew install xavidop/tap/cxcli
 ```
 
 ### snapcraft
@@ -26,6 +21,12 @@ sudo snap install cxcli
 ```powershell
 scoop bucket add cxcli https://github.com/xavidop/scoop-bucket.git
 scoop install cxcli
+```
+
+### chocolatey
+
+```powershell
+choco install cxcli
 ```
 
 ### apt
