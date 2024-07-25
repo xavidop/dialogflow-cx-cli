@@ -17,8 +17,8 @@ cloud.google.com/go/longrunning v0.5.9 h1:haH9pAuXdPAMqHvzX0zlWQigXT7B0+CL4/2nXX
 cloud.google.com/go/longrunning v0.5.9/go.mod h1:HD+0l9/OOW0za6UWdKJtXoFAX/BGg/3Wj8p10NeWF7c=
 cloud.google.com/go/speech v1.24.0 h1:3j+WpeBY57C0FDJxg317vpKgOLjL/kNxlcNPGSqXkqE=
 cloud.google.com/go/speech v1.24.0/go.mod h1:HcVyIh5jRXM5zDMcbFCW+DF2uK/MSGN6Rastt6bj1ic=
-cloud.google.com/go/texttospeech v1.7.10 h1:0jLBTnPTuxtrQuJK6BBs4jGxvhY4eDx8ISSBsQHRnqQ=
-cloud.google.com/go/texttospeech v1.7.10/go.mod h1:ChThPazSxR7e4qe9ryRlFGU4lRONvL9Oo2geyp7LX4o=
+cloud.google.com/go/texttospeech v1.7.11 h1:jzko1ahItjLYEWr6n3lTIoBSinD1JzavEuDzYLWZNko=
+cloud.google.com/go/texttospeech v1.7.11/go.mod h1:Ua125HU+WT2IkIo5MzQtuNpNEk72soShJQVdorZ1SAE=
 github.com/BurntSushi/toml v0.3.1/go.mod h1:xHWCNGjB5oqiDr8zfno3MHue2Ht5sIBksp03qcyfWMU=
 github.com/ProtonMail/go-crypto v0.0.0-20230217124315-7d5c6f04bbb8 h1:wPbRQzjjwFc0ih8puEVAOFGELsn1zoIIYdxvML7mDxA=
 github.com/ProtonMail/go-crypto v0.0.0-20230217124315-7d5c6f04bbb8/go.mod h1:I0gYDMZ6Z5GRU7l58bNFSkPTFN6Yl12dsUlAZ8xy98g=
