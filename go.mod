@@ -25,7 +25,7 @@ require (
 	github.com/tmc/langchaingo v0.1.3
 	github.com/withfig/autocomplete-tools/integrations/cobra v1.2.1
 	golang.org/x/exp v0.0.0-20231206192017-f3f8817b8deb
-	golang.org/x/term v0.24.0
+	golang.org/x/term v0.25.0
 	google.golang.org/protobuf v1.34.2
 	gopkg.in/yaml.v3 v3.0.1
 )
@@ -70,7 +70,7 @@ require (
 	golang.org/x/net v0.29.0 // indirect
 	golang.org/x/oauth2 v0.23.0 // indirect
 	golang.org/x/sync v0.8.0 // indirect
-	golang.org/x/sys v0.25.0 // indirect
+	golang.org/x/sys v0.26.0 // indirect
 	golang.org/x/text v0.18.0 // indirect
 	golang.org/x/time v0.6.0 // indirect
 	google.golang.org/genproto v0.0.0-20240903143218-8af14fe29dc1 // indirect
