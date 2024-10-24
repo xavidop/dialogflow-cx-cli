@@ -5,7 +5,7 @@ go 1.21
 toolchain go1.21.5
 
 require (
-	cloud.google.com/go/dialogflow v1.58.0
+	cloud.google.com/go/dialogflow v1.58.1
 	github.com/google/uuid v1.6.0
 	github.com/pkg/errors v0.9.1
 	github.com/sirupsen/logrus v1.9.3
@@ -15,7 +15,7 @@ require (
 
 require (
 	cloud.google.com/go/speech v1.25.2
-	cloud.google.com/go/texttospeech v1.8.1
+	cloud.google.com/go/texttospeech v1.9.0
 	github.com/adrg/strutil v0.3.1
 	github.com/antonfisher/nested-logrus-formatter v1.3.1
 	github.com/google/go-github/v50 v50.2.0
