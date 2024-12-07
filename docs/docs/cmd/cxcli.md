@@ -31,6 +31,7 @@ cxcli [flags]
 
 * [cxcli agent](/cmd/cxcli_agent/)	 - Actions on agent commands
 * [cxcli completion](/cmd/cxcli_completion/)	 - Generate the autocompletion script for the specified shell
+* [cxcli datastore](/cmd/cxcli_datastore/)	 - Actions on datastore commands
 * [cxcli dialog](/cmd/cxcli_dialog/)	 - Test your CX Agent interactively directly from your terminal
 * [cxcli entity-type](/cmd/cxcli_entity-type/)	 - Actions on entity type commands
 * [cxcli environment](/cmd/cxcli_environment/)	 - Actions on environment
