@@ -18,6 +18,6 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-    - uses: anchore/scan-action/download-grype@v5
+    - uses: anchore/scan-action/download-grype@v6
       id: grype
     - run: ${{steps.grype.outputs.cmd}} .
