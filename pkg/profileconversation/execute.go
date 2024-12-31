@@ -97,25 +97,25 @@ func ExecuteSuite(suiteFile string) error {
 				switch validation.Type {
 				case "contains":
 					if err := executeContains(validation, responseText, validationLog); err != nil {
-						validationLog.Errorf(err.Error())
+						validationLog.Errorf("%s", err.Error())
 						errstrings = append(errstrings, err.Error())
 						continue
 					}
 				case "regexp":
 					if err := executeRegexp(validation, responseText, validationLog); err != nil {
-						validationLog.Errorf(err.Error())
+						validationLog.Errorf("%s", err.Error())
 						errstrings = append(errstrings, err.Error())
 						continue
 					}
 				case "equals":
 					if err := executeEquals(validation, responseText, validationLog); err != nil {
-						validationLog.Errorf(err.Error())
+						validationLog.Errorf("%s", err.Error())
 						errstrings = append(errstrings, err.Error())
 						continue
 					}
 				case "similarity":
 					if err := executeSimilarity(validation, responseText, validationLog); err != nil {
-						validationLog.Errorf(err.Error())
+						validationLog.Errorf("%s", err.Error())
 						errstrings = append(errstrings, err.Error())
 						continue
 					}

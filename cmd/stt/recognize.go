@@ -21,7 +21,7 @@ var recognizeCmd = &cobra.Command{
 		input := args[0]
 
 		if err := stt.Recognize(input, locale); err != nil {
-			global.Log.Errorf(err.Error())
+			global.Log.Errorf("%s", err.Error())
 			os.Exit(1)
 		}
 	},
@@ -37,7 +37,7 @@ func init() {
 
 	recognizeCmd.Flags().StringP("locale", "l", "", "Input locale (required)")
 	if err := recognizeCmd.MarkFlagRequired("locale"); err != nil {
-		global.Log.Errorf(err.Error())
+		global.Log.Errorf("%s", err.Error())
 		os.Exit(1)
 	}
 }

@@ -1,8 +1,8 @@
 module github.com/xavidop/dialogflow-cx-cli
 
-go 1.21
+go 1.23
 
-toolchain go1.21.5
+toolchain go1.23.4
 
 require (
 	cloud.google.com/go/dialogflow v1.64.0
@@ -23,7 +23,6 @@ require (
 	github.com/muesli/mango-cobra v1.2.0
 	github.com/muesli/roff v0.1.0
 	github.com/tmc/langchaingo v0.1.3
-	github.com/withfig/autocomplete-tools/integrations/cobra v1.2.1
 	golang.org/x/exp v0.0.0-20231206192017-f3f8817b8deb
 	golang.org/x/term v0.27.0
 	google.golang.org/protobuf v1.36.1

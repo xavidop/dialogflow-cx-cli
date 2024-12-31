@@ -22,13 +22,13 @@ var restoreCmd = &cobra.Command{
 		projectID, _ := cmd.Flags().GetString("project-id")
 		input, _ := cmd.Flags().GetString("input")
 		if err := utils.ValidateAgentFileType(input); err != nil {
-			global.Log.Errorf(err.Error())
+			global.Log.Errorf("%s", err.Error())
 			os.Exit(1)
 		}
 		agentName := args[0]
 
 		if err := agent.Restore(locationID, projectID, agentName, input); err != nil {
-			global.Log.Errorf(err.Error())
+			global.Log.Errorf("%s", err.Error())
 			os.Exit(1)
 		}
 	},
@@ -44,12 +44,12 @@ func init() {
 
 	restoreCmd.Flags().StringP("project-id", "p", "", "Dialogflow CX Project ID (required)")
 	if err := restoreCmd.MarkFlagRequired("project-id"); err != nil {
-		global.Log.Errorf(err.Error())
+		global.Log.Errorf("%s", err.Error())
 		os.Exit(1)
 	}
 	restoreCmd.Flags().StringP("location-id", "l", "", "Dialogflow CX Location ID of the Project (required)")
 	if err := restoreCmd.MarkFlagRequired("location-id"); err != nil {
-		global.Log.Errorf(err.Error())
+		global.Log.Errorf("%s", err.Error())
 		os.Exit(1)
 	}
 	restoreCmd.Flags().StringP("input", "i", "agent.blob", "Input file name. Default: agent.blob (optional)")

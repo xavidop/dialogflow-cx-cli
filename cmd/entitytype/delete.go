@@ -24,7 +24,7 @@ var deleteCmd = &cobra.Command{
 		entityTypeName := args[0]
 
 		if err := entitytype.Delete(entityTypeName, locationID, projectID, agentName, force); err != nil {
-			global.Log.Errorf(err.Error())
+			global.Log.Errorf("%s", err.Error())
 			os.Exit(1)
 		}
 	},
@@ -40,17 +40,17 @@ func init() {
 
 	deleteCmd.Flags().StringP("agent-name", "a", "", "Dialogflow CX Agent Name (required)")
 	if err := deleteCmd.MarkFlagRequired("agent-name"); err != nil {
-		global.Log.Errorf(err.Error())
+		global.Log.Errorf("%s", err.Error())
 		os.Exit(1)
 	}
 	deleteCmd.Flags().StringP("project-id", "p", "", "Dialogflow CX Project ID (required)")
 	if err := deleteCmd.MarkFlagRequired("project-id"); err != nil {
-		global.Log.Errorf(err.Error())
+		global.Log.Errorf("%s", err.Error())
 		os.Exit(1)
 	}
 	deleteCmd.Flags().StringP("location-id", "l", "", "Dialogflow CX Location ID of the Project (required)")
 	if err := deleteCmd.MarkFlagRequired("location-id"); err != nil {
-		global.Log.Errorf(err.Error())
+		global.Log.Errorf("%s", err.Error())
 		os.Exit(1)
 	}
 	deleteCmd.Flags().StringP("force", "f", "", "Forces to delete the Entity type. NOTE: it will delete all any references to the entity type. Possible values: true or false (optional)")

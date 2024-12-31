@@ -23,17 +23,17 @@ var exportCmd = &cobra.Command{
 		output, _ := cmd.Flags().GetString("output-file")
 		exportFormat, _ := cmd.Flags().GetString("export-format")
 		if err := utils.ValidateExportFormat(exportFormat); err != nil {
-			global.Log.Errorf(err.Error())
+			global.Log.Errorf("%s", err.Error())
 			os.Exit(1)
 		}
 		if err := utils.ValidateExportOutputFileAndFormatCorrelation(output, exportFormat); err != nil {
-			global.Log.Errorf(err.Error())
+			global.Log.Errorf("%s", err.Error())
 			os.Exit(1)
 		}
 		agentName := args[0]
 
 		if err := agent.Export(locationID, projectID, agentName, output, exportFormat); err != nil {
-			global.Log.Errorf(err.Error())
+			global.Log.Errorf("%s", err.Error())
 			os.Exit(1)
 		}
 	},
@@ -49,12 +49,12 @@ func init() {
 
 	exportCmd.Flags().StringP("project-id", "p", "", "Dialogflow CX Project ID (required)")
 	if err := exportCmd.MarkFlagRequired("project-id"); err != nil {
-		global.Log.Errorf(err.Error())
+		global.Log.Errorf("%s", err.Error())
 		os.Exit(1)
 	}
 	exportCmd.Flags().StringP("location-id", "l", "", "Dialogflow CX Location ID of the Project (required)")
 	if err := exportCmd.MarkFlagRequired("location-id"); err != nil {
-		global.Log.Errorf(err.Error())
+		global.Log.Errorf("%s", err.Error())
 		os.Exit(1)
 	}
 	exportCmd.Flags().StringP("output-file", "f", "agent.blob", "Output file name. Default: agent.blob (optional)")
