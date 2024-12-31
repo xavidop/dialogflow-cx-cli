@@ -71,7 +71,6 @@ func init() {
 	cmdflow.Register(rootCmd)
 	cmdflowversion.Register(rootCmd)
 	cmdgenerator.Register(rootCmd)
-	rootCmd.AddCommand(cobracompletefig.CreateCompletionSpecCommand())
 
 	// Add the subcommands
 	rootCmd.PersistentFlags().BoolVarP(&global.Verbose, "verbose", "v", false, "verbose error output (with stack trace) (optional)")
