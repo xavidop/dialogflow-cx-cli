@@ -45,7 +45,7 @@ var createCmd = &cobra.Command{
 		}
 
 		if err := agent.Create(agentName, locationID, projectID, createInput); err != nil {
-			global.Log.Errorf(err.Error())
+			global.Log.Errorf("%s", err.Error())
 			os.Exit(1)
 		}
 	},
@@ -61,22 +61,22 @@ func init() {
 
 	createCmd.Flags().StringP("project-id", "p", "", "Dialogflow CX Project ID (required)")
 	if err := createCmd.MarkFlagRequired("project-id"); err != nil {
-		global.Log.Errorf(err.Error())
+		global.Log.Errorf("%s", err.Error())
 		os.Exit(1)
 	}
 	createCmd.Flags().StringP("location-id", "l", "", "Dialogflow CX Location ID of the Project (required)")
 	if err := createCmd.MarkFlagRequired("location-id"); err != nil {
-		global.Log.Errorf(err.Error())
+		global.Log.Errorf("%s", err.Error())
 		os.Exit(1)
 	}
 	createCmd.Flags().StringP("locale", "e", "", "Default locale of the agent (required)")
 	if err := createCmd.MarkFlagRequired("locale"); err != nil {
-		global.Log.Errorf(err.Error())
+		global.Log.Errorf("%s", err.Error())
 		os.Exit(1)
 	}
 	createCmd.Flags().StringP("timezone", "t", "", "Timezone of the agent from the time zone database https://www.iana.org/time-zones. Example: America/New_York, Europe/Madrid (required)")
 	if err := createCmd.MarkFlagRequired("timezone"); err != nil {
-		global.Log.Errorf(err.Error())
+		global.Log.Errorf("%s", err.Error())
 		os.Exit(1)
 	}
 	createCmd.Flags().StringP("description", "d", "", "Description of the agent (optional)")

@@ -43,7 +43,7 @@ var updateCmd = &cobra.Command{
 		}
 
 		if err := agent.Update(agentName, locationID, projectID, updateInput); err != nil {
-			global.Log.Errorf(err.Error())
+			global.Log.Errorf("%s", err.Error())
 			os.Exit(1)
 		}
 	},
@@ -59,12 +59,12 @@ func init() {
 
 	updateCmd.Flags().StringP("project-id", "p", "", "Dialogflow CX Project ID (required)")
 	if err := updateCmd.MarkFlagRequired("project-id"); err != nil {
-		global.Log.Errorf(err.Error())
+		global.Log.Errorf("%s", err.Error())
 		os.Exit(1)
 	}
 	updateCmd.Flags().StringP("location-id", "l", "", "Dialogflow CX Location ID of the Project (required)")
 	if err := updateCmd.MarkFlagRequired("location-id"); err != nil {
-		global.Log.Errorf(err.Error())
+		global.Log.Errorf("%s", err.Error())
 		os.Exit(1)
 	}
 	updateCmd.Flags().StringP("timezone", "t", "", "Timezone of the agent from the time zone database https://www.iana.org/time-zones. Example: America/New_York, Europe/Madrid (optional)")

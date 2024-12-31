@@ -26,7 +26,7 @@ var createCmd = &cobra.Command{
 		entityTypeName := args[0]
 
 		if err := entitytype.Create(entityTypeName, locationID, projectID, agentName, localeId, entities, redacted); err != nil {
-			global.Log.Errorf(err.Error())
+			global.Log.Errorf("%s", err.Error())
 			os.Exit(1)
 		}
 	},
@@ -42,22 +42,22 @@ func init() {
 
 	createCmd.Flags().StringP("agent-name", "a", "", "Dialogflow CX Agent Name (required)")
 	if err := createCmd.MarkFlagRequired("agent-name"); err != nil {
-		global.Log.Errorf(err.Error())
+		global.Log.Errorf("%s", err.Error())
 		os.Exit(1)
 	}
 	createCmd.Flags().StringP("project-id", "p", "", "Dialogflow CX Project ID (required)")
 	if err := createCmd.MarkFlagRequired("project-id"); err != nil {
-		global.Log.Errorf(err.Error())
+		global.Log.Errorf("%s", err.Error())
 		os.Exit(1)
 	}
 	createCmd.Flags().StringP("location-id", "l", "", "Dialogflow CX Location ID of the Project (required)")
 	if err := createCmd.MarkFlagRequired("location-id"); err != nil {
-		global.Log.Errorf(err.Error())
+		global.Log.Errorf("%s", err.Error())
 		os.Exit(1)
 	}
 	createCmd.Flags().StringSliceP("entities", "n", []string{}, "List of the entities for this entity type, comma separated. Format: entity1@synonym1|synonym2,entity2@synonym1|synonym2. Example: pikachu@25|pika,charmander@3 (required)")
 	if err := createCmd.MarkFlagRequired("entities"); err != nil {
-		global.Log.Errorf(err.Error())
+		global.Log.Errorf("%s", err.Error())
 		os.Exit(1)
 	}
 

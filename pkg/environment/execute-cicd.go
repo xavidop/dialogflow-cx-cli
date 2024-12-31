@@ -39,7 +39,7 @@ func ExecutePipeline(envName string, locationID string, projectID string, agentN
 		return err
 	}
 
-	global.Log.Infof(result.GetResult().String())
+	global.Log.Infof("%s", result.GetResult().String())
 
 	return nil
 }

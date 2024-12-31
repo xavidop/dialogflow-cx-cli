@@ -25,7 +25,7 @@ var createCmd = &cobra.Command{
 		name := args[0]
 
 		if err := flowversion.Create(name, description, startFlow, locationID, projectID, agentName); err != nil {
-			global.Log.Errorf(err.Error())
+			global.Log.Errorf("%s", err.Error())
 			os.Exit(1)
 		}
 	},
@@ -41,22 +41,22 @@ func init() {
 
 	createCmd.Flags().StringP("start-flow", "s", "", "Start Flow name to create the version (required)")
 	if err := createCmd.MarkFlagRequired("start-flow"); err != nil {
-		global.Log.Errorf(err.Error())
+		global.Log.Errorf("%s", err.Error())
 		os.Exit(1)
 	}
 	createCmd.Flags().StringP("project-id", "p", "", "Dialogflow CX Project ID (required)")
 	if err := createCmd.MarkFlagRequired("project-id"); err != nil {
-		global.Log.Errorf(err.Error())
+		global.Log.Errorf("%s", err.Error())
 		os.Exit(1)
 	}
 	createCmd.Flags().StringP("location-id", "l", "", "Dialogflow CX Location ID of the Project (required)")
 	if err := createCmd.MarkFlagRequired("location-id"); err != nil {
-		global.Log.Errorf(err.Error())
+		global.Log.Errorf("%s", err.Error())
 		os.Exit(1)
 	}
 	createCmd.Flags().StringP("agent-name", "a", "", "Dialogflow CX Agent Name (required)")
 	if err := createCmd.MarkFlagRequired("agent-name"); err != nil {
-		global.Log.Errorf(err.Error())
+		global.Log.Errorf("%s", err.Error())
 		os.Exit(1)
 	}
 	createCmd.Flags().StringP("description", "d", "", "Description for this version (optional)")

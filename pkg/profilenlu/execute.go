@@ -95,7 +95,7 @@ func ExecuteSuite(suiteFile string) error {
 
 			if check.Validate.Intent != intentDetected {
 				intentError := fmt.Errorf("intent \"%s\" does not match with the intent detected \"%s\"", check.Validate.Intent, intentDetected)
-				validationLog.Errorf(intentError.Error())
+				validationLog.Errorf("%s", intentError.Error())
 				errstrings = append(errstrings, intentError.Error())
 				continue
 			}
@@ -112,7 +112,7 @@ func ExecuteSuite(suiteFile string) error {
 				}
 				if param.Value != extractedValue {
 					parameterError := fmt.Errorf("parameter value \"%s\" does not match with the parameter detected \"%s\"", param.Value, extractedValue)
-					validationLog.Errorf(parameterError.Error())
+					validationLog.Errorf("%s", parameterError.Error())
 					errstrings = append(errstrings, parameterError.Error())
 				}
 				parameters = types.RemoveParameterByName(parameters, param.Parameter)
@@ -121,7 +121,7 @@ func ExecuteSuite(suiteFile string) error {
 
 			if len(parameters) > 0 {
 				parametersNotDetectedError := fmt.Errorf("parameters not detected: %v", parameters)
-				validationLog.Errorf(parametersNotDetectedError.Error())
+				validationLog.Errorf("%s", parametersNotDetectedError.Error())
 				errstrings = append(errstrings, parametersNotDetectedError.Error())
 			}
 		}

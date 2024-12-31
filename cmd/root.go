@@ -5,7 +5,6 @@ import (
 
 	"github.com/pkg/errors"
 	"github.com/spf13/cobra"
-	cobracompletefig "github.com/withfig/autocomplete-tools/integrations/cobra"
 	cmdagent "github.com/xavidop/dialogflow-cx-cli/cmd/agent"
 	"github.com/xavidop/dialogflow-cx-cli/cmd/cmdutils"
 	cmddatastore "github.com/xavidop/dialogflow-cx-cli/cmd/datastore"
@@ -75,7 +74,6 @@ func init() {
 	cmdgenerator.Register(rootCmd)
 	cmddatastore.Register(rootCmd)
 
-	rootCmd.AddCommand(cobracompletefig.CreateCompletionSpecCommand())
 
 	// Add the subcommands
 	rootCmd.PersistentFlags().BoolVarP(&global.Verbose, "verbose", "v", false, "verbose error output (with stack trace) (optional)")

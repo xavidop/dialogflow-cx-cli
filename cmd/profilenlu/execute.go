@@ -20,7 +20,7 @@ var executeCmd = &cobra.Command{
 		suite := args[0]
 
 		if err := profilenlu.ExecuteSuite(suite); err != nil {
-			global.Log.Errorf(err.Error())
+			global.Log.Errorf("%s", err.Error())
 			os.Exit(1)
 		}
 	},

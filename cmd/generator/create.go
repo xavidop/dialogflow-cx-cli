@@ -25,7 +25,7 @@ var createCmd = &cobra.Command{
 		name := args[0]
 
 		if err := generator.Create(name, locationID, projectID, agentName, prompt, localeId); err != nil {
-			global.Log.Errorf(err.Error())
+			global.Log.Errorf("%s", err.Error())
 			os.Exit(1)
 		}
 	},
@@ -41,23 +41,23 @@ func init() {
 
 	createCmd.Flags().StringP("prompt", "r", "", "Prompt (required)")
 	if err := createCmd.MarkFlagRequired("prompt"); err != nil {
-		global.Log.Errorf(err.Error())
+		global.Log.Errorf("%s", err.Error())
 		os.Exit(1)
 	}
 
 	createCmd.Flags().StringP("project-id", "p", "", "Dialogflow CX Project ID (required)")
 	if err := createCmd.MarkFlagRequired("project-id"); err != nil {
-		global.Log.Errorf(err.Error())
+		global.Log.Errorf("%s", err.Error())
 		os.Exit(1)
 	}
 	createCmd.Flags().StringP("location-id", "l", "", "Dialogflow CX Location ID of the Project (required)")
 	if err := createCmd.MarkFlagRequired("location-id"); err != nil {
-		global.Log.Errorf(err.Error())
+		global.Log.Errorf("%s", err.Error())
 		os.Exit(1)
 	}
 	createCmd.Flags().StringP("agent-name", "a", "", "Dialogflow CX Agent Name (required)")
 	if err := createCmd.MarkFlagRequired("agent-name"); err != nil {
-		global.Log.Errorf(err.Error())
+		global.Log.Errorf("%s", err.Error())
 		os.Exit(1)
 	}
 
