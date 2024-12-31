@@ -22,7 +22,7 @@ var deleteCmd = &cobra.Command{
 		name := args[0]
 
 		if err := datastore.Delete(name, locationID, projectID); err != nil {
-			global.Log.Errorf(err.Error())
+			global.Log.Errorf("%s", err.Error())
 			os.Exit(1)
 		}
 	},
@@ -38,12 +38,12 @@ func init() {
 
 	deleteCmd.Flags().StringP("project-id", "p", "", "Data Store Project ID (required)")
 	if err := deleteCmd.MarkFlagRequired("project-id"); err != nil {
-		global.Log.Errorf(err.Error())
+		global.Log.Errorf("%s", err.Error())
 		os.Exit(1)
 	}
 	deleteCmd.Flags().StringP("location-id", "l", "", "Data Store Location ID of the Project (required)")
 	if err := deleteCmd.MarkFlagRequired("location-id"); err != nil {
-		global.Log.Errorf(err.Error())
+		global.Log.Errorf("%s", err.Error())
 		os.Exit(1)
 	}
 
