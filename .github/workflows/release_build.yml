@@ -47,6 +47,8 @@ jobs:
       - name: Chocolatey 🍫📦
         run: |
           sudo apt-get update || true
+          sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 0E98404D386FA1D9
+          sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 6ED0E7B82643E131
           echo deb http://archive.debian.org/debian buster-backports main | sudo tee /etc/apt/sources.list.d/buster-backports.list; \
             sudo apt-get update && sudo apt-get install -t buster-backports git -y
           curl -o packages-microsoft-prod.deb https://packages.microsoft.com/config/debian/10/packages-microsoft-prod.deb; \
