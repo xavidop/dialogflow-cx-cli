@@ -47,7 +47,7 @@ jobs:
       - name: Chocolatey 🍫📦
         run: |
           sudo apt-get update || true
-          sudo apt-get -yq --no-install-suggests --no-install-recommends install mono-runtime mono-complete nuget
+          sudo apt-get -yq --no-install-suggests --no-install-recommends install mono-runtime mono-complete
           chmod +x *.sh
           # prevent choco build to calculate version from tag of main repository
           unset GITHUB_REF GITHUB_BASE_REF GITHUB_HEAD_REF
