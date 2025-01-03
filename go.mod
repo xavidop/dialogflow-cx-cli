@@ -5,7 +5,7 @@ go 1.23
 toolchain go1.23.4
 
 require (
-	cloud.google.com/go/dialogflow v1.64.0
+	cloud.google.com/go/dialogflow v1.64.1
 	github.com/google/uuid v1.6.0
 	github.com/pkg/errors v0.9.1
 	github.com/sirupsen/logrus v1.9.3
