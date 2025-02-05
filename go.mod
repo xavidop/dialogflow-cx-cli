@@ -24,7 +24,7 @@ require (
 	github.com/muesli/roff v0.1.0
 	github.com/tmc/langchaingo v0.1.3
 	golang.org/x/exp v0.0.0-20231206192017-f3f8817b8deb
-	golang.org/x/term v0.27.0
+	golang.org/x/term v0.29.0
 	google.golang.org/protobuf v1.36.1
 	gopkg.in/yaml.v3 v3.0.1
 )
@@ -67,7 +67,7 @@ require (
 	golang.org/x/net v0.33.0 // indirect
 	golang.org/x/oauth2 v0.24.0 // indirect
 	golang.org/x/sync v0.10.0 // indirect
-	golang.org/x/sys v0.28.0 // indirect
+	golang.org/x/sys v0.30.0 // indirect
 	golang.org/x/text v0.21.0 // indirect
 	golang.org/x/time v0.8.0 // indirect
 	google.golang.org/genproto v0.0.0-20241118233622-e639e219e697 // indirect
