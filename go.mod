@@ -14,7 +14,7 @@ require (
 
 require (
 	cloud.google.com/go/speech v1.26.0
-	cloud.google.com/go/texttospeech v1.11.0
+	cloud.google.com/go/texttospeech v1.11.1
 	github.com/adrg/strutil v0.3.1
 	github.com/antonfisher/nested-logrus-formatter v1.3.1
 	github.com/google/go-github/v50 v50.2.0
@@ -72,6 +72,6 @@ require (
 	golang.org/x/time v0.10.0 // indirect
 	google.golang.org/genproto v0.0.0-20250122153221-138b5a5a4fd4 // indirect
 	google.golang.org/genproto/googleapis/api v0.0.0-20250219182151-9fdb1cabc7b2 // indirect
-	google.golang.org/genproto/googleapis/rpc v0.0.0-20250219182151-9fdb1cabc7b2 // indirect
+	google.golang.org/genproto/googleapis/rpc v0.0.0-20250212204824-5a70512c5d8b // indirect
 	google.golang.org/grpc v1.70.0 // indirect
 )
