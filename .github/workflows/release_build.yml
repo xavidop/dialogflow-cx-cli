@@ -34,7 +34,7 @@ jobs:
       - uses: crazy-max/ghaction-upx@v3
         with:
           install-only: true
-      - uses: cachix/install-nix-action@v30
+      - uses: cachix/install-nix-action@v31
         with:
           github_access_token: ${{ secrets.GO_RELEASER_GITHUB_TOKEN }}
       - uses: actions/setup-dotnet@v4
