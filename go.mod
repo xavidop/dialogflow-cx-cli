@@ -1,9 +1,6 @@
 module github.com/xavidop/dialogflow-cx-cli
 
 go 1.24.0
-
-toolchain go1.24.1
-
 require (
 	cloud.google.com/go/dialogflow v1.67.0
 	github.com/google/uuid v1.6.0
@@ -25,7 +22,7 @@ require (
 	github.com/tmc/langchaingo v0.1.3
 	golang.org/x/exp v0.0.0-20231206192017-f3f8817b8deb
 	golang.org/x/term v0.30.0
-	google.golang.org/protobuf v1.36.5
+	google.golang.org/protobuf v1.36.6
 	gopkg.in/yaml.v3 v3.0.1
 )
 
