@@ -9,7 +9,7 @@ require (
 	github.com/google/uuid v1.6.0
 	github.com/pkg/errors v0.9.1
 	github.com/sirupsen/logrus v1.9.3
-	github.com/spf13/cobra v1.9.1
+	github.com/spf13/cobra v1.10.1
 	google.golang.org/api v0.224.0
 )
 
@@ -20,7 +20,7 @@ require (
 	github.com/antonfisher/nested-logrus-formatter v1.3.1
 	github.com/google/go-github/v50 v50.2.0
 	github.com/invopop/jsonschema v0.13.0
-	github.com/muesli/mango-cobra v1.2.0
+	github.com/muesli/mango-cobra v1.3.0
 	github.com/muesli/roff v0.1.0
 	github.com/tmc/langchaingo v0.1.3
 	golang.org/x/exp v0.0.0-20231206192017-f3f8817b8deb
@@ -52,11 +52,11 @@ require (
 	github.com/googleapis/gax-go/v2 v2.14.1 // indirect
 	github.com/inconshreveable/mousetrap v1.1.0 // indirect
 	github.com/mailru/easyjson v0.7.7 // indirect
-	github.com/muesli/mango v0.1.0 // indirect
+	github.com/muesli/mango v0.2.0 // indirect
 	github.com/muesli/mango-pflag v0.1.0 // indirect
 	github.com/pkoukk/tiktoken-go v0.1.2 // indirect
 	github.com/russross/blackfriday/v2 v2.1.0 // indirect
-	github.com/spf13/pflag v1.0.6 // indirect
+	github.com/spf13/pflag v1.0.9 // indirect
 	github.com/wk8/go-ordered-map/v2 v2.1.8 // indirect
 	go.opentelemetry.io/auto/sdk v1.1.0 // indirect
 	go.opentelemetry.io/contrib/instrumentation/google.golang.org/grpc/otelgrpc v0.59.0 // indirect
