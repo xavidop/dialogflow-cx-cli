@@ -28,7 +28,7 @@ jobs:
           go-version: stable
         id: go
       - uses: docker/setup-qemu-action@v3
-      - uses: docker/setup-buildx-action@v3
+      - uses: docker/setup-buildx-action@v4
       - uses: sigstore/cosign-installer@v3.9.0
       - uses: anchore/sbom-action/download-syft@v0.18.0
       - uses: crazy-max/ghaction-upx@v3
